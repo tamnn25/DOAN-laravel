@@ -47,10 +47,9 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Images</th>
-                <th> Price $</th>
+                <th> Prices</th>
                 <th>Status</th>
                 <th>Category_name</th>
-                
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -84,4 +83,4 @@
     </table>
 
     {{ $products->appends(request()->input())->links() }}
-@endse
+@endsection

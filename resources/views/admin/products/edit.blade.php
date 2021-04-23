@@ -11,7 +11,7 @@
 
 {{-- import file css (private) --}}
 @push('css')
-    <link rel="stylesheet" href="/admin/css/posts/post-edit.css">
+    <link rel="stylesheet" href="/admin/css/product/product-edit.css">
 @endpush
 
 @section('content')
