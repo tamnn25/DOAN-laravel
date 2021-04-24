@@ -21,7 +21,10 @@
     
     <form action="{{ route('admin.product.update', request()->route('id')) }}" method="post" enctype="multipart/form-data">
         @csrf
+
         @method('put')
+
+        
         <div class="form-group mb-5">
             <label for="">Post Name</label>
             <input type="text" name="name" placeholder="post name" value="{{ old('name', $product->name) }}" class="form-control">
@@ -29,6 +32,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+
         <div class="form-group mb-5">
             <label for="">Post images</label>
             <img src="{{ asset($product->images) }}" alt="{{ $product->name }}" class="img-fluid">
@@ -37,6 +41,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+
         <div class="form-group mb-5">
             <label for="">product price</label>
             <input type="text" name="price" placeholder="product price" value="{{ old('price', $product->price) }}" class="form-control">
@@ -51,6 +56,15 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+
+        <div class="form-group mb-5">
+            <label for="">product hot</label>
+            <input type="text" name="hot" placeholder="product hot" value="{{ old('hot', $product->hot) }}" class="form-control">
+            @error('hot')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        
         <div class="form-group mb-5">
             <label for="">product Content</label>
             <textarea name="content" rows="10" class="form-control">{{ old('content', $product->product_detail ? $product->product_detail->content : null) }}</textarea>
@@ -58,6 +72,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+        
         <div class="form-group mb-5">
             <label for="">Category</label>
             <select name="category_id" class="form-control">
@@ -72,9 +87,12 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+
         <div class="form-group">
             <a href="{{ route('admin.product.index') }}" class="btn btn-secondary">List Post</a>
             <button type="submit" class="btn btn-primary">Update</button>
         </div>
+
+
     </form>
 @endsection

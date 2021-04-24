@@ -49,6 +49,7 @@
                 <th>Images</th>
                 <th> Prices</th>
                 <th>Status</th>
+                <th>Hot</th>
                 <th>Category_name</th>
                 <th colspan="3">Action</th>
             </tr>
@@ -61,10 +62,11 @@
                         <td>{{ $product->name }}</td>
                         <td>
                             {{-- <img src="{{ asset($product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 40px; height: auto;"> --}}
-                            <img src="/{{ $product->images }}" alt="{{ $product->name }}" class="img-fluid" style="width: 40px; height: auto;">
+                            <img src="/{{ $product->images }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;">
                         </td>
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->status }}</td>
+                        <td>{{ $product->hot }}</td>
                         <td>{{ $product->category->name }}</td>
                         
                         <td><a href="{{ route('admin.product.show', $product->id) }}">Detail</a></td>

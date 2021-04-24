@@ -54,7 +54,9 @@ class CategoryController extends Controller
 
         // insert to DB
         $categoryInsert = [
-            'name' => $request->category_name
+            'name' => $request->category_name,
+            'parent_id' => $request->parent_id,
+
         ];
 
         DB::beginTransaction();
@@ -120,6 +122,8 @@ class CategoryController extends Controller
             $category = Category::find($id);
             // set value for field name
             $category->name = $request->category_name;
+            $category->parent_id = $request->parent_id;
+
             $category->save();
 
             DB::commit();

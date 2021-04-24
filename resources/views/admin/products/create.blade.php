@@ -51,6 +51,15 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+
+        <div class="form-group mb-5">
+            <label for="">Product hot</label>
+            <input type="text" name="hot" placeholder=" Enter Product hot" value="{{ old('hot') }}" class="form-control">
+            @error('hot')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
         <div class="form-group mb-5">
             <label for="">Product content</label>
             <textarea name="content" rows="10" class="form-control">{{ old('price') }}</textarea>

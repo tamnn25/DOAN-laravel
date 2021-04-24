@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'products',
-        'price',
-        'quantity',
-        'Discount_Codes',
-        'product_id',
-    ];
 
-    public function product()
+    protected $fillable = [
+        'user_id',
+        'address',
+        'phone_number',
+        'email',
+    ];
+    public function user()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(User::class);
     }
+    
 }

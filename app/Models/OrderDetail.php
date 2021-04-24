@@ -5,19 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product_detail extends Model
+class OrderDetail extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'content',
         'product_id',
+        'order_id',
+        'quantity',
+        'price',
+        'total'
     ];
 
-    /**
-     * Get the post that owns the post_detail.
-     */
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsTo(Product::class);
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
     }
 }

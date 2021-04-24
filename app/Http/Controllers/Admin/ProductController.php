@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Product_detail;
+use App\Models\ProductDetail;
 use App\Http\Requests\Admin\StoreProductRequest;
-use DB;
-use File;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\Admin\UpdateProductRequest;
 
@@ -20,7 +20,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Request $request )
     {
         $data = [];
         $product = Product::with('category');
@@ -90,12 +90,13 @@ class ProductController extends Controller
             $extension = $request->images->extension();
 
             $fileName = 'images_' . time() . '.' . $extension;
-            $imagesPath = $image->move('images', $fileName);
+            $imagesPath = $image->move('storage/products', $fileName);
         }
         $dataInsert = [
             'name' => $request->name,
             'images' => $imagesPath,
             'price'=> $request->price,
+            'hot'=> $request->hot,
             'status' => $request->status,
             'category_id' => $request->category_id,
         ];
@@ -106,8 +107,9 @@ class ProductController extends Controller
 
             // insert into table post_details
             // todo
-            $productDetail = new Product_detail([
+            $productDetail = new ProductDetail([
                 'content' => $request->content,
+
             ]);
             $product->Product_detail()->save($productDetail);
 
@@ -189,7 +191,7 @@ class ProductController extends Controller
         }
         // update data for table product
         $product->name = $request->name;
-        
+        $product->hot = $request->hot;
         $product->price = $request->price;
         $product->status = $request->status;
         $product->category_id = $request->category_id;
@@ -208,10 +210,10 @@ class ProductController extends Controller
 
             // create or update data for table post_details
             if (!$productDetailId) { // create
-                $productDetail = new Product_detail($dataDetailProduct);
+                $productDetail = new ProductDetail($dataDetailProduct);
                 $productDetail->save();
             } else { // update
-                Product_detail::find($productDetailId)
+                ProductDetail::find($productDetailId)
                     ->update($dataDetailProduct);
             }
 

@@ -7,19 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'name',
         'images',
         'price',
         'status',
+        'hot',
         'category_id',
     ];
 
-    public const PAGE_LIMIT = 10;
-
-    /**
-     * Get the category that owns the post.
-     */
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -30,6 +27,13 @@ class Product extends Model
      */
     public function product_detail()
     {
-        return $this->hasOne(Product_detail::class);
+        return $this->hasOne(ProductDetail::class);
     }
+
+    public function order_detail()
+    {
+        return $this->hasOne(ProductDetail::class);
+    }
+
+
 }
