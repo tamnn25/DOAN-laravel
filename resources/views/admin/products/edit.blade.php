@@ -56,7 +56,13 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-
+        <div class="form-group mb-5">
+            <label for="">product quantity</label>
+            <input type="text" name="quantity" placeholder="product quantity" value="{{ old('quantity', $product->quantity) }}" class="form-control">
+            @error('quantity')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
         <div class="form-group mb-5">
             <label for="">product hot</label>
             <input type="text" name="hot" placeholder="product hot" value="{{ old('hot', $product->hot) }}" class="form-control">
