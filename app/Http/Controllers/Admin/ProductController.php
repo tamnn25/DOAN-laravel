@@ -94,7 +94,7 @@ class ProductController extends Controller
         }
         $dataInsert = [
             'name' => $request->name,
-            'images' => $imagesPath,
+            'images' => $fileName,
             'price'=> $request->price,
             'hot'=> $request->hot,
             'status' => $request->status,
@@ -183,7 +183,7 @@ class ProductController extends Controller
             $image = $request->file('images');
             $extension = $request->images->extension();
             $fileName = 'images_' . time() . '.' . $extension;
-            $imagesPath = $image->move('images', $fileName);
+            $imagesPath = $image->move('storage/products', $fileName);
 
             $product->images = $imagesPath;
             Log::info('imagesPath: ' . $imagesPath);

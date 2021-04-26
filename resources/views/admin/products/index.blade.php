@@ -16,7 +16,7 @@
 
 {{-- import file js (private) --}}
 @push('js')
-    <script src="/admin/js/posts/post-list.js"></script>
+    {{-- <script src="/admin/js/posts/post-list.js"></script> --}}
 @endpush
 
 @section('content')
@@ -62,7 +62,7 @@
                         <td>{{ $product->name }}</td>
                         <td>
                             {{-- <img src="{{ asset($product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 40px; height: auto;"> --}}
-                            <img src="/{{ $product->images }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;">
+                            <img src="{{asset('storage/products/'.$product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;">
                         </td>
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->status }}</td>
@@ -84,5 +84,5 @@
         </tbody>
     </table>
 
-    {{ $products->appends(request()->input())->links() }}
+    {{ $products->links() }}
 @endsection

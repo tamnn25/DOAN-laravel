@@ -35,5 +35,14 @@ class Product extends Model
         return $this->hasOne(ProductDetail::class);
     }
 
+    public function price()
+    {
+        return $this->hasMany(Price::class);
+    }
+
+    public function promotion()
+    {
+        return $this->hasOne(Promotion::class);
+    }
 
 }
