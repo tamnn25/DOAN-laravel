@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('images')->nullable()->comment('Image for post');
             $table->string('price');
             $table->tinyText('status');
+            $table->integer('quantity');
             $table->string('hot');
             $table->timestamps();
             $table->softDeletes();

@@ -92,11 +92,13 @@ class ProductController extends Controller
             $fileName = 'images_' . time() . '.' . $extension;
             $imagesPath = $image->move('storage/products', $fileName);
         }
+        
         $dataInsert = [
             'name' => $request->name,
             'images' => $imagesPath,
             'price'=> $request->price,
             'hot'=> $request->hot,
+            'quantity'=> $request->quantity,
             'status' => $request->status,
             'category_id' => $request->category_id,
         ];
@@ -109,7 +111,6 @@ class ProductController extends Controller
             // todo
             $productDetail = new ProductDetail([
                 'content' => $request->content,
-
             ]);
             $product->Product_detail()->save($productDetail);
 
@@ -170,8 +171,10 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $id)
     {
-        //
-        //
+        // em xu ly dang bi null cho nao vay . cai file em xu ly no cung mat luon roi thay.
+        //no resset ve source cu do thay.
+        // de em xu ly lai roi inbox thay sau. chu nhieu qua nhầm mất thầy
+        //ok./da cảm on thay
         $product = Product::find($id);
         $productDetailId = $product->product_detail ? $product->product_detail->id : null;
         $imagesOld = $product->images;
@@ -194,6 +197,7 @@ class ProductController extends Controller
         $product->hot = $request->hot;
         $product->price = $request->price;
         $product->status = $request->status;
+        $product->quantity = $request->quantity;
         $product->category_id = $request->category_id;
         
         // lưu bộ nhớ đệm, ko lưu vào DB.

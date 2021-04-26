@@ -47,8 +47,9 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Images</th>
-                <th> Prices</th>
+                <th>Prices</th>
                 <th>Status</th>
+                <th>Quantity</th>
                 <th>Hot</th>
                 <th>Category_name</th>
                 <th colspan="3">Action</th>
@@ -66,6 +67,7 @@
                         </td>
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->status }}</td>
+                        <td>{{ $product->quantity }}</td>
                         <td>{{ $product->hot }}</td>
                         <td>{{ $product->category->name }}</td>
                         
