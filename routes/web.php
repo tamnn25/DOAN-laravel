@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 /*
@@ -17,3 +18,8 @@ Route::get('/', [HomeController::class, 'index']);
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
+    Route::get('/', [CartController::class, 'getCartInfor'])->name('cart-info');
+    Route::post('cart', [CartController::class, 'addCart'])->name('add-cart');
+});

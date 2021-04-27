@@ -32,6 +32,34 @@ class CartController extends Controller
         return redirect()->route('carts.cart')->with('success','add product   in to Cart  success fully!');
     }
     
+    public function getCartInfor()
+    {
+        // $data['carts'] = session()->get('carts');
+        // dd($data);
+
+
+        $sessionAll = Session::all();
+        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
+        $data['carts'] = $carts;
+
+        $dataCart = [];
+        if (!empty($carts)) {
+            // create list product id
+            $listProductId = [];
+            foreach ($carts as $cart) {
+                $listProductId[] = $cart['id'];
+            }
+
+            // get data product from list product id
+            $dataCart = Product::whereIn('id', $listProductId)
+                ->get();
+        }
+        // dd( $data);
+        $data['products'] = $dataCart;
+        // echo(12321323);
+        return view ('carts.cart', $data);
+        //
+    }
     /**
      * Show the form for creating a new resource.
      *
