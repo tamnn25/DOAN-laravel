@@ -1,4 +1,5 @@
 @if (!empty($products))
+
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -12,6 +13,8 @@
     <tbody>
         @foreach ($products as $key => $product)
             <tr>
+                @csrf
+
                 <td>{{ $key+1 }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->images  }}</td>

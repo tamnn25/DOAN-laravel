@@ -13,23 +13,30 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addCart(Request $request,$id)
+    public function addCart(Request $request)
     {
-        //
+        $id = $request->id;
         $sessionAll =  Session::all();
-        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];    
-        $product = Product::finOrFail($id);
+        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];  
+        
+        $product = Product::findOrFail($id);
 
         $newProduct = [
              'id' => $id,
              'name' => $product->name,
              'quantity' => $product->price,
-             'quantity' => $request->quantity,
+             'quantity' => 1,
         ];
         $carts[$id] = $newProduct;
-        info($carts);
+        
         session(['carts'=> $carts]);
-        return redirect()->route('carts.cart')->with('success','add product   in to Cart  success fully!');
+        if ($carts) {
+            return response()->json([
+                'status' => 'ok',
+                'carts' => $carts,
+                'message' => 'add product   in to Cart  success fully!'
+            ]);
+        }
     }
     
     /**
@@ -37,8 +44,31 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getCartInfor()
     {
+        // $data['carts'] = session()->get('carts');
+        // dd($data);
+
+
+        $sessionAll = Session::all();
+        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
+        $data['carts'] = $carts;
+
+        $dataCart = [];
+        if (!empty($carts)) {
+            // create list product id
+            $listProductId = [];
+            foreach ($carts as $cart) {
+                $listProductId[] = $cart['id'];
+            }
+
+            // get data product from list product id
+            $dataCart = Product::whereIn('id', $listProductId)
+                ->get();
+        }
+        dd( $data);
+        $data['products'] = $dataCart;
+        return view('carts.cart', $data);
         //
     }
 

@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration
             $table->tinyText('status');
             $table->integer('quantity');
             $table->string('hot');
-            $table->integer('quantity');
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('category_id');

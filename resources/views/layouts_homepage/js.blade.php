@@ -7,3 +7,4 @@
     <script src="{{ asset('/shop/js/mixitup.min.js') }}"></script>
     <script src="{{ asset('/shop/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('/shop/js/main.js') }}"></script>
+    @yield('scripts')
