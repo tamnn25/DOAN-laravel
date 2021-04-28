@@ -17,11 +17,10 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('images')->nullable()->comment('Image for post');
-            $table->string('price');
+            $table->integer('price');
             $table->tinyText('status');
             $table->integer('quantity');
             $table->string('hot');
-            $table->integer('quantity');
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('category_id');

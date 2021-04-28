@@ -13,23 +13,31 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addCart(Request $request,$id)
+    public function addCart( Request $request)
     {
-        //
+        $id = $request->id;
         $sessionAll =  Session::all();
-        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];    
-        $product = Product::finOrFail($id);
+        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];  
+        
+        $product = Product::findOrFail($id);
 
         $newProduct = [
              'id' => $id,
              'name' => $product->name,
              'quantity' => $product->price,
-             'quantity' => $request->quantity,
+            //  'quantity' =>  $product ->quantity +=1,
+             'quantity' => 1,
         ];
         $carts[$id] = $newProduct;
-        info($carts);
+        
         session(['carts'=> $carts]);
-        return redirect()->route('carts.cart')->with('success','add product   in to Cart  success fully!');
+        if ($carts) {
+            return response()->json([
+                'status' => 'ok',
+                'carts' => $carts,
+                'message' => 'add product   in to Cart  success fully!'
+            ]);
+        }
     }
     
     public function getCartInfor()
@@ -41,7 +49,6 @@ class CartController extends Controller
         $sessionAll = Session::all();
         $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
         $data['carts'] = $carts;
-
         $dataCart = [];
         if (!empty($carts)) {
             // create list product id
@@ -54,75 +61,35 @@ class CartController extends Controller
             $dataCart = Product::whereIn('id', $listProductId)
                 ->get();
         }
-        // dd( $data);
         $data['products'] = $dataCart;
-        // echo(12321323);
-        return view ('carts.cart', $data);
+
+        // dd( $data);
+              return view ('carts.cart', $data);
         //
+    }
+
+    public function checkout(){
+        $sessionAll = Session::all();
+        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
+        $data['carts'] = $carts;
+        $dataCart = [];
+        if (!empty($carts)) {
+            // create list product id
+            $listProductId = [];
+            foreach ($carts as $cart) {
+                $listProductId[] = $cart['id'];
+            }
+
+            // get data product from list product id
+            $dataCart = Product::whereIn('id', $listProductId)
+                ->get();
+        }
+        $data['products'] = $dataCart;
+        return view('carts.checkout',$data);
     }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -68,7 +68,7 @@
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="javascript:" onclick="addCart({{ $product->id }})"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
@@ -368,7 +368,24 @@
     <!-- Blog Section End -->
 
 @endsection
-
+@section('scripts')
+    <script>
+        function addCart(paramIid) {
+            $.ajax({
+                type: "POST",
+                url: `{{ route('cart.add-cart') }}`,
+                data: {id: paramIid},
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+        
+    </script>
+@endsection                                                                 
    
 
 
