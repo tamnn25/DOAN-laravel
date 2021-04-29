@@ -25,7 +25,7 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name' => 'required', // rule: not null, minumum: 5, maximum: 255
-            'images' => 'required',
+            'image' => 'nullable|image',
             'price' => 'required',
             'status' => 'required',
             'category_id' => 'required', // rule: not null

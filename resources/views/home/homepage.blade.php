@@ -52,7 +52,6 @@
                         <ul>
                             @foreach ($categories as $category)
                                 <li class="active" data-filter="*">{{ $category->name }}</li>
-                                
                             @endforeach
                         </ul>
                     </div>
@@ -64,11 +63,12 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
             
                      <div class="featured__item">
-                        <div class="featured__item__pic set-bg"  data-setbg="{{ asset('storage/products/'.$product->images) }}" alt="">
+                        <div class="featured__item__pic set-bg"  data-setbg="/{{ $product->images }}" alt="">
+                            <img src="{{ asset($product->image)}}" alt="{{ $product->name }}" class="img-fluid">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="javascript:" onclick="addCart({{ $product->id }})"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
@@ -366,9 +366,26 @@
         </div>
     </section>
     <!-- Blog Section End -->
-
 @endsection
 
+
+@section('scripts')
+    <script>
+        function addCart(paramIid) {
+            $.ajax({
+                type: "POST",
+                url: `{{ route('cart.add-cart') }}`,
+                data: {id: paramIid},
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+    </script>
+@endsection 
    
 
 

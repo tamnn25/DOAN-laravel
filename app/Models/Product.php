@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'images',
+        'image', // dat la so it ay : image hoac thumbnail ---> sua lai file migrate, reset lai DB
         'price',
         'status',
         'quantity',
@@ -22,7 +22,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
-
+    
+    public function product_images(){
+        return $this->hasMany(ProductImage::class);
+    }
     /**
      * Get the post_detail for the post.
      */

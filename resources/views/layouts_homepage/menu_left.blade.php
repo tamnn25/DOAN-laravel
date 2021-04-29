@@ -7,10 +7,11 @@
                         <i class="fa fa-bars"></i>
                         <span>All departments</span>
                     </div>
-                    <ul>
-                        <li><a href="#">Fresh Meat</a></li>
-                        {{-- dfgfdg --}}
-                    </ul>
+                    @foreach ($categories as $category)
+                        <ul>
+                            <li class="active" data-filter="*">{{ $category->name }}</li>
+                        </ul>
+                    @endforeach
                 </div>
             </div>
             <div class="col-lg-9">
