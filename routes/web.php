@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CartController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,4 +23,7 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
     Route::get('/', [CartController::class, 'getCartInfor'])->name('cart-info');
     Route::post('cart', [CartController::class, 'addCart'])->name('add-cart');
     Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
+    Route::post('/minus',[CartController::class,'minusCart'])->name('minus');
+    Route::post('/plus',[CartController::class,'plusCart'])->name('plus');
+    Route::delete('/delete/{id}', [CartController::class, 'destroy'])->name('destroy');
 });

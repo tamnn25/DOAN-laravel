@@ -130,15 +130,7 @@ class ProductController extends Controller
                 'content'=> $request->content,
             ]);
             $product->product_detail()->save($productDetail);
-            // product_detail
-            // dd();
-            // echo 111;die;
-
-            //insert url vao product_images
-            // $productImage = new ProductImage([
-                // 'url'=> $urlPath,
-            // ]);
-            // $product->product_images()->save($productImage);
+            
 
             // save multiple image for table product_images
             if (!empty($listProductImages)) {
@@ -213,7 +205,7 @@ class ProductController extends Controller
         // em bo vo coi no bao loi gi do thay
         $productDetailId = !empty($product->product_detail) ? $product->product_detail->id : null;
         $imagesOld = $product->images;
-// echo 123;die;
+        // echo 123;die;
         // $productImageId = !empty($product->product_images) ? $product->product_images->id : null;
 
         // dd($request->all());
@@ -229,20 +221,6 @@ class ProductController extends Controller
             $product->images = $imagesPath;
             Log::info('imagesPath: ' . $imagesPath);
         }
-
-        // xu ly anh cho products_images
-        // $urlPath = null;
-        // if ($request->hasFile('url') 
-        //     && $request->file('url')->isValid()) {
-        //     // Nếu có thì thục hiện lưu trữ file vào public/url
-        //     $image = $request->file('url');
-        //     $extension = $request->url->extension();
-        //     $fileName = 'url_' . time() . '.' . $extension;
-        //     $urlPath = $image->move('storage/product_images', $fileName);
-
-        //     $product->url = $urlPath;
-        //     Log::info('urlPath: ' . $urlPath);
-        // }
 
         $listProductImages = [];
         $files = $request->file('url');
@@ -287,21 +265,7 @@ class ProductController extends Controller
                 ProductDetail::find($productDetailId)
                     ->update($dataDetailProduct);
             }
-            
-            // // xu ly product_images
-            // $dataImageProduct = [
-            //     'url' => $request->url,
-            //     'product_id' => $id,
-            // ];
-
-            // // create or update data for table post_details
-            // if (!$productImages) { // create
-            //     $productImages = new ProductDetail($dataImageProduct);
-            //     $productImages->save();
-            // } else { // update
-            //     ProductDetail::find($productImages)
-            //         ->update($dataImageProduct);
-            // }
+           
 
             // save multiple image for table product_images
             if (!empty($listProductImages)) {
@@ -312,7 +276,6 @@ class ProductController extends Controller
                     $product->product_images()->save($productImage);
                 }
             }
-            
             DB::commit();
 
             // SAVE OK then delete OLD file

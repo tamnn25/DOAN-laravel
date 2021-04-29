@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -13,23 +14,42 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addCart(Request $request,$id)
+    public function addCart( Request $request)
     {
-        //
+        $id = $request->id;
         $sessionAll =  Session::all();
-        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];    
-        $product = Product::finOrFail($id);
+        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];  
+        
+        $product = Product::findOrFail($id);
 
         $newProduct = [
              'id' => $id,
              'name' => $product->name,
-             'quantity' => $product->price,
-             'quantity' => $request->quantity,
+             'images' =>$product->images,
+             'price' => $product->price,
+             'quantity' => 1,
         ];
+        if ($carts && isset($carts[$id])) {
+            $carts[$id]['quantity']++;
+            info($carts[$id]);
+            session()->put('carts', $carts);
+            return response()->json([
+                'status' => 'ok',
+                'carts' => $carts,
+                'message' => 'add product   in to Cart  success fully!'
+            ]);
+        }
+
         $carts[$id] = $newProduct;
-        info($carts);
-        session(['carts'=> $carts]);
-        return redirect()->route('carts.cart')->with('success','add product   in to Cart  success fully!');
+        
+        session()->put('carts', $carts);
+        if ($carts) {
+            return response()->json([
+                'status' => 'ok',
+                'carts' => $carts,
+                'message' => 'add product   in to Cart  success fully!'
+            ]);
+        }
     }
     
     /**
@@ -59,10 +79,9 @@ class CartController extends Controller
                 ->get();
         }
         $data['products'] = $dataCart;
-
         // dd( $data);
               return view ('carts.cart', $data);
-        //
+        
     }
 
     public function checkout(){
@@ -85,48 +104,77 @@ class CartController extends Controller
         return view('carts.checkout',$data);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function minusCart(Request $request)
     {
-        //
+        $id = $request->id;
+        $carts = session('carts');
+        $result = $carts[$id]['quantity']--;
+        $cartNew = session('carts');
+        $total = $cartNew[$id]['quantity']*$cartNew[$id]['price'];
+        session()->put('carts', $carts);
+        if ($result) {
+            info($carts);
+            return response()->json([
+                'status' => 'ok',
+                'carts' => $carts[$id],
+                'total' =>number_format($total),
+                'message' => 'munis product in to Cart  successfully!'
+            ]);
+        }
+        return response()->json([
+            'status' => 'ok',
+            'carts' => $result,
+            'message' => 'munis product in to Cart  faiel!'
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function plusCart(Request $request)
     {
-        //
+        $id = $request->id;
+        $carts = session('carts');
+        $result = $carts[$id]['quantity']++;
+        $cartNew = session('carts');
+        $total = $cartNew[$id]['quantity']*$cartNew[$id]['price'];
+        session()->put('carts', $carts);
+        if ($result) {
+            info($carts);
+            return response()->json([
+                'status' => 'ok',
+                'carts' => $carts[$id],
+                'total' => number_format($total),
+                'message' => 'munis product in to Cart  successfully!'
+            ]);
+        }
+        return response()->json([
+            'status' => 'ok',
+            'carts' => $result,
+            'message' => 'munis product in to Cart  faiel!'
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        // Method: DELETE
+        DB::beginTransaction();
+
+        try {
+            $carts = Session::find($id);
+            $carts->delete();
+
+            DB::commit();
+
+            return redirect()->route('admin.category.index')
+                ->with('success', 'Delete Category successful!');
+        }  catch (\Exception $ex) {
+            DB::rollBack();
+            // have error so will show error message
+            return redirect()->back()->with('error', $ex->getMessage());
+        }
     }
+  
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 }
