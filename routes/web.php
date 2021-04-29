@@ -18,7 +18,11 @@ Route::get('/', [HomeController::class, 'index']);
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+
 Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
     Route::get('/', [CartController::class, 'getCartInfor'])->name('cart-info');
     Route::post('cart', [CartController::class, 'addCart'])->name('add-cart');
+    Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
 });
+

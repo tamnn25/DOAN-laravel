@@ -13,7 +13,7 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addCart(Request $request)
+    public function addCart( Request $request)
     {
         $id = $request->id;
         $sessionAll =  Session::all();
@@ -25,6 +25,7 @@ class CartController extends Controller
              'id' => $id,
              'name' => $product->name,
              'quantity' => $product->price,
+            //  'quantity' =>  $product ->quantity +=1,
              'quantity' => 1,
         ];
         $carts[$id] = $newProduct;
@@ -39,11 +40,6 @@ class CartController extends Controller
         }
     }
     
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function getCartInfor()
     {
         // $data['carts'] = session()->get('carts');
@@ -53,7 +49,6 @@ class CartController extends Controller
         $sessionAll = Session::all();
         $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
         $data['carts'] = $carts;
-
         $dataCart = [];
         if (!empty($carts)) {
             // create list product id
@@ -66,65 +61,35 @@ class CartController extends Controller
             $dataCart = Product::whereIn('id', $listProductId)
                 ->get();
         }
-        dd( $data);
         $data['products'] = $dataCart;
-        return view('carts.cart', $data);
+
+        // dd( $data);
+              return view ('carts.cart', $data);
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function checkout(){
+        $sessionAll = Session::all();
+        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
+        $data['carts'] = $carts;
+        $dataCart = [];
+        if (!empty($carts)) {
+            // create list product id
+            $listProductId = [];
+            foreach ($carts as $cart) {
+                $listProductId[] = $cart['id'];
+            }
 
+            // get data product from list product id
+            $dataCart = Product::whereIn('id', $listProductId)
+                ->get();
+        }
+        $data['products'] = $dataCart;
+        return view('carts.checkout',$data);
+    }
     /**
-     * Display the specified resource.
+     * Show the form for creating a new resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
