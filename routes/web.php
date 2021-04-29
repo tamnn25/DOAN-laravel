@@ -26,5 +26,7 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
     Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
     Route::post('/minus',[CartController::class,'minusCart'])->name('minus');
     Route::post('/plus',[CartController::class,'plusCart'])->name('plus');
+    Route::delete('/delete/{id}', [CartController::class, 'destroy'])->name('destroy');
+
 });
 

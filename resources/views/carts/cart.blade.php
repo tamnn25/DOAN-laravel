@@ -17,6 +17,7 @@
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Total</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 @foreach ($carts as $key => $product)
@@ -52,10 +53,14 @@
                             </td>
                             <td>
                                 <div class="cart-money">
+                                  
+                                    <span id="totalCart{{ $product['id'] }}">
                                         {{ number_format($product['quantity'] * $product['price']) . ' VND' }}
+                                    </span>
                                       
                                 </div>
                             </td>
+                            <td><a name="" id="" class="btn btn-primary" href="#" role="button">Delete</a></td>
                         </tr>
                     </tbody>
                 @endforeach
@@ -86,6 +91,9 @@
                         if(response.status === 'ok'){
                             $(`#quantityProduct${response.carts.id}`).text(response.carts.quantity)
                             console.log(123123);
+                            console.log(response.total);
+                            $(`#totalCart${response.carts.id}`).text(response.total + " VND ")
+                            
                         }
                         console.log(response.carts.quantity);
                     }
@@ -103,6 +111,8 @@
                         if(response.status === 'ok'){
                             $(`#quantityProduct${response.carts.id}`).text(response.carts.quantity)
                             console.log('ok');
+                            console.log(response.total);
+                            $(`#totalCart${response.carts.id}`).text(response.total + " VND")
                         }
                         console.log(response.carts.quantity);
                     }
