@@ -24,13 +24,24 @@ class CartController extends Controller
         $newProduct = [
              'id' => $id,
              'name' => $product->name,
-             'quantity' => $product->price,
-            //  'quantity' =>  $product ->quantity +=1,
+             'images' =>$product->images,
+             'price' => $product->price,
              'quantity' => 1,
         ];
+        if ($carts && isset($carts[$id])) {
+            $carts[$id]['quantity']++;
+            info($carts[$id]);
+            session()->put('carts', $carts);
+            return response()->json([
+                'status' => 'ok',
+                'carts' => $carts,
+                'message' => 'add product   in to Cart  success fully!'
+            ]);
+        }
+
         $carts[$id] = $newProduct;
         
-        session(['carts'=> $carts]);
+        session()->put('carts', $carts);
         if ($carts) {
             return response()->json([
                 'status' => 'ok',
@@ -40,9 +51,21 @@ class CartController extends Controller
         }
     }
     
+ 
     public function getCartInfor()
     {
-        // $data['carts'] = session()->get('carts');
+    //     $cart = Session::get('cart');
+
+    // foreach ($cartdata->all() as $id => $val) 
+    // {
+    //     if ($val > 0) {
+    //         $cart[$id]['qty'] += $val;
+    //     } else {
+    //         unset($cart[$id]);
+    //     }
+    // }
+    // Session::put('cart', $cart);
+        $data['carts'] = session()->get('carts');
         // dd($data);
 
 
@@ -62,10 +85,9 @@ class CartController extends Controller
                 ->get();
         }
         $data['products'] = $dataCart;
-
         // dd( $data);
               return view ('carts.cart', $data);
-        //
+        
     }
 
     public function checkout(){
@@ -86,6 +108,56 @@ class CartController extends Controller
         }
         $data['products'] = $dataCart;
         return view('carts.checkout',$data);
+    }
+
+    public function minusCart(Request $request)
+    {
+        $id = $request->id;
+        $carts = session('carts');
+        $result = $carts[$id]['quantity']--;
+            
+        
+        // $qty = $carts[$id]['quantity'];
+        session()->put('carts', $carts);
+        if ($result) {
+            info($carts);
+            return response()->json([
+                'status' => 'ok',
+                'carts' => $carts[$id],
+                'message' => 'munis product in to Cart  successfully!'
+            ]);
+        }
+        return response()->json([
+            'status' => 'ok',
+            'carts' => $result,
+            'message' => 'munis product in to Cart  faiel!'
+        ]);
+    }
+
+    public function plusCart(Request $request)
+    {
+        $id = $request->id;
+        $carts = session('carts');
+        $result = $carts[$id]['quantity']++;
+        session()->put('carts', $carts);
+        if ($result) {
+            info($carts);
+            return response()->json([
+                'status' => 'ok',
+                'carts' => $carts[$id],
+                'message' => 'munis product in to Cart  successfully!'
+            ]);
+        }
+        return response()->json([
+            'status' => 'ok',
+            'carts' => $result,
+            'message' => 'munis product in to Cart  faiel!'
+        ]);
+    }
+
+
+    public  function updateCart(){
+        if ()
     }
     /**
      * Show the form for creating a new resource.

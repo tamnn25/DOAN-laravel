@@ -19,36 +19,41 @@
                         <th>Total</th>
                     </tr>
                 </thead>
-                @foreach ($products as $key => $product)
+                @foreach ($carts as $key => $product)
                     <tbody>
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>
                                 <div class="product-name">
-                                    {{ $product->name }}
+                                    {{ $product['name'] }}
                                 </div>
                             </td>
                             <td>
                                 <div class="product-thumbnail">
-                                    <img src="{{asset('storage/products/'.$product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;">
+                                    <img src="{{asset('storage/products/'.$product['images']) }}" alt="{{ $product['name'] }}" class="img-fluid" style="width: 240px; height: auto;">
                                 </div>
                             </td>
                             <td>
                                 <div class="product-quantity">
-                                    {{ number_format($carts[$product->id]['quantity']) }}
+                                    <input type="button" value="-" onclick="minus({{ $product['id'] }})">
+                                    <span id="quantityProduct{{ $product['id'] }}">
+                                        {{ $product['quantity'] }}
+                                    </span>
+                                    <input type="button" value="+" onclick="plus({{ $product['id'] }})">
+                                    <span id="quantityProduct{{ $product['id'] }}">
+                                        {{-- {{ $product['quantity'] }} --}}
+                                    </span>
                                 </div>
                             </td>
                             <td>
                                 <div class="product-price">
-                                    {{ number_format($product->price) }}
+                                        {{ number_format($product['price']) }}
                                 </div>
                             </td>
                             <td>
                                 <div class="cart-money">
-                                    @php
-                                        $money = $carts[$product->id]['quantity'] * $product->price;
-                                        echo number_format($money) . ' VND';
-                                    @endphp
+                                        {{ number_format($product['quantity'] * $product['price']) . ' VND' }}
+                                      
                                 </div>
                             </td>
                         </tr>
@@ -67,3 +72,43 @@
 {{-- @push('js') --}}
     
 {{-- @endpush --}}
+@section('scripts')
+    <script>
+            function minus(paramIid) {
+                $.ajax({
+                    type: "POST",
+                    url: `{{ route('cart.minus') }}`,
+                    data: {id: paramIid},
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    success: function (response) {
+                        if(response.status === 'ok'){
+                            $(`#quantityProduct${response.carts.id}`).text(response.carts.quantity)
+                            console.log(123123);
+                        }
+                        console.log(response.carts.quantity);
+                    }
+                });
+            }
+            function plus(paramIid) {
+                $.ajax({
+                    type: "POST",
+                    url: `{{ route('cart.plus') }}`,
+                    data: {id: paramIid},
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    success: function (response) {
+                        if(response.status === 'ok'){
+                            $(`#quantityProduct${response.carts.id}`).text(response.carts.quantity)
+                            console.log('ok');
+                        }
+                        console.log(response.carts.quantity);
+                    }
+                });
+            }
+        
+        
+    </script>
+@endsection   
