@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -115,15 +116,15 @@ class CartController extends Controller
         $id = $request->id;
         $carts = session('carts');
         $result = $carts[$id]['quantity']--;
-            
-        
-        // $qty = $carts[$id]['quantity'];
+        $cartNew = session('carts');
+        $total = $cartNew[$id]['quantity']*$cartNew[$id]['price'];
         session()->put('carts', $carts);
         if ($result) {
             info($carts);
             return response()->json([
                 'status' => 'ok',
                 'carts' => $carts[$id],
+                'total' =>number_format($total),
                 'message' => 'munis product in to Cart  successfully!'
             ]);
         }
@@ -139,12 +140,15 @@ class CartController extends Controller
         $id = $request->id;
         $carts = session('carts');
         $result = $carts[$id]['quantity']++;
+        $cartNew = session('carts');
+        $total = $cartNew[$id]['quantity']*$cartNew[$id]['price'];
         session()->put('carts', $carts);
         if ($result) {
             info($carts);
             return response()->json([
                 'status' => 'ok',
                 'carts' => $carts[$id],
+                'total' => number_format($total),
                 'message' => 'munis product in to Cart  successfully!'
             ]);
         }
@@ -155,10 +159,26 @@ class CartController extends Controller
         ]);
     }
 
+    public function destroy($id)
+    {
+        // Method: DELETE
+        DB::beginTransaction();
 
-    public  function updateCart(){
-        if ()
+        try {
+            $carts = Session::find($id);
+            $carts->delete();
+
+            DB::commit();
+
+            return redirect()->route('admin.category.index')
+                ->with('success', 'Delete Category successful!');
+        }  catch (\Exception $ex) {
+            DB::rollBack();
+            // have error so will show error message
+            return redirect()->back()->with('error', $ex->getMessage());
+        }
     }
+  
     /**
      * Show the form for creating a new resource.
      *
