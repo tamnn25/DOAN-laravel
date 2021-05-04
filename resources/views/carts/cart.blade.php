@@ -31,7 +31,7 @@
                             </td>
                             <td>
                                 <div class="product-thumbnail">
-                                    <img src="{{asset('storage/products/'.$product['images']) }}" alt="{{ $product['name'] }}" class="img-fluid" style="width: 240px; height: auto;">
+                                    <img src="{{ asset($product['image']) }}" alt="{{ $product['name'] }}" class="img-fluid" style="width: 240px; height: auto;">
                                 </div>
                             </td>
                             <td>
@@ -44,6 +44,7 @@
                                     <span id="quantityProduct{{ $product['id'] }}">
                                         {{-- {{ $product['quantity'] }} --}}
                                     </span>
+                                    
                                 </div>
                             </td>
                             <td>
@@ -57,10 +58,12 @@
                                     <span id="totalCart{{ $product['id'] }}">
                                         {{ number_format($product['quantity'] * $product['price']) . ' VND' }}
                                     </span>
-                                      
+                                    <span id="totalCart{{ $product['id'] }}">
+                                        {{ number_format($product['quantity'] / $product['price']) . ' VND' }}
+                                    </span>
                                 </div>
                             </td>
-                            <td><a name="" id="" class="btn btn-primary" href="#" role="button">Delete</a></td>
+                            <td><a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fas fa-trash">Delete</i></a></td>
                         </tr>
                     </tbody>
                 @endforeach

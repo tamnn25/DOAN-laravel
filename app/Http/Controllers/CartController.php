@@ -14,7 +14,7 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addCart( Request $request)
+    public function addCart(Request $request)
     {
         $id = $request->id;
         $sessionAll =  Session::all();
@@ -25,7 +25,7 @@ class CartController extends Controller
         $newProduct = [
              'id' => $id,
              'name' => $product->name,
-             'images' =>$product->images,
+             'image' =>$product->image,
              'price' => $product->price,
              'quantity' => 1,
         ];
@@ -55,17 +55,7 @@ class CartController extends Controller
  
     public function getCartInfor()
     {
-    //     $cart = Session::get('cart');
-
-    // foreach ($cartdata->all() as $id => $val) 
-    // {
-    //     if ($val > 0) {
-    //         $cart[$id]['qty'] += $val;
-    //     } else {
-    //         unset($cart[$id]);
-    //     }
-    // }
-    // Session::put('cart', $cart);
+    //   
         $data['carts'] = session()->get('carts');
         // dd($data);
 

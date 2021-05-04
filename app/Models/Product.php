@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'images',
+        'image',
         'price',
         'status',
         'quantity',
@@ -31,6 +31,10 @@ class Product extends Model
         return $this->hasOne(ProductDetail::class);
     }
 
+    public function product_images(){
+        return $this->hasMany(ProductImage::class);
+    }
+    
     public function order_detail()
     {
         return $this->hasOne(ProductDetail::class);

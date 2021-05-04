@@ -63,7 +63,7 @@
                         <td>{{ $product->name }}</td>
                         <td>
                             {{-- <img src="{{ asset($product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 40px; height: auto;"> --}}
-                            <img src="{{asset('storage/products/'.$product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;">
+                            <img src="/{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid" style="width: 200px; height: auto;">
                         </td>
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->status }}</td>
