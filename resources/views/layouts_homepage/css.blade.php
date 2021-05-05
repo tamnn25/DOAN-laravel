@@ -14,3 +14,4 @@
 <link rel="stylesheet" href="shop/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="shop/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="shop/css/style.css" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">

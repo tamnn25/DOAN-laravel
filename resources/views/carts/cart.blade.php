@@ -37,13 +37,13 @@
                             <td>
                                 <div class="product-quantity">
                                     <input type="button" value="-" onclick="minus({{ $product['id'] }})">
-                                    <span id="quantityProduct{{ $product['id'] }}">
-                                        {{ $product['quantity'] }}
-                                    </span>
                                     <input type="button" value="+" onclick="plus({{ $product['id'] }})">
-                                    <span id="quantityProduct{{ $product['id'] }}">
-                                        {{-- {{ $product['quantity'] }} --}}
-                                    </span>
+                                      <span id="quantityProduct{{ $product['id'] }}">
+                                           {{ $product['quantity'] }}
+                                     </span>
+                                     <span id="quantityProduct{{ $product['id'] }}">
+                                           {{ $product['quantity'] }}
+                                     </span>
                                     
                                 </div>
                             </td>
@@ -58,12 +58,19 @@
                                     <span id="totalCart{{ $product['id'] }}">
                                         {{ number_format($product['quantity'] * $product['price']) . ' VND' }}
                                     </span>
-                                    <span id="totalCart{{ $product['id'] }}">
-                                        {{ number_format($product['quantity'] / $product['price']) . ' VND' }}
-                                    </span>
+                                    {{-- <span id="totalCart{{ $product['id'] }}">
+                                        {{ number_format($product['quantity'] * $product['price']) . ' VND' }}
+                                    </span> --}}
                                 </div>
                             </td>
-                            <td><a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fas fa-trash">Delete</i></a></td>
+                            <td>
+                                <div class="delete" >
+                                    <a href="" wire:click.prevent="destroy({{ $product['id'] }})" class="btn btn-danger">
+                                      
+                                      <i class="fas fa-trash-alt fa-2x"></i>                                    </a>
+                                </div>
+                            </td>
+                            {{-- <td><a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fas fa-trash">Delete</i></a></td> --}}
                         </tr>
                     </tbody>
                 @endforeach

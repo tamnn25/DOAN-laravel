@@ -42,7 +42,7 @@ class ProductController extends Controller
         // if(!empty($reques->category_id)){
         //     $products
         // }
-        $product = $product->paginate(3);
+        $product = $product->paginate(4);
         // get list data of table categories
         $categories = Category::pluck('name')
            ->toArray();
@@ -72,7 +72,7 @@ class ProductController extends Controller
 
         return view('admin.products.create',$data);
     }
-
+// lưu lại cái mới coi có k?? luu ròi đo
     /**
      * Store a newly created resource in storage.
      *
@@ -90,24 +90,20 @@ class ProductController extends Controller
             $extension = $request->image->extension();
 
             $fileName = 'image_' . time() . '.' . $extension;
-            $image->move('products/', $fileName);
+            $image->move('storage/products/', $fileName);
             $imagesPath = 'storage/products/' . $fileName;
         }
 
-        // dd($request->url);
         $listProductImages = [];
         $files = $request->file('url');
         if($request->hasFile('url')) {
             foreach ($files as $file) {
-                // Nếu có thì thục hiện lưu trữ file vào public/url
-                // $image = $request->file('url');
                 $extension = $file->extension();
                 $fileName = 'url_' . time() . rand() . '.' . $extension;
                 $file->move('storage/product_images', $fileName);
                 $listProductImages[] = 'storage/product_images/' . $fileName;
             }
-        }
-
+    }
         $dataInsert = [
             'name' => $request->name,
             'image' => $imagesPath,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Cart;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -149,25 +150,12 @@ class CartController extends Controller
         ]);
     }
 
-    public function destroy($id)
-    {
-        // Method: DELETE
-        DB::beginTransaction();
-
-        try {
-            $carts = Session::find($id);
-            $carts->delete();
-
-            DB::commit();
-
-            return redirect()->route('admin.category.index')
-                ->with('success', 'Delete Category successful!');
-        }  catch (\Exception $ex) {
-            DB::rollBack();
-            // have error so will show error message
-            return redirect()->back()->with('error', $ex->getMessage());
-        }
-    }
+    // public function destroy($id)
+    // {
+    //     // Method: DELETE
+    //   Cart::remove($id);
+    //   session()->flash('success','product has been removed');
+    // }
   
     /**
      * Show the form for creating a new resource.

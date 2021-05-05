@@ -3,6 +3,8 @@
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Product_detailController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +15,8 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [HomeController::class, 'index']);
+
+    Route::get('/', [HomeController::class, 'index']);
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -30,3 +33,7 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
 
 });
 
+Route::group(['prefix'=>'shop','as'=>'shop.'],function(){
+    Route::get('/show/{id}',[Product_detailController::class,'show'])->name('show');
+});
+// chạy đi

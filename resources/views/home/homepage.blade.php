@@ -74,6 +74,9 @@
                         <div class="featured__item__text">
                             <h6><a href="#">{{ $product->name }}</a></h6>
                             <h5>{{ $product->price }}</h5>
+
+                            <a name="" id="" class="btn btn-primary" href="{{ route('shop.show',$product->id) }}" role="button">Xem thông tin</a>
+
                         </div>
                     </div>
                 </div>
