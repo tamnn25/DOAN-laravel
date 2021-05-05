@@ -18,6 +18,38 @@ class CartController extends Controller
     public function addCart(Request $request)
     {
         $id = $request->id;
+        $qty = $request->quantity;
+        $sessionAll =  Session::all();
+        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];  
+        
+        $product = Product::findOrFail($id);
+
+        $newProduct = [
+             'id' => $id,
+             'name' => $product->name,
+             'image' =>$product->image,
+             'price' => $product->price,
+             'quantity' => $qty,
+        ];
+        if ($carts && isset($carts[$id])) {
+            $carts[$id]['quantity'] += $qty;
+            session()->put('carts', $carts);
+            return redirect()->route('cart.cart-info');
+        }
+
+        $carts[$id] = $newProduct;
+        
+        session()->put('carts', $carts);
+        if ($carts) {
+            return redirect()->route('cart.cart-info');
+        }
+        return redirect()->back();
+        // bị chi đâu cái giảm xuống á
+    }
+
+    public function addCartAjax(Request $request)
+    {
+        $id = $request->id;
         $sessionAll =  Session::all();
         $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];  
         
@@ -59,7 +91,7 @@ class CartController extends Controller
     //   
         $data['carts'] = session()->get('carts');
         // dd($data);
-
+        // session()->forget('carts');
 
         $sessionAll = Session::all();
         $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
@@ -107,9 +139,9 @@ class CartController extends Controller
         $id = $request->id;
         $carts = session('carts');
         $result = $carts[$id]['quantity']--;
+        session()->put('carts', $carts);
         $cartNew = session('carts');
         $total = $cartNew[$id]['quantity']*$cartNew[$id]['price'];
-        session()->put('carts', $carts);
         if ($result) {
             info($carts);
             return response()->json([
@@ -125,15 +157,16 @@ class CartController extends Controller
             'message' => 'munis product in to Cart  faiel!'
         ]);
     }
-
+    // ngon chưa 
+    // ok đó  chừ lam cái list nữa :#
     public function plusCart(Request $request)
     {
         $id = $request->id;
         $carts = session('carts');
         $result = $carts[$id]['quantity']++;
+        session()->put('carts', $carts);
         $cartNew = session('carts');
         $total = $cartNew[$id]['quantity']*$cartNew[$id]['price'];
-        session()->put('carts', $carts);
         if ($result) {
             info($carts);
             return response()->json([

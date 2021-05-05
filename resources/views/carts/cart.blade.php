@@ -37,13 +37,10 @@
                             <td>
                                 <div class="product-quantity">
                                     <input type="button" value="-" onclick="minus({{ $product['id'] }})">
+                                    <span id="quantityProduct{{ $product['id'] }}">
+                                        {{ $product['quantity'] }}
+                                    </span>
                                     <input type="button" value="+" onclick="plus({{ $product['id'] }})">
-                                      <span id="quantityProduct{{ $product['id'] }}">
-                                           {{ $product['quantity'] }}
-                                     </span>
-                                     <span id="quantityProduct{{ $product['id'] }}">
-                                           {{ $product['quantity'] }}
-                                     </span>
                                     
                                 </div>
                             </td>

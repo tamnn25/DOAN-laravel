@@ -376,7 +376,7 @@
         function addCart(paramIid) {
             $.ajax({
                 type: "POST",
-                url: `{{ route('cart.add-cart') }}`,
+                url: `{{ route('cart.add-cart-ajax') }}`,
                 data: {id: paramIid},
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
