@@ -15,6 +15,7 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // adđ card    product detail
     public function addCart(Request $request)
     {
         $id = $request->id;
@@ -44,9 +45,9 @@ class CartController extends Controller
             return redirect()->route('cart.cart-info');
         }
         return redirect()->back();
-        // bị chi đâu cái giảm xuống á
     }
-
+ 
+    // adđ bằng lệnh ajax
     public function addCartAjax(Request $request)
     {
         $id = $request->id;
@@ -133,7 +134,7 @@ class CartController extends Controller
         $data['products'] = $dataCart;
         return view('carts.checkout',$data);
     }
-
+    //  giảm  quantity
     public function minusCart(Request $request)
     {
         $id = $request->id;
@@ -157,8 +158,7 @@ class CartController extends Controller
             'message' => 'munis product in to Cart  faiel!'
         ]);
     }
-    // ngon chưa 
-    // ok đó  chừ lam cái list nữa :#
+    // tăng số lượng
     public function plusCart(Request $request)
     {
         $id = $request->id;
@@ -183,13 +183,7 @@ class CartController extends Controller
         ]);
     }
 
-    // public function destroy($id)
-    // {
-    //     // Method: DELETE
-    //   Cart::remove($id);
-    //   session()->flash('success','product has been removed');
-    // }
-  
+    
     /**
      * Show the form for creating a new resource.
      *

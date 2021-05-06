@@ -14,8 +14,6 @@ class Product_listController extends Controller
      */
     public function list()
     {
-        //
-        // dd(12312321);
         $data= [];
         $product = Product::get();
         $data['product'] = $product;
