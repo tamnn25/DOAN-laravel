@@ -16,6 +16,7 @@ use App\Http\Requests\Admin\UpdateProductRequest;
 
 class ProductController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -93,7 +94,6 @@ class ProductController extends Controller
             $image->move('products', $fileName);
             $imagesPath = 'products/' . $fileName;
         }
-
         // dd($request->url);
         $listProductImages = [];
         $files = $request->file('url');
@@ -204,23 +204,46 @@ class ProductController extends Controller
         // sao 2 bien deu la $product 
         // em bo vo coi no bao loi gi do thay
         $productDetailId = !empty($product->product_detail) ? $product->product_detail->id : null;
-        $imagesOld = $product->images;
-        // echo 123;die;
-        // $productImageId = !empty($product->product_images) ? $product->product_images->id : null;
+        $imagesOld = $product->image;
+
+        \Log::info("img old");
+        \Log::info($imagesOld);
+        \Log::info("img old");
+        
+
+         // get list product image from DB
+         $listProductImageDB = [];
+         if (!empty($product->product_images)) {
+             foreach ($product->product_images as $img) {
+                 $listProductImageDB[] = $img->url;
+             }
+         }
+
+         // get list product image from FORM
+        $listProductImageForm = [];
+        if (!empty($request->url)) {
+            foreach ($request->url as $img) {
+                $listProductImageForm[] = $img;
+            }
+        }
 
         // dd($request->all());
-        $imagesPath = null;
-        if ($request->hasFile('images') 
-            && $request->file('images')->isValid()) {
+        $imagePath = null;
+        if ($request->hasFile('image') 
+            && $request->file('image')->isValid()) { 
             // Nếu có thì thục hiện lưu trữ file vào public/images
-            $image = $request->file('images');
-            $extension = $request->images->extension();
-            $fileName = 'images_' . time() . '.' . $extension;
-            $imagesPath = $image->move('storage/products', $fileName);
+            $image = $request->file('image');
+            $extension = $request->image->extension();
+            $fileName = 'image_' . time() . '.' . $extension;
+            // $imagePath = $image->move('storage/products', $fileName);
+            $imagePath = $image->move('products', $fileName);
 
-            $product->images = $imagesPath;
-            Log::info('imagesPath: ' . $imagesPath);
+            $product->image = 'products/' . $fileName;
+            Log::info('imagePath: ' . $imagePath);
         }
+        \Log::info("img url");
+        \Log::info($imagePath);
+        \Log::info("img url");
 
         $listProductImages = [];
         $files = $request->file('url');
@@ -234,7 +257,6 @@ class ProductController extends Controller
                 $listProductImages[] = 'product_images/' . $fileName;
             }
         }
-        
         // update data for table product
         $product->name = $request->name;
         $product->price = $request->price;
@@ -246,10 +268,9 @@ class ProductController extends Controller
         // lưu bộ nhớ đệm, ko lưu vào DB.
         DB::beginTransaction();
 
-        // dd($imagesPath);
+        //dd($imagePath);
         
         try {
-            // update data for table posts
             $product->save();
 
             $dataDetailProduct = [
@@ -265,24 +286,36 @@ class ProductController extends Controller
                 ProductDetail::find($productDetailId)
                     ->update($dataDetailProduct);
             }
-           
 
-            // save multiple image for table product_images
-            if (!empty($listProductImages)) {
-                foreach ($listProductImages as $productImage) {
-                    $productImage = new ProductImage([
-                        'url'=> $productImage,
-                    ]);
-                    $product->product_images()->save($productImage);
+            // create data for table product_images (with image new upload)
+            if (!empty($listProductImageUpload)) {
+                foreach ($listProductImageUpload as $img) {
+                    $dataProductImageSave = [
+                        'url' => $img,
+                        'product_id' => $product->id,
+                    ];
+                    ProductImage::create($dataProductImageSave);
                 }
             }
+            
             DB::commit();
 
             // SAVE OK then delete OLD file
             if (File::exists(public_path($imagesOld))
-                && $request->hasFile('image') 
-                && $request->file('image')->isValid()) {
+                && $imagePath != null) {
                 File::delete(public_path($imagesOld));
+            }
+
+            // compare data of 2 array (listProductImageForm, listProductImageDB) to get new an array (difference between 2 array)
+            $listProductImageDiff = array_diff($listProductImageDB, $listProductImageForm);
+            if (!empty($listProductImageDiff)) {
+                foreach ($listProductImageDiff as $diff) {
+                    ProductImage::where('url', $diff)
+                        ->delete();
+                    if (File::exists(public_path($diff))) {
+                        File::delete(public_path($diff));
+                    }
+                }
             }
 
             // success
@@ -309,29 +342,33 @@ class ProductController extends Controller
         DB::beginTransaction();
         
         try {
-            $product = Product::findOrFail($id);
-            $imagesOld = $product->images;
-            
-            $product->product_detail->delete();
-            
-            $urlOld = $product->url;
-            foreach ($product->product_images as $productImage) {
-                $productImage->delete();
+            $product = Product::with('product_detail')
+                ->with('product_images')
+                ->findOrFail($id);
+
+            // get list product image into table product_images with product_id = $id
+            $listProductImages = [];
+            if (!empty($product->product_images)) {
+                foreach ($product->product_images as $value) {
+                    $listProductImages[] = $value->url;
+                }
             }
+
+            // get thumbnail
+            $image = $product->image;
             
+            // delete data of table product_detail
+            $product->product_detail->delete();
+
+            // delete data of table product_images
+            ProductImage::where('product_id', $id)
+                ->delete();
+
+            // delete data of table products
             $product->delete();
 
-            
             DB::commit();
             
-            // DELETE OK then delete thumbnail file
-            if (File::exists(public_path($imagesOld))) {
-                File::delete(public_path($imagesOld));
-            }
-            //delete urlimages
-            if (File::exists(public_path($urlOld))) {
-                File::delete(public_path($urlOld));
-            }
             
             // success
             return redirect()->route('admin.product.index')->with('success', 'Delete successful!');

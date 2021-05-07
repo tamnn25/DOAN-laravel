@@ -31,7 +31,6 @@
                 </label>
             </div>
             @endforeach
-
         @endif
        
         <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt

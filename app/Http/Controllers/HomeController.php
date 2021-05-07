@@ -24,6 +24,11 @@ class HomeController extends Controller
 
         // return view('home.homepage');
     }
+    public function shop(){
+        //
+        // dd(123);
+        return view('home.shop');
+    }
 
 
     

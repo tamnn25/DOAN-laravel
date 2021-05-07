@@ -45,23 +45,15 @@
         </div>
 
         <div class="form-group mb-5">
-            <label for="">Product status</label>
+            {{-- <label for="">status 1</label>
+            <input type="checkbox" id="product-status" name="status" value="1" check>
+            <label for="">status 2</label>
+            <input type="checkbox" id="product-status" name="status" value="2" checked> --}}
+
             <input type="text" name="status" placeholder=" Enter Product status" value="{{ old('status') }}" class="form-control">
             @error('status')
                 <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Number of 1.
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
-                <label class="form-check-label" for="flexCheckChecked">
-                    Number of 2.
-                </label>
-              </div>
+            @enderror 
         </div>
         <div class="form-group mb-5">
             <label for="">Product quantity</label>
@@ -71,26 +63,19 @@
             @enderror
         </div>
         <div class="form-group mb-5">
+            {{-- <label for="">hot summer</label>
+            <input type="checkbox" id="product-status" name="hot" value="summer" checked>
+            <label for="">hot winter</label>
+            <input type="checkbox" id="product-status" name="hot" value="winter" check>
+            <label for="">hot spring</label>
+            <input type="checkbox" id="product-status" name="hot" value="spring" check> --}}
             <label for="">Product hot</label>
             <input type="text" name="hot" placeholder=" Enter Product hot" value="{{ old('hot') }}" class="form-control">
             @error('hot')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Default hot
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                  Checked hot-2
-                </label>
-              </div>
         </div>
-
         <div class="form-group mb-5">
             <label for="">Product content</label>
             <textarea name="content" rows="10" class="form-control">{{ old('price') }}</textarea>

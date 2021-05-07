@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,16 +14,33 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [HomeController::class, 'index']);
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+Route::get('/', [HomeController::class, 'index']);
+Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
+    
+    Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
+});
+
+Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
+    Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
+        
+});
+
 Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
-    Route::get('/', [CartController::class, 'getCartInfor'])->name('cart-info');
-    Route::post('cart', [CartController::class, 'addCart'])->name('add-cart');
-    Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
-    Route::post('/minus',[CartController::class,'minusCart'])->name('minus');
-    Route::post('/plus',[CartController::class,'plusCart'])->name('plus');
-    Route::delete('/delete/{id}', [CartController::class, 'destroy'])->name('destroy');
+    Route::get('/', [CartController::class, 'getCartInfo'])->name('cart-info')->middleware('check_order_step_by_step'); 
+    Route::post('cart/{id}', [CartController::class, 'addCart'])->name('add-cart');
+    Route::get('checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('check_order_step_by_step');
+    Route::post('checkout-complete', [CartController::class, 'checkoutComplete'])->name('checkout-complete');
+    Route::post('send-verify-code', [CartController::class, 'sendVerifyCode'])->middleware(['auth'])->name('send-verify-code');
+    Route::post('confirm-verify-code', [CartController::class, 'confirmVerifyCode'])->middleware(['auth'])->name('confirm-verify-code');
 });

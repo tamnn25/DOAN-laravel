@@ -51,6 +51,10 @@
         </div>
         <div class="form-group mb-5">
             <label for="">product status</label>
+            {{-- <label for="">status 1</label>
+            <input type="checkbox" id="product-status" name="status" value="1" check>
+            <label for="">status 2</label>
+            <input type="checkbox" id="product-status" name="status" value="2" checked> --}}
             <input type="text" name="status" placeholder="product status" value="{{ old('status', $product->status) }}" class="form-control">
             @error('status')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -64,8 +68,15 @@
             @enderror
         </div>
         <div class="form-group mb-5">
-            <label for="">product hot</label>
+            <label for="" value="{{ old('hot', $product->hot) }}">product hot </label>
             <input type="text" name="hot" placeholder="product hot" value="{{ old('hot', $product->hot) }}" class="form-control">
+            {{-- <label for="">hot summer</label>
+            <input type="checkbox" id="product-status" name="hot" value="summer" checked>
+            <label for="">hot winter</label>
+            <input type="checkbox" id="product-status" name="hot" value="winter" check>
+            <label for="">hot spring</label>
+            <input type="checkbox" id="product-status" name="hot" value="spring" check> --}}
+       
             @error('hot')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -79,9 +90,24 @@
             @enderror
         </div>
         <div class="form-group mb-5">
-            <label for="">Product_images</label>
-                            <img src="{{asset('storage/product_images/'.$product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;">
-                            <input type="file" name="url[]" placeholder="product url" class="form-control" multiple>
+            <label for="">Product Image</label>
+            <input type="file" name="new_url[]" multiple class="form-control">
+
+            {{-- show all image of table product_images --}}
+            @if (!empty($product->product_images))
+                <ul class="row list-product-image">
+                    @foreach ($product->product_images as $url)
+                        <li class="col-4">
+                            <div class="product-image-group">
+                                <img src="{{ asset($url->url) }}" alt="image" class="img-fluid">
+                                <input type="hidden" name="url[]" value="{{ $url->url }}">
+                                <button type="button" class="btn btn-danger form-control mt-1" onclick="$(this).closest('li').remove()">Remove Image</button>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
+
             @error('url')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror

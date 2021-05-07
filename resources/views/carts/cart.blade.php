@@ -1,123 +1,85 @@
+
 @extends('layouts_homepage.master')
-{{-- @section('title', 'Cart Page') --}}
+
+@section('title', 'Cart Page')
 
 @section('content')
-
     <section class="list-product">
         @if (!empty($products))
-        <br>
-    <hr>
-    <h1>Card</h1>
             <table class="table table-bordered table-hover" id="tbl-list-product">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Product Name</th>
-                        <th>Thumbanil</th>
+                        <th>product</th>
                         <th>Quantity</th>
                         <th>Price</th>
-                        <th>Total</th>
-                        <th>Delete</th>
+                        <th>Money</th>
                     </tr>
                 </thead>
-                @foreach ($carts as $key => $product)
+                @foreach ($products as $key => $product)
                     <tbody>
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>
                                 <div class="product-name">
-                                    {{ $product['name'] }}
+                                    {{ $product->name }}
                                 </div>
                             </td>
                             <td>
                                 <div class="product-thumbnail">
-                                    <img src="{{asset('storage/products/'.$product['images']) }}" alt="{{ $product['name'] }}" class="img-fluid" style="width: 240px; height: auto;">
+                                    <img src="{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid">
                                 </div>
                             </td>
                             <td>
                                 <div class="product-quantity">
-                                    <input type="button" value="-" onclick="minus({{ $product['id'] }})">
-                                    <span id="quantityProduct{{ $product['id'] }}">
-                                        {{ $product['quantity'] }}
-                                    </span>
-                                    <input type="button" value="+" onclick="plus({{ $product['id'] }})">
-                                    <span id="quantityProduct{{ $product['id'] }}">
-                                        {{-- {{ $product['quantity'] }} --}}
-                                    </span>
-                                    
+                                    {{ number_format($carts[$product->id]['quantity']) }}
                                 </div>
                             </td>
                             <td>
                                 <div class="product-price">
-                                        {{ number_format($product['price']) }}
+                                    {{ number_format($product->price) }}
                                 </div>
                             </td>
                             <td>
                                 <div class="cart-money">
-                                  
-                                    <span id="totalCart{{ $product['id'] }}">
-                                        {{ number_format($product['quantity'] * $product['price']) . ' VND' }}
-                                    </span>
-                                      
+                                    @php
+                                        $money = $carts[$product->id]['quantity'] * $product->price;
+                                        echo number_format($money) . ' VND';
+                                    @endphp
                                 </div>
                             </td>
-                            <td><a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fas fa-trash">Delete</i></a></td>
                         </tr>
                     </tbody>
                 @endforeach
             </table>
-            <a name="pay" id="" class="btn btn-primary" href="{{ route('cart.checkout') }}" role="button">Checkout</a>
+            <div class="mt-2">
+                {{-- tiến hành thanh toán --}}
+                <button  type="button" class="btn btn-primary" data-bs-toggle="modal"
+                 data-bs-target="#modal-send-code">thanh toán</button>
+            </div>
         @endif
     </section>
+
+    {{-- import modal --}}
+    @include('carts.part.modal_send_code')
 @endsection
 
-{{-- @push('css')
-    <link rel="stylesheet" href="{{ asset('css/cart-info.css') }}">
-@endpush --}}
+{{-- /**
+* define CSS use INTERNAL (noi no o tung page)
+* (khai bao la css va qua moi page thi` dung @push('css'))
+*/ --}}
+@push('css')
+    <link rel="stylesheet" href="{{ asset('css/carts/cart-info.css') }}">
+@endpush
 
-{{-- @push('js') --}}
-    
-{{-- @endpush --}}
-@section('scripts')
+{{-- /**
+* define JS use INTERNAL (noi no o tung page)
+* (khai bao la css va qua moi page thi` dung @push('js'))
+*/ --}}
+@push('js')
     <script>
-            function minus(paramIid) {
-                $.ajax({
-                    type: "POST",
-                    url: `{{ route('cart.minus') }}`,
-                    data: {id: paramIid},
-                    headers: {
-                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                    },
-                    success: function (response) {
-                        if(response.status === 'ok'){
-                            $(`#quantityProduct${response.carts.id}`).text(response.carts.quantity)
-                            console.log(123123);
-                            console.log(response.total);
-                            $(`#totalCart${response.carts.id}`).text(response.total + " VND ")
-                            
-                        }
-                        console.log(response.carts.quantity);
-                    }
-                });
-            }
-            function plus(paramIid) {
-                $.ajax({
-                    type: "POST",
-                    url: `{{ route('cart.plus') }}`,
-                    data: {id: paramIid},
-                    headers: {
-                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                    },
-                    success: function (response) {
-                        if(response.status === 'ok'){
-                            $(`#quantityProduct${response.carts.id}`).text(response.carts.quantity)
-                            console.log('ok');
-                            console.log(response.total);
-                            $(`#totalCart${response.carts.id}`).text(response.total + " VND")
-                        }
-                        console.log(response.carts.quantity);
-                    }
-                });
-            }
+        const URL_CHECKOUT = "{{ route('cart.checkout') }}";
     </script>
-@endsection
+    <script src="{{ asset('js/carts/cart-info.js') }}"></script>
+@endpush
