@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\ProductDetail;
-use App\Models\ProductImage;
-
 class Product_detailController extends Controller
 {
     /**
@@ -18,6 +15,7 @@ class Product_detailController extends Controller
     {
         $data= [];
         $product = Product::get();
+        
         $data['product'] = $product;
         return view('shop-list.shop-product',$data);
     }
