@@ -64,7 +64,7 @@
                                 <div class="delete" >
                                     <a href="" wire:click.prevent="destroy({{ $product['id'] }})" class="btn btn-danger">
                                       
-                                      <i class="fas fa-trash-alt fa-2x"></i>                                    </a>
+                                      <i class="fas fa-trash-alt fa-2x"></i></a>
                                 </div>
                             </td>
                             {{-- <td><a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fas fa-trash">Delete</i></a></td> --}}

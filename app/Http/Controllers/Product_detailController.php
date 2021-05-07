@@ -14,6 +14,14 @@ class Product_detailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function list()
+    {
+        $data= [];
+        $product = Product::get();
+        $data['product'] = $product;
+        return view('shop-list.shop-product',$data);
+    }
+    
     public function show($id)
     {
         $data = [];

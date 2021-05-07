@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\Admin\UpdateProductRequest;
+use Illuminate\Validation\Rules\Exists;
 
 class ProductController extends Controller
 {

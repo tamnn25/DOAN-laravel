@@ -26,7 +26,7 @@
 
         
         <div class="form-group mb-5">
-            <label for="">Post Name</label>
+            <label for="">Product Name</label>
             <input type="text" name="name" placeholder="post name" value="{{ old('name', $product->name) }}" class="form-control">
             @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -80,7 +80,7 @@
         </div>
         <div class="form-group mb-5">
             <label for="">Product_images</label>
-                            <img src="{{asset('storage/product_images/'.$product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;">
+                            <img src="{{asset('storage/product_images/'.$product->url) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;">
                             <input type="file" name="url[]" placeholder="product url" class="form-control" multiple>
             @error('url')
                 <div class="alert alert-danger">{{ $message }}</div>

@@ -37,12 +37,12 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
 
 });
 
-Route::group(['prefix'=>'list-product-all', 'as'=>'list-product-all.'],function(){
-    Route::get('list', [Product_listController::class,'list'])->name('list');
-        
-});
+// Route::group(['prefix'=>'list-product-all', 'as'=>'list-product-all.'],function(){
+    
+// });
 
 Route::group(['prefix'=>'shop','as'=>'shop.'],function(){
+    Route::get('list', [Product_detailController::class,'list'])->name('list');
     Route::get('/show/{id}',[Product_detailController::class,'show'])->name('show');
  
 });
