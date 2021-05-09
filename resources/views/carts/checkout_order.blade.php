@@ -3,18 +3,18 @@
                                 <h4>Your Order</h4>
                                 <div class="checkout__order__products">Products <span>Total</span></div>
 
-                                @if (!empty($products))
+                                {{-- @if (!empty($products)) --}}
 
-                                    @foreach ($products as $product )
+                                    {{-- @foreach ($products as $product ) --}}
                                         <ul>
-                                            <li>{{ $product->name }} <span>{{ $product->price }}</span></li>
+                                            <li>{{ $products->$carts->name }} <span>{{ $products->$carts->price }}</span></li>
                                             {{-- <li>Fresh Vegetable <span>$151.99</span></li>
                                             <li>Organic Bananas <span>$53.99</span></li> --}}
                                                 <hr>
                                             <div class="checkout__order__total">Total 
                                                 <span>
                                                     @php
-                                                        $money = $carts[$product->id]['quantity'] * $product->price;
+                                                        $money = $carts[$product->id]['quantity'] * $product->$carts->price;
                                                         echo number_format($money) . ' VND';
                                                     @endphp
                                                 </span>
@@ -30,9 +30,9 @@
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
-                                    @endforeach
+                                    {{-- @endforeach --}}
 
-                                @endif
+                                {{-- @endif --}}
                                
                                 <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
                                     ut labore et dolore magna aliqua.</p>

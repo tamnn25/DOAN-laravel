@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\Product_detailController;
 use App\Http\Controllers\Product_listController;
 
@@ -46,4 +47,6 @@ Route::group(['prefix'=>'shop','as'=>'shop.'],function(){
     Route::get('/show/{id}',[Product_detailController::class,'show'])->name('show');
  
 });
+
+Route::get('/send-email',[MailController::class,'sendEmail']);
 // chạy đi
