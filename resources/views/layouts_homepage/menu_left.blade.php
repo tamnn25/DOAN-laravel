@@ -8,7 +8,10 @@
                         <span>All departments</span>
                     </div>
                     <ul>
-                        <li><a href="#">Fresh Meat</a></li>
+                        @foreach ($categories as $cate)
+                             <li><a href="{{ route('shop.list',$cate->id) }}">{{ $cate->name }}</a></li>
+                        @endforeach
+
                         {{-- dfgfdg --}}
                     </ul>
                 </div>
@@ -17,12 +20,22 @@
                 <div class="hero__search">
                     <div class="hero__search__form">
                         <form action="#">
-                            <div class="hero__search__categories">
-                                All Categories
-                                <span class="arrow_carrot-down"></span>
-                            </div>
-                            <input type="text" placeholder="What do yo u need?">
-                            <button type="submit" class="site-btn">SEARCH</button>
+                            <form action="#">
+                                <select class="form-select" aria-label="Default select example">    
+                                <div class="hero__search__categories">
+                                      <option selected>All Categories</option>
+                                      <option value="{{ $cate->id }}">
+                                        @foreach ($categories as $cate)
+                                        {{ $cate->name }}
+                                        @endforeach
+                                      </option>
+                                   
+                                    {{-- <span class="arrow_carrot-down"></span> --}}
+                                </div>
+                            </select>
+                                <input type="text" placeholder="What do yo u need?">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
                         </form>
                     </div>
                     <div class="hero__search__phone">

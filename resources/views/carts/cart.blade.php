@@ -72,7 +72,7 @@
                     </tbody>
                 @endforeach
             </table>
-            <a name="pay" id="" class="btn btn-primary" href="{{ route('cart.checkout') }}" role="button">Checkout</a>
+            <a name="pay" id="" class="btn btn-primary" href="{{ route('cart.checkout',) }}" role="button">Checkout</a>
         @endif
     </section>
 @endsection

@@ -38,9 +38,7 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
 
 });
 
-// Route::group(['prefix'=>'list-product-all', 'as'=>'list-product-all.'],function(){
-    
-// });
+
 
 Route::group(['prefix'=>'shop','as'=>'shop.'],function(){
     Route::get('list', [Product_detailController::class,'list'])->name('list');
