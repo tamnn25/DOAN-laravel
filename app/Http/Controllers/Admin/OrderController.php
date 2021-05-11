@@ -15,6 +15,7 @@ class OrderController extends Controller
     public function index()
     {
         //
+        echo ('day la index Order');
     }
 
     /**
@@ -25,6 +26,7 @@ class OrderController extends Controller
     public function create()
     {
         //
+        echo ('day la create Order');
     }
 
     /**

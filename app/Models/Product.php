@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+    protected $table = 'products';
     protected $fillable = [
         'name',
         'image', // dat la so it ay : image hoac thumbnail ---> sua lai file migrate, reset lai DB
@@ -36,12 +40,7 @@ class Product extends Model
 
     public function order_detail()
     {
-        return $this->hasOne(ProductDetail::class);
-    }
-
-    public function price()
-    {
-        return $this->hasMany(Price::class);
+        return $this->hasOne(OrderDetail::class);
     }
 
     public function promotion()

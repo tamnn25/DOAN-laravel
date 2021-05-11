@@ -6,22 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ProductImage extends Model
+class Promotion extends Model
 {
     use HasFactory;
-    
+
     use SoftDeletes;
 
-    protected $table = 'product_images';
+    protected $table = 'promotions';
 
     protected $fillable = [
-        
-        'url',
+        'discount',
         'product_id',
+        'begin_date',
+        'end_date',
+        'status',
     ];
-
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
 }

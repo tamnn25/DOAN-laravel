@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
-
+use App\Http\Controllers\Admin\OrderController;
 
 Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], function () {
 	// echo 'helloooo admin';exit;
@@ -35,6 +35,16 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('edit');
         Route::put('/update/{id}', [ProductController::class, 'update'])->name('update');
         Route::delete('/delete/{id}', [ProductController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
+        Route::get('/list', [OrderController::class, 'index'])->name('index');
+        Route::get('/create', [OrderController::class, 'create'])->name('create');
+        Route::post('/store', [OrderController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [OrderController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [OrderController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [OrderController::class, 'destroy'])->name('destroy');
     });
     
 });

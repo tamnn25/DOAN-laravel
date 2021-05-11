@@ -111,6 +111,41 @@
               </li>
             </ul>
           </li>
+        
+
+          {{-- menu of order module --}}
+          @php
+          $routeOrderArr = [
+            'admin.order.index',
+            'admin.order.edit',
+            'admin.order.show',
+          ];
+           @endphp
+      
+          <li class="nav-item {{ in_array(Route::currentRouteName(), $routeOrderArr) ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Order
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('admin.order.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.order.index' ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List Order</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.order.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.post.create' ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create Order</p>
+                </a>
+              </li>
+            </ul>
+            
+          </li>
         </ul>
 
         <form action="{{ route('admin.logout') }}" method="POST">
