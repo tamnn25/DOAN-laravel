@@ -12,6 +12,8 @@ class OrderVerify extends Model
     use HasFactory;
 
     use SoftDeletes;
+    
+    protected $table = 'order_verifies';
 
     protected $fillable = [
         'user_id',

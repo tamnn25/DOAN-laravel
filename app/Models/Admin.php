@@ -13,6 +13,7 @@ class Admin extends Authenticatable
     use HasFactory;
 
     use Notifiable;
+
     use SoftDeletes;
 
     protected $table = 'admins';
@@ -22,4 +23,8 @@ class Admin extends Authenticatable
     protected $fillable = [
 
     ];
+    public function roles()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

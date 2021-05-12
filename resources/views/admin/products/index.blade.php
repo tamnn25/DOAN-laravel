@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 {{-- set page title --}}
-@section('title', 'List Post')
+@section('title', 'List Produc')
 
 {{-- set breadcrumbName --}}
 @section('breadcrumbName', 'Post Management')
@@ -25,7 +25,7 @@
 
     {{-- create post link --}}
     {{-- case 1 --}}
-    <p><a href="{{ route('admin.product.create') }}">Create</a></p>
+    <p ><a  class="btn btn-outline-success" href="{{ route('admin.product.create') }}">Create</a></p>
     
     {{-- case 2 --}}
     {{-- <p><a href="/post/create">Create</a></p> --}}
@@ -46,6 +46,7 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>description</th>
                 <th>Images</th>
                 <th>Prices</th>
                 <th>Status</th>
@@ -61,6 +62,7 @@
                     <tr>
                         <td>{{ $key+1 }}</td>
                         <td>{{ $product->name }}</td>
+                        <td>{{ $product->description }}</td>
                         <td>
                             {{-- <img src="{{ asset($product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 40px; height: auto;"> --}}
                             {{-- <img src="{{asset('storage/products/'.$product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;"> --}}

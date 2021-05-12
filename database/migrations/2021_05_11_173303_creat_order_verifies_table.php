@@ -23,7 +23,7 @@ class CreatOrderVerifiesTable extends Migration
             $table->softDeletes();
 
             // SET foreign key for table order_verifies (order_verifies.user_id = users.id)
-            // $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

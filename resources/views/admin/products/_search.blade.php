@@ -16,7 +16,7 @@
             </select>
         </div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Search</button>
+            <button type="submit" class="btn btn-outline-primary">Search</button>
         </div>
     </form>
 </div>

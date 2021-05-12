@@ -49,7 +49,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-
+`
         <div class="form-group mb-5">
             <label>Status Product</label>
             <input type="text" name="status" placeholder=" Enter Product status" value="{{ old('status') }}" class="form-control">
