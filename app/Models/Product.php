@@ -14,6 +14,7 @@ class Product extends Model
     protected $table = 'products';
     protected $fillable = [
         'name',
+        'description',
         'image', // dat la so it ay : image hoac thumbnail ---> sua lai file migrate, reset lai DB
         'price',
         'status',

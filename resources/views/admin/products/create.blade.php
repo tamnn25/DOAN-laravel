@@ -28,7 +28,13 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-
+        <div class="form-group mb-5">
+            <label for="">Product description</label>
+            <textarea name="description" rows="5" class="form-control">{{ old('description') }}</textarea>
+            @error('description')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
         <div class="form-group mb-5">
             <label for="">Product Images</label>
             <input type="file" name="image" placeholder=" Enter Product Image" class="form-control">
@@ -45,11 +51,7 @@
         </div>
 
         <div class="form-group mb-5">
-            {{-- <label for="">status 1</label>
-            <input type="checkbox" id="product-status" name="status" value="1" check>
-            <label for="">status 2</label>
-            <input type="checkbox" id="product-status" name="status" value="2" checked> --}}
-
+            <label>Status Product</label>
             <input type="text" name="status" placeholder=" Enter Product status" value="{{ old('status') }}" class="form-control">
             @error('status')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -63,12 +65,7 @@
             @enderror
         </div>
         <div class="form-group mb-5">
-            {{-- <label for="">hot summer</label>
-            <input type="checkbox" id="product-status" name="hot" value="summer" checked>
-            <label for="">hot winter</label>
-            <input type="checkbox" id="product-status" name="hot" value="winter" check>
-            <label for="">hot spring</label>
-            <input type="checkbox" id="product-status" name="hot" value="spring" check> --}}
+            
             <label for="">Product hot</label>
             <input type="text" name="hot" placeholder=" Enter Product hot" value="{{ old('hot') }}" class="form-control">
             @error('hot')
@@ -78,7 +75,7 @@
         </div>
         <div class="form-group mb-5">
             <label for="">Product content</label>
-            <textarea name="content" rows="10" class="form-control">{{ old('price') }}</textarea>
+            <textarea name="content" rows="5" class="form-control">{{ old('price') }}</textarea>
             @error('price')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror

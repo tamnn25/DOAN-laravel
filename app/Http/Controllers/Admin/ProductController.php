@@ -110,6 +110,7 @@ class ProductController extends Controller
 
         $dataInsert = [
             'name' => $request->name,
+            'description' => $request->description,
             'image' => $imagesPath,
             'price'=> $request->price,
             'hot'=> $request->hot,
@@ -259,6 +260,7 @@ class ProductController extends Controller
         }
         // update data for table product
         $product->name = $request->name;
+        $product->description = $request->description;
         $product->price = $request->price;
         $product->status = $request->status;
         $product->hot = $request->hot;
