@@ -24,8 +24,8 @@
                                 <select class="form-select" aria-label="Default select example">    
                                 <div class="hero__search__categories">
                                       <option selected>All Categories</option>
+                                      @foreach ($categories as $cate)
                                       <option value="{{ $cate->id }}">
-                                        @foreach ($categories as $cate)
                                         {{ $cate->name }}
                                         @endforeach
                                       </option>
