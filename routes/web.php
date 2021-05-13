@@ -37,11 +37,10 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
     Route::delete('/delete/{id}', [CartController::class, 'destroy'])->name('destroy');
 
 });
-
-
-
+    
 Route::group(['prefix'=>'shop','as'=>'shop.'],function(){
     Route::get('list', [Product_detailController::class,'list'])->name('list');
+    Route::get('/search-product-by-category', [Product_detailController::class,'searchProductByCategory'])->name('search-product');
     Route::get('/show/{id}',[Product_detailController::class,'show'])->name('show');
  
 });

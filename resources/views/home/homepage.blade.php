@@ -56,7 +56,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#"><h4>{{ $product->name }}</h4></a></h6>
+                            <h6><a href="{{ route('shop.show',$product->id) }}"><h4>{{ $product->name }}</h4></a></h6>
                             <h5>{{ $product->price }} VND</h5>
                             <br>
                             <a name="" id="" class="btn btn-primary" href="{{ route('shop.show',$product->id) }}" role="button">Xem thông tin</a>

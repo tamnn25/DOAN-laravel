@@ -93,4 +93,12 @@ class Product_detailController extends Controller
     {
         //
     }
+
+    // public function searchProductByCategory(Request $request)
+    // {
+    //     $key = $request->key;
+    //     $product = Product::where('name', 'like', '%' . $key . '%');
+    //     $request->category_id ? $product->where('category_id', $request->category_id)->get() :  $product->get();
+    //     return redirect('shop-list.shop-product', compact('product'));
+    // }
 }
