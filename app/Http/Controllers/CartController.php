@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Cart;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,40 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addCart( Request $request)
+    // adđ card    product detail
+    public function addCart(Request $request)
+    {
+        $id = $request->id;
+        $qty = $request->quantity;
+        $sessionAll =  Session::all();
+        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];  
+        
+        $product = Product::findOrFail($id);
+
+        $newProduct = [
+             'id' => $id,
+             'name' => $product->name,
+             'image' =>$product->image,
+             'price' => $product->price,
+             'quantity' => $qty,
+        ];
+        if ($carts && isset($carts[$id])) {
+            $carts[$id]['quantity'] += $qty;
+            session()->put('carts', $carts);
+            return redirect()->route('cart.cart-info');
+        }
+
+        $carts[$id] = $newProduct;
+        
+        session()->put('carts', $carts);
+        if ($carts) {
+            return redirect()->route('cart.cart-info');
+        }
+        return redirect()->back();
+    }
+ 
+    // adđ bằng lệnh ajax
+    public function addCartAjax(Request $request)
     {
         $id = $request->id;
         $sessionAll =  Session::all();
@@ -25,7 +59,7 @@ class CartController extends Controller
         $newProduct = [
              'id' => $id,
              'name' => $product->name,
-             'images' =>$product->images,
+             'image' =>$product->image,
              'price' => $product->price,
              'quantity' => 1,
         ];
@@ -55,20 +89,10 @@ class CartController extends Controller
  
     public function getCartInfor()
     {
-    //     $cart = Session::get('cart');
-
-    // foreach ($cartdata->all() as $id => $val) 
-    // {
-    //     if ($val > 0) {
-    //         $cart[$id]['qty'] += $val;
-    //     } else {
-    //         unset($cart[$id]);
-    //     }
-    // }
-    // Session::put('cart', $cart);
+    //   
         $data['carts'] = session()->get('carts');
         // dd($data);
-
+        // session()->forget('carts');
 
         $sessionAll = Session::all();
         $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
@@ -110,15 +134,15 @@ class CartController extends Controller
         $data['products'] = $dataCart;
         return view('carts.checkout',$data);
     }
-
+    //  giảm  quantity
     public function minusCart(Request $request)
     {
         $id = $request->id;
         $carts = session('carts');
         $result = $carts[$id]['quantity']--;
+        session()->put('carts', $carts);
         $cartNew = session('carts');
         $total = $cartNew[$id]['quantity']*$cartNew[$id]['price'];
-        session()->put('carts', $carts);
         if ($result) {
             info($carts);
             return response()->json([
@@ -134,15 +158,15 @@ class CartController extends Controller
             'message' => 'munis product in to Cart  faiel!'
         ]);
     }
-
+    // tăng số lượng
     public function plusCart(Request $request)
     {
         $id = $request->id;
         $carts = session('carts');
         $result = $carts[$id]['quantity']++;
+        session()->put('carts', $carts);
         $cartNew = session('carts');
         $total = $cartNew[$id]['quantity']*$cartNew[$id]['price'];
-        session()->put('carts', $carts);
         if ($result) {
             info($carts);
             return response()->json([
@@ -159,26 +183,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function destroy($id)
-    {
-        // Method: DELETE
-        DB::beginTransaction();
-
-        try {
-            $carts = Session::find($id);
-            $carts->delete();
-
-            DB::commit();
-
-            return redirect()->route('admin.category.index')
-                ->with('success', 'Delete Category successful!');
-        }  catch (\Exception $ex) {
-            DB::rollBack();
-            // have error so will show error message
-            return redirect()->back()->with('error', $ex->getMessage());
-        }
-    }
-  
+    
     /**
      * Show the form for creating a new resource.
      *

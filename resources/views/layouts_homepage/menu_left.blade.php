@@ -8,7 +8,10 @@
                         <span>All departments</span>
                     </div>
                     <ul>
-                        <li><a href="#">Fresh Meat</a></li>
+                        @foreach ($categories as $cate)
+                             <li><a href="{{ route('shop.list',$cate->id) }}">{{ $cate->name }}</a></li>
+                        @endforeach
+
                         {{-- dfgfdg --}}
                     </ul>
                 </div>
@@ -16,14 +19,40 @@
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <form action="#">
-                            <div class="hero__search__categories">
-                                All Categories
-                                <span class="arrow_carrot-down"></span>
-                            </div>
-                            <input type="text" placeholder="What do yo u need?">
-                            <button type="submit" class="site-btn">SEARCH</button>
+                        {{-- <form action="{{ url('shop/search-product-by-category') }}">
+                             <select name="category_id" >
+                                        <option value="">All category</option>
+                                        @if(!empty($categories))
+                                            @foreach ($categories as  $categoryName)
+                                                <option value="{{ $categoryName->id }}" {{ request()->get('category_id') == $categoryName->id ? 'selected' : ''  }}>{{ $categoryName->name }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                      </option>
+                                <input type="text" placeholder="What do you need?" name="key">
+
+                                <button type="submit" class="site-btn">SEARCH</button>
+                        </form> --}}
+                    {{-- <form action="{{ route('shop-list.shop-product') }}" method="GET"> --}}
+                        <form action="">
+                            <select name="category_id" >
+                                <option value="">All Category</option>
+                                      @if (!empty($categories))
+                                            @foreach ($categories as $categoryName)
+                                                <option value="{{ $categoryName->id }}" {{ request()->get('category_id') == $categoryName->id ? 'selected' : ''  }}>{{ $categoryName->name }}</option>
+
+                                                
+                                            @endforeach
+                                        @endif
+
+                                </option>    
+                            </select>
+                                    <input type="text" placeholder="What do you need?" name="name" value="{{ request()->get('name') }}">
+                                    <button type="submit" class="site-btn">SEARCH</button>
                         </form>
+
+
+                    </form>
                     </div>
                     <div class="hero__search__phone">
                         <div class="hero__search__phone__icon">

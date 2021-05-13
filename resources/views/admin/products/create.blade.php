@@ -30,9 +30,9 @@
         </div>
 
         <div class="form-group mb-5">
-            <label for="">Product Images</label>
-            <input type="file" name="images" placeholder=" Enter Product Image" class="form-control">
-            @error('images')
+            <label for="">Product</label>
+            <input type="file" name="image" placeholder=" Enter Product Image" class="form-control">
+            @error('image')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
@@ -50,6 +50,18 @@
             @error('status')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Number of 1.
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                <label class="form-check-label" for="flexCheckChecked">
+                    Number of 2.
+                </label>
+              </div>
         </div>
         <div class="form-group mb-5">
             <label for="">Product quantity</label>
@@ -64,12 +76,32 @@
             @error('hot')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
+            
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Default hot
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                  Checked hot-2
+                </label>
+              </div>
         </div>
 
         <div class="form-group mb-5">
             <label for="">Product content</label>
             <textarea name="content" rows="10" class="form-control">{{ old('price') }}</textarea>
             @error('price')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="form-group mb-5">
+            <label for="">Product Images Detail</label>
+            <input type="file" name="url[]" multiple placeholder=" Enter Product url" class="form-control">
+            @error('url')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>

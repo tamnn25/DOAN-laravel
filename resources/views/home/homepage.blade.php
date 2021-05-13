@@ -9,31 +9,15 @@
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-1.jpg">
-                            <h5><a href="#">Fresh Fruit</a></h5>
+                    @foreach ($products as $product)
+                            
+                        <div class="col-lg-3">
+                            <div class="categories__item set-bg" data-setbg="{{ $product->image }}">
+                                <h5><a href="{{ route('shop.show',$product->id) }}">{{ $product->category->name}}</a></h5>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-2.jpg">
-                            <h5><a href="#">Dried Fruit</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-3.jpg">
-                            <h5><a href="#">Vegetables</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-4.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-5.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
+                    @endforeach
+                  
                 </div>
             </div>
         </div>
@@ -51,7 +35,7 @@
                     <div class="featured__controls">
                         <ul>
                             @foreach ($categories as $category)
-                                <li class="active" data-filter="*">{{ $category->name }}</li>
+                                <li class="active" data-filter="*"><h5>{{ $category->name }}</h5></li>
                                 
                             @endforeach
                         </ul>
@@ -64,7 +48,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
             
                      <div class="featured__item">
-                        <div class="featured__item__pic set-bg"  data-setbg="{{ asset('storage/products/'.$product->images) }}" alt="">
+                        <div class="featured__item__pic set-bg"  data-setbg="/{{$product->image }}" alt="">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -72,8 +56,11 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">{{ $product->name }}</a></h6>
-                            <h5>{{ $product->price }}</h5>
+                            <h6><a href="{{ route('shop.show',$product->id) }}"><h4>{{ $product->name }}</h4></a></h6>
+                            <h5>{{ $product->price }} VND</h5>
+                            <br>
+                            <a name="" id="" class="btn btn-primary" href="{{ route('shop.show',$product->id) }}" role="button">Xem thông tin</a>
+
                         </div>
                     </div>
                 </div>
@@ -373,7 +360,7 @@
         function addCart(paramIid) {
             $.ajax({
                 type: "POST",
-                url: `{{ route('cart.add-cart') }}`,
+                url: `{{ route('cart.add-cart-ajax') }}`,
                 data: {id: paramIid},
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"

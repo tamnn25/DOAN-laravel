@@ -31,7 +31,7 @@
                             </td>
                             <td>
                                 <div class="product-thumbnail">
-                                    <img src="{{asset('storage/products/'.$product['images']) }}" alt="{{ $product['name'] }}" class="img-fluid" style="width: 240px; height: auto;">
+                                    <img src="{{ asset($product['image']) }}" alt="{{ $product['name'] }}" class="img-fluid" style="width: 240px; height: auto;">
                                 </div>
                             </td>
                             <td>
@@ -41,9 +41,7 @@
                                         {{ $product['quantity'] }}
                                     </span>
                                     <input type="button" value="+" onclick="plus({{ $product['id'] }})">
-                                    <span id="quantityProduct{{ $product['id'] }}">
-                                        {{-- {{ $product['quantity'] }} --}}
-                                    </span>
+                                    
                                 </div>
                             </td>
                             <td>
@@ -57,15 +55,24 @@
                                     <span id="totalCart{{ $product['id'] }}">
                                         {{ number_format($product['quantity'] * $product['price']) . ' VND' }}
                                     </span>
-                                      
+                                    {{-- <span id="totalCart{{ $product['id'] }}">
+                                        {{ number_format($product['quantity'] * $product['price']) . ' VND' }}
+                                    </span> --}}
                                 </div>
                             </td>
-                            <td><a name="" id="" class="btn btn-primary" href="#" role="button">Delete</a></td>
+                            <td>
+                                <div class="delete" >
+                                    <a href="" wire:click.prevent="destroy({{ $product['id'] }})" class="btn btn-danger">
+                                      
+                                      <i class="fas fa-trash-alt fa-2x"></i></a>
+                                </div>
+                            </td>
+                            {{-- <td><a name="" id="" class="btn btn-primary" href="#" role="button"><i class="fas fa-trash">Delete</i></a></td> --}}
                         </tr>
                     </tbody>
                 @endforeach
             </table>
-            <a name="pay" id="" class="btn btn-primary" href="{{ route('cart.checkout') }}" role="button">Checkout</a>
+            <a name="pay" id="" class="btn btn-primary" href="{{ route('cart.checkout',) }}" role="button">Checkout</a>
         @endif
     </section>
 @endsection
