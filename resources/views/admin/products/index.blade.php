@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 {{-- set page title --}}
-@section('title', 'List Produc')
+@section('title', 'List Product')
 
 {{-- set breadcrumbName --}}
 @section('breadcrumbName', 'Post Management')
@@ -41,7 +41,7 @@
     @endif
 
     {{-- display list post table --}}
-    <table id="post-list" class="table table-bordered table-hover table-striped">
+    <table id="product-list" class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
                 <th>#</th>

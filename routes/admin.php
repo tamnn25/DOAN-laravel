@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CustomerController;
 
 Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], function () {
 	// echo 'helloooo admin';exit;
@@ -47,4 +49,23 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
         Route::delete('/delete/{id}', [OrderController::class, 'destroy'])->name('destroy');
     });
     
+    Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
+        Route::get('/list', [CustomerController::class, 'index'])->name('index');
+        Route::get('/create', [CustomerController::class, 'create'])->name('create');
+        Route::post('/store', [CustomerController::class, 'store'])->name('store');
+        // Route::get('/show/{id}', [CustomerController::class, 'show'])->name('show');
+        // Route::get('/edit/{id}', [CustomerController::class, 'edit'])->name('edit');
+        // Route::put('/update/{id}', [CustomerController::class, 'update'])->name('update');
+        // Route::delete('/delete/{id}', [CustomerController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+        Route::get('/list', [UserController::class, 'index'])->name('index');
+        Route::get('/create', [UserController::class, 'create'])->name('create');
+        Route::post('/store', [UserController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [UserController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [UserController::class, 'update'])->name('update');
+        Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
+    });
 });

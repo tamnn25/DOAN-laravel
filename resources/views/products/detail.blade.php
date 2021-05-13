@@ -1,4 +1,4 @@
-@extends('layouts_homepage.master')
+@extends('layouts.master')
 {{-- set page title --}}
 @section('title', $product->name)
 

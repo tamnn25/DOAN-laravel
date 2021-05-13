@@ -8,8 +8,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendVerifyCode;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\OrderVerify;
+use App\Models\Price;
 use App\Utils\CommonUtil;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -66,16 +70,15 @@ class CartController extends Controller
         }
         $data['products'] = $dataCart;
 
-        return view('carts.cart', $data);
+        return view('carts.cart_info', $data);
     }
 
     public function checkout(Request $request)
     {
         $data = [];
 
-        //get data from SESSION 
-        $sessionAll = Session::all();
-        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
+        //get cart info from SESSION
+        $carts = empty(Session::get('carts')) ? [] : Session::get('carts');
         $data['carts'] = $carts;
 
         if (!empty($carts)) {
@@ -98,13 +101,60 @@ class CartController extends Controller
 
         return view('carts.checkout', $data);
     }
+
+    public function checkoutComplete(Request $request)
+    {
+        // get cart info
+        $carts = Session::get('carts');
+        
+        // validate quanity of product -> Available (in-stock | out-stock)
+
+
+        // create data to save into table orders
+        $dataOrder = [
+            'user_id' => Auth()->id(),
+            'status' => Order::STATUS[0],
+        ];
+
+        DB::beginTransaction();
+
+        try {
+            // save data into table orders
+            $order = Order::create($dataOrder);
+            $orderId = $order->id;
+
+            if (!empty($carts)) {
+                foreach ($carts as $cart) {
+                    $productId = $cart['id'];
+                    $quantity = $cart['quantity'];
+                    $priceId = $cart['price_id'];
+
+                    $orderDetail = [
+                        'product_id' => $productId,
+                        'order_id' => $orderId,
+                        'price_id' => $priceId,
+                        'quantity' => $quantity,
+                    ];
+                    // save data into table order_details
+                    OrderDetail::create($orderDetail);
+                }
+            }
+            
+            DB::commit();
+
+            // remove session carts, step_by_step
+            $request->session()->forget(['carts', 'step_by_step']);
+
+            return redirect()->route('home')->with('success', 'Your Order was successful!');
+        } catch (Exception $exception) {
+            DB::rollBack();
+
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
+
     public function sendVerifyCode(Request $request)
     {
-        // CommonUtil::dumpData(date('Y-m-d H:i:s', (time() - 10)));
-
-        // $dateSubtract5Minutes = date('Y-m-d H:i:s', (time() - 60 * 5)); // current - 55 minutes
-        // dd($dateSubtract5Minutes);
-
         // send code to verify Order
         // check exist send code ?
         $userId = Auth::id();
@@ -117,7 +167,7 @@ class CartController extends Controller
             ->whereBetween('expire_date', [$dateSubtract15Minutes, $currentDate])
             ->where('status', OrderVerify::STATUS[0])
             ->first();
-            // dd($orderVerify);
+
         if (!empty($orderVerify)) { // already sent code and this code is available
             return response()->json(['message' => 'We sent code to your email about 15 minutes ago. Please check email to get code.']);
         } else { // not send code

@@ -1,7 +1,7 @@
 @section('content')
-@extends('layouts_homepage.master')
+@extends('layouts.master')
      <!-- Hero Section Begin -->
-     @include('layouts_homepage.menu_left')
+     @include('layouts.menu_left')
     <!-- Hero Section End -->
 
     <!-- Categories Section Begin -->

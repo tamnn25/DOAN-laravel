@@ -33,5 +33,18 @@ class Order extends Model
         'user_id',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    /**
+     * one Order only has one Order_Detail
+     */
+    public function order_detail()
+    {
+        return $this->hasOne(OrderDetail::class, 'order_id', 'id');
+    }
     
 }

@@ -1,5 +1,5 @@
 
-@extends('layouts_homepage.master')
+@extends('layouts.master')
 
 @section('title', 'Cart Page')
 

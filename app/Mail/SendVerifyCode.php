@@ -11,14 +11,16 @@ class SendVerifyCode extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $orderInfo = [];
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($orderInfo)
     {
-        //
+        $this->orderInfo = $orderInfo;
     }
 
     /**
@@ -28,6 +30,9 @@ class SendVerifyCode extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        $data = [];
+        $data['orderInfo'] = $this->orderInfo;
+
+        return $this->view('emails.carts.send_verify_code', $data);
     }
 }

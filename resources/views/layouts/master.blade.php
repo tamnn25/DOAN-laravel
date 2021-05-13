@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ogani | DOAN</title></head>
-    @include('layouts_homepage.css')
+    @include('layouts.css')
 <body>
     {{-- INCLUDE FILE HEADER --}}
-          @include('layouts_homepage.header')
+          @include('layouts.header')
     {{-- END FILE HEADER --}}
 
         {{-- ---------------------------------------------------------------------- --}}
@@ -22,13 +22,13 @@
         {{-- //-- ---------------------------------------------------------------------- --// --}}
 
     {{-- INCLUDE FILE FOOTER --}}
-          @include('layouts_homepage.footer')
+          @include('layouts.footer')
     {{-- END FILE FOOTER --}}
 
         {{-- ---------------------------------------------------------------------- --}}
 
     {{-- INCLUDE FILE JS --}}
-          @include('layouts_homepage.js')
+          @include('layouts.js')
     {{-- END FILE JS --}}
 
         {{-- ---------------------------------------------------------------------- --}}

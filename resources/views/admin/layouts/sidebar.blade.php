@@ -115,11 +115,11 @@
 
           {{-- menu of order module --}}
           @php
-          $routeOrderArr = [
-            'admin.order.index',
-            'admin.order.edit',
-            'admin.order.show',
-          ];
+            $routeOrderArr = [
+              'admin.order.index',
+              'admin.order.edit',
+              'admin.order.show',
+            ];
            @endphp
       
           <li class="nav-item {{ in_array(Route::currentRouteName(), $routeOrderArr) ? 'menu-open' : '' }}">
@@ -137,14 +137,67 @@
                   <p>List Order</p>
                 </a>
               </li>
+            </ul>
+          </li>
+
+          {{-- menu of customer module --}}
+          @php
+            $routeCustomerArr = [
+              'admin.customer.index',
+              'admin.customer.edit',
+              'admin.customer.show',
+            ];
+           @endphp
+      
+          <li class="nav-item {{ in_array(Route::currentRouteName(), $routeCustomerArr) ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Customer manage
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('admin.order.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.post.create' ? 'active' : '' }}">
+                <a href="{{ route('admin.customer.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.order.index' ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Create Order</p>
+                  <p>List Customer</p>
                 </a>
               </li>
             </ul>
-            
+          </li>
+
+          {{-- menu of manager User  module --}}
+          @php
+            $routeUserArr = [
+              'admin.user.index',
+              'admin.user.edit',
+              'admin.user.show',
+            ];
+           @endphp
+      
+          <li class="nav-item {{ in_array(Route::currentRouteName(), $routeUserArr) ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                User manage
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('admin.user.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.order.index' ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.user.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.create' ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create User</p>
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
 
