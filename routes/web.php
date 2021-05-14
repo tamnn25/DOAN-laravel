@@ -19,31 +19,31 @@ use App\Http\Controllers\Product_listController;
 |
 */
 
-    Route::get('/', [HomeController::class, 'index']);
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+        Route::get('/', [HomeController::class, 'index']);
 
 
-Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
-    
-    Route::get('/', [CartController::class, 'getCartInfor'])->name('cart-info');
-    Route::post('/add-cart', [CartController::class, 'addCart'])->name('add-cart');
-    Route::post('cart', [CartController::class, 'addCartAjax'])->name('add-cart-ajax');
-    Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
-    Route::post('/minus',[CartController::class,'minusCart'])->name('minus');
-    Route::post('/plus',[CartController::class,'plusCart'])->name('plus');
-    Route::delete('/delete/{id}', [CartController::class, 'destroy'])->name('destroy');
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->middleware(['auth'])->name('dashboard');
+        require __DIR__.'/auth.php';
 
-});
-    
-Route::group(['prefix'=>'shop','as'=>'shop.'],function(){
-    Route::get('list', [Product_detailController::class,'list'])->name('list');
-    Route::get('/search-product-by-category', [Product_detailController::class,'searchProductByCategory'])->name('search-product');
-    Route::get('/show/{id}',[Product_detailController::class,'show'])->name('show');
- 
-});
+        Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
+            
+            Route::get('/', [CartController::class, 'getCartInfor'])->name('cart-info');
+            Route::post('/add-cart', [CartController::class, 'addCart'])->name('add-cart');
+            Route::post('cart', [CartController::class, 'addCartAjax'])->name('add-cart-ajax');
+            Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
+            Route::post('/minus',[CartController::class,'minusCart'])->name('minus');
+            Route::post('/plus',[CartController::class,'plusCart'])->name('plus');
+            Route::delete('/delete/{id}', [CartController::class, 'destroy'])->name('destroy');
 
-Route::get('/send-email',[MailController::class,'sendEmail']);
-// chạy đi
+        });
+            
+        Route::group(['prefix'=>'shop','as'=>'shop.'],function(){
+            Route::get('list', [Product_detailController::class,'list'])->name('list');
+            Route::get('/search-product-by-category', [Product_detailController::class,'searchProductByCategory'])->name('search-product');
+            Route::get('/show/{id}',[Product_detailController::class,'show'])->name('show');
+        
+        });
+
+        Route::get('/send-email',[MailController::class,'sendEmail']);
