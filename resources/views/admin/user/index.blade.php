@@ -1,6 +1,18 @@
 @extends('admin.layouts.master')
 
     @section('content')
+            {{-- show message --}}
+            @if(Session::has('success'))
+                <p class="text-success">{{ Session::get('success') }}</p>
+            @endif
+
+            {{-- show error message --}}
+            @if(Session::has('error'))
+                <p class="text-danger">{{ Session::get('error') }}</p>
+            @endif
+            {{-- create post link --}}
+            {{-- case 1 --}}
+            <p ><a  class="btn btn-outline-success" href="{{ route('admin.user.create') }}">Create</a></p>
         <table id="user-list" class="table table-bordered table-hover table-striped">
             <thead>
                 <tr>
@@ -32,7 +44,7 @@
                             <form action="{{ route('admin.user.destroy', $user->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure DELETE PRODUCT?')" class="btn btn-danger" />
+                                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure DELETE User?')" class="btn btn-danger" />
                             </form>
                         </td>
                     </tr>

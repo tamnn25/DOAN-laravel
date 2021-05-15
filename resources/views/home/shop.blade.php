@@ -1,8 +1,9 @@
 
-@extends('layouts_homepage.master')
+@extends('layouts.master')
 
 @section('content')
 <body>
+   
     <section class="breadcrumb-section set-bg" data-setbg="shop/img/breadcrumb.jpg">
         <div class="container">
             <div class="row">

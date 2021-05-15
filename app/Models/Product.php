@@ -22,6 +22,7 @@ class Product extends Model
         'hot',
         'category_id',
     ];
+    
 
     public function category()
     {

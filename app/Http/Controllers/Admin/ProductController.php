@@ -37,12 +37,7 @@ class ProductController extends Controller
 
         $product = $product->orderBy('id', 'desc');
 
-        // if(!empty($reques->name)){
-        //     $products = products->where('name','like','%', $reques->name. '%');
-        // }
-        // if(!empty($reques->category_id)){
-        //     $products
-        // }
+        
         $product = $product->paginate(3);
         // get list data of table categories
         $categories = Category::pluck('name')

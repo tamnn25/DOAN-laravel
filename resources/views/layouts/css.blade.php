@@ -32,7 +32,7 @@
 * START (khai bao la css va qua moi page thi` dung @push('css'))
 */ --}}
 {{-- all file css use global  --}}
-<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+{{-- <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css"> --}}
 <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
 <link rel="stylesheet" href="/css/common.css">
 

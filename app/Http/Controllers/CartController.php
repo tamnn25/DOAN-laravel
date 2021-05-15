@@ -89,7 +89,6 @@ class CartController extends Controller
             foreach ($carts as $cart) {
                 $listProductId[] = $cart['id'];
             }
-
             // get data product from list product id
             $dataCart = Product::whereIn('id', $listProductId)
                 ->get();
@@ -188,9 +187,10 @@ class CartController extends Controller
                 // send code to email
                 Mail::to($email)->send(new SendVerifyCode($dataSave));
 
-                return response()->json(['message' => 'We sent code to email. Please check email to get code.']);
+                return response()->json(['message' => 'We sent code to email. Please check email.']);
             } catch (\Exception $exception) {
                 // rollback data and dont insert into table
+                echo $exception->getMessage();
                 DB::rollBack();
 
                 return response()->json(['message' => $exception->getMessage()]);
