@@ -13,10 +13,16 @@ class ConfirmablePasswordController extends Controller
     /**
      * Show the confirm password view.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
     public function show(Request $request)
+=======
+     * @return \Illuminate\View\View
+     */
+    public function show()
+>>>>>>> 058398bf4cb7bbeb6cb8fdb66a2d84037ec50c23
     {
         return view('auth.confirm-password');
     }

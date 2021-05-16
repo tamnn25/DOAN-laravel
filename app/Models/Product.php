@@ -4,13 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+    protected $table = 'products';
     protected $fillable = [
         'name',
-        'image',
+        'description',
+        'image', // dat la so it ay : image hoac thumbnail ---> sua lai file migrate, reset lai DB
         'price',
         'status',
         'quantity',
@@ -22,7 +27,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
-
+    
+    public function product_images(){
+        return $this->hasMany(ProductImage::class);
+    }
     /**
      * Get the post_detail for the post.
      */
@@ -31,18 +39,9 @@ class Product extends Model
         return $this->hasOne(ProductDetail::class);
     }
 
-    public function product_images(){
-        return $this->hasMany(ProductImage::class);
-    }
-    
     public function order_detail()
     {
-        return $this->hasOne(ProductDetail::class);
-    }
-
-    public function price()
-    {
-        return $this->hasMany(Price::class);
+        return $this->hasOne(OrderDetail::class);
     }
 
     public function promotion()

@@ -14,4 +14,10 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 </x-app-layout>
+=======
+    <h1>welcome</h1>
+</x-app-layout>
+
+>>>>>>> 058398bf4cb7bbeb6cb8fdb66a2d84037ec50c23

@@ -26,13 +26,19 @@
 
         
         <div class="form-group mb-5">
-            <label for="">Product Name</label>
+            <label for="">Post Name</label>
             <input type="text" name="name" placeholder="post name" value="{{ old('name', $product->name) }}" class="form-control">
             @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-
+        <div class="form-group mb-5">
+            <label for="">Post description</label>
+            <input type="text" name="description" placeholder="post description" value="{{ old('description', $product->description) }}" class="form-control">
+            @error('description')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
         <div class="form-group mb-5">
             <label for="">Post images</label>
             <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="img-fluid">
@@ -41,7 +47,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-
+        
         <div class="form-group mb-5">
             <label for="">product price</label>
             <input type="text" name="price" placeholder="product price" value="{{ old('price', $product->price) }}" class="form-control">
@@ -64,7 +70,7 @@
             @enderror
         </div>
         <div class="form-group mb-5">
-            <label for="">product hot</label>
+            <label for="" value="{{ old('hot', $product->hot) }}">product hot </label>
             <input type="text" name="hot" placeholder="product hot" value="{{ old('hot', $product->hot) }}" class="form-control">
             @error('hot')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -73,15 +79,30 @@
         
         <div class="form-group mb-5">
             <label for="">product Content</label>
-            <textarea name="content" rows="10" class="form-control">{{ old('content', $product->product_detail ? $product->product_detail->content : null) }}</textarea>
+            <textarea name="content" rows="5" class="form-control">{{ old('content', $product->product_detail ? $product->product_detail->content : null) }}</textarea>
             @error('content')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group mb-5">
-            <label for="">Product_images</label>
-                            <img src="{{asset('storage/product_images/'.$product->url) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;">
-                            <input type="file" name="url[]" placeholder="product url" class="form-control" multiple>
+            <label for="">Product Image</label>
+            <input type="file" name="new_url[]" multiple class="form-control">
+
+            {{-- show all image of table product_images --}}
+            @if (!empty($product->product_images))
+                <ul class="row list-product-image">
+                    @foreach ($product->product_images as $url)
+                        <li class="col-4">
+                            <div class="product-image-group">
+                                <img src="{{ asset($url->url) }}" alt="image" class="img-fluid">
+                                <input type="hidden" name="url[]" value="{{ $url->url }}">
+                                <button type="button" class="btn btn-danger form-control mt-1" onclick="$(this).closest('li').remove()">Remove Image</button>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
+
             @error('url')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
