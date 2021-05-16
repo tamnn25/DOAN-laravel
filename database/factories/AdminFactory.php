@@ -3,8 +3,10 @@
 namespace Database\Factories;
 
 use App\Models\Admin;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+
 
 class AdminFactory extends Factory
 {
@@ -23,7 +25,9 @@ class AdminFactory extends Factory
     public function definition()
     {
         $password = bcrypt('password');
-
+        
+        $roles = Role::pluck('id')->toArray('1','2');
+        
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
@@ -31,6 +35,7 @@ class AdminFactory extends Factory
             // 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'password' => $password,
             'remember_token' => Str::random(10),
+            'role_id' => $roles[array_rand($roles)],
         ];
     }
 

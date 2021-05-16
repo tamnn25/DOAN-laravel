@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
+    private const RECORD_LIMIT = 10;
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +17,15 @@ class OrderController extends Controller
     public function index()
     {
         //
+        //echo ('day la index Order');
+        $data = [];
+        $orders = Order::with('order_detail')
+        ->with('user')
+        ->paginate(self::RECORD_LIMIT);
+
+        $data['orders'] = $orders;
+
+    return view('admin.orders.index', $data);
     }
 
     /**
@@ -25,6 +36,7 @@ class OrderController extends Controller
     public function create()
     {
         //
+        echo ('day la create Order');
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 {{-- set page title --}}
-@section('title', 'List Post')
+@section('title', 'List Product')
 
 {{-- set breadcrumbName --}}
 @section('breadcrumbName', 'Post Management')
@@ -25,7 +25,7 @@
 
     {{-- create post link --}}
     {{-- case 1 --}}
-    <p><a href="{{ route('admin.product.create') }}">Create</a></p>
+    <p ><a  class="btn btn-outline-success" href="{{ route('admin.product.create') }}">Create</a></p>
     
     {{-- case 2 --}}
     {{-- <p><a href="/post/create">Create</a></p> --}}
@@ -41,11 +41,12 @@
     @endif
 
     {{-- display list post table --}}
-    <table id="post-list" class="table table-bordered table-hover table-striped">
+    <table id="product-list" class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>description</th>
                 <th>Images</th>
                 <th>Prices</th>
                 <th>Status</th>
@@ -61,8 +62,10 @@
                     <tr>
                         <td>{{ $key+1 }}</td>
                         <td>{{ $product->name }}</td>
+                        <td>{{ $product->description }}</td>
                         <td>
                             {{-- <img src="{{ asset($product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 40px; height: auto;"> --}}
+                            {{-- <img src="{{asset('storage/products/'.$product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;"> --}}
                             <img src="/{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid" style="width: 200px; height: auto;">
                         </td>
                         <td>{{ $product->price }}</td>
@@ -77,7 +80,7 @@
                             <form action="{{ route('admin.product.destroy', $product->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Delete" onclick="return confirm('Are you sure DELETE PRODUCT?')" class="btn btn-danger" />
+                                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure DELETE PRODUCT?')" class="btn btn-danger" />
                             </form>
                         </td>
                     </tr>
@@ -88,3 +91,4 @@
 
     {{ $products->links() }}
 @endsection
+
