@@ -45,5 +45,3 @@ use App\Http\Controllers\Product_listController;
             Route::get('/show/{id}',[Product_detailController::class,'show'])->name('show');
         
         });
-
-        Route::get('/send-email',[MailController::class,'sendEmail']);
