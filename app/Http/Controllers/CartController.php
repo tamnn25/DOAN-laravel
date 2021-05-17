@@ -39,7 +39,7 @@ class CartController extends Controller
             'quantity' => $request->quantity,
             'price' => $product->price,
         ];
-        dd($newProduct);
+        // dd($newProduct);
         $carts[$id] = $newProduct;
 
         // set data for SESSION
