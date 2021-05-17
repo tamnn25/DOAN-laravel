@@ -21,6 +21,7 @@ class CartController extends Controller
 {
     public function addCart($id, Request $request)
     {
+        
         //get data from SESSION
         $sessionAll = Session::all();
         $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
@@ -29,14 +30,18 @@ class CartController extends Controller
         // check quantity of products.quantity compare with order_detail.quantity
         $product = Product::findOrFail($id);
 
-
         #check have param $id ?
         $newProduct = [
             'id' => $id,
-            'quantity' => $request->quantity
+            'name' => $product->name,
+            'quantity' => $request->quantity,
+            'price' => $product->price,
         ];
-        $carts[$id] = $newProduct;
 
+        //dd($newProduct);
+        
+        $carts[$id] = $newProduct;
+        
         // set data for SESSION
         session(['carts' => $carts]);
         //dd(123);
@@ -46,6 +51,7 @@ class CartController extends Controller
 
     public function getCartInfo(Request $request)
     {
+        
         $data = [];
 
         //get data from SESSION 
@@ -75,6 +81,7 @@ class CartController extends Controller
 
     public function checkout(Request $request)
     {
+    
         $data = [];
 
         //get cart info from SESSION
@@ -116,7 +123,7 @@ class CartController extends Controller
         ];
 
         DB::beginTransaction();
-
+        //dd($dataOrder);
         try {
             // save data into table orders
             $order = Order::create($dataOrder);
@@ -126,16 +133,18 @@ class CartController extends Controller
                 foreach ($carts as $cart) {
                     $productId = $cart['id'];
                     $quantity = $cart['quantity'];
-                    $priceId = $cart['price_id'];
+                    $price = $cart['price'];
 
                     $orderDetail = [
                         'product_id' => $productId,
                         'order_id' => $orderId,
-                        'price_id' => $priceId,
+                        'price' => $price,
                         'quantity' => $quantity,
+                        'total' => $price*$quantity,
                     ];
                     // save data into table order_details
                     OrderDetail::create($orderDetail);
+                    //dd($orderDetail);
                 }
             }
             
@@ -144,8 +153,11 @@ class CartController extends Controller
             // remove session carts, step_by_step
             $request->session()->forget(['carts', 'step_by_step']);
 
-            return redirect()->route('home')->with('success', 'Your Order was successful!');
+            return redirect()->route('home.shop')->with('success', 'Your Order was successful!');
         } catch (Exception $exception) {
+
+            echo $exception->getMessage(); exit;
+
             DB::rollBack();
 
             return redirect()->back()->with('error', $exception->getMessage());

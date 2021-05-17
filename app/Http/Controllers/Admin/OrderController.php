@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\OrderDetail;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    private const RECORD_LIMIT = 10;
+    // private const RECORD_LIMIT = 10;
     /**
      * Display a listing of the resource.
      *
@@ -17,48 +19,14 @@ class OrderController extends Controller
     public function index()
     {
         //
-        //echo ('day la index Order');
         $data = [];
-        $orders = Order::with('order_detail')
-        ->with('user')
-        ->paginate(self::RECORD_LIMIT);
+        $orders = Order::with(['user','order_detail'])
+        ->paginate(Order::RECORD_LIMIT);
 
+        //dd($orders);
         $data['orders'] = $orders;
 
     return view('admin.orders.index', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        echo ('day la create Order');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -70,6 +38,13 @@ class OrderController extends Controller
     public function edit($id)
     {
         //
+        $data = [];
+        $order = Order::find($id);
+
+        $data['order'] = $order;
+
+        return view('admin.orders.parts.edit',$data);
+
     }
 
     /**
@@ -82,6 +57,16 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         //
+        DB::beginTransaction();
+        try{
+            $order = Order::find($id);
+            $order->status = $request->status;
+            $order->save();
+            DB::commit();
+            return redirect()->route('admin.order.index')->with('success', 'update status successfully');
+        }catch(Exception $ex){
+            echo $ex->getMessage();
+        }
     }
 
     /**
@@ -93,5 +78,14 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+        DB::beginTransaction();
+        try{
+            $orders = Order::find($id);
+            $orders -> delete();
+            return redirect()->route('admin.order.index')->with('sucess', 'delete Sucessful.');
+
+        }catch(Exception $ex){
+            echo $ex->getMessage();
+        }
     }
 }
