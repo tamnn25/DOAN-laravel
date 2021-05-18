@@ -26,6 +26,7 @@
     {{-- show message --}}
     @include('errors.error')
 
+    @include('admin.orders._search')
     {{-- display list order table --}}
     @include('admin.orders._table')
 

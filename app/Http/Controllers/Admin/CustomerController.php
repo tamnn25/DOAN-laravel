@@ -23,12 +23,18 @@ class CustomerController extends Controller
         // add new param to search
         // search post name
         if (!empty($request->name)) {
-            $users = User::whereDate('created_at', $request->created_at)
-                    ->orWhere('name', 'like', '%' . $request->name . '%')
+            $users = User::where('name', 'like', '%' . $request->name . '%')
                     ->orderBy('id', 'desc')
                     ->paginate(4);
             // dd($users);
         }
+        if (!empty($request->email)) {
+            $users = User::where('email', 'like', '%' . $request->email . '%')
+                    ->orderBy('id', 'desc')
+                    ->paginate(4);
+            // dd($users);
+        }
+        
 
         $data['users'] = $users;
         

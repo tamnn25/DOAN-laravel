@@ -28,7 +28,13 @@ class OrderController extends Controller
 
     return view('admin.orders.index', $data);
     }
+    public function show($id){
+        $data = [];
+        $order = Order::findOrFail($id);
+        $data['order'] = $order;
 
+        return view('admin.orders.detail',$data);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -82,6 +88,9 @@ class OrderController extends Controller
         try{
             $orders = Order::find($id);
             $orders -> delete();
+
+            DB::commit();
+            
             return redirect()->route('admin.order.index')->with('sucess', 'delete Sucessful.');
 
         }catch(Exception $ex){

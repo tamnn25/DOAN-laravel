@@ -39,7 +39,7 @@ class CartController extends Controller
         ];
 
         //dd($newProduct);
-        
+
         $carts[$id] = $newProduct;
         
         // set data for SESSION

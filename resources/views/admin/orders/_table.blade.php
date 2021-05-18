@@ -3,7 +3,7 @@
         <tr>
             <th>#</th>
             <th>Fullname</th>
-            <th>status_id</th>
+            <th>quantity</th>
             <th>Total Money</th>
             <th>Status</th>
             <th colspan="3">Action</th>
@@ -15,7 +15,7 @@
                 <tr>
                     <td>{{ $key+1 }}</td>
                     <td>{{ $order->user->name }}</td>
-                    <td>{{$order->status }}</td>
+                    <td>{{$order->order_detail->quantity }}</td>
                    
                     <td>{{ $order->order_detail->total }}</td>
                     <td>

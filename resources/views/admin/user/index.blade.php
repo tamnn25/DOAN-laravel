@@ -38,13 +38,13 @@
                         <th>{{$user->phone_number}}</th>
                         <th>{{$user->address}}</th>
                         <th>{{$user->created_at}}</th>
-                        <td><a class="btn btn-info" href="{{ route('admin.user.show', $user->id) }}">Detail</a></td>
-                        <td><a class="btn btn-success" href=" {{ route('admin.user.edit', $user->id) }}">Edit</a></td>
+                        <td><a class="btn btn-outline-success" href="{{ route('admin.user.show', $user->id) }}">Detail</a></td>
+                        <td><a class="btn btn-outline-secondary" href=" {{ route('admin.user.edit', $user->id) }}">Edit</a></td>
                         <td>
                             <form action="{{ route('admin.user.destroy', $user->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure DELETE User?')" class="btn btn-danger" />
+                                <input type="submit" value="Delete" class="btn btn-outline-danger" onclick="return confirm('Are you sure DELETE User?')" class="btn btn-danger" />
                             </form>
                         </td>
                     </tr>
