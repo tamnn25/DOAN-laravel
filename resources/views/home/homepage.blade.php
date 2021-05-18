@@ -9,32 +9,41 @@
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
+                   @if (!empty($products))
+                        @foreach ($products as $product)
+                                <div class="col-lg-3">
+                            <div class="categories__item set-bg"  data-setbg="{{ $product->image }}">
+                                <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
+                            </div>
+                        </div> 
+                  
+                    {{-- <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-2.jpg ,{{ $product->image }}">
+                            <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
+
+                        </div>
+                    </div>
+                     <div class="col-lg-3">
+                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-3.jpg, {{ $product->image }}">
+                            <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
+                        </div>
+                    </div>
+              
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-1.jpg">
-                            <h5><a href="#">Fresh Fruit</a></h5>
+                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-4.jpg, {{ $product->image }}">
+                            <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
+
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-2.jpg">
-                            <h5><a href="#">Dried Fruit</a></h5>
+                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-5.jpg, {{ $product->image }}">
+                            <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-3.jpg">
-                            <h5><a href="#">Vegetables</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-4.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-5.jpg">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
+                    </div>  --}}
+                @endforeach
+                @endif    
                 </div>
+
             </div>
         </div>
     </section>

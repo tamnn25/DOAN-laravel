@@ -4,7 +4,7 @@
      <!-- Hero Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="shop/img/breadcrumb.jpg" style="background-image: url(&quot;img/breadcrumb.jpg'&quot;);">
+    <section class="breadcrumb-section set-bg" data-setbg="shop/img/breadcrumb.jpg" style="background-image: url(&quot;/shop/img/breadcrumb.jpg'&quot;);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

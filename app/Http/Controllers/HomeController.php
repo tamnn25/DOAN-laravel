@@ -13,7 +13,6 @@ class HomeController extends Controller
 
         $products = Product::all();
         $categories = Category::all();
-        
         // $categories = Category::where('parent_id', 0)->get();
 
         // dd($products);
@@ -28,7 +27,10 @@ class HomeController extends Controller
     public function shop(){
         //
         // dd(123);
-        // return view('home.shop');
+        $data = [];
+        $products = Product::all();
+        $data['products'] = $products;
+        return view('home.shop',$data);
     }
 
 
