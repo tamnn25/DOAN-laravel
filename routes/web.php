@@ -1,12 +1,9 @@
-
 <?php
 
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Product_detailController;
-use App\Http\Controllers\Product_listController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,32 +16,35 @@ use App\Http\Controllers\Product_listController;
 |
 */
 
-    Route::get('/', [HomeController::class, 'index']);
-
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
+require __DIR__.'/auth.php';
+
+Route::get('/', [HomeController::class, 'index'])->name('mypage');
+
+Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
     
-    Route::get('/', [CartController::class, 'getCartInfor'])->name('cart-info');
-    Route::post('/add-cart', [CartController::class, 'addCart'])->name('add-cart');
-    Route::post('cart', [CartController::class, 'addCartAjax'])->name('add-cart-ajax');
-    Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
-    Route::post('/minus',[CartController::class,'minusCart'])->name('minus');
-    Route::post('/plus',[CartController::class,'plusCart'])->name('plus');
-    Route::delete('/delete/{id}', [CartController::class, 'destroy'])->name('destroy');
-
+    Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
 });
 
-Route::group(['prefix'=>'list-product-all', 'as'=>'list-product-all.'],function(){
-    Route::get('list', [Product_listController::class,'list'])->name('list');
+Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
+    Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
+    Route::get('/search', [ProductController::class, 'searchProduct'])->name('search');
         
 });
 
-Route::group(['prefix'=>'shop','as'=>'shop.'],function(){
-    Route::get('/show/{id}',[Product_detailController::class,'show'])->name('show');
- 
+Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
+    Route::get('/', [CartController::class, 'getCartInfo'])->name('cart-info'); 
+    Route::post('cart/{id}', [CartController::class, 'addCart'])->name('add-cart');
+    Route::get('checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('check_order_step_by_step');
+       // dd(123);
+    Route::post('checkout-complete', [CartController::class, 'checkoutComplete'])->name('checkout-complete');
+    Route::post('send-verify-code', [CartController::class, 'sendVerifyCode'])->middleware(['auth'])->name('send-verify-code');
+    Route::post('confirm-verify-code', [CartController::class, 'confirmVerifyCode'])->middleware(['auth'])->name('confirm-verify-code');
 });
-// chạy đi

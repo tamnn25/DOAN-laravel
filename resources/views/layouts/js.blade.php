@@ -29,3 +29,4 @@
 {{-- declare other file script use private --}}
 
 @stack('js')
+@yield('scripts')

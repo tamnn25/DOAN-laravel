@@ -93,3 +93,8 @@
   flex: 50%;
   padding-left: 15px;
 }
+
+.register{
+  color: #eee;
+  background-color: aqua;
+}
