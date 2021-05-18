@@ -202,9 +202,9 @@ class ProductController extends Controller
         $productDetailId = !empty($product->product_detail) ? $product->product_detail->id : null;
         $imagesOld = $product->image;
 
-        \Log::info("img old");
-        \Log::info($imagesOld);
-        \Log::info("img old");
+        Log::info("img old");
+        Log::info($imagesOld);
+        Log::info("img old");
         
 
          // get list product image from DB
@@ -237,9 +237,9 @@ class ProductController extends Controller
             $product->image = 'products/' . $fileName;
             Log::info('imagePath: ' . $imagePath);
         }
-        \Log::info("img url");
-        \Log::info($imagePath);
-        \Log::info("img url");
+        Log::info("img url");
+        Log::info($imagePath);
+        Log::info("img url");
 
         $listProductImages = [];
         $files = $request->file('url');
