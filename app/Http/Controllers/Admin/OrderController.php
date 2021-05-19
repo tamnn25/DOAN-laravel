@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    // private const RECORD_LIMIT = 10;
     /**
      * Display a listing of the resource.
      *
@@ -19,14 +18,15 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $data = [];
-        $orders = Order::with(['user','order_detail'])
+        // $data = [];
+        
+        $orders = Order::with('order_detail')
+        ->with('user')
         ->paginate(Order::RECORD_LIMIT);
-
-        //dd($orders);
+        
         $data['orders'] = $orders;
-
-    return view('admin.orders.index', $data);
+        dd($orders);
+        return view('admin.orders.index', $data);
     }
     public function show($id){
         $data = [];
@@ -86,8 +86,13 @@ class OrderController extends Controller
         //
         DB::beginTransaction();
         try{
-            $orders = Order::find($id);
-            $orders -> delete();
+            $orders = Order::with('order_detail')
+            ->find($id);
+            
+            //delete order_detail
+            $orders->order_detail->delete($id);
+            
+            $orders->delete();
 
             DB::commit();
             

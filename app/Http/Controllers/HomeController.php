@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Price;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,16 +13,17 @@ class HomeController extends Controller
     //
     public function index(){
 
+        $data = [];
         $products = Product::all();
         $categories = Category::all();
-        // $categories = Category::where('parent_id', 0)->get();
+        // $prices = Price::all();
+        //$products = Product::with(['Category','latestPrice']);
 
         // dd($products);
-
-        return view('home.homepage')->with([
-            'products' => $products,
-            'categories' => $categories,
-        ]);
+        $data['categories'] = $categories;
+        $data ['products'] = $products;
+        return view('home.homepage', $data);
+        
 
         // return view('home.homepage');
     }

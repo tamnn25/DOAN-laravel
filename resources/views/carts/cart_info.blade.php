@@ -5,7 +5,7 @@
 
 @section('content')
     <section class="list-product">
-        @if (!empty($products))
+        @if (!empty($carts))
             <table class="table table-bordered table-hover" id="tbl-list-product">
                 <thead>
                     <tr>
@@ -17,34 +17,34 @@
                         <th>Money</th>
                     </tr>
                 </thead>
-                @foreach ($products as $key => $product)
+                @foreach ($carts as $key => $cart)
                     <tbody>
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>
                                 <div class="product-name">
-                                    {{ $product->name }}
+                                    {{ $cart['name'] }}
                                 </div>
                             </td>
                             <td>
                                 <div class="product-thumbnail">
-                                    <img src="{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid">
+                                    <img src="{{ $cart['image' ]}}" alt="{{ $cart['name'] }}" class="img-fluid">
                                 </div>
                             </td>
                             <td>
                                 <div class="product-quantity">
-                                    {{ number_format($carts[$product->id]['quantity']) }}
+                                    {{ number_format($cart['quantity']) }}
                                 </div>
                             </td>
                             <td>
                                 <div class="product-price">
-                                    {{ number_format($product->price) }}
+                                    {{ number_format($cart['price']) }}
                                 </div>
                             </td>
                             <td>
                                 <div class="cart-money">
                                     @php
-                                        $money = $carts[$product->id]['quantity'] * $product->price;
+                                        $money = $cart['quantity'] *$cart['price'];
                                         echo number_format($money) . ' VND';
                                     @endphp
                                 </div>

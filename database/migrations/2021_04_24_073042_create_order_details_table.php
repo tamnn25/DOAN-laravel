@@ -20,7 +20,11 @@ class CreateOrderDetailsTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
             $table->integer('quantity');
-            $table->integer('price');
+            $table->unsignedBigInteger('price_id');
+            // $table->foreign('price_id')->references('id')->on('prices');
+            // ALTER TABLE order_details
+            // ADD CONSTRAINT price_id
+            // FOREIGN KEY (price_id) REFERENCES prices(id);
             $table->integer('total');
             $table->timestamps();
             $table->softDeletes();

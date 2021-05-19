@@ -6,21 +6,28 @@
 <hr>
     <section class="product-detail">
         <div class="row">
+            
             <div class="col-6">
                 <div class="product-thumbnail">
                     <img src="{{ asset($product->image)}}" alt="{{ $product->image }}">
                 </div>
                 <hr>
-                <div class="product__details__pic__slider owl-carousel">
-                    @if ($product->product_images)
-                        @foreach ($product->product_images as $product_image)
-                                <img data-imgbigurl="{{ $product_image->url }}"
-                        src="{{ $product_image->url }}" alt="">
+                {{-- @if (!empty($product->product_images)) --}}
+                    <ul class="row list-product-image">
+                        @foreach ($product->product_images as $url)
+                            <li class="col-4">
+                                <div class="product-image-group">
+                                    <img src="{{ asset($url->url) }}" alt="image" class="img-fluid">
+                                    {{-- <input type="hidden" name="url[]" value="{{ $url->url }}"> --}}
+                                    {{-- <button type="button" class="btn btn-danger form-control mt-1" onclick="$(this).closest('li').remove()">Remove Image</button> --}}
+                                </div>
+                            </li>
                         @endforeach
-                    @endif
-                </div>
+                    </ul>
+                {{-- @endif --}}
                 <hr>
             </div>
+
             <div class="col-6">
                 
                 <hr>
@@ -31,7 +38,7 @@
                             <h4>{{ $product->name }}</h4>
                             <hr>
                             <p class="product-comment">
-                                <span>(Xem 98 đánh giá)</span>
+                                <span>{{ $product->description }}</span>
                             </p>
                             <hr>
                             <p class="product-price">{{ number_format($product->price) }} VND</p>

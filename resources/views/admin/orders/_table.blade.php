@@ -3,6 +3,7 @@
         <tr>
             <th>#</th>
             <th>Fullname</th>
+            <th>product_images</th>
             <th>quantity</th>
             <th>Total Money</th>
             <th>Status</th>
@@ -15,9 +16,10 @@
                 <tr>
                     <td>{{ $key+1 }}</td>
                     <td>{{ $order->user->name }}</td>
+                    <td><img src="/{{ $order->user->image }}" alt="{{ $order->user->name }}" class="img-fluid" style="width: 200px; height: auto;"></td>
                     <td>{{$order->order_detail->quantity }}</td>
                    
-                    <td>{{ $order->order_detail->total }}</td>
+                    <td>{{ $order->order_detail->total }}</td> 
                     <td>
                         @include('admin.orders.parts.alert_order_status')
                     </td>

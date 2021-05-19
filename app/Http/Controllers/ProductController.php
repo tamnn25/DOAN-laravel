@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Session;
 use App\Models\ProductDetail;
 use App\Models\ProductImage;
+use App\Models\Price;
 
 class ProductController extends Controller
 {
@@ -14,11 +15,23 @@ class ProductController extends Controller
     public function detail($id, Request $request){
         $data = [];
 
-        $product = Product::whereId($id)->with('product_images')->with('product_detail')->first();
-        
+        // $product = Product::whereId($id)
+        // ->with('product_images')
+        // ->with('product_detail')
+        // -->first();
+
+        // $product = ProductImage::find($id);
+        $product = Product::with(['product_detail','product_images'])->first();
         $data['product'] = $product;
 
         // display create sucess
         return view('products.detail', $data);
+    }
+    public function searchProduct(Request $request)
+    {
+        $key = $request->key;
+        $products = Product::where('name', 'like', '%'. $key . '%')->paginate(10);
+        return view('home.shop', compact('products'));
+        // đổ dữ liêu jra thôi 
     }
 }

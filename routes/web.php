@@ -26,7 +26,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
     
     Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
@@ -36,9 +36,15 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
     Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
         
 });
+Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
+    Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
+    Route::get('/search', [ProductController::class, 'searchProduct'])->name('search'); 
+        
+});
 
 Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
-    Route::get('/', [CartController::class, 'getCartInfo'])->name('cart-info')->middleware('check_order_step_by_step'); 
+    Route::get('/', [CartController::class, 'getCartInfo'])->name('cart-info'); 
+    // ->middleware('check_order_step_by_step')
     Route::post('cart/{id}', [CartController::class, 'addCart'])->name('add-cart');
     Route::get('checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('check_order_step_by_step');
     Route::post('checkout-complete', [CartController::class, 'checkoutComplete'])->name('checkout-complete');

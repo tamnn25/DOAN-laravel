@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductImage;
 use App\Models\ProductDetail;
+use App\Models\Price;
 use App\Http\Requests\Admin\StoreProductRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -25,7 +26,9 @@ class ProductController extends Controller
     public function index( Request $request )
     {
         $data = [];
-        $product = Product::with('category');
+        $product = Product::with([ 'category']);
+        //dd($product);
+
         if (!empty($request->name)) {
             $product = $product->where('name', 'like', '%' . $request->name . '%');
         }
@@ -37,7 +40,7 @@ class ProductController extends Controller
 
         $product = $product->orderBy('id', 'desc');
 
-        
+        //dd($product->get());
         $product = $product->paginate(3);
         // get list data of table categories
         $categories = Category::pluck('name')
@@ -107,7 +110,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'image' => $imagesPath,
-            'price'=> $request->price,
+           'price' => $request->price,
             'hot'=> $request->hot,
             'quantity'=> $request->quantity,
             'status' => $request->status,
@@ -127,7 +130,6 @@ class ProductController extends Controller
             ]);
             $product->product_detail()->save($productDetail);
             
-
             // save multiple image for table product_images
             if (!empty($listProductImages)) {
                 foreach ($listProductImages as $productImage) {
