@@ -11,14 +11,16 @@
                     <img src="{{ asset($product->image)}}" alt="{{ $product->image }}">
                 </div>
                 <hr>
-                <div class="product__details__pic__slider owl-carousel">
-                    @if ($product->product_images)
-                        @foreach ($product->product_images as $product_image)
-                                <img data-imgbigurl="{{ $product_image->url }}"
-                        src="{{ $product_image->url }}" alt="">
-                        @endforeach
-                    @endif
-                </div>
+                <ul class="row list-product-image">
+                    @foreach ($product->product_images as $url)
+                        <li class="col-4">
+                            <div class="product-image-group">
+                                <img src="{{ asset($url->url) }}" alt="image" class="img-fluid">
+                                    
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
                 <hr>
             </div>
             <div class="col-6">

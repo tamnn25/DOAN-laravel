@@ -26,11 +26,13 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [HomeController::class, 'index'])->name('mypage');
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
     
     Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
+    Route::get('/search', [HomeController::class, 'searchProduct'])->name('search');
+
 });
 
 Route::group(['prefix' => 'product', 'as' => 'product.'], function () {

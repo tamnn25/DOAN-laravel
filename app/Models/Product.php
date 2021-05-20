@@ -41,7 +41,7 @@ class Product extends Model
 
     public function order_detail()
     {
-        return $this->hasOne(OrderDetail::class);
+        return $this->hasMany(OrderDetail::class);
     }
 
     public function promotion()
