@@ -12,19 +12,11 @@
                     <img src="{{ asset($product->image)}}" alt="{{ $product->image }}">
                 </div>
                 <hr>
-                {{-- @if (!empty($product->product_images)) --}}
-                    <ul class="row list-product-image">
+                <div class="product__details__pic__slider owl-carousel">
                         @foreach ($product->product_images as $url)
-                            <li class="col-4">
-                                <div class="product-image-group">
-                                    <img src="{{ asset($url->url) }}" alt="image" class="img-fluid">
-                                    {{-- <input type="hidden" name="url[]" value="{{ $url->url }}"> --}}
-                                    {{-- <button type="button" class="btn btn-danger form-control mt-1" onclick="$(this).closest('li').remove()">Remove Image</button> --}}
-                                </div>
-                            </li>
+                            <img src="{{ asset($url->url) }}" alt="image" class="img-fluid">
                         @endforeach
-                    </ul>
-                {{-- @endif --}}
+                </div>
                 <hr>
             </div>
 
@@ -43,12 +35,20 @@
                             <hr>
                             <p class="product-price">{{ number_format($product->price) }} VND</p>
                             <hr>
-                            <p class="product-quantity">
+                            {{-- <p class="product-quantity">
                                 <label>Quantity</label>
                                 <span><input type="number" name="quantity" required></span>
-                            </p>
+                            </p> --}}
                             <p>
-                                <button type="submit">Add Cart</button>
+                                <div class="product__details__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" name="quantity" required value="1">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-outline-success" type="submit">Add Cart</button>
                             </p>
                         </form>
                     </div>

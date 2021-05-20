@@ -31,8 +31,8 @@ class OrderController extends Controller
     }
     public function show($id){
         $data = [];
-        $orderDetail = OrderDetail::where('order_id', $id)->get();
-        dd($orderDetail);
+        $order = Order::with('order_detail')->first();
+        //dd($order);
         $data['order'] = $order;
 
         return view('admin.orders.detail',$data);

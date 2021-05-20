@@ -15,13 +15,8 @@ class ProductController extends Controller
     public function detail($id, Request $request){
         $data = [];
 
-        // $product = Product::whereId($id)
-        // ->with('product_images')
-        // ->with('product_detail')
-        // -->first();
-
-        // $product = ProductImage::find($id);
-        $product = Product::with(['product_detail','product_images'])->first();
+        $product = Product::whereId($id)->with('product_images')->with('product_detail')->first();
+        
         $data['product'] = $product;
 
         // display create sucess
@@ -34,4 +29,6 @@ class ProductController extends Controller
         return view('home.shop', compact('products'));
         // đổ dữ liêu jra thôi 
     }
+
+    
 }

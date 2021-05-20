@@ -30,7 +30,10 @@ class HomeController extends Controller
     public function shop(){
         //
         // dd(123);
-        return view('home.shop');
+        $data = [];
+        $products = Product::all();
+        $data['products'] = $products;
+        return view('home.shop',$data);
     }
 
 

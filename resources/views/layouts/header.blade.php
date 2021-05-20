@@ -86,7 +86,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="{{ route('index')}}"><img src="shop/img/logo.png" alt=""></a>
+                    <a href="{{ route('index')}}"><img src="{{ asset('shop/img/logo.png')}}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -94,7 +94,7 @@
                     <ul>
                         <li class="active"><a href="{{ route('index')  }}">Home</a></li>
                         <li><a href="{{ route('home.shop') }}">Shop</a></li>
-                        <li><a href="#">Wine</a>
+                        <li><a href="#">Wine Store</a>
                             <ul class="header__menu__dropdown">
                                 <li><a href="./shop-details.html">Red Wine</a></li>
                                 <li><a href="./shoping-cart.html">White Wine</a></li>
@@ -115,7 +115,7 @@
                     </ul> --}}
                     <div class="flex-item">
                         @include('layouts.parts.cart_number')
-                     </div>
+                    </div>
                 </div>
             </div>
         </div>
