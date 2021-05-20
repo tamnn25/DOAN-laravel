@@ -74,6 +74,7 @@ class CartController extends Controller
             session(['step_by_step' => 1]);
         }
         $data['products'] = $dataCart;
+        // dd($data);
 
         return view('carts.cart_info', $data);
     }
