@@ -40,10 +40,11 @@ class CartController extends Controller
             'price' => $product->price,
         ];
         // dd($newProduct);
-        $carts[$id] = $newProduct;
+        // $carts[$id] = $newProduct;
 
         // set data for SESSION
         session(['carts' => $carts]);
+        // dd($carts);
         //dd(123);
         return redirect()->route('cart.cart-info')
             ->with('success', 'Add Product to Cart successful!');

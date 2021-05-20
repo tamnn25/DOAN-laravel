@@ -31,11 +31,13 @@ Route::get('/', [HomeController::class, 'index'])->name('mypage');
 Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
     
     Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
+    Route::get('/listshopcategory',[HomeController::class,'listshopcategory'])->name('listshopcategory');
+
 });
 
 Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
     Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
-    Route::get('/search', [ProductController::class, 'searchProduct'])->name('search');
+    Route::get('/search', [ProductController::class, 'searchProduct'])->name('search'); 
         
 });
 

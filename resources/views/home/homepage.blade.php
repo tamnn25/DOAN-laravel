@@ -11,37 +11,23 @@
                 <div class="categories__slider owl-carousel">
                    @if (!empty($products))
                         @foreach ($products as $product)
-                                <div class="col-lg-3">
+                        <div class="col-lg-3">
                             <div class="categories__item set-bg"  data-setbg="{{ $product->image }}">
-                                <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
+                                <h5><a href="{{ route('home.shop', $product['id']) }}">{{ $product->category->name }}</a></h5>
                             </div>
+
+                        
                         </div> 
-                  
-                    {{-- <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-2.jpg ,{{ $product->image }}">
-                            <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
-
-                        </div>
-                    </div>
-                     <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-3.jpg, {{ $product->image }}">
-                            <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
-                        </div>
-                    </div>
-              
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-4.jpg, {{ $product->image }}">
-                            <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="shop/img/categories/cat-5.jpg, {{ $product->image }}">
-                            <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
-                        </div>
-                    </div>  --}}
-                @endforeach
-                @endif    
+                       
+                
+                    @endforeach
+                    @endif    
+                    {{-- @if ($products->product_images)
+                        @foreach ($products->product_images as $product_image)
+                                <img data-imgbigurl="{{ $product_image->url }}"
+                        src="{{ $product_image->url }}" alt="">
+                        @endforeach
+                    @endif --}}
                 </div>
 
             </div>
@@ -83,7 +69,12 @@
                         <h4>Latest Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
+                                        {{-- @if ($products)
+                                          @foreach ($products as $product)
+
+                                          @endforeach
+                                        @endif   --}}
+                                    <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
                                         <img src="shop/img/latest-product/lp-1.jpg" alt="">
                                     </div>

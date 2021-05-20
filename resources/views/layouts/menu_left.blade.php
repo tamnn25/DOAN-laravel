@@ -9,7 +9,7 @@
                     </div>
                     @foreach ($categories as $category)
                         <ul>
-                            <li class="active" data-filter="*">{{ $category->name }}</li>
+                            <li class="active" data-filter="*"> <a href="{{ route('home.listshopcategory', $category->category_id) }}" class="card-link">{{ $category->name }}</a></li>
                         </ul>
                     @endforeach
                 </div>

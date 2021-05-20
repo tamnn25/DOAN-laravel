@@ -16,7 +16,7 @@ class HomeController extends Controller
         // $categories = Category::where('parent_id', 0)->get();
 
         // dd($products);
-
+// dd($categories);
         return view('home.homepage')->with([
             'products' => $products,
             'categories' => $categories,
@@ -32,7 +32,16 @@ class HomeController extends Controller
         $data['products'] = $products;
         return view('home.shop',$data);
     }
+    public function listshopcategory()
+    {
+        $products = Product::all();
 
-
+        $categories = Category::all();
+        
+        return view('home.shop_list_category')->with([
+            'products' => $products,
+            'categories' => $categories,
+            ]);
+    }
     
 }

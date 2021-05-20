@@ -10,6 +10,9 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
+    body{
+        background-color: #23b6d6;
+    }
 .login-form {
     width: 340px;
     margin: 50px auto;
@@ -17,7 +20,7 @@
 }
 .login-form form {
     margin-bottom: 15px;
-    background: #d82020;
+    background: #2856c1;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     padding: 30px;
     border-radius: 20%;
