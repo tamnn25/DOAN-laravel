@@ -33,5 +33,4 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(Price::class, 'price_id', 'id');
     }
-   
 }

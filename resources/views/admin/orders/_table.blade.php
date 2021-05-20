@@ -1,10 +1,9 @@
 <table id="product-list" class="table table-bordered table-hover table-striped">
     <thead>
         <tr>
-            <th>#</th>
+            <th>STT</th>
             <th>Fullname</th>
-            <th>product_images</th>
-            <th>quantity</th>
+            <th>Order day</th>
             <th>Total Money</th>
             <th>Status</th>
             <th colspan="3">Action</th>
@@ -16,15 +15,16 @@
                 <tr>
                     <td>{{ $key+1 }}</td>
                     <td>{{ $order->user->name }}</td>
-                    <td><img src="/{{ $order->user->image }}" alt="{{ $order->user->name }}" class="img-fluid" style="width: 200px; height: auto;"></td>
-                    <td>{{$order->order_detail->quantity }}</td>
-                   
-                    <td>{{ $order->order_detail->total }}</td> 
+                    <td>{{ $order->created_at }}</td>
+                    <td>
+                        chua lay dc gia tri quantity
+                    </td>
                     <td>
                         @include('admin.orders.parts.alert_order_status')
                     </td>
-                    
-                    <td><a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-secondary">Order Detail</a></td>
+                    <td>
+                        <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-secondary">Order Detail</a>                        
+                    </td>
                     <td><a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-info">Update Status</a></td>
                     <td>
                         <form action="{{ route('admin.order.destroy', $order->id) }}" method="post">
@@ -39,4 +39,4 @@
     </tbody>
 </table>
 
-{{ $orders->appends(request()->input())->links() }}
+{{-- {{ $orders->appends(request()->input())->links() }} --}}

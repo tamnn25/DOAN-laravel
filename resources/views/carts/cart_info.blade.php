@@ -1,50 +1,50 @@
-
 @extends('layouts.master')
 
+{{-- set page title --}}
 @section('title', 'Cart Page')
 
 @section('content')
     <section class="list-product">
-        @if (!empty($carts))
+        @if(!empty($products))
             <table class="table table-bordered table-hover" id="tbl-list-product">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Product Name</th>
-                        <th>product</th>
+                        <th>Thumbanil</th>
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Money</th>
                     </tr>
                 </thead>
-                @foreach ($carts as $key => $cart)
+                @foreach ($products as $key => $product)
                     <tbody>
                         <tr>
                             <td>{{ $key + 1 }}</td>
                             <td>
                                 <div class="product-name">
-                                    {{ $cart['name'] }}
+                                    {{ $product->name }}
                                 </div>
                             </td>
                             <td>
                                 <div class="product-thumbnail">
-                                    <img src="{{ $cart['image' ]}}" alt="{{ $cart['name'] }}" class="img-fluid">
+                                    <img src="{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid">
                                 </div>
                             </td>
                             <td>
                                 <div class="product-quantity">
-                                    {{ number_format($cart['quantity']) }}
+                                    {{ number_format($carts[$product->id]['quantity']) }}
                                 </div>
                             </td>
                             <td>
                                 <div class="product-price">
-                                    {{ number_format($cart['price']) }}
+                                    {{ number_format($product->price) }}
                                 </div>
                             </td>
                             <td>
                                 <div class="cart-money">
                                     @php
-                                        $money = $cart['quantity'] *$cart['price'];
+                                        $money = $carts[$product->id]['quantity'] * $product->price;
                                         echo number_format($money) . ' VND';
                                     @endphp
                                 </div>
@@ -53,30 +53,24 @@
                     </tbody>
                 @endforeach
             </table>
+
             <div class="mt-2">
                 {{-- tiến hành thanh toán --}}
-                <button  type="button" class="btn btn-primary" data-bs-toggle="modal"
-                 data-bs-target="#modal-send-code">thanh toán</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-send-code">Tiến hành thanh toán</button>
             </div>
+        @else
+            <p>Chưa có sản phẩm nào trong giỏ hàng. <a href="/">Tiếp tục mua hàng</a></p>
         @endif
     </section>
 
     {{-- import modal --}}
-    @include('carts.part.modal_send_code')
+    @include('carts.parts.modal_send_code')
 @endsection
 
-{{-- /**
-* define CSS use INTERNAL (noi no o tung page)
-* (khai bao la css va qua moi page thi` dung @push('css'))
-*/ --}}
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/carts/cart-info.css') }}">
 @endpush
 
-{{-- /**
-* define JS use INTERNAL (noi no o tung page)
-* (khai bao la css va qua moi page thi` dung @push('js'))
-*/ --}}
 @push('js')
     <script>
         const URL_CHECKOUT = "{{ route('cart.checkout') }}";

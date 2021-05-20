@@ -43,7 +43,7 @@ class Order extends Model
     }
 
     /**
-     * one Order only has one Order_Detail
+     * one Order only hasMany Order_Detail
      */
     public function order_detail()
     {

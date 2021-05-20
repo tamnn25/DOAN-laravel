@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Support\Facades\DB;
 
+
 class OrderController extends Controller
 {
     /**
@@ -22,15 +23,16 @@ class OrderController extends Controller
         
         $orders = Order::with('order_detail')
         ->with('user')
-        ->paginate(Order::RECORD_LIMIT);
+        ->get();
         
         $data['orders'] = $orders;
-        dd($orders);
+        // dd($orders);
         return view('admin.orders.index', $data);
     }
     public function show($id){
         $data = [];
-        $order = Order::findOrFail($id);
+        $orderDetail = OrderDetail::where('order_id', $id)->get();
+        dd($orderDetail);
         $data['order'] = $order;
 
         return view('admin.orders.detail',$data);
@@ -83,22 +85,26 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
-        DB::beginTransaction();
+        // dd($id);
+        \DB::beginTransaction();
         try{
             $orders = Order::with('order_detail')
             ->find($id);
             
             //delete order_detail
-            $orders->order_detail->delete($id);
+            foreach ($orders->order_detail as $orderDetail) {
+                $orderDetail->delete();
+            }
             
             $orders->delete();
 
-            DB::commit();
+            \DB::commit();
             
             return redirect()->route('admin.order.index')->with('sucess', 'delete Sucessful.');
 
         }catch(Exception $ex){
+            \DB::rollback();
+
             echo $ex->getMessage();
         }
     }

@@ -8,15 +8,15 @@
         <div class="row">
             <div class="col-4">
                 {{-- thong tin don hang --}}
-                @include('carts.part.cart_info')
+                @include('carts.parts.cart_info')
             </div>
             <div class="col-4">
                 {{-- thong tin ca nhan --}}
-                @include('carts.part.personal_info')
+                @include('carts.parts.personal_info')
             </div>
             <div class="col-4">
                 {{-- thong tin thanh toan --}}
-                @include('carts.part.payment_info')
+                @include('carts.parts.payment_info')
             </div>
         </div>
     </section>  

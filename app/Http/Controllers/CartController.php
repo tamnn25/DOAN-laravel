@@ -19,33 +19,30 @@ use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
-    public function addCart($id, Request $request)
+    public function addCart(Request $request, $id)
     {
-        
         //get data from SESSION
+        
         $sessionAll = Session::all();
         $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
 
         // validate ID of table product ? available TRUE | FALSE
         // check quantity of products.quantity compare with order_detail.quantity
         $product = Product::findOrFail($id);
-        
+        // dd($product->name);
 
         #check have param $id ?
         $newProduct = [
             'id' => $id,
             'name' => $product->name,
-            'image' =>$product->image,
             'quantity' => $request->quantity,
             'price' => $product->price,
         ];
-
-        //dd($newProduct);
-
+        // dd($newProduct);
         $carts[$id] = $newProduct;
-        
+
         // set data for SESSION
-        session()->put('carts', $carts);
+        session(['carts' => $carts]);
         //dd(123);
         return redirect()->route('cart.cart-info')
             ->with('success', 'Add Product to Cart successful!');
@@ -53,30 +50,29 @@ class CartController extends Controller
 
     public function getCartInfo(Request $request)
     {
-        
         $data = [];
         //get data from SESSION 
-        $carts = Session::get('carts');
-        $carts = empty($carts) ? [] : $carts;
+        $sessionAll = Session::all();
+        $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
         $data['carts'] = $carts;
-        // dd($carts);
-        // $dataCart = [];
-        // if (!empty($carts)) {
-        //     // create list product id
-        //     $listProductId = [];
-        //     foreach ($carts as $cart) {
-        //         $listProductId[] = $cart['id'];
-        //     }
 
-        //     // get data product from list product id
-        //     $dataCart = Product::whereIn('id', $listProductId)
-        //         ->get();
+        $dataCart = [];
+        if (!empty($carts)) {
+            // create list product id
+            $listProductId = [];
+            foreach ($carts as $cart) {
+                $listProductId[] = $cart['id'];
+            }
 
-        //     // add step by step to SESSION
-        //     session(['step_by_step' => 1]);
-        // }
-        // $data['products'] = $dataCart;
+            // get data product from list product id
+            $dataCart = Product::whereIn('id', $listProductId)
+                ->get();
 
+            // add step by step to SESSION
+            //session(['step_by_step' => 1]);
+        }
+        $data['products'] = $dataCart;
+        dd($data);
         return view('carts.cart_info', $data);
     }
 
@@ -145,6 +141,7 @@ class CartController extends Controller
                     ];
                     
                     // save data into table order_details
+                    
                     OrderDetail::create($orderDetail);
                     
                 }
