@@ -84,8 +84,8 @@
                         <div class="latest-product__slider owl-carousel">
                             @for ($i = 1; $i <= 3; $i++)
                                 <div class="latest-prdouct__slider__item">
-                                    @if (isset($radeOrder[$i]) && $radeOrder[$i])
-                                        @foreach ($radeOrder[$i] as $key => $item)
+                                    @if (isset($radeProduct[$i]) && $radeProduct[$i])
+                                        @foreach ($radeProduct[$i] as $key => $item)
                                             <a href="#" class="latest-product__item">
                                                 <div class="latest-product__item__pic">
                                                     <img src="{{ $item->image }}" alt="" style="width: 110px">

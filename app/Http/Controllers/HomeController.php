@@ -19,13 +19,20 @@ class HomeController extends Controller
                             ->groupBy('product_id')
                             ->limit(9)
                             ->get();
+            $orderProduct = collect();
+        foreach ($orders as $key => $value) {
+            $orderProduct->push($value->product);
+        }
         $productLimit   = Product::orderBy('created_at', 'desc')->limit(9)->get();
+        // dd($productLimit);
+        // dd($orderProduct);
         
         $lasterProduct  = $this->formatDataProduct($productLimit);
+        $radeProduct    = $this->formatDataProduct($orderProduct);
 
         return view('home.homepage')->with([
             'lasterProduct' => $lasterProduct,
-            // 'radeOrder'     => $radeOrder,
+            'radeProduct'   => $radeProduct, 
             'products'      => $products,
             'categories'    => $categories,
         ]);
@@ -46,13 +53,13 @@ class HomeController extends Controller
         ]);
     }
 
-     public function searchProduct(Request $request)
-    {
+    //  public function searchProduct(Request $request)
+    // {
         
-        $key = $request->key;
-        $products = Product::where('name', 'like', '%'. $key . '%')->paginate(10);
-        return view('home.shop', compact('products'));
-    }
+    //     $key = $request->key;
+    //     $products = Product::where('name', 'like', '%'. $key . '%')->paginate(10);
+    //     return view('home.shop', compact('products'));
+    // }
     /**
      * formatDataProduct
      *

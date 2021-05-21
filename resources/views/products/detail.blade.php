@@ -30,7 +30,7 @@
                     <div class="product-description">
                         <form action="{{ route('cart.add-cart', $product->id) }}" method="POST">
                             @csrf
-                            <h4>{{ $product->name }}</h4>
+                            <h3><strong>{{ $product->name }}</strong></h3>
                             <hr>
                             <p class="product-comment">
                                 <span>(Xem 98 đánh giá)</span>
@@ -43,7 +43,9 @@
                                 <span><input type="number" name="quantity" required></span>
                             </p>
                             <p>
-                                <button type="submit">Add Cart</button>
+                                <button type="submit"class="primary-btn">  ADD TO CARD</button>
+                      
+
                             </p>
                         </form>
                     </div>

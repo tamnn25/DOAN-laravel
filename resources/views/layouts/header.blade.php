@@ -134,11 +134,15 @@
                             <i class="fa fa-bars"></i>
                             <span>All departments</span>
                         </div>
+                        @if ($categories)
+                            
+                      
                         @foreach ($categories as $category)
                             <ul style=" border: 1px solid #7fad39;">
                                 <li class="active" data-filter="*">{{ $category->name }}</li>
                             </ul>
                         @endforeach
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -146,9 +150,9 @@
                         <div class="hero__search__form">
                     
                             <div class="hero__search__form">
-                                <form action="http://127.0.0.1:8000/home/search" id="formSearch" method="GET">
+                                <form action="http://127.0.0.1:8000/product/search" id="formSearch" method="GET">
                                     
-                                    <input type="text" name="key" placeholder="What do yo u need?">
+                                    <input type="text" name="key" placeholder="Enter Product">
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </form>
                             </div>
