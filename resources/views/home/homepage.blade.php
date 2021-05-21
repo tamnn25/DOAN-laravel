@@ -3,7 +3,7 @@
      <!-- Hero Section Begin -->
      @include('layouts.menu_left')
     <!-- Hero Section End -->
-
+   
     <!-- Categories Section Begin -->
     <section class="categories">
         <div class="container">
