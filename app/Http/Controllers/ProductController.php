@@ -15,7 +15,10 @@ class ProductController extends Controller
     public function detail($id, Request $request){
         $data = [];
 
-        $product = Product::whereId($id)->with('product_images')->with('product_detail')->first();
+        $product = Product::whereId($id)
+        ->with('product_images')
+        ->with('product_detail')
+        ->first();
         
         $data['product'] = $product;
 
@@ -25,7 +28,8 @@ class ProductController extends Controller
     public function searchProduct(Request $request)
     {
         $key = $request->key;
-        $products = Product::where('name', 'like', '%'. $key . '%')->paginate(10);
+        $products = Product::where('name', 'like', '%'. $key . '%')
+        ->paginate(3);
         return view('home.shop', compact('products'));
         // đổ dữ liêu jra thôi 
     }

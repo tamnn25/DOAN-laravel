@@ -5,7 +5,7 @@
     <!-- Hero Section End -->
 
     <!-- Categories Section Begin -->
-    <section class="categories">
+    {{-- <section class="categories">
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
@@ -38,8 +38,27 @@
             </div>
         </div>
     </section>
-    <!-- Categories Section End -->
+    
+    <!-- Categories Section End --> --}}
+    <!-- Categories Section Begin -->
+    <section class="categories">
+        <div class="container">
+            <div class="row">
+                <div class="categories__slider owl-carousel">
+                   @if (!empty($products))
+                        @foreach ($products as $product)
+                                <div class="col-lg-3">
+                            <div class="categories__item set-bg"  data-setbg="{{ $product->image }}">
+                                <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
+                            </div>
+                            </div> 
+                        @endforeach
+                    @endif    
+                </div>
 
+            </div>
+        </div>
+    </section>
     <!-- Featured Section Begin -->
     <section class="featured spad">
        @include('home.listproduct')

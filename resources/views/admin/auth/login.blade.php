@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,17 +11,34 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <style>
+body{
+    background-image:url({{url('images/bg.jpg')}});
+    background-position-x: 0px;
+    background-position-y: 0px;
+    background-size: cover;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    background-size: cover;
+    }
 .login-form {
     width: 340px;
     margin: 50px auto;
   	font-size: 15px;
 }
 .login-form form {
-    margin-bottom: 15px;
-    background: #6d9de6;
+    /* margin-bottom: 15px;
+    background: #bdc7d6;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    padding: 30px;
+    padding: 30px; */
     border-radius: 10%;
+    margin: 5em auto;
+    background: rgba(171, 119, 157, 0.27);
+    padding: 42px 35px;
+    width: 120%;
 }
 .login-form h2 {
     margin: 0 0 15px;
@@ -39,7 +57,7 @@
 <div class="login-form">
     <form action="{{ route('admin.login.handle') }}" method="post">
     	{!! csrf_field() !!}
-        <h2 class="text-center">Log in</h2>
+        <h2 class="text-center">LOG IN NOW</h2>
         @if(\Session::get('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ \Session::get('success') }}
@@ -68,15 +86,21 @@
         <div class="form-group">
             <input type="password" class="form-control" name="password" placeholder="Password" required="required">
             @if ($errors->has('password'))
+           
             <span class="help-block font-red-mint">
                 <strong>{{ $errors->first('password') }}</strong>
             </span>
             @endif
         </div>
+        <span><input type="checkbox" />Remember Me</span>
+			{{-- <h6><a href="#">Forgot Password?</a></h6> --}}
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </div>      
+        <p>Don't Have an Account ?<a href="registration.html">Create an account</a></p>
+
     </form>
+   
 </div>
 </body>
 </html>

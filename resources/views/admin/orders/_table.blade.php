@@ -17,7 +17,7 @@
                     <td>{{ $order->user->name }}</td>
                     <td>{{ $order->created_at }}</td>
                     <td>
-                        chua lay dc gia tri quantity
+                        {{$order->quantity}}
                     </td>
                     <td>
                         @include('admin.orders.parts.alert_order_status')

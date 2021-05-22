@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
@@ -15,13 +16,27 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
         //
         $data = [];
         //echo "day la manager User (Crud)";
-        $users = User::paginate(8);
-        $data['users'] = $users;
+        // $admins = Admin::paginate(8);
+        $admins = Admin::orderBy('id', 'desc')->paginate(4);
+
+        if(!empty($request->name)){
+            $admins = Admin::where('name' , 'like' , '%' . $request->name . '%')
+            ->orderBy('id', 'desc')
+            ->paginate(4);
+        }
+        if(!empty($request->role_id)){
+            $admins = Admin::where('role_id' , 'like' , '%' . $request->role_id . '%')
+            ->orderBy('id', 'desc')
+            ->paginate(4);
+        }
+
+
+        $data['admins'] = $admins;
         return view('admin.user.index',$data);
     }
 
@@ -50,12 +65,13 @@ class UserController extends Controller
             'email'=> $request->email,
             'email_verified_at' => now(),
             'password' => $request->password,
-            'phone_number'=> $request->phone_number,
+            'role_id' => $request->role_id,
             'remember_token' => Str::random(10),
         ];
         DB::beginTransaction();
+        //dd($userInsert);
         try{
-            User::create($userInsert);
+            Admin::create($userInsert);
             DB::commit();
             return redirect()->route('admin.user.index')->with('sucess', 'Insert into data to Category Sucessful.');
 
@@ -64,66 +80,66 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-        $data = [];
-        $users = User::find($id);
+    // /**
+    //  * Display the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function show($id)
+    // {
+    //     //
+    //     $data = [];
+    //     $users = User::find($id);
         
-        $data['users'] = $users;
-        return view('admin.user.show',$data);
-    }
+    //     $data['users'] = $users;
+    //     return view('admin.user.show',$data);
+    // }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-        $data = [];
-        $users = User::find($id);
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function edit($id)
+    // {
+    //     //
+    //     $data = [];
+    //     $users = User::find($id);
         
-        $data['users'] = $users;
-        return view('admin.user.edit',$data);
+    //     $data['users'] = $users;
+    //     return view('admin.user.edit',$data);
        
-    }
+    // }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        // dd($id);
-        DB::beginTransaction();
+    // /**
+    //  * Update the specified resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function update(Request $request, $id)
+    // {
+    //     // dd($id);
+    //     DB::beginTransaction();
         
-        try{
-            $users = User::findOrFail($id);
-            // $users->name = $request->name;
-            // $users->email = $request->email;
-            $users->password = $request->password;
-            $users->phone_number = $request->phone_number;
+    //     try{
+    //         $users = User::findOrFail($id);
+    //         // $users->name = $request->name;
+    //         // $users->email = $request->email;
+    //         $users->password = $request->password;
+    //         $users->phone_number = $request->phone_number;
 
-            $users->save();
+    //         $users->save();
             
-            DB::commit();
-            return redirect()->route('admin.user.index')->with('success', 'Update User successful!');
-        }catch(Exception $ex){
-            echo $ex->getMessage();
-        }
-    }
+    //         DB::commit();
+    //         return redirect()->route('admin.user.index')->with('success', 'Update User successful!');
+    //     }catch(Exception $ex){
+    //         echo $ex->getMessage();
+    //     }
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -137,8 +153,8 @@ class UserController extends Controller
         DB::beginTransaction();
 
         try {
-            $users = User::find($id);
-            $users->delete();
+            $admins = Admin::find($id);
+            $admins->delete();
 
             DB::commit();
 

@@ -38,9 +38,12 @@ class ProductController extends Controller
             $product = $product->where('category_id', $request->category_id);
         }
 
-        $product = $product->orderBy('id', 'desc');
+        //search price
+        if(!empty($request->status)) {
+            $product = $product->where('status', $request->status);
+        }
 
-        //dd($product->get());
+        $product = $product->orderBy('id', 'desc');
         $product = $product->paginate(3);
         // get list data of table categories
         $categories = Category::pluck('name')

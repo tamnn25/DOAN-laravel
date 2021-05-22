@@ -27,11 +27,18 @@ class HomeController extends Controller
 
         // return view('home.homepage');
     }
-    public function shop(){
+    public function shop( Request $request){
         //
         // dd(123);
         $data = [];
-        $products = Product::all();
+        
+        $products = Category::get();
+        $products = Product::get();
+        //$products = Product::with(['category']);
+        // if(!empty($request->category_id)){
+        //     $products->$products->where('category_id', '%' . $request->category_id . '%');
+        // }
+        
         $data['products'] = $products;
         return view('home.shop',$data);
     }

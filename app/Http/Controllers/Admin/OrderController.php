@@ -25,6 +25,8 @@ class OrderController extends Controller
         ->with('user')
         ->get();
         
+        // $orders = OrderDetail::all();
+
         $data['orders'] = $orders;
         // dd($orders);
         return view('admin.orders.index', $data);
@@ -100,7 +102,7 @@ class OrderController extends Controller
 
             \DB::commit();
             
-            return redirect()->route('admin.order.index')->with('sucess', 'delete Sucessful.');
+            return redirect()->route('admin.user.index')->with('sucess', 'delete Sucessful.');
 
         }catch(Exception $ex){
             \DB::rollback();

@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="{{ route('admin.dashboard') }}" class="brand-link">
       <img src="/admin_lte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminPage</span>
+      <span class="brand-text font-weight-light">MyController</span>
     </a>
 
     <!-- Sidebar -->
@@ -180,7 +180,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                User manage
+                Admin manage
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -188,20 +188,20 @@
               <li class="nav-item">
                 <a href="{{ route('admin.user.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.order.index' ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>List User</p>
+                  <p>List Amin</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('admin.user.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.create' ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Create User</p>
+                  <p>Create Admin</p>
                 </a>
               </li>
             </ul>
           </li>
         </ul>
 
-        <form action="{{ route('admin.logout') }}" method="POST">
+        <form  action="{{ route('admin.logout') }}" method="POST">
           @csrf
           <button type="submit" onclick="return confirm('Are you sure LOGOUT ?')">Logout</button>
         </form>
