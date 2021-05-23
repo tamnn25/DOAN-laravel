@@ -18,12 +18,16 @@ class categorySeeder extends Seeder
         //
         $date = date('Y-m-d H:i:s');
         $data = [
-            ['name' => 'Oganic', 'parent_id' => '2' , 'created_at' => $date, 'updated_at' => $date],
-            ['name' => 'Meat', 'parent_id' => '2' , 'created_at' => $date, 'updated_at' => $date],
-            ['name' => 'Vegetable', 'parent_id' => '2' , 'created_at' => $date, 'updated_at' => $date],
-            ['name' => 'Hamburger', 'parent_id' => '2' , 'created_at' => $date, 'updated_at' => $date],
-            ['name' => 'Pizza', 'parent_id' => '1' , 'created_at' => $date, 'updated_at' => $date],
-            ['name' => 'Drink', 'parent_id' => '1' , 'created_at' => $date, 'updated_at' => $date],
+
+            ['name' => 'Fresh Meat', 'parent_id' => '2' , 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Vegetables', 'parent_id' => '2' , 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Fruit & Nut Gifts', 'parent_id' => '2' , 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Fresh Berries', 'parent_id' => '2' , 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Ocean Foods', 'parent_id' => '1' , 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Butter & Eggs', 'parent_id' => '1' , 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Fastfood', 'parent_id' => '1' , 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Fresh Onion', 'parent_id' => '1' , 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Oatmeal', 'parent_id' => '1' , 'created_at' => $date, 'updated_at' => $date],
             
         ];
 

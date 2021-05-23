@@ -6,21 +6,22 @@
 <hr>
     <section class="product-detail">
         <div class="row">
+
             <div class="col-6">
                 <div class="product-thumbnail">
                     <img src="{{ asset($product->image)}}" alt="{{ $product->image }}">
                 </div>
                 <hr>
                 <div class="product__details__pic__slider owl-carousel">
-                    @if ($product->product_images)
-                        @foreach ($product->product_images as $product_image)
-                                <img data-imgbigurl="{{ $product_image->url }}"
-                        src="{{ $product_image->url }}" alt="">
+
+                        @foreach ($product->product_images as $url)
+                            <img src="{{ asset($url->url) }}" alt="image" class="img-fluid">
                         @endforeach
-                    @endif
                 </div>
                 <hr>
             </div>
+
+
             <div class="col-6">
                 
                 <hr>
@@ -31,17 +32,26 @@
                             <h4>{{ $product->name }}</h4>
                             <hr>
                             <p class="product-comment">
-                                <span>(Xem 98 đánh giá)</span>
+                                <span>{{ $product->description }}</span>
                             </p>
                             <hr>
                             <p class="product-price">{{ number_format($product->price) }} VND</p>
                             <hr>
-                            <p class="product-quantity">
+
+                            {{-- <p class="product-quantity">
                                 <label>Quantity</label>
                                 <span><input type="number" name="quantity" required></span>
-                            </p>
+                            </p> --}}
                             <p>
-                                <button type="submit">Add Cart</button>
+                                <div class="product__details__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" name="quantity" required value="1">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-outline-success" type="submit">Add Cart</button>
                             </p>
                         </form>
                     </div>

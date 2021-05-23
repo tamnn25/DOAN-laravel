@@ -6,10 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Models\OrderDetail;
+use App\Models\Product;
+
 class Order extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    const RECORD_LIMIT = 10;
 
     protected $table = 'orders';
 
@@ -39,12 +44,16 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function product(){
+        return $this->belongsTo(Product::class, 'product_id','id');
+    }
+
     /**
-     * one Order only has one Order_Detail
+     * one Order only hasMany Order_Detail
      */
     public function order_detail()
     {
-        return $this->hasOne(OrderDetail::class, 'order_id', 'id');
+        return $this->hasMany(OrderDetail::class, 'order_id', 'id');
     }
     
 }

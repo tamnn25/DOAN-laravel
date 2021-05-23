@@ -1,10 +1,10 @@
 <table id="product-list" class="table table-bordered table-hover table-striped">
     <thead>
         <tr>
-            <th>#</th>
+
+            <th>STT</th>
             <th>Fullname</th>
-            <th>Total Product</th>
-            <th>Total Money</th>
+            <th>Order day</th>
             <th>Status</th>
             <th colspan="3">Action</th>
         </tr>
@@ -15,12 +15,15 @@
                 <tr>
                     <td>{{ $key+1 }}</td>
                     <td>{{ $order->user->name }}</td>
-                    <td></td>
+
+                    <td>{{ $order->created_at }}</td>
+                    
                     <td>
                         @include('admin.orders.parts.alert_order_status')
                     </td>
-                    <td>{{ $order->status }}</td>
-                    <td><a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-secondary">Order Detail</a></td>
+                    <td>
+                        <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-secondary">Order Detail</a>                        
+                    </td>
                     <td><a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-info">Update Status</a></td>
                     <td>
                         <form action="{{ route('admin.order.destroy', $order->id) }}" method="post">
@@ -35,4 +38,4 @@
     </tbody>
 </table>
 
-{{ $orders->appends(request()->input())->links() }}
+{{-- {{ $orders->appends(request()->input())->links() }} --}}

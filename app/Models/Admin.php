@@ -20,8 +20,19 @@ class Admin extends Authenticatable
     
     protected $guarded = [];
 
+    public const STATUS = [
+        0,
+        1,
+        2,
+    ];
     protected $fillable = [
-
+        'name',
+        'email',
+        'email_verified_at',
+        'role_id',
+        'password',
+        
+        'remember_token',
     ];
     public function roles()
     {

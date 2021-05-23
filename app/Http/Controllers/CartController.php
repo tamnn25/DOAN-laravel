@@ -22,8 +22,6 @@ class CartController extends Controller
     public function addCart(Request $request, $id)
     {
         //get data from SESSION
-        // dd($id);
-        // dd($request->all());
         $sessionAll = Session::all();
         $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
 
@@ -40,11 +38,11 @@ class CartController extends Controller
             'price' => $product->price,
         ];
         // dd($newProduct);
-        // $carts[$id] = $newProduct;
+
+        $carts[$id] = $newProduct;
 
         // set data for SESSION
         session(['carts' => $carts]);
-        // dd($carts);
         //dd(123);
         return redirect()->route('cart.cart-info')
             ->with('success', 'Add Product to Cart successful!');
@@ -71,17 +69,15 @@ class CartController extends Controller
                 ->get();
 
             // add step by step to SESSION
-            session(['step_by_step' => 1]);
+            //session(['step_by_step' => 1]);
         }
         $data['products'] = $dataCart;
-        // dd($data);
-
+        //dd($data);
         return view('carts.cart_info', $data);
     }
 
     public function checkout(Request $request)
     {
-       
         $data = [];
 
         //get cart info from SESSION
@@ -96,7 +92,6 @@ class CartController extends Controller
             foreach ($carts as $cart) {
                 $listProductId[] = $cart['id'];
             }
-
             // get data product from list product id
             $dataCart = Product::whereIn('id', $listProductId)
                 ->get();
@@ -111,10 +106,10 @@ class CartController extends Controller
 
     public function checkoutComplete(Request $request)
     {
-         
+
         // get cart info
         $carts = Session::get('carts');
-        // dd($carts);  
+        // dd($carts);
         // validate quanity of product -> Available (in-stock | out-stock)
 
 
@@ -135,29 +130,34 @@ class CartController extends Controller
                 foreach ($carts as $cart) {
                     $productId = $cart['id'];
                     $quantity = $cart['quantity'];
-                    $price = $cart['price']; 
 
+                    $price = $cart['price'];
+                    
                     $orderDetail = [
                         'product_id' => $productId,
                         'order_id' => $orderId,
-                        'price' => $price,
+                        'price_id' => $price,
                         'quantity' => $quantity,
                         'total' => $price*$quantity,
                     ];
+                    
                     // save data into table order_details
+                    
                     OrderDetail::create($orderDetail);
+                    
                 }
             }
-            
+            // dd($orderDetail);
             DB::commit();
 
             // remove session carts, step_by_step
             $request->session()->forget(['carts', 'step_by_step']);
-            // dd(123);
-            return redirect()->route('mypage')->with('success', 'Your Order was successful!');
+
+
+            return redirect()->route('index')->with('success', 'Your Order was successful!');
         } catch (Exception $exception) {
+
             echo $exception->getMessage(); exit;
-            
             DB::rollBack();
 
             return redirect()->back()->with('error', $exception->getMessage());
@@ -199,9 +199,10 @@ class CartController extends Controller
                 // send code to email
                 Mail::to($email)->send(new SendVerifyCode($dataSave));
 
-                return response()->json(['message' => 'We sent code to email. Please check email to get code.']);
+                return response()->json(['message' => 'We sent code to email. Please check email.']);
             } catch (\Exception $exception) {
                 // rollback data and dont insert into table
+                echo $exception->getMessage();
                 DB::rollBack();
 
                 return response()->json(['message' => $exception->getMessage()]);

@@ -1,16 +1,21 @@
 
  <div class="container">
+
     <div class="row">
         <div class="col-lg-12">
             <div class="section-title">
                 <h2>Featured Product</h2>
             </div>
             <div class="featured__controls">
-                <ul>
-                    @foreach ($categories as $category)
-                        <li class="active" data-filter="*">{{ $category->name }}</li>
-                    @endforeach
-                </ul>
+
+                {{-- @for($i=1;$i<=4;$i++) --}}
+                    <ul>
+                        @foreach ($categories as $category)
+                            <li class="active" data-filter="*">{{ $category->name }}</li>
+                        @endforeach
+                    </ul>
+                {{-- @endfor --}}
+
             </div>
         </div>
     </div>
@@ -26,16 +31,15 @@
                     <ul class="featured__item__pic__hover">
                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                         <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                        <li><a href="{{ route('product.detail', $product['id']) }}"><i class="fa fa-shopping-cart"></i></a></li>
-                        {{-- addCart({{ $product->id }}) --}}
-                        {{-- ajax add --}}
+
+                        <li><a href="{{ route('cart.cart-info') }}"><i class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
                 <div class="featured__item__text">
-                    <h6><a href="{{ route('product.detail', $product['id']) }}">{{ $product->name }}</a></h6>
-                    <h5>{{ $product->price }}</h5>
+                    <h6><a href="#">{{ $product->name }}</a></h6>
+                    <h5>{{ $product->price }}.000.vnd</h5>
                     <div class="product-buy">
-                        <a href="{{ route('product.detail', $product['id']) }}" class="btn btn-primary">View More</a>
+                        <a href="{{ route('product.detail', $product['id']) }}" class="btn btn-outline-success">View More</a>
                     </div>
                 </div>
                 

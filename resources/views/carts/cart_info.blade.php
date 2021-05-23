@@ -1,17 +1,19 @@
 
 @extends('layouts.master')
 
+{{-- set page title --}}
 @section('title', 'Cart Page')
 
 @section('content')
     <section class="list-product">
-        @if (!empty($products))
+        @if(!empty($products))
             <table class="table table-bordered table-hover" id="tbl-list-product">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Product Name</th>
                         <th>product</th>
+
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Money</th>
@@ -53,6 +55,7 @@
                     </tbody>
                 @endforeach
             </table>
+
             <div class="mt-2">
                 {{-- tiến hành thanh toán --}}
                 <button  type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -60,23 +63,14 @@
             </div>
         @endif
     </section>
-
     {{-- import modal --}}
-    @include('carts.part.modal_send_code')
+    @include('carts.parts.modal_send_code')
 @endsection
 
-{{-- /**
-* define CSS use INTERNAL (noi no o tung page)
-* (khai bao la css va qua moi page thi` dung @push('css'))
-*/ --}}
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/carts/cart-info.css') }}">
 @endpush
 
-{{-- /**
-* define JS use INTERNAL (noi no o tung page)
-* (khai bao la css va qua moi page thi` dung @push('js'))
-*/ --}}
 @push('js')
     <script>
         const URL_CHECKOUT = "{{ route('cart.checkout') }}";

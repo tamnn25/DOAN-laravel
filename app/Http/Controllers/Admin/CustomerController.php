@@ -9,20 +9,33 @@ use App\Models\User;
 class CustomerController extends Controller
 {
     //
+    /**
+     * function index() nay de lam j nhi ?
+     * cai nay em dung de search custom
+     */
+
+
     public function index(Request $request){
-        //echo "day la manager Customer";
+        
         $data = [];
         // get list data of table products
         $users = User::orderBy('id', 'desc')->paginate(4);
         // add new param to search
         // search post name
         if (!empty($request->name)) {
-            $users = User::whereDate('created_at', $request->created_at)
-                    ->orWhere('name', 'like', '%' . $request->name . '%')
+
+            $users = User::where('name', 'like', '%' . $request->name . '%')
                     ->orderBy('id', 'desc')
                     ->paginate(4);
             // dd($users);
         }
+        if (!empty($request->email)) {
+            $users = User::where('email', 'like', '%' . $request->email . '%')
+                    ->orderBy('id', 'desc')
+                    ->paginate(4);
+            // dd($users);
+        }
+
 
         // search created_at
         // if (!empty($request->created_at)) {
@@ -37,10 +50,12 @@ class CustomerController extends Controller
 
         // $users = User::paginate('4');
 
+
         $data['users'] = $users;
         
         return view('admin.customer.index',$data);
     }
+
     public function search(Request $request)
     {
         // dd($request->name);
@@ -53,4 +68,5 @@ class CustomerController extends Controller
         $data['users'] = $users;
         return view('admin.customer.search',$data);
     }
+
 }

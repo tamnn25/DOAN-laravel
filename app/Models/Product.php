@@ -22,6 +22,7 @@ class Product extends Model
         'hot',
         'category_id',
     ];
+    
 
     public function category()
     {
@@ -38,7 +39,11 @@ class Product extends Model
     {
         return $this->hasOne(ProductDetail::class);
     }
-
+    public function price()
+    {
+        return $this->hasOne(Price::class);
+    }
+    
     public function order_detail()
     {
         return $this->hasOne(OrderDetail::class);
@@ -49,4 +54,13 @@ class Product extends Model
         return $this->hasOne(Promotion::class);
     }
 
+    // public function latestPrice()
+    // {
+    //     $currentdate = date('Y-m-01 H:i:s');
+
+    //     return $this->hasOne(Price::class)
+    //         ->where('end_date', '<=', $currentdate)
+    //         ->where('status', Price::STATUS[1])
+    //         ->first();
+    // }
 }

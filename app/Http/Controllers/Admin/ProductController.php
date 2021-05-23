@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductImage;
 use App\Models\ProductDetail;
+use App\Models\Price;
 use App\Http\Requests\Admin\StoreProductRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -25,7 +26,9 @@ class ProductController extends Controller
     public function index( Request $request )
     {
         $data = [];
-        $product = Product::with('category');
+        $product = Product::with([ 'category']);
+        //dd($product);
+
         if (!empty($request->name)) {
             $product = $product->where('name', 'like', '%' . $request->name . '%');
         }
@@ -35,14 +38,12 @@ class ProductController extends Controller
             $product = $product->where('category_id', $request->category_id);
         }
 
-        $product = $product->orderBy('id', 'desc');
+        //search price
+        if(!empty($request->status)) {
+            $product = $product->where('status', $request->status);
+        }
 
-        // if(!empty($reques->name)){
-        //     $products = products->where('name','like','%', $reques->name. '%');
-        // }
-        // if(!empty($reques->category_id)){
-        //     $products
-        // }
+        $product = $product->orderBy('id', 'desc');
         $product = $product->paginate(3);
         // get list data of table categories
         $categories = Category::pluck('name')
@@ -112,7 +113,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'image' => $imagesPath,
-            'price'=> $request->price,
+            'price' => $request->price,
             'hot'=> $request->hot,
             'quantity'=> $request->quantity,
             'status' => $request->status,
@@ -131,8 +132,6 @@ class ProductController extends Controller
                 'content'=> $request->content,
             ]);
             $product->product_detail()->save($productDetail);
-            
-
             // save multiple image for table product_images
             if (!empty($listProductImages)) {
                 foreach ($listProductImages as $productImage) {

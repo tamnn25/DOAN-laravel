@@ -36,6 +36,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
+    public const PAGE_LIMIT = 10;
     protected $hidden = [
         'password',
         'remember_token',

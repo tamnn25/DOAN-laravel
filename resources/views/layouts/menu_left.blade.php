@@ -5,11 +5,14 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>All departments</span>
+                        <span>All Products</span>
                     </div>
                     @foreach ($categories as $category)
                         <ul>
-                            <li class="active" data-filter="*"> <a href="{{ route('home.listshopcategory', $category->category_id) }}" class="card-link">{{ $category->name }}</a></li>
+
+                            <li style="font-family: Arial, sans-serif;" class="active" data-filter="*">
+                                <a href="{{route('product.search',[$category->name])}}"><i>{{ $category->name }}</i></a>
+                            </li>
                         </ul>
                     @endforeach
                 </div>
@@ -22,7 +25,8 @@
                                 All Categories
                                 <span class="arrow_carrot-down"></span>
                             </div> --}}
-                            <input type="text" name="key" placeholder="What do yo u need?">
+
+                            <input type="text" name="key" placeholder="What Would You Like To Buy ?">
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>
                     </div>

@@ -1,16 +1,17 @@
-<div class="mb-5 mt-5 border p-3">
-    <form action="{{ route('admin.customer.index') }}" method="GET">
-        <div class="mb-3">
-            <label class="form-label">Customer Name</label>
-            <input type="text" class="form-control" name="name" placeholder=" name" value="{{ request()->get('name') }}">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">created_at</label>
-            <input type="date" class="form-control" name="created_at" placeholder="created_at" value="{{ request()->get('created_at') }}">
 
-        </div>
-        <div class="mb-3">
-            <button type="submit" class="btn btn-outline-primary">Search</button>
-        </div>
-    </form>
+
+<div class="input-group">
+    <nav style="width:50%" class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand">Search</a>
+
+        <form action="{{ route('admin.customer.index') }}" method="GET" class="form-inline">
+            {{-- <label class="form-label" for="form1"> searched by name</label> --}}
+            <input class="form-control mr-sm-2" name="name" placeholder=" name"  value="{{ request()->get('name') }}" aria-label="Search">
+            
+            {{-- <label class="form-label" for="form1"> searched by email</label> --}}
+            <input type="text" class="form-control mr-sm-2" name="email" placeholder="email" value="{{ request()->get('email') }}" >
+
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
 </div>

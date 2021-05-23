@@ -1,22 +1,28 @@
 
 <!-- Header Section Begin -->
 <header class="header">
-    <div class="header__top">
+
+    <div class="header__top" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__left">
+
+                       
                         <ul>
-                            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                            <marquee behavior="" direction="">
+                            <li><i class="fa fa-envelope"></i> contact@iviettech.vn</li>
                             <li>Free Shipping for all Order of $99</li>
+                            </marquee>
+
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__right">
                         <div class="header__top__right__social">
-                            <a href="#"><i class="fa fa-facebook">facebook</i></a>
-                            <a href="#"><i class="fa fa-twitter">twitter</i></a>
+                            <a href="https://www.facebook.com/"><i class="fa fa-facebook">facebook</i></a>
+                            <a href="https://twitter.com/"><i class="fa fa-twitter">twitter</i></a>
                             {{-- <a href="#"><i class="fa fa-linkedin"></i></a>
                             <a href="#"><i class="fa fa-pinterest-p"></i></a> --}}
                         </div>
@@ -63,7 +69,7 @@
                                 
                                 @guest
                                 <div class="dropdown">
-                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #25a6d700">
                                     <span class="fa fa-user"> &nbsp; </span><span class="text">   REGISTER </span>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
@@ -86,13 +92,19 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="header__logo">
-                    <a href="{{ route('mypage')}}"><img src="shop/img/logo.png" alt=""></a>
+                    <a href="{{ route('index')}}"><img src="shop/img/logo.png" alt=""></a>
+    <div class="container ">
+        <div class="row" >
+            <div class="col-lg-3">
+                <div class="header__logo">
+                    <a href="{{ route('index')}}"><img src="{{ asset('shop/img/logo.png') }}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="{{ route('mypage')  }}">Home</a></li>
+                        <li class="active"><a href="{{ route('index')  }}">Home</a></li>
+                        <li class="active"><a href="{{ route('index')  }}">Home</a></li>
                         <li><a href="{{ route('home.shop') }}">Shop</a></li>
                         <li><a href="#">Wine</a>
                             <ul class="header__menu__dropdown">
@@ -123,5 +135,9 @@
             <i class="fa fa-bars"></i>
         </div>
     </div>
+
+
+
+
 </header>
 <!-- Header Section End -->
