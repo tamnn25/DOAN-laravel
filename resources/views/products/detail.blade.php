@@ -33,14 +33,21 @@
                             <h3><strong>{{ $product->name }}</strong></h3>
                             <hr>
                             <p class="product-comment">
-                                <span>(Xem 98 đánh giá)</span>
+                                <span>{{  $product->description }}</span>
                             </p>
                             <hr>
                             <p class="product-price">{{ number_format($product->price) }} VND</p>
                             <hr>
                             <p class="product-quantity">
-                                <label>Quantity</label>
-                                <span><input type="number" name="quantity" required></span>
+                                {{-- <label>Quantity</label>
+                                <span><input type="number" name="quantity" required></span> --}}
+                                <div class="product__details__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" name="quantity" required value="1">
+                                        </div>
+                                    </div>
+                                </div>
                             </p>
                             <p>
                                 <button type="submit"class="primary-btn">  ADD TO CARD</button>

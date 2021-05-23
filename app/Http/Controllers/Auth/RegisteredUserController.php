@@ -38,7 +38,6 @@ class RegisteredUserController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-<<<<<<< HEAD
         Auth::login($user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -47,7 +46,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-=======
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -58,7 +56,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
->>>>>>> 058398bf4cb7bbeb6cb8fdb66a2d84037ec50c23
         return redirect(RouteServiceProvider::HOME);
     }
 }

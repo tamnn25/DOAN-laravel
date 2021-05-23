@@ -7,10 +7,9 @@
         <div class="mb-3">
             <label class="form-label">Category</label>
             <select name="category_id" class="form-control">
-                <option value=""></option>
                 @if(!empty($categories))
                     @foreach ($categories as $categoryId => $categoryName)
-                        <option value="{{ $categoryId }}" {{ request()->get('category_id') == $categoryId ? 'selected' : ''  }}>{{ $categoryName }}</option>
+                        <option value="{{ $categoryId+1 }} " {{ request()->get('category_id') == $categoryId ? 'selected' : ''  }}>{{ $categoryName }}</option>
                     @endforeach
                 @endif
             </select>

@@ -11,6 +11,7 @@ use App\Models\ProductImage;
 
 class ProductController extends Controller
 {
+    
     //
     public function detail($id, Request $request){
         $data = [];
@@ -31,9 +32,41 @@ class ProductController extends Controller
     {
         $key = $request->key;
         $categories = Category::all();
-
+        // dd(22);
+        $productLimit   = Product::orderBy('created_at', 'desc')->limit(9)
+        ->get();
         $products = Product::where('name', 'like', '%'. $key . '%')->paginate(10);
-        return view('home.listproductsearch', compact('products','categories'));
+
+        $lasterProduct  = $this->formatDataProduct($productLimit);
+        // dd($lasterProduct);
+        // return view('home.listproductsearch', compact('products','categories'));
+        return view('home.listproductsearch', with([
+            'products'=>$products,
+            'categories' => $categories,
+            'lasterProduct' => $lasterProduct,
+
+        ]));
+
         // đổ dữ liêu jra thôi 
+    }
+  
+    /**
+     * formatDataProduct
+     *
+     *  @param Product $products
+     *
+     * @return mixed
+     */
+    public function formatDataProduct($products)
+    {
+        $productFormat = [];
+        for ($i=1; $i <= 3; $i++) { 
+            foreach ($products as $key => $value) {
+                if ($key+1 <= $i*3 && $key >= ($i-1)*3) {
+                    $productFormat[$i][$key] = $value;
+                }
+            }
+        }
+        return $productFormat;
     }
 }

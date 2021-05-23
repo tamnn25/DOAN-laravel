@@ -11,8 +11,8 @@ class HomeController extends Controller
 {
     //
     public function index(){
-        $products   = Product::all();
-        $categories = Category::all();
+        $products   = Product::paginate(8);//cái ni đây à ừ
+        $categories = Category::all(    );
         $orders     = OrderDetail::select(\DB::raw('count(product_id) as count'),'product_id')
                             ->with('product')
                             ->orderBy('count', 'desc')
@@ -29,7 +29,7 @@ class HomeController extends Controller
         
         $lasterProduct  = $this->formatDataProduct($productLimit);
         $radeProduct    = $this->formatDataProduct($orderProduct);
-
+        
         return view('home.homepage')->with([
             'lasterProduct' => $lasterProduct,
             'radeProduct'   => $radeProduct, 
@@ -38,12 +38,17 @@ class HomeController extends Controller
         ]);
         
     }
-    public function shop(){
+    public function shop($id){
         //
         // dd(123);
+        // dd($id);
+
         $categories = Category::all();
-        $products = Product::all();
-        $productLimit   = Product::orderBy('created_at', 'desc')->limit(9)->get();
+        $products   = Product::where('category_id', $id)->paginate(8);
+        $productLimit   = Product::orderBy('created_at', 'desc')->limit(9)
+        ->get();
+        // $products->products->paginate(4);
+        // ->paginate(4);
         $lasterProduct  = $this->formatDataProduct($productLimit);
         return view('home.shop')->with([
             'lasterProduct' => $lasterProduct,
