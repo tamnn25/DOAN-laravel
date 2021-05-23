@@ -10,7 +10,6 @@ if (Session::has('carts')) {
     <li>
         {{-- <button style="background-color:rgb(233, 233, 233)" > --}}
         <a href="{{ route('cart.cart-info') }}"><i class="fas fa-cart-plus">Giỏ hàng:{{ $cartNumber }}</i></a>
-
     </li>
 </ul>
   
