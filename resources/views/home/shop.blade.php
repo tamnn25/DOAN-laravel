@@ -128,65 +128,25 @@
                             <div class="sidebar__item">
                                 <div class="latest-product__text">
                                     <h4>Latest Products</h4>
-                                    <div class="latest-product__slider owl-carousel">
-                                        <div class="latest-prdouct__slider__item">
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="{{ asset('shop/img/latest-product/lp-1.jpg') }}" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>Crab Pool Security</h6>
-                                                    <span>$30.00</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="{{ asset('shop/img/latest-product/lp-2.jpg') }}" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>Crab Pool Security</h6>
-                                                    <span>$30.00</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="{{ asset('shop/img/latest-product/lp-3.jpg') }}" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>Crab Pool Security</h6>
-                                                    <span>$30.00</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="latest-prdouct__slider__item">
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="{{ asset('shop/img/latest-product/lp-1.jpg') }}" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>Crab Pool Security</h6>
-                                                    <span>$30.00</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="{{ asset('shop/img/latest-product/lp-2.jpg') }}" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>Crab Pool Security</h6>
-                                                    <span>$30.00</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="{{ asset('shop/img/latest-product/lp-3.jpg') }}" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>Crab Pool Security</h6>
-                                                    <span>$30.00</span>
-                                                </div>
-                                            </a>
-                                        </div>
+                                     <div class="latest-product__slider owl-carousel">
+                                        @for ($i = 1; $i <= 3; $i++) 
+                                            <div class="latest-prdouct__slider__item">
+                                                @if(isset($lasterProduct[$i]))
+                                                @foreach ($lasterProduct[$i] as $key => $item)
+
+                                                        <a href="#" class="latest-product__item">
+                                                            <div class="latest-product__item__pic">
+                                                                <img src="{{asset('/'.$item->image ) }}" alt="" style="width: 110px">
+                                                            </div>
+                                                            <div class="latest-product__item__text">
+                                                                <h6>{{ $item->name }}</h6>
+                                                                <span>{{ $item->price }}</span>
+                                                            </div>
+                                                        </a>
+                                                @endforeach
+                                                @endif
+                                            </div>
+                                        @endfor
                                     </div>
                                 </div>
                             </div>
@@ -234,32 +194,31 @@
                             </div>
                         </div>
                         <div class="row">
-                    
-                            @if($products)
-                            @foreach ($products as $product)
-                                <div class="col-lg-4 col-md-6 col-sm-6">
-                                    <div class="product__item">
-                                        <div class="product__item__pic set-bg" data-setbg="{{ asset('/'.$product->image) }}">
-                                            <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="{{ route('product.detail', $product['id']) }}"><i class="fa fa-shopping-cart"></i></a></li>
-                                                {{-- {{ route('shop.show',$product->id) }} --}}
-                                            </ul>
-                                        </div>
-                                        <div class="product__item__text">
-                                            <h6><a href="{{ route('product.detail', $product['id']) }}">{{ $product->name }}</a></h6>
-                                            <h5>{{ $product->price }}.000.vnd</h5>
-                                            <div class="product-buy">
-                                                <a href="{{ route('product.detail', $product['id']) }}" class="btn btn-outline-success">View More</a>
+                                @if($products)
+                                @foreach ($products as $product)
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <div class="product__item">
+                                            <div class="product__item__pic set-bg" data-setbg="{{ asset('/'.$product->image) }}">
+                                                <ul class="product__item__pic__hover">
+                                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                    <li><a href="{{ route('product.detail', $product['id']) }}"><i class="fa fa-shopping-cart"></i></a></li>
+                                                    {{-- {{ route('shop.show',$product->id) }} --}}
+                                                </ul>
+                                            </div>
+                                            <div class="product__item__text">
+                                                <h6><a href="{{ route('product.detail', $product['id']) }}">{{ $product->name }}</a></h6>
+                                                <h5>{{ $product->price }}.000.vnd</h5>
+                                                <div class="product-buy">
+                                                    <a href="{{ route('product.detail', $product['id']) }}" class="btn btn-outline-success">View More</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
-                            @endif
+                                @endforeach
+                                @endif
+                            {{ $products->links() }}
                         </div>
-                        {{ $products->links() }}
                     </div>
                 </div>
             </div>
