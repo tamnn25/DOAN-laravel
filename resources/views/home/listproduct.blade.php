@@ -15,7 +15,9 @@
                 {{-- @for($i=1;$i<=4;$i++) --}}
                     <ul>
                         @foreach ($categories as $category)
-                            <li class="active" data-filter="*">{{ $category->name }}</li>
+                            <li class="active" data-filter="*">
+                                <a href="javascript:;" onclick="getProductByCategory({{ $category->id }})"> {{ $category->name }}</a>
+                               </li>
                         @endforeach
                     </ul>
                 {{-- @endfor --}}
@@ -24,32 +26,28 @@
         </div>
     </div> 
     {{-- <h1>{{ count($products) }}  Sản phẩm mới</h1> --}}
-     <div class="row featured__filter">
-        @foreach ($products as $product)
-        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-    
-             <div class="featured__item">
-                <div class="featured__item__pic set-bg"  data-setbg="/{{ $product->images }}" alt="">
-                    
-                    <img src="{{ asset($product->image)}}" alt="{{ $product->name }}" class="img-fluid">
-                    <ul class="featured__item__pic__hover">
-                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                        <li><a href="{{ route('cart.cart-info') }}"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                </div>
-                <div class="featured__item__text">
-                    <h6><a href="#">{{ $product->name }}</a></h6>
-                    <h5>{{ $product->price }}.000.vnd</h5>
-                    <div class="product-buy">
-                        <a href="{{ route('product.detail', $product['id']) }}" class="btn btn-outline-success">View More</a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        @endforeach
+     <div class="row featured__filter" id="loadProduct">
+        
     </div>
 </div>
-{{ $products->links() }}
+@section('scripts')
+    <script>
+
+        $(document).ready(function() {
+            getProductByCategory(1); //gọi hàm getProductByCategory
+        });//chạy sau khi load trang xong
+        function getProductByCategory(id) {
+            var url = `{{ url('/product/category' ) }}`+'/'+id; //đi đén route
+            $.ajax({
+                url: url, 
+                type: 'GET',
+                success: function (response) {
+                    $('#loadProduct').html(response.html);//load file _ajax_product.blade.php
+                    console.log(response.status);
+                }
+            });
+            
+        }
+    </script>
+@endsection
 

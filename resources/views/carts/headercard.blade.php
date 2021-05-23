@@ -93,7 +93,7 @@
                 <nav class="header__menu">
                     <ul>
                         <li class="active"><a href="{{ route('index')  }}">Home</a></li>
-                        <li><a href="{{ route('home.shop') }}">Shop</a></li>
+                        <li><a href="{{ route('home.shop',0) }}">Shop</a></li>
                         <li><a href="#">Wine</a>
                             <ul class="header__menu__dropdown">
                                 <li><a href="./shop-details.html">Red Wine</a></li>
