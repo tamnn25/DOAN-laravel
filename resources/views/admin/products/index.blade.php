@@ -74,13 +74,14 @@
                         <td>{{ $product->hot }}</td>
                         <td>{{ $product->category->name }}</td>
                         
-                        <td><a href="{{ route('admin.product.show', $product->id) }}">Detail</a></td>
-                        <td><a href="{{ route('admin.product.edit', $product->id) }}">Edit</a></td>
+                        <td><a href="{{ route('admin.product.show', $product->id) }}" class="btn btn-outline-info">Detail</a></td>
+                        <td><a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-outline-info">Edit</a></td>
                         <td>
                             <form action="{{ route('admin.product.destroy', $product->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure DELETE PRODUCT?')" class="btn btn-danger" />
+
+                                <input type="submit" value="Delete" class="btn btn-outline-danger" onclick="return confirm('Are you sure DELETE PRODUCT?')" class="btn btn-danger" />
                             </form>
                         </td>
                     </tr>

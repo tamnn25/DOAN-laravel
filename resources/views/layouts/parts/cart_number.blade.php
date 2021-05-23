@@ -11,4 +11,6 @@ if (Session::has('carts')) {
     <li>
         <a href="{{ route('cart.cart-info') }}"><i class="fas fa-cart-plus">Giỏ hàng: <span class="number">{{ $cartNumber }}</span></i></a>
     </li>
+
 </ul>
+

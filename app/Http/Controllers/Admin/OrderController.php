@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -14,53 +17,38 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
         //
-        //echo ('day la index Order');
-        $data = [];
+        // $data = [];
+        $orders = Product::all();
         $orders = Order::with('order_detail')
         ->with('user')
-        ->paginate(self::RECORD_LIMIT);
+        ->with('product')
+        ->orderBy('id', 'desc')
+        ->paginate(4);
+        
+        if(!empty($request->name)){
+            $orders = Order::where('user_id' , 'like' , '%' . $request->name . '%')
+                        ->orderBy('id', 'desc')
+                        ->paginate(4);
+                        //dd($orders);
+        }
+        
+        // $orders = OrderDetail::all();
 
         $data['orders'] = $orders;
-
-    return view('admin.orders.index', $data);
+        // dd($orders);
+        return view('admin.orders.index', $data);
     }
+    public function show($id){
+        $data = [];
+        $order = Order::with('order_detail')->first();
+        //dd($order);
+        $data['order'] = $order;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        echo ('day la create Order');
+        return view('admin.orders.detail',$data);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -70,6 +58,13 @@ class OrderController extends Controller
     public function edit($id)
     {
         //
+        $data = [];
+        $order = Order::find($id);
+
+        $data['order'] = $order;
+
+        return view('admin.orders.parts.edit',$data);
+
     }
 
     /**
@@ -82,6 +77,16 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         //
+        DB::beginTransaction();
+        try{
+            $order = Order::find($id);
+            $order->status = $request->status;
+            $order->save();
+            DB::commit();
+            return redirect()->route('admin.order.index')->with('success', 'update status successfully');
+        }catch(Exception $ex){
+            echo $ex->getMessage();
+        }
     }
 
     /**
@@ -92,6 +97,27 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd($id);
+        \DB::beginTransaction();
+        try{
+            $orders = Order::with('order_detail')
+            ->find($id);
+            
+            //delete order_detail
+            foreach ($orders->order_detail as $orderDetail) {
+                $orderDetail->delete();
+            }
+            
+            $orders->delete();
+
+            \DB::commit();
+            
+            return redirect()->route('admin.user.index')->with('sucess', 'delete Sucessful.');
+
+        }catch(Exception $ex){
+            \DB::rollback();
+
+            echo $ex->getMessage();
+        }
     }
 }

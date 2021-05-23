@@ -26,9 +26,13 @@
     {{-- show message --}}
     @include('errors.error')
 
+    @include('admin.orders._search')
     {{-- display list order table --}}
     @include('admin.orders._table')
 
     {{-- modal update order status  --}}
+
     @include('admin.orders.parts.modal_update_order_status')
+
+
 @endsection

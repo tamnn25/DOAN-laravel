@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Price;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,37 +13,43 @@ class HomeController extends Controller
     //
     public function index(){
 
+        $data = [];
         $products = Product::all();
         $categories = Category::all();
-        // $categories = Category::where('parent_id', 0)->get();
+        // $prices = Price::all();
+        //$products = Product::with(['Category','latestPrice']);
 
         // dd($products);
-// dd($categories);
-        return view('home.homepage')->with([
-            'products' => $products,
-            'categories' => $categories,
-        ]);
+
+        $data['categories'] = $categories;
+        $data ['products'] = $products;
+        return view('home.homepage', $data);
+        
 
         // return view('home.homepage');
     }
-    public function shop(){
+    public function shop( Request $request){
         //
         // dd(123);
         $data = [];
-        $products = Product::all();
+        
+        $products = Category::get();
+        $products = Product::get();
+        //$products = Product::with(['category']);
+        // if(!empty($request->category_id)){
+        //     $products->$products->where('category_id', '%' . $request->category_id . '%');
+        // }
+        
         $data['products'] = $products;
         return view('home.shop',$data);
     }
-    public function listshopcategory()
-    {
-        $products = Product::all();
 
-        $categories = Category::all();
+        // $categories = Category::all();
         
-        return view('home.shop_list_category')->with([
-            'products' => $products,
-            'categories' => $categories,
-            ]);
-    }
-    
+        // return view('home.shop_list_category')->with([
+        //     'products' => $products,
+        //     'categories' => $categories,
+        //     ]);
 }
+    
+

@@ -16,9 +16,9 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -26,11 +26,14 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [HomeController::class, 'index'])->name('mypage');
+
+Route::get('/', [HomeController::class, 'index'])->name('index');
+
 
 Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
     
     Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
+
     Route::get('/listshopcategory',[HomeController::class,'listshopcategory'])->name('listshopcategory');
 
 });

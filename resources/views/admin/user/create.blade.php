@@ -39,13 +39,15 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group mb-5">
-            <label for="">phone_number</label>
-            <input type="text" name="phone_number" placeholder=" Enter Product phone_number" value="{{ old('phone_number') }}" class="form-control">
-            @error('phone_number')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-        </div>
+
+           <div class="div">
+            <input type="radio" id="vehicle1" name="role_id" value="0">
+            <h3><label for="vehicle1">Admins</label></h3>
+            <input type="radio" id="vehicle2" name="role_id" value="1">
+            <h3><label for="vehicle2"> Editer</label></h3>
+            <input type="radio" id="vehicle3" name="role_id" value="2">
+            <h3><label for="vehicle3">Shipper</label></h3>
+            </div> 
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
 @endsection
