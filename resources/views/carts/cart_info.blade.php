@@ -56,7 +56,7 @@
 
             <div class="mt-2">
                 {{-- tiến hành thanh toán --}}
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-send-code">Tiến hành thanh toán</button>
+                <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modal-send-code">Tiến hành thanh toán</button>
             </div>
         @else
             <p>Chưa có sản phẩm nào trong giỏ hàng. <a href="/">Tiếp tục mua hàng</a></p>

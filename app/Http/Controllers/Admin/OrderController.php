@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
 
@@ -16,15 +17,23 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
         //
         // $data = [];
-        
+        $orders = Product::all();
         $orders = Order::with('order_detail')
         ->with('user')
         ->with('product')
-        ->get();
+        ->orderBy('id', 'desc')
+        ->paginate(4);
+        
+        if(!empty($request->name)){
+            $orders = Order::where('user_id' , 'like' , '%' . $request->name . '%')
+                        ->orderBy('id', 'desc')
+                        ->paginate(4);
+                        //dd($orders);
+        }
         
         // $orders = OrderDetail::all();
 
