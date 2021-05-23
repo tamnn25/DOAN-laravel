@@ -30,7 +30,7 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
     
-    Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
+    Route::get('/shop/{id}', [HomeController::class, 'shop'])->name('shop');
 });
 
 Route::group(['prefix' => 'product', 'as' => 'product.'], function () {

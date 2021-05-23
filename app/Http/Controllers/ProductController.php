@@ -30,8 +30,9 @@ class ProductController extends Controller
         $key = $request->key;
         $products = Product::where('name', 'like', '%'. $key . '%')
         ->paginate(3);
+
         return view('home.shop', compact('products'));
-        // đổ dữ liêu jra thôi 
+    
     }
 
     

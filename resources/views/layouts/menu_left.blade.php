@@ -10,7 +10,7 @@
                     @foreach ($categories as $category)
                         <ul>
                             <li style="font-family: Arial, sans-serif;" class="active" data-filter="*">
-                                <a href="{{route('product.search',[$category->name])}}"><i>{{ $category->name }}</i></a>
+                                <a href="{{url ('home/shop/'. $category->id)}}"><i>{{ $category->name }}</i></a>
                             </li>
                         </ul>
                     @endforeach
@@ -44,7 +44,7 @@
                         <span>FRUIT FRESH</span>
                         <h2>Vegetable <br />100% Organic</h2>
                         <p>Free Pickup and Delivery Available</p>
-                        <a href="{{route('home.shop')}}" class="primary-btn">SHOP NOW</a>
+                        <a href="{{route('home.shop',0)}}" class="primary-btn">SHOP NOW</a>
                     </div>
                 </div>
             </div>
