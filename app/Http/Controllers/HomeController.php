@@ -13,7 +13,7 @@ class HomeController extends Controller
     //
     public function index(){
         $products   = Product::paginate(4);//cái ni đây à ừ
-        $categories = Category::all(    );
+        $categories = Category::all();
         $orders     = OrderDetail::select(\DB::raw('count(product_id) as count'),'product_id')
                             ->with('product')
                             ->orderBy('count', 'desc')
@@ -40,24 +40,29 @@ class HomeController extends Controller
         
     }
     public function shop($id){
-        //
-        // dd(123);
-        // dd($id);
-
         $categories = Category::all();
-        $products   = $id ? Product::where('category_id', $id)->paginate(4) : Product::paginate(4);
+        $products   = ($id == 0) ? Product::paginate(4) : Product::where('category_id', $id)->paginate(4);
         $productLimit   = Product::orderBy('created_at', 'desc')->limit(9)
         ->get();
-        // $products->products->paginate(4);
-        // ->paginate(4);
-        // dd($products);
         $lasterProduct  = $this->formatDataProduct($productLimit);
         return view('home.shop')->with([
             'lasterProduct' => $lasterProduct,
             'products'      => $products,
             'categories'    => $categories,
-
         ]);
+    }
+
+    public function formatDataProduct($products)
+    {
+        $productFormat = [];
+        for ($i=1; $i <= 3; $i++) { 
+            foreach ($products as $key => $value) {
+                if ($key+1 <= $i*3 && $key >= ($i-1)*3) {
+                    $productFormat[$i][$key] = $value;
+                }
+            }
+        }
+        return $productFormat;
     }
 
     //  public function searchProduct(Request $request)
@@ -74,18 +79,7 @@ class HomeController extends Controller
      *
      * @return mixed
      */
-    public function formatDataProduct($products)
-    {
-        $productFormat = [];
-        for ($i=1; $i <= 3; $i++) { 
-            foreach ($products as $key => $value) {
-                if ($key+1 <= $i*3 && $key >= ($i-1)*3) {
-                    $productFormat[$i][$key] = $value;
-                }
-            }
-        }
-        return $productFormat;
-    }
+   
 
     
 }

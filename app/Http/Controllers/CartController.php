@@ -72,7 +72,7 @@ class CartController extends Controller
             // add step by step to SESSION
             //session(['step_by_step' => 1]);
         }
-            dd($data);
+            // dd($data);
         $data['products']   = $dataCart;
         $data['categories'] = $dataCart;
 

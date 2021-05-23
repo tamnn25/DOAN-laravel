@@ -38,6 +38,7 @@ Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
 Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
     Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
     Route::get('/search', [ProductController::class, 'searchProduct'])->name('search'); 
+    Route::get('/category/{id}', [ProductController::class, 'getProductByCategory'])->name('category'); 
         
 });
 
