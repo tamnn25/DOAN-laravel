@@ -90,7 +90,6 @@
         <div class="form-group mb-5">
             <label for="">Category</label>
             <select name="category_id" class="form-control">
-               
                 @if(!empty($categories))
                     @foreach ($categories as $categoryId => $categoryName)
                         <option value="{{ $categoryId }}" {{ old('category_id') == $categoryId ? 'selected' : ''  }}>{{ $categoryName }}</option>

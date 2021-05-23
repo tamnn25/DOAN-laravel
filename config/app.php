@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        // App\Providers\HelperServiceProvider::class
 
     ],
 
@@ -229,8 +230,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        // 'Helper' => App\Helpers\Helper::class,
         // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
-        
     ],
 
 ];

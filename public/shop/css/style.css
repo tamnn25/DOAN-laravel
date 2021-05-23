@@ -38,6 +38,7 @@ body {
 	font-smoothing: antialiased;
 }
 
+
 h1,
 h2,
 h3,
@@ -253,7 +254,6 @@ ol {
 .header__top {
 	background: linear-gradient(to right, rgba(255,0,0,0), rgb(26 201 66))
 }
-
 .header__top__left {
 	padding: 10px 0 13px;
 }
@@ -2615,7 +2615,7 @@ ol {
 -----------------------*/
 
 .footer {
-	background: #F3F6FA;
+	background: #00c079;
 	padding-top: 70px;
 	padding-bottom: 0;
 }

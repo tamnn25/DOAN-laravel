@@ -6,11 +6,11 @@ if (Session::has('carts')) {
     }
 }
 @endphp
-
 <ul>
     <li>
-        <a href="{{ route('cart.cart-info') }}"><i class="fas fa-cart-plus">Giỏ hàng: <span class="number">{{ $cartNumber }}</span></i></a>
+        <button style="background-color:rgb(233, 233, 233)" >
+        <a href="{{ route('cart.cart-info') }}"><i class="fas fa-cart-plus"></i><strong  style="color: #dd2222">Giỏ hàng:   </strong>  {{ $cartNumber }}</a>
+
     </li>
-
 </ul>
-
+  
