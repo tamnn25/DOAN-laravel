@@ -37,7 +37,7 @@ class HomeController extends Controller
         $products   = ($id != 0) ? Product::where('category_id', $id)->paginate(4) : Product::paginate(4);
         
         return view('home.shop')->with([
-            'lasterProduct' => $lasterProduct,
+            
             'products'      => $products,
             'categories'    => $categories,
         ]);

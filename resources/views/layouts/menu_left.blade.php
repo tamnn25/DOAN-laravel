@@ -11,7 +11,7 @@
                         <ul>
 
                             <li style="font-family: Arial, sans-serif;" class="active" data-filter="*">
-                                <a href="{{url('/home/shop' . $category->id)}}"><i>{{ $category->name }}</i></a>
+                                <a href="{{url('home/shop/' . $category->id)}}"><i>{{ $category->name }}</i></a>
                             </li>
                         </ul>
                     @endforeach
