@@ -4,7 +4,7 @@
             <th>STT</th>
             <th>Fullname</th>
             <th>Order day</th>
-            <th>Total Money</th>
+            <th>Product Name</th>
             <th>Status</th>
             <th colspan="3">Action</th>
         </tr>
@@ -16,9 +16,7 @@
                     <td>{{ $key+1 }}</td>
                     <td>{{ $order->user->name }}</td>
                     <td>{{ $order->created_at }}</td>
-                    <td>
-                        {{$order->quantity}}
-                    </td>
+                    <td>{{ $order->name }}</td>
                     <td>
                         @include('admin.orders.parts.alert_order_status')
                     </td>

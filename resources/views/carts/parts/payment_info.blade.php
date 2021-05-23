@@ -1,4 +1,4 @@
-<h4>Thong tin thanh toan</h4>
+<h4>Thông Tin Thanh Toán</h4>
 <div class="border p-2">
     <form action="{{ route('cart.checkout-complete') }}" method="POST" id="frm-checkout">
         @csrf

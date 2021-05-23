@@ -23,6 +23,7 @@ class OrderController extends Controller
         
         $orders = Order::with('order_detail')
         ->with('user')
+        ->with('product')
         ->get();
         
         // $orders = OrderDetail::all();

@@ -3,11 +3,8 @@
 {{-- set page title --}}
 @section('title', 'Create Product')
 
-{{-- set breadcrumbName --}}
-@section('breadcrumbName', 'Product Management')
-
 {{-- set breadcrumbMenu --}}
-@section('breadcrumbMenu', 'Create Product')
+@section('breadcrumbMenu', 'show ProductDetail')
 
 {{-- import file css (private) --}}
 @push('css')
@@ -23,7 +20,7 @@
         {{-- <img src="{{ asset($product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 40px; height: auto;"> --}}
         <img src="/{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid" style="width: 200px; height: auto;">
         <hr>
-    <h1>{{ $product->price->price }}</h1>
+    <h1>{{ $product->price.'.000 Vnd' }}</h1>
 
     <a href="{{ route('admin.product.index') }}">BACKHOME</a>
 

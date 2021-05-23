@@ -1,4 +1,4 @@
-<h4>Thong tin ca nhan</h4>
+<h4>Thông Tin Cá Nhân</h4>
 <div class="border p-2">
     <div class="p-2">
         <label for="">Fullname</label>
@@ -10,7 +10,7 @@
     </div>
     <div class="p-2">
         <label for="">Phone</label>
-        <p>{{ Auth::user()->phone }}</p>
+        <p>{{ Auth::user()->phone_number }}</p>
     </div>
     <div class="p-2">
         <label for="">Address</label>

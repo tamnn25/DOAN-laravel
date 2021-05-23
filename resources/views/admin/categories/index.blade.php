@@ -19,7 +19,7 @@
 
     {{-- create category link --}}
     {{-- case 1 --}}
-    <p><a href="{{ route('admin.category.create') }}">Create</a></p>
+    <p><a class="btn btn-outline-info" href="{{ route('admin.category.create') }}">Create</a></p>
     
     {{-- case 2 --}}
     {{-- <p><a href="/category/create">Create</a></p> --}}
@@ -53,7 +53,7 @@
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->parent_id }}</td>
                         <td><a class="btn btn-outline-info" href="{{ route('admin.product.index', ['category_id' => $category->id]) }}">View List Category</a></td>
-                        <td><a class="btn btn-outline-info" href="{{ route('admin.category.show', $category->id) }}">Detail</a></td>
+                        {{-- <td><a class="btn btn-outline-info" href="{{ route('admin.category.show', $category->id) }}">Detail</a></td> --}}
                         <td><a class="btn btn-outline-info" href="{{ route('admin.category.edit', $category->id) }}">Edit</a></td>
                         <td>
                             <form action="{{ route('admin.category.destroy', $category->id) }}" method="post">
