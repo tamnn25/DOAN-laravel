@@ -676,4 +676,5 @@
     </section>
     <!-- right col -->
   </div>
+
 @endsection
