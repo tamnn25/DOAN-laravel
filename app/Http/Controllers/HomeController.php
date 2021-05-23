@@ -28,20 +28,19 @@ class HomeController extends Controller
 
         // return view('home.homepage');
     }
-    public function shop( Request $request){
+    public function shop($id){
         //
         // dd(123);
-        $data = [];
         
-        $products = Category::get();
-        $products = Product::get();
-        //$products = Product::with(['category']);
-        // if(!empty($request->category_id)){
-        //     $products->$products->where('category_id', '%' . $request->category_id . '%');
-        // }
         
-        $data['products'] = $products;
-        return view('home.shop',$data);
+        $categories = Category::all();
+        $products   = ($id != 0) ? Product::where('category_id', $id)->paginate(4) : Product::paginate(4);
+        
+        return view('home.shop')->with([
+            'lasterProduct' => $lasterProduct,
+            'products'      => $products,
+            'categories'    => $categories,
+        ]);
     }
 
         // $categories = Category::all();
