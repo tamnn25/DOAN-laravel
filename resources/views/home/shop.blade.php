@@ -1,35 +1,46 @@
 
 @extends('layouts.master')
 
-@section('content')
+
+    @section('content')
     <body>
-        <!-- Product Section Begin -->
+         <div class="hero__search">
+                <div style="float: left; ">
+                    <img src="{{ asset('shop/img/icon-searchshop.png') }}" width="100px" alt="">
+                </div>
+                <div class="hero__search__form">
+                    <div class="hero__search__form">
+                        <form action="http://127.0.0.1:8000/product/search" id="formSearch" method="GET">
+                            <input type="text" name="key" placeholder="Enter Product">
+                            <button type="submit" class="site-btn">SEARCH</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="hero__search__phone">
+                    <div class="hero__search__phone__icon">
+                        <i class="fa fa-phone"></i>
+                    </div>
+                    <div class="hero__search__phone__text">
+                        <h5>+84 263 888 279</h5>
+                        <span>support 24/7 time</span>
+                    </div>
+                </div>
+            </div>
         <section class="product spad">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-5">
-                        <div class="sidebar">
-                            <div class="sidebar__item">
+                    <div class="col-lg-3 " >
+                        <div class="sidebar" >
+                            
+                            <div class="sidebar__item" >
                                 <h4>Department</h4>
-                                @foreach($products as $category)
-                                <ul>
-                                    <li style = "font-family: Arial, sans-serif;">
-                                        <a href="">{{$category->name }}</a>
-                                    </li>
+                                <ul >
+                                    @foreach ($categories as $item)
+                                        
+                                    <li ><a href="#">{{ $item->name }}</a></li>
+                                    @endforeach
+                                   
                                 </ul>
-                                @endforeach
-                                {{-- <ul>
-                                    <li><a href="#">Fresh Meat</a></li>
-                                    <li><a href="#">Vegetables</a></li>
-                                    <li><a href="#">Fruit & Nut Gifts</a></li>
-                                    <li><a href="#">Fresh Berries</a></li>
-                                    <li><a href="#">Ocean Foods</a></li>
-                                    <li><a href="#">Butter & Eggs</a></li>
-                                    <li><a href="#">Fastfood</a></li>
-                                    <li><a href="#">Fresh Onion</a></li>
-                                    <li><a href="#">Papayaya & Crisps</a></li>
-                                    <li><a href="#">Oatmeal</a></li>
-                                </ul> --}} 
                             </div>
                             <div class="sidebar__item">
                                 <h4>Price</h4>
@@ -248,11 +259,12 @@
                             @endforeach
                             @endif
                         </div>
+                        {{ $products->links() }}
                     </div>
                 </div>
             </div>
         </section>
     </body>
-</section>  
+    </section>  
 
 @endsection

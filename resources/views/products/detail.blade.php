@@ -12,12 +12,16 @@
                     <img src="{{ asset($product->image)}}" alt="{{ $product->image }}">
                 </div>
                 <hr>
-                <div class="product__details__pic__slider owl-carousel">
-
-                        @foreach ($product->product_images as $url)
-                            <img src="{{ asset($url->url) }}" alt="image" class="img-fluid">
-                        @endforeach
-                </div>
+                <ul class="row list-product-image">
+                    @foreach ($product->product_images as $url)
+                        <li class="col-4">
+                            <div class="product-image-group">
+                                <img src="{{ asset($url->url) }}" alt="image" class="img-fluid">
+                                    
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
                 <hr>
             </div>
 
@@ -29,7 +33,7 @@
                     <div class="product-description">
                         <form action="{{ route('cart.add-cart', $product->id) }}" method="POST">
                             @csrf
-                            <h4>{{ $product->name }}</h4>
+                            <h3><strong>{{ $product->name }}</strong></h3>
                             <hr>
                             <p class="product-comment">
                                 <span>{{ $product->description }}</span>
@@ -38,11 +42,9 @@
                             <p class="product-price">{{ number_format($product->price) }} VND</p>
                             <hr>
 
-                            {{-- <p class="product-quantity">
-                                <label>Quantity</label>
-                                <span><input type="number" name="quantity" required></span>
-                            </p> --}}
-                            <p>
+                            <p class="product-quantity">
+                                {{-- <label>Quantity</label>
+                                <span><input type="number" name="quantity" required></span> --}}
                                 <div class="product__details__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
@@ -50,8 +52,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <button class="btn btn-outline-success" type="submit">Add Cart</button>
+                            </p>
+                            <p>
+                                <button type="submit"class="primary-btn">  ADD TO CARD</button>
                             </p>
                         </form>
                     </div>

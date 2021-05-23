@@ -1,4 +1,8 @@
 
+
+
+
+
  <div class="container">
 
     <div class="row">
@@ -18,9 +22,9 @@
 
             </div>
         </div>
-    </div>
+    </div> 
     {{-- <h1>{{ count($products) }}  Sản phẩm mới</h1> --}}
-    <div class="row featured__filter">
+     <div class="row featured__filter">
         @foreach ($products as $product)
         <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
     
@@ -31,7 +35,6 @@
                     <ul class="featured__item__pic__hover">
                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                         <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-
                         <li><a href="{{ route('cart.cart-info') }}"><i class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
@@ -41,10 +44,12 @@
                     <div class="product-buy">
                         <a href="{{ route('product.detail', $product['id']) }}" class="btn btn-outline-success">View More</a>
                     </div>
+
                 </div>
-                
             </div>
         </div>
         @endforeach
     </div>
 </div>
+{{ $products->links() }}
+

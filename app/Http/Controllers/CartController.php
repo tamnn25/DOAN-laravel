@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendVerifyCode;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\OrderVerify;
@@ -32,10 +33,10 @@ class CartController extends Controller
 
         #check have param $id ?
         $newProduct = [
-            'id' => $id,
-            'name' => $product->name,
-            'quantity' => $request->quantity,
-            'price' => $product->price,
+            'id'        => $id,
+            'name'      => $product->name,
+            'quantity'  => $request->quantity,
+            'price'     => $product->price,
         ];
         // dd($newProduct);
 
@@ -66,22 +67,25 @@ class CartController extends Controller
 
             // get data product from list product id
             $dataCart = Product::whereIn('id', $listProductId)
-                ->get();
+            ->get();
 
             // add step by step to SESSION
             //session(['step_by_step' => 1]);
         }
-        $data['products'] = $dataCart;
-        //dd($data);
+            dd($data);
+        $data['products']   = $dataCart;
+        $data['categories'] = $dataCart;
+
+
         return view('carts.cart_info', $data);
     }
 
     public function checkout(Request $request)
     {
         $data = [];
-
+        $categories = Category::all();
         //get cart info from SESSION
-        $carts = empty(Session::get('carts')) ? [] : Session::get('carts');
+        $carts  = empty(Session::get('carts')) ? [] : Session::get('carts');
         $data['carts'] = $carts;
 
         if (!empty($carts)) {
@@ -93,13 +97,14 @@ class CartController extends Controller
                 $listProductId[] = $cart['id'];
             }
             // get data product from list product id
-            $dataCart = Product::whereIn('id', $listProductId)
-                ->get();
+            $dataCart         = Product::whereIn('id', $listProductId)
+            ->get();
             $data['products'] = $dataCart;
 
             // add step by step to SESSION
             session(['step_by_step' => 2]);
         }
+        $data['categories'] = $categories;
 
         return view('carts.checkout', $data);
     }
@@ -115,21 +120,23 @@ class CartController extends Controller
 
         // create data to save into table orders
         $dataOrder = [
-            'user_id' => Auth()->id(),
-            'status' => Order::STATUS[0],
+            'user_id'   => Auth()->id(),
+            'status'    => Order::STATUS[0],
         ];
 
         DB::beginTransaction();
         //dd($dataOrder);
         try {
             // save data into table orders
-            $order = Order::create($dataOrder);
-            $orderId = $order->id;
+            $order      = Order::create($dataOrder);
+            $orderId    = $order->id;
 
             if (!empty($carts)) {
                 foreach ($carts as $cart) {
-                    $productId = $cart['id'];
-                    $quantity = $cart['quantity'];
+
+                    $productId  =   $cart['id'];
+                    $quantity   =   $cart['quantity'];
+                    $price      =   $cart['price']; 
 
                     $price = $cart['price'];
                     
@@ -149,11 +156,8 @@ class CartController extends Controller
             }
             // dd($orderDetail);
             DB::commit();
-
             // remove session carts, step_by_step
             $request->session()->forget(['carts', 'step_by_step']);
-
-
             return redirect()->route('index')->with('success', 'Your Order was successful!');
         } catch (Exception $exception) {
 
@@ -169,11 +173,17 @@ class CartController extends Controller
         // send code to verify Order
         // check exist send code ?
         $userId = Auth::id();
+
         $email = Auth::user()->email;
+        
         $currentDate = date('Y-m-d H:i:s');
+        
         $dateSubtract15Minutes = date('Y-m-d H:i:s', (time() - 60 * 15)); // current - 15 minutes
+        
         Log::info('dateSubtract15Minutes');
+        
         Log::info($dateSubtract15Minutes);
+        
         $orderVerify = OrderVerify::where('user_id', $userId)
             ->whereBetween('expire_date', [$dateSubtract15Minutes, $currentDate])
             ->where('status', OrderVerify::STATUS[0])
@@ -183,10 +193,10 @@ class CartController extends Controller
             return response()->json(['message' => 'We sent code to your email about 15 minutes ago. Please check email to get code.']);
         } else { // not send code
             $dataSave = [
-                'user_id' => $userId,
-                'status'  => OrderVerify::STATUS[0], // default 0
-                'code'  => CommonUtil::generateUUID(),
-                'expire_date'  => $currentDate,
+                'user_id'        => $userId,
+                'status'         => OrderVerify::STATUS[0], // default 0
+                'code'           => CommonUtil::generateUUID(),
+                'expire_date'    => $currentDate,
             ];
             DB::beginTransaction();
 
