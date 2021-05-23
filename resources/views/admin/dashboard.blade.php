@@ -8,6 +8,7 @@
 @endpush
 
 @section('content')
+
 <!-- Small boxes (Stat box) -->
 <div class="row">
     <div class="col-lg-3 col-6">
@@ -347,7 +348,7 @@
               <!-- todo text -->
               <span class="text">Design a nice theme</span>
               <!-- Emphasis label -->
-              <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
+              <small class="badge badge-danger"><i class="far fa-clock"></i> 2 min</small>
               <!-- General tools such as edit or delete-->
               <div class="tools">
                 <i class="fas fa-edit"></i>
