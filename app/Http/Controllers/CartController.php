@@ -113,6 +113,7 @@ class CartController extends Controller
     {
 
         // get cart info
+        $carts = Session::all();
         $carts = Session::get('carts');
         // dd($carts);
         // validate quanity of product -> Available (in-stock | out-stock)

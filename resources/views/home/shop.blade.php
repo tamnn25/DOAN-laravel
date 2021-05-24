@@ -5,34 +5,59 @@
     @section('content')
     <body>
          <div class="hero__search">
-                <div style="float: left; ">
-                    <img src="{{ asset('shop/img/icon-searchshop.png') }}" width="100px" alt="">
-                </div>
-                <div class="hero__search__form">
-                    <div class="hero__search__form">
-                        <form action="http://127.0.0.1:8000/product/search" id="formSearch" method="GET">
-                            <input type="text" name="key" placeholder="Enter Product">
-                            <button type="submit" class="site-btn">SEARCH</button>
-                        </form>
+            <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="hero__categories">
+                    <div class="hero__categories__all">
+                        <i class="fa fa-bars"></i>
+                        <span>All departments</span>
                     </div>
-                </div>
-                <div class="hero__search__phone">
-                    <div class="hero__search__phone__icon">
-                        <i class="fa fa-phone"></i>
-                    </div>
-                    <div class="hero__search__phone__text">
-                        <h5>+84 263 888 279</h5>
-                        <span>support 24/7 time</span>
-                    </div>
+                    @foreach ($categories as $category)
+                        <ul >
+                                <li class="active" data-filter="*">
+                                    <i >
+                                        <a href="{{ url('home/shop/'. $category->id)}}"><i>{{ $category->name }}</i></a>
+                                    </i>
+                                    
+                                </li>
+                        </ul>
+                    @endforeach
                 </div>
             </div>
+            <div class="col-lg-9">
+                <div class="hero__search">
+                    <div class="hero__search__form">
+                
+                        <div class="hero__search__form">
+                            <form action="http://127.0.0.1:8000/product/search" id="formSearch" method="GET">
+                                
+                                <input type="text" name="key" placeholder="What Would You Like To Buy ?">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="hero__search__phone">
+                        <div class="hero__search__phone__icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="hero__search__phone__text">
+                            <h5>+84 263 888 279</h5>
+                            <span>support 24/7 time</span>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
         <section class="product spad">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 " >
                         <div class="sidebar" >
                             
-                            <div class="sidebar__item" >
+                            {{-- <div class="sidebar__item" >
                                 <h4>Department</h4>
                                 <ul >
                                     @foreach ($categories as $item)
@@ -41,7 +66,7 @@
                                     @endforeach
                                    
                                 </ul>
-                            </div>
+                            </div> --}}
                             <div class="sidebar__item">
                                 <h4>Price</h4>
                                 <div class="price-range-wrap">

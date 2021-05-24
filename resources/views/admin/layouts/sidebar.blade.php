@@ -201,16 +201,23 @@
                   <p>Create Admin</p>
                 </a>
               </li>
-            </ul>
+            </ul>   
+            {{-- <ul>
+              <li>
+               
+              </li>  
+            </ul>      --}}
           </li>
         </ul>
 
-        <form  action="{{ route('admin.logout') }}" method="POST">
-          @csrf
-          <button type="submit" onclick="return confirm('Are you sure LOGOUT ?')">Logout</button>
-        </form>
-      </nav>
+        
+      </nav >
+      <form  action="{{ route('admin.logout') }}" method="POST" style="margin-top:267px;">
+        @csrf
+        <button type="submit" onclick="return confirm('Are you sure LOGOUT ?')">Logout</button>
+      </form>  
       <!-- /.sidebar-menu -->
     </div>
+  
     <!-- /.sidebar -->
   </aside>
