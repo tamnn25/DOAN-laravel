@@ -17,7 +17,13 @@
                             <img src="{{ asset($url->url) }}" alt="image" class="img-fluid" style="width:290px; height:150px;">
                         @endforeach
                 </div>
+                <hr>
+                <br>
                 
+                {{-- <div class="div">
+                        <i>{{ $product->product_detail->content }}</i>
+                </div> --}}
+                <hr>
             </div>
             <div class="col-6">
                 
@@ -46,6 +52,46 @@
                                 <button class="btn btn-outline-success" type="submit">Add Cart</button>
                             </p>
                         </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                aria-selected="true">Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                aria-selected="false">Information</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                                aria-selected="false">Reviews <span>(1)</span></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Products Infomation</h6>
+                                <p>{{ $product->product_detail->content }}</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-2" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Products Infomation</h6>
+                                <p>{{ $product->product_detail->content }}</p>
+                               
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                <h6>Products Infomation</h6>
+                                <p>{{ $product->product_detail->content }}</p>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

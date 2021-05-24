@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $item->name }}</h6>
-                                                <span>{{ $item->price }}</span>
+                                                <span>{{ $item->price.'.000.VND' }}</span>
                                             </div>
                                         </a>
                                     @endforeach
@@ -115,25 +115,64 @@
                     <div class="latest-product__text">
                         <h4>Top Rated Products</h4>
                         <div class="latest-product__slider owl-carousel">
-                            @for ($i = 1; $i <= 3; $i++)
-                                <div class="latest-prdouct__slider__item">
-                                    @if (isset($radeProduct[$i]) && $radeProduct[$i])
-                                        @foreach ($radeProduct[$i] as $key => $item)
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    {{-- <img src="{{ $item->image }}" alt="" style="width: 110px"> --}}
-                                                 images o day
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    {{-- <h6>{{ $item->name }}</h6>
-                                                    <span>{{ $item->price }}</span> --}}
-                                                    blabla
-                                                </div>
-                                            </a>
-                                        @endforeach
-                                    @endif
-                                </div>
-                            @endfor
+                            <div class="latest-prdouct__slider__item">
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="shop/img/latest-product/lp-1.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>30.000.VND</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="shop/img/latest-product/lp-2.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>40.000.VND</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="shop/img/latest-product/lp-3.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>50.000.VND</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="latest-prdouct__slider__item">
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="shop/img/latest-product/lp-1.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>50.000.VND</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="shop/img/latest-product/lp-2.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>60.000.VND</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="shop/img/latest-product/lp-3.jpg" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>Crab Pool Security</h6>
+                                        <span>70.000.VND</span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,7 +187,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <span>40.000.VND</span>
                                     </div>
                                 </a>
                                 <a href="#" class="latest-product__item">
@@ -157,7 +196,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <span>30.000.VND</span>
                                     </div>
                                 </a>
                                 <a href="#" class="latest-product__item">
@@ -166,7 +205,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <span>50.000.VND</span>
                                     </div>
                                 </a>
                             </div>
@@ -177,7 +216,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <span>60.000.VND</span>
                                     </div>
                                 </a>
                                 <a href="#" class="latest-product__item">
@@ -186,7 +225,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <span>70.000.VND</span>
                                     </div>
                                 </a>
                                 <a href="#" class="latest-product__item">
@@ -195,7 +234,7 @@
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
+                                        <span>80.000.VND</span>
                                     </div>
                                 </a>
                             </div>
