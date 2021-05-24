@@ -41,7 +41,7 @@ class HomeController extends Controller
     }
     public function shop($id){
         $categories = Category::all();
-        $products   = ($id == 0) ? Product::paginate(4) : Product::where('category_id', $id)->paginate(4);
+        $products   = ($id == 0) ? Product::paginate(9) : Product::where('category_id', $id)->paginate(4);
         $productLimit   = Product::orderBy('created_at', 'desc')->limit(9)
         ->get();
         $lasterProduct  = $this->formatDataProduct($productLimit);
