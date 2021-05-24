@@ -26,7 +26,7 @@
                         <div class="hero__search__form">
                             <form action="http://127.0.0.1:8000/product/search" id="formSearch" method="GET">
                                 
-                                <input type="text" name="key" placeholder="Enter Product">
+                                <input type="text" name="key" placeholder="What Would You Like To Buy ?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>

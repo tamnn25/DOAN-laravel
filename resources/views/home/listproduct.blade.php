@@ -16,7 +16,7 @@
                     <ul>
                         @foreach ($categories as $category)
                             <li class="active" data-filter="*">
-                                <a href="javascript:;" onclick="getProductByCategory({{ $category->id }})"> {{ $category->name }}</a>
+                                <a style="color:black" href="javascript:;" onclick="getProductByCategory({{ $category->id }})"> {{ $category->name }}</a>
                                </li>
                         @endforeach
                     </ul>

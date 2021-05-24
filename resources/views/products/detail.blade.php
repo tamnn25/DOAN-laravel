@@ -7,25 +7,18 @@
     <section class="product-detail">
         <div class="row">
 
-            <div class="col-6">
+            <div class="col-lg-6 col-md-6">
                 <div class="product-thumbnail">
                     <img src="{{ asset($product->image)}}" alt="{{ $product->image }}">
                 </div>
                 <hr>
-                <ul class="row list-product-image">
-                    @foreach ($product->product_images as $url)
-                        <li class="col-4">
-                            <div class="product-image-group">
-                                <img src="{{ asset($url->url) }}" alt="image" class="img-fluid">
-                                    
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-                <hr>
+                <div class="product__details__pic__slider owl-carousel">
+                        @foreach ($product->product_images as $url)
+                            <img src="{{ asset($url->url) }}" alt="image" class="img-fluid" style="width:290px; height:150px;">
+                        @endforeach
+                </div>
+                
             </div>
-
-
             <div class="col-6">
                 
                 <hr>
@@ -39,12 +32,9 @@
                                 <span>{{ $product->description }}</span>
                             </p>
                             <hr>
-                            <p class="product-price">{{ number_format($product->price) }} VND</p>
+                            <p class="product-price">{{ number_format($product->price). '.000.VND' }}</p>
                             <hr>
-
-                            <p class="product-quantity">
-                                {{-- <label>Quantity</label>
-                                <span><input type="number" name="quantity" required></span> --}}
+                            <p>
                                 <div class="product__details__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
@@ -52,9 +42,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </p>
-                            <p>
-                                <button type="submit"class="primary-btn">  ADD TO CARD</button>
+                                
+                                <button class="btn btn-outline-success" type="submit">Add Cart</button>
                             </p>
                         </form>
                     </div>

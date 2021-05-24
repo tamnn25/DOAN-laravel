@@ -121,11 +121,13 @@
                                         @foreach ($radeProduct[$i] as $key => $item)
                                             <a href="#" class="latest-product__item">
                                                 <div class="latest-product__item__pic">
-                                                    <img src="{{ $item->image }}" alt="" style="width: 110px">
+                                                    {{-- <img src="{{ $item->image }}" alt="" style="width: 110px"> --}}
+                                                 images o day
                                                 </div>
                                                 <div class="latest-product__item__text">
-                                                    <h6>{{ $item->name }}</h6>
-                                                    <span>{{ $item->price }}</span>
+                                                    {{-- <h6>{{ $item->name }}</h6>
+                                                    <span>{{ $item->price }}</span> --}}
+                                                    blabla
                                                 </div>
                                             </a>
                                         @endforeach

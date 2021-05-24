@@ -9,7 +9,7 @@
             <input class="form-control mr-sm-2" name="name" placeholder=" name"  value="{{ request()->get('name') }}" aria-label="Search">
             
             {{-- <label class="form-label" for="form1"> searched by email</label> --}}
-            <input type="text" class="form-control mr-sm-2" name="email" placeholder="email" value="{{ request()->get('email') }}" >
+            <input type="date" class="form-control mr-sm-2" name="date" placeholder="email" value="{{ request()->get('email') }}" >
 
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
