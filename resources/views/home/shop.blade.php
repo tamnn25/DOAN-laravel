@@ -37,7 +37,7 @@
                                 <ul >
                                     @foreach ($categories as $item)
                                         
-                                    <li ><a href="#">{{ $item->name }}</a></li>
+                                    <li ><a href="{{ url('home/shop/'. $item->id)}}">{{ $item->name }}</a></li>
                                     @endforeach
                                    
                                 </ul>
@@ -176,12 +176,12 @@
                                 <div class="col-lg-4 col-md-4">
                                     <div class="filter__found">
                                         
-                                        <h6>You're Fround<span> 
+                                        <h6><strong>You're Fround</strong><span> 
                                         @php
                                             $soluong = count($products);
                                             echo $soluong;
                                         @endphp
-                                        </span> Products</h6>
+                                        </span> <strong>Products</strong></h6>
                                     
                                     </div>
                                 </div>
@@ -194,6 +194,7 @@
                             </div>
                         </div>
                         <div class="row">
+                            
                                 @if($products)
                                 @foreach ($products as $product)
                                     <div class="col-lg-4 col-md-6 col-sm-6">
@@ -217,8 +218,9 @@
                                     </div>
                                 @endforeach
                                 @endif
-                            {{ $products->links() }}
+                                
                         </div>
+                              <div style="margin-left: 45%; ">  {{ $products->links() }} </div>
                     </div>
                 </div>
             </div>
