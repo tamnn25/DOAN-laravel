@@ -134,12 +134,15 @@
                                                 @if(isset($lasterProduct[$i]))
                                                 @foreach ($lasterProduct[$i] as $key => $item)
 
-                                                        <a href="#" class="latest-product__item">
+                                                        <a href="{{ route('product.detail', $item['id']) }}" class="latest-product__item">
                                                             <div class="latest-product__item__pic">
+                                                                
                                                                 <img src="{{asset('/'.$item->image ) }}" alt="" style="width: 110px">
                                                             </div>
+                                                            
                                                             <div class="latest-product__item__text">
-                                                                <h6>{{ $item->name }}</h6>
+                                                                
+                                                                <h6 >  {{ $item->name }}</h6>
                                                                 <span>{{ $item->price }}</span>
                                                             </div>
                                                         </a>
