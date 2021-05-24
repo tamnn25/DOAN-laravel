@@ -29,8 +29,8 @@ class CustomerController extends Controller
                     ->paginate(4);
             // dd($users);
         }
-        if (!empty($request->email)) {
-            $users = User::where('email', 'like', '%' . $request->email . '%')
+        if (!empty($request->date)) {
+            $users = User::where('created_at', 'like', '%' . $request->date . '%')
                     ->orderBy('id', 'desc')
                     ->paginate(4);
             // dd($users);
