@@ -51,20 +51,22 @@
                 @endforeach
             </table>
 
-            <div class="mt-2">
+            <div class="mt-2" style="float:right; margin-left:10px;">
                 {{-- tiến hành thanh toán --}}
-               <button  type="button" class="btn btn-warning" data-bs-toggle="modal"
+               <button  type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                data-bs-target="#modal-send-code">PROCEED TO CHECKOUT</button>
-           
            </div>
-           <div class="float-right mt-4" style="">
+      
+           <div class="float-right mt-2" style="float:left;">
                <div class="shoping__cart__btns">
-                   <a href="{{ route('index') }}"  class="btn btn-dark" >CONTINUE SHOPPING</a>
-                   {{-- <a href="#" class="btn btn-danger cart-btn cart-btn-right"><span class="icon_loading"></span>
-                       Upadate Cart</a> --}}
+                   <a class="btn btn-outline-warning" href="{{ route('index') }}"   >CONTINUE SHOPPING</a>
+                
                </div>
            </div>
+           <br>
+           <br>
         </div>
+        
      
             @endif
     </section>

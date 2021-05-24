@@ -6444,6 +6444,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   border-top-right-radius: calc(0.3rem - 1px);
 }
 
+
 .modal-header .close, .modal-header .mailbox-attachment-close {
   padding: 1rem;
   margin: -1rem -1rem -1rem auto;
@@ -7140,9 +7141,9 @@ button.bg-secondary:focus {
   background-color: #545b62 !important;
 }
 
-.bg-success {
-  background-color: #28a745 !important;
-}
+/* .bg-success {
+  background-color: #fff !important;
+} */
 
 a.bg-success:hover, a.bg-success:focus,
 button.bg-success:hover,

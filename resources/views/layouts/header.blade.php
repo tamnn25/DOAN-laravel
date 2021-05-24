@@ -37,11 +37,11 @@
                             <div class="flex-item">
                                 @auth
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         <span class="fa fa-user"></span><span class="text"> </span><span>{{ Auth::user()->name }}</span>
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item active" href="#">Thông tin tài khoản</a></li>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="background-color: #ceecdf;">
+                                        <li><a class="dropdown-item " href="#">Thông tin tài khoản</a></li>
                                         <li>
                                            <hr class="dropdown-divider">
                                         </li>
@@ -49,14 +49,14 @@
                                         <li>
                                            <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                                        <li><a class="dropdown-item" href="">Đổi mật khẩu</a></li>
                                         <li>
                                            <hr class="dropdown-divider">
                                         </li>
                                         <li>
                                            <form action="{{ route('logout') }}" method="POST">
                                               @csrf
-                                              <button type="submit"><i class="fas fa-sign-out-alt"></i><span class="text">Logout</span></button>
+                                              <button type="submit" class="btn btn-primary"><i class="fas fa-sign-out-alt"></i><span class="text" >&nbsp; Logout</span></button>
                                            </form>
                                         </li>
                                     </ul>

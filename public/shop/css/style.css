@@ -645,6 +645,14 @@ ol {
 	position: relative;
 	float: left;
 }
+.search_shop {
+	width: 610px;
+	height: 50px;
+	border: 1px solid #32a745;
+	position: relative;
+	float: left;
+	margin-left: 260px;
+}
 
 .hero__search__form form .hero__search__categories {
 	width: 30%;
@@ -3466,4 +3474,9 @@ ol {
 	.blog__details__hero__text h2 {
 		font-size: 24px;
 	}
+	
+	.modal-content {
+		background-color: #124d3a8c;
+	}
+
 }
