@@ -12,28 +12,12 @@ class HomeController extends Controller
 {
     //
     public function index(){
-        $products   = Product::paginate(4);//cái ni đây à ừ
-        $categories = Category::all();
-        $orders     = OrderDetail::select(\DB::raw('count(product_id) as count'),'product_id')
-                            ->with('product')
-                            ->orderBy('count', 'desc')
-                            ->groupBy('product_id')
-                            ->limit(9)
-                            ->get();
-            $orderProduct = collect();
-        foreach ($orders as $key => $value) {
-            $orderProduct->push($value->product);
-        }
+        $products   = Product::paginate(5);
+        $categories = Category::get();
         $productLimit   = Product::orderBy('created_at', 'desc')->limit(9)->get();
-        // dd($productLimit);
-        // dd($orderProduct);
-        
         $lasterProduct  = $this->formatDataProduct($productLimit);
-        $radeProduct    = $this->formatDataProduct($orderProduct);
-        
         return view('home.homepage')->with([
             'lasterProduct' => $lasterProduct,
-            'radeProduct'   => $radeProduct, 
             'products'      => $products,
             'categories'    => $categories,
         ]);
@@ -41,7 +25,7 @@ class HomeController extends Controller
     }
     public function shop($id){
         $categories = Category::all();
-        $products   = ($id == 0) ? Product::paginate(4) : Product::where('category_id', $id)->paginate(4);
+        $products   = ($id == 0) ? Product::paginate(9) : Product::where('category_id', $id)->paginate(9);
         $productLimit   = Product::orderBy('created_at', 'desc')->limit(9)
         ->get();
         $lasterProduct  = $this->formatDataProduct($productLimit);
