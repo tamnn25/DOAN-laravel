@@ -1,27 +1,45 @@
 
 @extends('layouts.master')
 
+
 @section('content')
 <body>
+     <div class="hero__search">
+            <div style="float: left; ">
+                <img src="{{ asset('shop/img/icon-searchshop.png') }}" width="100px" alt="">
+            </div>
+            <div class="hero__search__form">
+                <div class="hero__search__form">
+                    <form action="http://127.0.0.1:8000/product/search" id="formSearch" method="GET">
+                        <input type="text" name="key" placeholder="Enter Product">
+                        <button type="submit" class="site-btn">SEARCH</button>
+                    </form>
+                </div>
+            </div>
+            <div class="hero__search__phone">
+                <div class="hero__search__phone__icon">
+                    <i class="fa fa-phone"></i>
+                </div>
+                <div class="hero__search__phone__text">
+                    <h5>+84 263 888 279</h5>
+                    <span>support 24/7 time</span>
+                </div>
+            </div>
+        </div>
     <section class="product spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 ">
-                    <div class="sidebar">
+                <div class="col-lg-3 " >
+                    <div class="sidebar" >
                         
-                        <div class="sidebar__item">
+                        <div class="sidebar__item" >
                             <h4>Department</h4>
-                            <ul>
-                                <li><a href="#">Fresh Meat</a></li>
-                                <li><a href="#">Vegetables</a></li>
-                                <li><a href="#">Fruit & Nut Gifts</a></li>
-                                <li><a href="#">Fresh Berries</a></li>
-                                <li><a href="#">Ocean Foods</a></li>
-                                <li><a href="#">Butter & Eggs</a></li>
-                                <li><a href="#">Fastfood</a></li>
-                                <li><a href="#">Fresh Onion</a></li>
-                                <li><a href="#">Papayaya & Crisps</a></li>
-                                <li><a href="#">Oatmeal</a></li>
+                            <ul >
+                                @foreach ($categories as $item)
+                                    
+                                <li ><a href="{{ url('home/shop/'. $item->id)}}">{{ $item->name }}</a></li>
+                                @endforeach
+                               
                             </ul>
                         </div>
                         <div class="sidebar__item">
@@ -41,7 +59,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="sidebar__item sidebar__item__color--option">
+                        {{-- <div class="sidebar__item sidebar__item__color--option">
                             <h4>Colors</h4>
                             <div class="sidebar__item__color sidebar__item__color--white">
                                 <label for="white">
@@ -79,8 +97,8 @@
                                     <input type="radio" id="green">
                                 </label>
                             </div>
-                        </div>
-                        <div class="sidebar__item">
+                        </div> --}}
+                        {{-- <div class="sidebar__item">
                             <h4>Popular Size</h4>
                             <div class="sidebar__item__size">
                                 <label for="large">
@@ -106,22 +124,25 @@
                                     <input type="radio" id="tiny">
                                 </label>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="sidebar__item">
                             <div class="latest-product__text">
                                 <h4>Latest Products</h4>
-                                <div class="latest-product__slider owl-carousel">
+                                 <div class="latest-product__slider owl-carousel">
                                     @for ($i = 1; $i <= 3; $i++) 
                                         <div class="latest-prdouct__slider__item">
                                             @if(isset($lasterProduct[$i]))
                                             @foreach ($lasterProduct[$i] as $key => $item)
 
-                                                    <a href="#" class="latest-product__item">
+                                                    <a href="{{ route('product.detail', $item['id']) }}" class="latest-product__item">
                                                         <div class="latest-product__item__pic">
+                                                            
                                                             <img src="{{asset('/'.$item->image ) }}" alt="" style="width: 110px">
                                                         </div>
+                                                        
                                                         <div class="latest-product__item__text">
-                                                            <h6>{{ $item->name }}</h6>
+                                                            
+                                                            <h6 >  {{ $item->name }}</h6>
                                                             <span>{{ $item->price }}</span>
                                                         </div>
                                                     </a>
@@ -141,32 +162,6 @@
                         </div>
                         <div class="row">
                             <div class="product__discount__slider owl-carousel">
-                                @if ($products)
-                                    @foreach ($products as $product)
-                                <div class="col-lg-4">
-                                            
-                                    
-                                    <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                        data-setbg="{{ asset('/'.$product->image) }}">
-                                        <div class="product__discount__percent">-20%</div>
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href=""><i class="fa fa-shopping-cart"></i></a></li>
-                                        </ul>
-                                            </div>
-                                        <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="" style="color: blue">{{ $product->name }}</a></h5>
-                                            <div class="product__item__price">{{ $product->price }} <span>$36.00</span></div>
-                                        </div>
-                                    </div>
-                                </div>      
-                                
-                        
-                                @endforeach
-                                    @endif
                             </div>
                         </div>
                     </div> --}}
@@ -183,43 +178,52 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="filter__found">
-                                    <h6><span>16</span> Products found</h6>
+                                    
+                                    <h6><strong>You're Fround</strong><span> 
+                                    @php
+                                        $soluong = count($products);
+                                        echo $soluong;
+                                    @endphp
+                                    </span> <strong>Products</strong></h6>
+                                
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-3">
+                            {{-- <div class="col-lg-4 col-md-3">
                                 <div class="filter__option">
                                     <span class="icon_grid-2x2"></span>
                                     <span class="icon_ul"></span>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
-
-
                     <div class="row">
-                        @if($products)
-                        @foreach ($products as $product)
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="{{ asset('/'.$product->image) }}">
-                                        <ul class="product__item__pic__hover">
-                                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                            <li><a href="{{ route('product.detail', $product['id']) }}"><i class="fa fa-shopping-cart"></i></a></li>
-                                            
-                                        </ul>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <h6><a href="">{{ $product->name }}</a></h6>
-                                        <h5>{{ $product->price }}</h5>
+                        
+                            @if($products)
+                            @foreach ($products as $product)
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="product__item">
+                                        <div class="product__item__pic set-bg" data-setbg="{{ asset('/'.$product->image) }}">
+                                            <ul class="product__item__pic__hover">
+                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                <li><a href="{{ route('product.detail', $product['id']) }}"><i class="fa fa-shopping-cart"></i></a></li>
+                                                {{-- {{ route('shop.show',$product->id) }} --}}
+                                            </ul>
+                                        </div>
+                                        <div class="product__item__text">
+                                            <h6><a href="{{ route('product.detail', $product['id']) }}">{{ $product->name }}</a></h6>
+                                            <h5>{{ $product->price }}.000.vnd</h5>
+                                            <div class="product-buy">
+                                                <a href="{{ route('product.detail', $product['id']) }}" class="btn btn-outline-success">View More</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
-                        {{-- {{ $products->links() }}  --}}
-
-                        @endif 
+                            @endforeach
+                            @endif
+                            
                     </div>
+                          <div style="margin-left: 45%; ">  {{ $products->links() }} </div>
                 </div>
             </div>
         </div>

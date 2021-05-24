@@ -25,7 +25,10 @@ html {
   -moz-tab-size: 4;
   -o-tab-size: 4;
      tab-size: 4;
+  background-color: red;
+
 }
+
 
 /**
 1. Correct the line height in all browsers.
@@ -46,6 +49,9 @@ Sections
 Remove the margin in all browsers.
 */
 
+.w-full.sm\:max-w-md.mt-6.px-6.py-4.bg-white.shadow-md.overflow-hidden.sm\:rounded-lg {
+  background-color: #170727;
+}
 body {
   margin: 0;
 }
@@ -65,6 +71,7 @@ body {
 		sans-serif,
 		'Apple Color Emoji',
 		'Segoe UI Emoji';
+
 }
 
 /*
@@ -278,6 +285,7 @@ Remove the inner padding in Chrome and Safari on macOS.
   -webkit-appearance: none;
 }
 
+
 /**
 1. Correct the inability to style clickable types in iOS and Safari.
 2. Change font properties to 'inherit' in Safari.
@@ -368,6 +376,7 @@ ul {
 html {
   font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 1 */
   line-height: 1.5; /* 2 */
+
 }
 
 /**
@@ -378,6 +387,7 @@ html {
 body {
   font-family: inherit;
   line-height: inherit;
+
 }
 
 /**
@@ -435,6 +445,7 @@ hr {
 
 img {
   border-style: solid;
+  
 }
 
 textarea {
@@ -35732,7 +35743,7 @@ select {
   }
 
   .sm\:bg-none {
-    background-image: none;
+    /* background-image: none; */
   }
 
   .sm\:bg-gradient-to-t {
@@ -66905,6 +66916,7 @@ select {
   .md\:bg-none {
     background-image: none;
   }
+ 
 
   .md\:bg-gradient-to-t {
     background-image: linear-gradient(to top, var(--tw-gradient-stops));
@@ -187941,5 +187953,7 @@ select {
   .\32xl\:backdrop-sepia {
     --tw-backdrop-sepia: sepia(100%);
   }
+
+ 
 }
 

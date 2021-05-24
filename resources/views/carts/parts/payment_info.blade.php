@@ -1,10 +1,12 @@
 <h4>Thông Tin Thanh Toán</h4>
+    <br>
 <div class="border p-2">
     <form action="{{ route('cart.checkout-complete') }}" method="POST" id="frm-checkout">
         @csrf
-        <div class="form-group">
+        <div class="form-group btn btn-group btn-info">
             <input type="radio" value="1" name="payment_type" id="payment-type-1" checked class="payment-type">
             <label for="payment-type-1">Thanh toán tại nhà</label>
+            <br>
             <input type="radio" value="2" name="payment_type" id="payment-type-2" class="payment-type">
             <label for="payment-type-2">Thanh toán bằng Credit Card</label>
         </div>

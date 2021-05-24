@@ -15,8 +15,7 @@
       <!-- small box -->
       <div class="small-box bg-info">
         <div class="inner">
-          <h3>150</h3>
-
+        {{-- {{ count($product) }} --}}
           <p>New Orders</p>
         </div>
         <div class="icon">
