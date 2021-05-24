@@ -54,6 +54,7 @@ Remove the margin in all browsers.
 }
 body {
   margin: 0;
+  
 }
 
 /**
@@ -71,13 +72,7 @@ body {
 		sans-serif,
 		'Apple Color Emoji',
 		'Segoe UI Emoji';
-
 }
-
-/*
-Grouping content
-================
-*/
 
 /**
 1. Add the correct height in Firefox.
