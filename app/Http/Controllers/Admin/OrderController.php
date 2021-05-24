@@ -23,17 +23,22 @@ class OrderController extends Controller
         // $data = [];
         $orders = Product::all();
         $orders = Order::with('order_detail')
-        ->with('user')
-        ->with('product')
-        ->orderBy('id', 'desc')
-        ->paginate(4);
+                ->with('user')
+                ->with('product')
+                ->orderBy('id', 'desc')
+                ->paginate(4);
         
         if(!empty($request->name)){
             $orders = Order::where('user_id' , 'like' , '%' . $request->name . '%')
                         ->orderBy('id', 'desc')
                         ->paginate(4);
                         //dd($orders);
-        }
+            }
+        if (!empty($request->date)){
+            $orders = Order::where('created_at' , 'like' , '%' . $request->date . '%')
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(4);
+        }    
         
         // $orders = OrderDetail::all();
 

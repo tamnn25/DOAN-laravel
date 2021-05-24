@@ -8,22 +8,19 @@
         <div class="row">
 
             <div class="col-lg-6 col-md-6">
-                <div class="product-thumbnail">
-                    <img src="{{ asset($product->image)}}" alt="{{ $product->image }}">
+                <div class="product__details__pic__item">
+                    <img class="product__details__pic__item--large"
+                    src="{{ asset($product->image)}}" alt="{{ $product->image }}">
                 </div>
                 <hr>
                 <div class="product__details__pic__slider owl-carousel">
                         @foreach ($product->product_images as $url)
-                            <img src="{{ asset($url->url) }}" alt="image" class="img-fluid" style="width:290px; height:150px;">
+                            <img data-imgbigurl="{{ asset($url->url) }}"
+                                    src="{{ asset($url->url) }}" alt="" width="250px" height="120px">
                         @endforeach
                 </div>
                 <hr>
-                <br>
                 
-                {{-- <div class="div">
-                        <i>{{ $product->product_detail->content }}</i>
-                </div> --}}
-                <hr>
             </div>
             <div class="col-6">
                 
