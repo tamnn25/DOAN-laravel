@@ -13,7 +13,7 @@
 <style>
 
 body{
-    background-image:url({{url('images/bg.jpg')}});
+    background-image:url({{url('images/back.jpg')}});
     background-position-x: 0px;
     background-position-y: 0px;
     background-size: cover;
@@ -43,6 +43,7 @@ body{
     width: 120%;
 }
 .login-form h2 {
+    color: whitesmoke;
     margin: 0 0 15px;
 }
 .form-control, .btn {
@@ -94,12 +95,12 @@ body{
             </span>
             @endif
         </div>
-        <span><input type="checkbox" />Remember Me</span>
+        {{-- <span><input type="checkbox" />Remember Me</span> --}}
 			{{-- <h6><a href="#">Forgot Password?</a></h6> --}}
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            <button type="submit" class="btn btn-dark">Log in</button>
         </div>      
-        <p>Don't Have an Account ?<a href="registration.html">Create an account</a></p>
+        {{-- <p>Don't Have an Account ?<a href="registration.html">Create an account</a></p> --}}
 
     </form>
    

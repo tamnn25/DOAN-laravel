@@ -35,10 +35,10 @@
     @endif
 
     {{-- display list category table --}}
-    <table id="category-list" class="table table-bordered table-hover table-striped">
+    <table id="category-list" class="table table-dark">
         <thead>
             <tr>
-                <th>#</th>
+                <th>Stt</th>
                 <th>Category Name</th>
                 <th>Parent_id</th>
                 <th>List Product</th>
