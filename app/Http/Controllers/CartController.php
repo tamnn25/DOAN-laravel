@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\OrderVerify;
+use Cart;
 use App\Models\Price;
 use App\Utils\CommonUtil;
 use Exception;
@@ -25,32 +26,35 @@ class CartController extends Controller
         //get data from SESSION
         $sessionAll = Session::all();
         $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
+        if (!empty($carts) && $carts[$id]) {
+            $carts[$id]['quantity'] += $request->quantity;
+            session(['carts' => $carts]);
+        }else {
+            // validate ID of table product ? available TRUE | FALSE
+            // check quantity of products.quantity compare with order_detail.quantity
+            $product = Product::findOrFail($id);
 
-        // validate ID of table product ? available TRUE | FALSE
-        // check quantity of products.quantity compare with order_detail.quantity
-        $product = Product::findOrFail($id);
-        // dd($product->name);
+            #check have param $id ?
+            $newProduct = [
+                'id'        => $id,
+                'name'      => $product->name,
+                'quantity'  => $request->quantity,
+                'price'     => $product->price,
+                'image'     => $product->image,
+            ];
 
-        #check have param $id ?
-        $newProduct = [
-            'id'        => $id,
-            'name'      => $product->name,
-            'quantity'  => $request->quantity,
-            'price'     => $product->price,
-        ];
-        // dd($newProduct);
+            $carts[$id] = $newProduct;
 
-        $carts[$id] = $newProduct;
-
-        // set data for SESSION
-        session(['carts' => $carts]);
-        //dd(123);
+            // set data for SESSION
+            session(['carts' => $carts]);
+        }
         return redirect()->route('cart.cart-info')
             ->with('success', 'Add Product to Cart successful!');
     }
 
     public function getCartInfo(Request $request)
     {
+        
         $data = [];
         //get data from SESSION 
         $sessionAll = Session::all();
@@ -88,22 +92,23 @@ class CartController extends Controller
         $carts  = empty(Session::get('carts')) ? [] : Session::get('carts');
         $data['carts'] = $carts;
 
-        if (!empty($carts)) {
-            $dataCart = [];
+        // if (!empty($carts)) {
+        //     $dataCart = [];
 
-            // create list product id
-            $listProductId = [];
-            foreach ($carts as $cart) {
-                $listProductId[] = $cart['id'];
-            }
-            // get data product from list product id
-            $dataCart         = Product::whereIn('id', $listProductId)
-            ->get();
-            $data['products'] = $dataCart;
+        //     // create list product id
+        //     $listProductId = [];
+        //     foreach ($carts as $cart) {
+        //         $listProductId[] = $cart['id'];
+        //     }
+        //     // get data product from list product id
+        //     $dataCart         = Product::whereIn('id', $listProductId)
+        //     ->get();
+        //     $data['products'] = $dataCart;
 
-            // add step by step to SESSION
-            session(['step_by_step' => 2]);
-        }
+        //     // add step by step to SESSION
+        //     session(['step_by_step' => 2]);
+        // }
+            // dd($dataCart);
         $data['categories'] = $categories;
 
         return view('carts.checkout', $data);
@@ -115,7 +120,7 @@ class CartController extends Controller
         // get cart info
         $carts = Session::all();
         $carts = Session::get('carts');
-        // dd($carts);
+        dd($carts);
         // validate quanity of product -> Available (in-stock | out-stock)
 
 
@@ -249,5 +254,20 @@ class CartController extends Controller
 
             return response()->json(['message' => $exception->getMessage()]);
         }
+      
     }
+    // public function destroy($id){
+    //     DB::beginTransaction();
+        
+    //     try{
+    //      $cart = Cart::find($id);
+    //      $cart->delete();
+    //      DB::commit();
+    //      return redirect()->route('cart.cart-info');
+    //     }  catch (\Exception $ex) {
+    //         DB::rollBack();
+    //         // have error so will show error message
+    //         return redirect()->back()->with('error', $ex->getMessage());
+    //     }
+    // }
 }

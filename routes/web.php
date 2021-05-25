@@ -46,6 +46,7 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
     Route::get('/', [CartController::class, 'getCartInfo'])->name('cart-info'); 
     Route::post('cart/{id}', [CartController::class, 'addCart'])->name('add-cart');
     Route::get('checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('check_order_step_by_step');
+    // Route::delete('/delete/{id}', [CartController::class, 'destroy'])->name('destroy');
        // dd(123);
     Route::post('checkout-complete', [CartController::class, 'checkoutComplete'])->name('checkout-complete');
     Route::post('send-verify-code', [CartController::class, 'sendVerifyCode'])->middleware(['auth'])->name('send-verify-code');
