@@ -15,9 +15,8 @@ class ProfileController extends Controller
         $data = [];
 
         $orders = Product::all();
-        $orders = Order::where($id)
-
-         $data['orders'] = $orders;       
+        $orders = Order::where($id);
+        $data['orders'] = $orders;       
         return view('profile.cartpayment', $data);
     }
 }
