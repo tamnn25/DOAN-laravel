@@ -68,7 +68,7 @@
                                     <button class="dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #25a6d700">
                                     <span class="fa fa-user"> &nbsp; </span><span class="text">   REGISTER </span>
                                     </button>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2" style="background-color: #49c569f7;">
                                        <li><a class="dropdown-item" href="{{ route('login') }}">Đăng nhập</a></li>
                                        <li>
                                           <hr class="dropdown-divider">
