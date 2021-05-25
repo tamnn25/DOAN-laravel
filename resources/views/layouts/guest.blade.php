@@ -21,7 +21,7 @@
 
     </head>
     <body >
-        <main class="imges" style=" background-image: url('images/1567736.png');">
+        <main class="imges" >
                     <div class="font-sans text-gray-900 antialiased">
                         {{ $slot }}
                     </div>

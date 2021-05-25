@@ -212,9 +212,9 @@
 
         
       </nav >
-      <form  action="{{ route('admin.logout') }}" method="POST" style="margin-top:267px;">
+      <form  action="{{ route('admin.logout') }}"  method="POST" style="margin-top:160px; float:right">
         @csrf
-        <button type="submit" onclick="return confirm('Are you sure LOGOUT ?')">Logout</button>
+        <button class="btn btn-dark" type="submit" onclick="return confirm('Are you sure LOGOUT ?')">Logout</button>
       </form>  
       <!-- /.sidebar-menu -->
     </div>

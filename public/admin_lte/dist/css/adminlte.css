@@ -7152,8 +7152,8 @@ button.bg-success:focus {
 }
 
 .bg-info {
-  /* background-color: #a2e7f0 !important; */
-  background-color: white;
+  background-color: #a2e7f0 !important;
+    /* background-color: white; */
   
 }
 
@@ -46802,7 +46802,7 @@ blockquote.quote-gray-dark h6 {
 }
 
 .bg-gradient-success {
-  background: #28a745 linear-gradient(180deg, #48b461, #28a745) repeat-x !important;
+  background: #d6f5dd linear-gradient(180deg, #bdddc4, #67f5ff) repeat-x !important;
   color: #fff;
 }
 
