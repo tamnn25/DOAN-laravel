@@ -15,10 +15,7 @@ class User extends Authenticatable implements JWTSubject
 
     use SoftDeletes;
 
-    const ROLE_ADMIN = 1;
-    const ROLE_SALERS = 2;
-    const ROLE_SHIPPER = 3;
-    const ROLE_USER = 4;
+    
 
     protected $table = 'users';
 
