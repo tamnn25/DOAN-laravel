@@ -25,9 +25,9 @@
     {{-- <p><a href="/category/create">Create</a></p> --}}
 
     {{-- show message --}}
-    @if(Session::has('success'))
+    {{-- @if(Session::has('success'))
         <p class="text-success">{{ Session::get('success') }}</p>
-    @endif
+    @endif --}}
 
     {{-- show error message --}}
     @if(Session::has('error'))

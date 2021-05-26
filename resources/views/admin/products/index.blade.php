@@ -31,9 +31,9 @@
     {{-- <p><a href="/post/create">Create</a></p> --}}
 
     {{-- show message --}}
-    @if(Session::has('success'))
+    {{-- @if(Session::has('success'))
         <p class="text-success">{{ Session::get('success') }}</p>
-    @endif
+    @endif --}}
 
     {{-- show error message --}}
     @if(Session::has('error'))
@@ -46,7 +46,6 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>description</th>
                 <th>Images</th>
                 <th>Prices</th>
                 <th>Status</th>
@@ -62,7 +61,6 @@
                     <tr>
                         <td>{{ $key+1 }}</td>
                         <td>{{ $product->name }}</td>
-                        <td>{{ $product->description }}</td>
                         <td>
                             {{-- <img src="{{ asset($product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 40px; height: auto;"> --}}
                             {{-- <img src="{{asset('storage/products/'.$product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;"> --}}

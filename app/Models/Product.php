@@ -49,9 +49,9 @@ class Product extends Model
         return $this->hasMany(OrderDetail::class);
     }
 
-    public function promotion()
+    public function Product_promotion()
     {
-        return $this->hasOne(Promotion::class);
+        return $this->hasOne(ProductPromotion::class);
     }
 
     // public function latestPrice()

@@ -21,7 +21,12 @@
         <img src="/{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid" style="width: 200px; height: auto;">
         <hr>
     <h1>{{ $product->price.'.000 Vnd' }}</h1>
-
+    <hr>
+    <label>description</label>
+    <h3>{{ $product->description }}</h3>
+    <hr>
+    <label>content</label>
+    <h4>{{ $product->product_detail->content}}</h4>
     <a href="{{ route('admin.product.index') }}">BACKHOME</a>
 
 @endsection
