@@ -17,9 +17,10 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
 	
 	// Admin Dashboard
 	Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
     // middleware check_role_sales: nếu role!= 1 && role != 2 thì không đc vào
     Route::middleware(['check_role_editer'])->group(function () { 
-        Route::group(['prefix'        => 'category', 'as'            => 'category.'], function () {
+        Route::group(['prefix'=> 'category', 'as'=> 'category.'], function () {
             Route::get('/list', [CategoryController::class, 'index'])->name('index');
             Route::get('/create', [CategoryController::class, 'create'])->name('create');
             Route::post('/store', [CategoryController::class, 'store'])->name('store');
