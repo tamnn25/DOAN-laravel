@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Admin;
 
 class CheckAdminRole
 {
@@ -17,8 +17,9 @@ class CheckAdminRole
      */
     public function handle(Request $request, Closure $next)
     {
+        $authAdmin = auth()->guard('admin');
         // nếu đã login và 
-        if (auth()->check() && auth()->user()->role == User::ROLE_ADMIN) {
+        if ($authAdmin->check() && $authAdmin->user()->role_id == Admin::ROLE_ADMIN) {
             return $next($request);
         } 
         //403 không có quyền truy cập

@@ -26,7 +26,7 @@ class CartController extends Controller
         //get data from SESSION
         $sessionAll = Session::all();
         $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
-        if (!empty($carts) && $carts[$id]) {
+        if (!empty($carts[$id])) {
             $carts[$id]['quantity'] += $request->quantity;
             session(['carts' => $carts]);
         }else {
@@ -270,4 +270,21 @@ class CartController extends Controller
     //         return redirect()->back()->with('error', $ex->getMessage());
     //     }
     // }
+    public function destroy($id, Request $request)
+    {
+        dd(123);
+        $carts = session('carts');
+        foreach ($carts as $key => $value)
+        {
+            if ($value['id'] == $id) 
+            {                
+                unset($carts [$key]);  
+                          
+            }
+        }
+        //put back in session array without deleted item
+        $request->session()->push('carts',$carts);
+        //then you can redirect or whatever you need
+        return redirect()->back();
+    }
 }

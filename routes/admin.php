@@ -10,7 +10,6 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CustomerController;
 
 Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], function () {
-	// echo 'helloooo admin';exit;
 
     Route::get('login', [AuthController::class, 'getLogin'])->name('login');
     Route::post('login', [AuthController::class, 'postLogin'])->name('login.handle');
@@ -19,7 +18,7 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
 	// Admin Dashboard
 	Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     // middleware check_role_sales: nếu role!= 1 && role != 2 thì không đc vào
-    Route::middleware(['check_role_sales'])->group(function () { 
+    Route::middleware(['check_role_editer'])->group(function () { 
         Route::group(['prefix'        => 'category', 'as'            => 'category.'], function () {
             Route::get('/list', [CategoryController::class, 'index'])->name('index');
             Route::get('/create', [CategoryController::class, 'create'])->name('create');

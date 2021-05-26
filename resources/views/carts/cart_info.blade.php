@@ -48,7 +48,7 @@
                             </td>
                     {{-- <td><a href=""><i class="fas fa-calendar-times fa-2x" ></i></a></td> --}}
                     {{-- <td>
-                        <form action="{{ route('cart.cart-info',) }}" method="post">
+                        <form action="{{ route('cart.destroy',$carts->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button  value="Delete" ><i class="fas fa-calendar-times fa-2x" style="color:blue;"></i></button>
