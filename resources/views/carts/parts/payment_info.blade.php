@@ -1,9 +1,9 @@
 <h4>Thông Tin Thanh Toán</h4>
     <br>
 <div class="border p-2">
-    <form action="{{ route('cart.checkout-complete') }}" method="POST" id="frm-checkout">
+    <form action="{{ route('cart.checkout-complete') }}" method="POST" id="frm-checkout" >
         @csrf
-        <div class="form-group btn btn-group btn-info">
+        <div class="form-group btn btn-group btn-info" style="    background-color: #5d9564eb;">
             <input type="radio" value="1" name="payment_type" id="payment-type-1" checked class="payment-type">
             <label for="payment-type-1">Thanh toán tại nhà</label>
             <br>

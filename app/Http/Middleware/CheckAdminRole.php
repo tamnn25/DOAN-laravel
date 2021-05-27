@@ -18,7 +18,7 @@ class CheckAdminRole
     public function handle(Request $request, Closure $next)
     {
         $authAdmin = auth()->guard('admin');
-        // nếu đã login và 
+        // nếu đã login và  ktra role_id ->
         if ($authAdmin->check() && $authAdmin->user()->role_id == Admin::ROLE_ADMIN) {
             return $next($request);
         } 

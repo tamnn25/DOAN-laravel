@@ -8,7 +8,7 @@ if (Session::has('carts')) {
 @endphp
 <ul>
     <li>
-        <a href="{{ route('cart.cart-info') }}"><i class="fas fa-cart-plus">Giỏ hàng: <span class="number">{{ $cartNumber }}</span></i></a>
+        <a href="{{ route('cart.cart-info') }}"><i class="fas fa-cart-plus">Giỏ hàng:      &nbsp; <span class="number">{{ $cartNumber }}</span></i></a>
     </li>
 </ul>
   
