@@ -43,7 +43,9 @@ class ProductController extends Controller
         // dd(22);
         $productLimit   = Product::orderBy('created_at', 'desc')->limit(9)
         ->get();
-        $products = Product::where('name', 'like', '%'. $key . '%')->paginate(10);
+        $products = Product::where('name', 'like', '%'. $key . '%')
+                    ->orWhere('price', 'like', '%' .$key. '%')
+                    ->paginate(10);
 
         $lasterProduct  = $this->formatDataProduct($productLimit);
         // dd($lasterProduct);
