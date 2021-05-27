@@ -604,6 +604,7 @@ ol {
 	font-size: 18px;
 	font-weight: 700;
 	color: #ffffff;
+	
 }
 
 .hero__categories__all:after {
@@ -614,6 +615,7 @@ ol {
 	font-family: "ElegantIcons";
 	font-size: 18px;
 	color: #ffffff;
+	
 }
 
 .hero__categories ul {
@@ -621,6 +623,8 @@ ol {
 	padding-left: 40px;
 	padding-top: 10px;
 	padding-bottom: 12px;
+	/* display: none; */
+	
 }
 
 .hero__categories ul li {

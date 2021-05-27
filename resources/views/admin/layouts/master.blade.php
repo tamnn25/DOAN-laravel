@@ -1,41 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr" lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>@yield('title', 'CMS - Dashboard')</title>
-
-  @include('admin.layouts.css')
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="/end/image/png" sizes="16x16" href="/end/assets/images/favicon.png">
+    @include('admin.layouts.css')
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="/admin_lte/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
-  @include('admin.layouts.navbar')
-
-  @include('admin.layouts.sidebar')
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    @include('admin.layouts.container_header')
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        @yield('content')
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  @include('admin.layouts.footer')
-</div>
-<!-- ./wrapper -->
-
-@include('admin.layouts.js')
+<body>
+    <!-- <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div> -->
+    <div id="main-wrapper">
+      <header class="topbar" data-navbarbg="skin5">
+        @include('admin.layouts.header')
+       </header>
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        @include('admin.layouts.sidebar')
+        <!-- endsidebar -->
+     <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            @yield('content')
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->    
+        {{-- @include('admin.layouts.footer') --}}
+        </div>
+    </div>
+     @include('admin.layouts.js')
 </body>
+
 </html>

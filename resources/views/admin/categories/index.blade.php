@@ -11,7 +11,7 @@
 
 {{-- import file css (private) --}}
 @push('css')
-    <link rel="stylesheet" href="/admin/css/categories/category-list.css">
+    <link rel="stylesheet" href="/css/categories/category-list.css">
 @endpush
 
 @section('content')
@@ -35,7 +35,7 @@
     @endif
 
     {{-- display list category table --}}
-    <table id="category-list" class="table table-dark">
+    <table id="category-list" class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
                 <th>Stt</th>
