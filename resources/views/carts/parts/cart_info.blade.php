@@ -9,7 +9,6 @@
                 <th>Price Product</th>
                 <th>Quantity</th>
                 <th>Total</th>
-                <th colspan="3">Delete</th>
             </tr>
            
         </thead>
@@ -20,7 +19,7 @@
            <tr>
             <div class="list-product">
                 <div class="product-detail">
-                    <td><p><img src="/{{ $cart['image'] }}" alt="{{ $cart['name'] }}" width="150px" class="img-fluid"></p></td>
+                    <td><p><img src="/{{ $cart['image'] }}" alt="{{ $cart['name'] }}" width="120px" class="img-fluid"></p></td>
                     <td><p>{{ $cart['name'] }}</p></td>
                     <td><p>{{ number_format($cart['price']).'.000 VND' }}</p></td>
                     <td><p>{{ $cart['quantity']}}</p></td>

@@ -24,7 +24,7 @@ class ProductController extends Controller
         ->with('product_images')
         ->with('product_detail')
         ->first();
-        
+     
         $data['product'] = $product;
         $data['categories'] = $categories;
 
@@ -34,6 +34,7 @@ class ProductController extends Controller
         return view('products.detail', $data);
     }
 
+   
     public function searchProduct(Request $request)
     {
         $key = $request->key;

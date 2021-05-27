@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderUserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 /*
@@ -55,5 +56,9 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.'],function() {
     route::get('/',[ProfileController::class, 'profile'])->name('cart');
-    });
+});
+
+Route::group(['prefix'  =>  'order_user'    , 'middleware' => 'auth',  'as'    =>  'order_user.']  ,function(){
+    route::get('/',[OrderUserController::class,'order_user'])->name('list_order');
+});
 

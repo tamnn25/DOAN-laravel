@@ -55,7 +55,7 @@ class CartController extends Controller
     public function getCartInfo(Request $request)
     {
         
-        $data = [];
+     $data = [];
         //get data from SESSION 
         $sessionAll = Session::all();
         $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
@@ -65,6 +65,7 @@ class CartController extends Controller
         if (!empty($carts)) {
             // create list product id
             $listProductId = [];
+            
             foreach ($carts as $cart) {
                 $listProductId[] = $cart['id'];
             }
@@ -74,14 +75,15 @@ class CartController extends Controller
             ->get();
 
             // add step by step to SESSION
-            //session(['step_by_step' => 1]);
+            session(['step_by_step' => 1]);
         }
-            // dd($data);
         $data['products']   = $dataCart;
         $data['categories'] = $dataCart;
 
 
         return view('carts.cart_info', $data);
+
+
     }
 
     public function checkout(Request $request)
@@ -120,7 +122,7 @@ class CartController extends Controller
         // get cart info
         $carts = Session::all();
         $carts = Session::get('carts');
-        dd($carts);
+        // dd($carts);
         // validate quanity of product -> Available (in-stock | out-stock)
 
 
@@ -270,21 +272,21 @@ class CartController extends Controller
     //         return redirect()->back()->with('error', $ex->getMessage());
     //     }
     // }
-    public function destroy($id, Request $request)
+    public function destroy($id)
     {
-        dd(123);
-        $carts = session('carts');
-        foreach ($carts as $key => $value)
-        {
-            if ($value['id'] == $id) 
-            {                
-                unset($carts [$key]);  
+        dd($id);die;
+        // $carts = session('carts');
+        // foreach ($carts as $key => $value)
+        // {
+        //     if ($value['id'] == $id) 
+        //     {                
+        //         unset($carts [$key]);  
                           
-            }
-        }
-        //put back in session array without deleted item
-        $request->session()->push('carts',$carts);
-        //then you can redirect or whatever you need
-        return redirect()->back();
+        //     }
+        // }
+        // //put back in session array without deleted item
+        // $request->session()->push('carts',$carts);
+        // //then you can redirect or whatever you need
+        // return redirect()->back();
     }
 }

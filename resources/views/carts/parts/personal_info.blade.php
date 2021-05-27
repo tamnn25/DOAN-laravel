@@ -1,6 +1,6 @@
 <h4>Thông Tin Cá Nhân</h4>
 <br>
-<div class="border p-2 btn btn-info table">
+<div class="border p-2 btn btn-info table" style="    background-color: #5d9564eb;">
     <div class="p-2">
         <label for="">Fullname</label>
         <p style="color:#201818">{{ Auth::user()->name }}</p>

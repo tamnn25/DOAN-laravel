@@ -28,6 +28,8 @@ class SendVerifyCode extends Mailable
      *
      * @return $this
      */
+
+     
     public function build()
     {
         $data = [];
