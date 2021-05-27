@@ -11,7 +11,7 @@
 
 {{-- import file css (private) --}}
 @push('css')
-    <link rel="stylesheet" href="/admin/css/categories/category-create.css">
+    <link rel="stylesheet" href="/css/categories/category-create.css">
 @endpush
 
 @section('content')

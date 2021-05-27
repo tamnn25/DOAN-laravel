@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,3 +58,8 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.'],function() {
     route::get('/',[ProfileController::class, 'profile'])->name('cart');
     });
 
+Route::group(['prefix'=>'contact', 'as'=> 'contact.'],function () {
+
+        Route::get('contact',[ContactController::class, 'contact'])->name('address');
+
+    });

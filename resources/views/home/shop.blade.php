@@ -14,7 +14,7 @@
                         <span>All departments</span>
                     </div>
                     @foreach ($categories as $category)
-                        <ul >
+                        <ul style=" display:none; " >
                                 <li class="active" data-filter="*">
                                     <i >
                                         <a href="{{ url('home/shop/'. $category->id)}}"><i>{{ $category->name }}</i></a>
