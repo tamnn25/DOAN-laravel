@@ -1,73 +1,81 @@
 
 @extends('layouts.master')
-
-
     @section('content')
+
     <body>
-         <div class="hero__search">
+        <section class="hero hero-normal">
             <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="hero__categories">
-                    <div class="hero__categories__all">
-                        <i class="fa fa-bars"></i>
-                        <span>All departments</span>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="hero__categories">
+                            <div class="hero__categories__all">
+                                <i class="fa fa-bars"></i>
+                                <span>All departments</span>
+                            </div>
+                            <ul style=" display:none; " >
+                                @foreach ($categories as $category)
+                                        <li class="active" data-filter="*">
+                                                <a href="{{ url('home/shop/'. $category->id)}}"><i>{{ $category->name }}</i></a>
+                                        </li>
+                                @endforeach
+                                </ul>
+                        </div>
                     </div>
-                    @foreach ($categories as $category)
-                        <ul style=" display:none; " >
-                                <li class="active" data-filter="*">
-                                    <i >
-                                        <a href="{{ url('home/shop/'. $category->id)}}"><i>{{ $category->name }}</i></a>
-                                    </i>
-                                    
-                                </li>
-                        </ul>
-                    @endforeach
+                    <div class="col-lg-9">
+                        <div class="hero__search">
+                            <div class="hero__search__form">
+                        
+                                <div class="hero__search__form">
+                                    <div class="hero__search__categories">
+
+                                        <form action="http://127.0.0.1:8000/product/search" id="formSearch" method="GET">
+                                            
+                                            <input type="text" name="key" placeholder="What Would You Like To Buy ?">
+                                            <button type="submit" class="site-btn">SEARCH</button>
+                                        </form>
+                                    </div>    
+                                </div>
+                            </div>
+                            <div class="hero__search__phone">
+                                <div class="hero__search__phone__icon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <div class="hero__search__phone__text">
+                                    <h5>+84 263 888 279</h5>
+                                    <span>support 24/7 time</span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>    
+        </section>
+      
+        <section class="breadcrumb-section set-bg" data-setbg="{{ asset('shop/img/imageshop.jpg') }}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="breadcrumb__text">
+                            <h2>Shopping Cart</h2>
+                            <div class="breadcrumb__option">
+                                <a href="./index.html">Home</a>
+                                <span>Shopping Cart</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-9">
-                <div class="hero__search">
-                    <div class="hero__search__form">
-                
-                        <div class="hero__search__form">
-                            <form action="http://127.0.0.1:8000/product/search" id="formSearch" method="GET">
-                                
-                                <input type="text" name="key" placeholder="What Would You Like To Buy ?">
-                                <button type="submit" class="site-btn">SEARCH</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="hero__search__phone">
-                        <div class="hero__search__phone__icon">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="hero__search__phone__text">
-                            <h5>+84 263 888 279</h5>
-                            <span>support 24/7 time</span>
-                        </div>
-                    </div>
-                </div>
-               
-            </div>
-        </div>
-    </div>
+        </section>
+
         <section class="product spad">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 " >
                         <div class="sidebar" >
                             
-                            {{-- <div class="sidebar__item" >
-                                <h4>Department</h4>
-                                <ul >
-                                    @foreach ($categories as $item)
-                                        
-                                    <li ><a href="{{ url('home/shop/'. $item->id)}}">{{ $item->name }}</a></li>
-                                    @endforeach
-                                   
-                                </ul>
-                            </div> --}}
                             <div class="sidebar__item">
+                                
                                 <h4>Price</h4>
                                 <div class="price-range-wrap">
                                     <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
@@ -162,7 +170,7 @@
                                                         <a href="{{ route('product.detail', $item['id']) }}" class="latest-product__item">
                                                             <div class="latest-product__item__pic">
                                                                 
-                                                                <img src="{{asset('/'.$item->image ) }}" alt="" style="width: 110px">
+                                                                <img src="{{asset('/'.$item->image ) }}" alt="" style="width: 110px ">
                                                             </div>
                                                             
                                                             <div class="latest-product__item__text">
@@ -180,6 +188,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-lg-9 col-md-7">
                         <div class="product__discount">
                             <div class="section-title product__discount__title">
@@ -228,12 +237,11 @@
                                 @foreach ($products as $product)
                                     <div class="col-lg-4 col-md-6 col-sm-6">
                                         <div class="product__item">
-                                            <div class="product__item__pic set-bg" data-setbg="{{ asset('/'.$product->image) }}">
+                                            <div class="product__item__pic set-bg" data-setbg="{{ asset('/'.$product->image) }}" style="border: 1px solid blanchedalmond;">
                                                 <ul class="product__item__pic__hover">
                                                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                                     <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                                     <li><a href="{{ route('product.detail', $product['id']) }}"><i class="fa fa-shopping-cart"></i></a></li>
-                                                    {{-- {{ route('shop.show',$product->id) }} --}}
                                                 </ul>
                                             </div>
                                             <div class="product__item__text">

@@ -175,11 +175,13 @@
         slide: function (event, ui) {
             minamount.val('$' + ui.values[0]);
             maxamount.val('$' + ui.values[1]);
+            console.log(rangeSlider);
+            console.log(maxamount.val('$' + ui.values[1]));
+            console.log(minPrice);
         }
     });
     minamount.val('$' + rangeSlider.slider("values", 0));
     maxamount.val('$' + rangeSlider.slider("values", 1));
-
     /*--------------------------
         Select
     ----------------------------*/

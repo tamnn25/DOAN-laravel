@@ -31,8 +31,6 @@
             <tr>
                 <th>STT</th>
                 <th>product Name</th>
-                <th>Product_id</th>
-                <th>order_id</th>
                 <th>quantity</th>
                 <th>price</th>
                 <th>Total</th>
@@ -43,8 +41,6 @@
                 <tr>
                     <td>{{$key+1}}</td>
                     <td>{{$order->product->name}}</td>
-                    <td>{{$order->product_id}}</td>
-                    <td>{{$order->order_id}}</td>
                     <td>{{$order->quantity}}</td>
                     <td>{{$order->price_id}}</td>
                     <td>{{$order->total}}</td>

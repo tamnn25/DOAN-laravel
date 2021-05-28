@@ -14,19 +14,24 @@
                 </div>
                 <hr>
                 <div class="product__details__pic__slider owl-carousel">
+
                         @foreach ($product->product_images as $url)
+
                             <img data-imgbigurl="{{ asset($url->url) }}"
-                                    src="{{ asset($url->url) }}" alt="" width="250px" height="120px">
+                            src="{{ asset($url->url) }}" alt="" width="250px" height="120px">
+
                         @endforeach
                 </div>
+               
                 <hr>
                 
             </div>
             <div class="col-6">
-                
                 <hr>
                 <div class="col-6">
+
                     <div class="product-description">
+
                         <form action="{{ route('cart.add-cart', $product->id) }}" method="POST">
                             @csrf
                             <h3><strong>{{ $product->name }}</strong></h3>
@@ -49,7 +54,9 @@
                                 <button class="btn btn-outline-success" type="submit">Add Cart</button>
                             </p>
                         </form>
+                   
                     </div>
+                    
                 </div>
             </div>
             <div class="col-lg-12">
@@ -95,8 +102,38 @@
         </div>
     </section>
 
+<br><br><br> <br><br>
 
-    
+    <section class="categories">
+
+        <div class="container">
+            <div class="col-lg-12">
+                <div class="section-title related__product__title">
+                    <h2>Related Product</h2>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="categories__slider owl-carousel">
+                   @if (!empty($related))
+
+                        @foreach ($related as $item)
+
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg"  data-setbg="{{asset( $item->image) }}">
+
+                                    <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $item->name }}</a></h5>
+                            
+                                </div>
+                            </div> 
+
+                        @endforeach
+
+                    @endif    
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
 
 @push('css')
@@ -106,20 +143,3 @@
 @push('js')
     
 @endpush
-{{-- @section('scripts')
-    <script>
-        function addCart(paramIid) {
-            $.ajax({
-                type: "POST",
-                url: `{{ route('cart.add-cart') }}`,
-                data: {id: paramIid},
-                headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-                success: function (response) {
-                    console.log(response);
-                }
-            });
-        }
-    </script>
-@endsection  --}}

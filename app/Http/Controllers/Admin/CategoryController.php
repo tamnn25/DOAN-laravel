@@ -21,11 +21,13 @@ class CategoryController extends Controller
     {
         // Method: GET
         $data = [];
+
         $categories = Category::get();
-        // dd($categories);
+
         $data['categories'] = $categories;
+
         return view('admin.categories.index', $data);
-        // return view('categories.index', compact('categories'));
+
     }
 
     /**
@@ -37,6 +39,7 @@ class CategoryController extends Controller
     {
         // Method: GET
         $data = [];
+
         return view('admin.categories.create', $data);
     }
 
@@ -49,11 +52,9 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         // Method: POST
-        // dd($request->all());
-
-
         // insert to DB
         $categoryInsert = [
+            
             'name' => $request->category_name,
             'parent_id' => $request->parent_id,
 

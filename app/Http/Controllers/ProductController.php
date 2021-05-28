@@ -17,21 +17,27 @@ class ProductController extends Controller
     //
     public function detail($id, Request $request){
         $data = [];
+
         $categories = Category::all();
-
-
+        
         $product = Product::whereId($id)
         ->with('product_images')
         ->with('product_detail')
         ->first();
-     
+        $related = Product::get();
+
+        $data['related'] = $related;
+
         $data['product'] = $product;
+
         $data['categories'] = $categories;
 
-        // dd($product);
-
-        // display create sucess
         return view('products.detail', $data);
+        // return view('home.homepage')->with([
+        //     'products'      => $product,
+        //     'categories'    => $categories,
+        // ]);
+        
     }
 
    

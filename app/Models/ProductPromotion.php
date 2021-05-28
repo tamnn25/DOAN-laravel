@@ -19,10 +19,10 @@ class ProductPromotion extends Model
     ];
 
     public function promotion(){
-        return $this->belongsTo(Promotion::class,)
+        return $this->belongsTo(Promotion::class,);
     }
     public function product(){
         
-        return $this->hasOne(Product::class)
+        return $this->hasOne(Product::class);
     }
 }

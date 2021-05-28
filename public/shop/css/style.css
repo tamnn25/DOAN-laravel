@@ -120,6 +120,7 @@ ol {
     background:#3e3436;
 }
  
+
 /*----- Phần menu -----*/
 .menu {
     margin:0px auto;
@@ -2705,6 +2706,8 @@ ol {
 .blog__details__widget .blog__details__social a:last-child {
 	margin-right: 0;
 }
+
+
 
 /*---------------------
   Footer

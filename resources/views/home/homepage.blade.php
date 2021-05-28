@@ -1,82 +1,141 @@
 @section('content')
 @extends('layouts.master')
-<!-- Hero Section Begin -->
 @include('layouts.menu_left')
 
 
-    <!-- Hero Section End -->
-   
-    <br>
-    <!-- Categories Section Begin -->
-    {{-- <section class="categories">
-        <div class="container">
-            <div class="row">
-                <div class="categories__slider owl-carousel">
-                   @if (!empty($products))
-                        @foreach ($products as $product)
-                        <div class="col-lg-3">
-                            <div class="categories__item set-bg"  data-setbg="{{ $product->image }}">
-                                <h5><a href="{{ route('home.shop', $product['id']) }}">{{ $product->category->name }}</a></h5>
-                            </div>
 
-                        
-                        </div> 
-                       
-                
-                    @endforeach
-                    @endif    
-                    {{-- @if ($products->product_images)
-                        @foreach ($products->product_images as $product_image)
-                                <img data-imgbigurl="{{ $product_image->url }}"
-                        src="{{ $product_image->url }}" alt="">
-                        @endforeach
-                    @endif --}}
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    
-    <!-- Categories Section End --> 
-    <!-- Categories Section Begin -->
     <section class="categories">
+
         <div class="container">
             <div class="row">
+
                 <div class="categories__slider owl-carousel">
                    @if (!empty($products))
+
                         @foreach ($products as $product)
-                                <div class="col-lg-3">
-                            <div class="categories__item set-bg"  data-setbg="{{ $product->image }}">
-                                <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
-                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="categories__item set-bg"  data-setbg="{{ $product->image }}">
+
+                                    <h5><a href="{{ route('product.detail', $product['id']) }}">{{ $product->category->name }}</a></h5>
+                            
+                                </div>
                             </div> 
+
                         @endforeach
+
                     @endif    
                 </div>
             </div>
         </div>
-       
     </section>
     <!-- Featured Section Begin -->
+
     <section class="featured spad">
+
        @include('home.listproduct')
+
     </section>
     <!-- Featured Section End -->
 
     <!-- Banner Begin -->
     <div class="banner">
+
         <div class="container">
+
             <div class="row">
+
                 <div class="col-lg-6 col-md-6 col-sm-6">
+
                     <div class="banner__pic">
-                        <img src="shop/img/banner/banner-1.jpg" alt="">
+
+                        <div class="banner__pic">
+
+                       
+                            <div id="demo" class="carousel slide" data-ride="carousel">
+    
+                                <!-- Indicators -->
+                                <ul class="carousel-indicators">
+    
+                                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    
+                                    <li data-target="#demo" data-slide-to="1"></li>
+                                    
+                                    <li data-target="#demo" data-slide-to="2"></li>
+    
+                                </ul>
+                              
+                                <!-- The slideshow -->
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="shop/img/banner/1.jpg" alt="Los Angeles">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="shop/img/banner/2.jpg" alt="Chicago">
+                                    </div>
+                                    <div class="shop/img/banner/3.jpg">
+                                        <img src="ny.jpg" alt="New York">
+                                    </div>
+                                </div>
+                              
+                                <!-- Left and right controls -->
+                                {{-- <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                  <span class="carousel-control-prev-icon"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#demo" data-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </a> --}}
+                              
+                            </div>
+    
+                        </div>
                     </div>
+                    {{-- slide chạy trái --}}
                 </div>
+                
                 <div class="col-lg-6 col-md-6 col-sm-6">
+
                     <div class="banner__pic">
-                        <img src="shop/img/banner/banner-2.jpg" alt="">
+
+                       
+                        <div id="demo" class="carousel slide" data-ride="carousel">
+
+                            <!-- Indicators -->
+                            <ul class="carousel-indicators">
+
+                                <li data-target="#demo" data-slide-to="0" class="active"></li>
+
+                                <li data-target="#demo" data-slide-to="1"></li>
+                                
+                                <li data-target="#demo" data-slide-to="2"></li>
+
+                            </ul>
+                          
+                            <!-- The slideshow -->
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="shop/img/banner/4.jpg" width="100%" height="275px" alt="Los Angeles">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="shop/img/banner/5.jpg" width="100%" height="275px" alt="Chicago">
+                                </div>
+                                <div class="shop/img/banner/6.jpg">
+                                    <img src="ny.jpg" width="100%"  height="275px" alt="New York">
+                                </div>
+                            </div>
+                          
+                            <!-- Left and right controls -->
+                            {{-- <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                              <span class="carousel-control-prev-icon"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#demo" data-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </a> --}}
+                          
+                        </div>
+
                     </div>
+                        {{-- slide chạy phải --}}
                 </div>
             </div>
         </div>
@@ -85,32 +144,42 @@
 
     <!-- Latest Product Section Begin -->
     <section class="latest-product spad">
+
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
                         <h4>Latest Products</h4>
                        <div class="latest-product__slider owl-carousel">
                             @for ($i = 1; $i <= 3; $i++)
+
                                 <div  class="latest-prdouct__slider__item">
+
                                     @if(isset($lasterProduct[$i]))
-                                    @foreach ($lasterProduct[$i] as $key => $item)
-                                        <a href="{{ route('product.detail',$item['id']) }}" class="latest-product__item">
-                                            <div class="latest-product__item__pic">
-                                                <img src="{{ $item->image }}" alt="" style="width: 110px">
-                                            </div>
-                                            <div class="latest-product__item__text">
-                                                <h6>{{ $item->name }}</h6>
-                                                <span>{{ $item->price.'.000.VND' }}</span>
-                                            </div>
-                                        </a>
-                                    @endforeach
+
+                                        @foreach ($lasterProduct[$i] as $key => $item)
+
+                                            <a href="{{ route('product.detail',$item['id']) }}" class="latest-product__item">
+                                                <div class="latest-product__item__pic">
+                                                    <img src="{{ $item->image }}" alt="" style="width: 110px">
+                                                </div>
+                                                <div class="latest-product__item__text">
+                                                    <h6>{{ $item->name }}</h6>
+                                                    <span>{{ $item->price.'.000.VND' }}</span>
+                                                </div>
+                                            </a>
+
+                                        @endforeach
+
                                     @endif
+
                                 </div>
                             @endfor
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
                         <h4>Top Rated Products</h4>
@@ -176,6 +245,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
                         <h4>Review Products</h4>
@@ -241,13 +311,16 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
     </section>
     <!-- Latest Product Section End -->
 
     <!-- Blog Section Begin -->
     <section class="from-blog spad">
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -304,6 +377,7 @@
                 </div>
             </div>
         </div>
+        
     </section>
     <!-- Blog Section End -->
 @endsection

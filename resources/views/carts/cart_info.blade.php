@@ -49,14 +49,14 @@
                                         @endphp
                                     </div>
                                 </td>
-                        {{-- <td>
-                            <form action="{{ route('cart.destroy',$cart->id) }}" method="post">
+                        <td>
+                            <form action="{{ route('cart.destroy',['id' => $cart['id']]) }}" method="post">
                                 @csrf
                                 <button  value="Delete" style="    border: none;
                                 background-color: white;" ><i class="fas fa-calendar-times fa-2x" style="color:rgb(206, 17, 17);"></i></button>
                             </form>
                            
-                        </td> --}}
+                        </td>
                       
                             </tr>
                         </tbody>

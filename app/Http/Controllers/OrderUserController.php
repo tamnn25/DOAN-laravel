@@ -22,11 +22,9 @@ class OrderUserController extends Controller
                 'user'          =>  $user,
                 'orders'        =>  $orders,
             ]);    
-            // return redirect('dang nhap')->with('error','vui lòng đăng nhập  để xem lịch sử mua hàng');
         }else{
             
         }
-        // return view('order_user.index');
     }
     
     public function detailOrder($id){

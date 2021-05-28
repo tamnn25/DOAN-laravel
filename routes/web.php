@@ -6,6 +6,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderUserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PromotionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,6 +62,12 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
 Route::group(['prefix'  =>  'order_user'    , 'middleware' => 'auth',  'as'    =>  'order_user.']  ,function(){
     route::get('/',[OrderUserController::class,'order_user'])->name('list_order');
     route::get('/detail/{id}',[OrderUserController::class,'detailOrder'])->name('detail_order');
+
+});
+
+Route::group(['prefix'  =>  'promotion'    ,   'as'    =>  'promotion.']  ,function(){
+    route::get('/',[PromotionController::class,'promotion'])->name('list_promotion');
+    // route::get('/detail/{id}',[OrderUserController::class,'detailOrder'])->name('detail_order');
 
 });
 

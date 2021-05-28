@@ -271,10 +271,9 @@ class CartController extends Controller
                     //         return redirect()->back()->with('error', $ex->getMessage());
                     //     }
                     // }
-                    public function destroy($cart,Request $request)
+                    public function destroy(Request $request)
                     {
                         $id = $request->id;
-
                         // dd($id);die;
                         $sessionAll = Session::all();
 
