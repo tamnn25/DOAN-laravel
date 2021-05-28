@@ -12,6 +12,7 @@
 {{-- code nay de chay den file css ở thu muc public --}}
 {{-- <base href="{{asset('')}}"> --}}
 <!-- Css Styles -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="/shop/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="/shop/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="/shop/css/elegant-icons.css" type="text/css">

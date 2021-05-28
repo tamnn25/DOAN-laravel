@@ -4,7 +4,7 @@
 @section('title', 'List Order')
 
 {{-- set breadcrumbName --}}
-@section('breadcrumbName', 'Order Management')
+@section('breadcrumbName', 'Order ')
 
 {{-- set breadcrumbMenu --}}
 @section('breadcrumbMenu', 'List Order')

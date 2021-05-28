@@ -1,8 +1,3 @@
-
-
-
-
-
  <div class="container">
 
     <div class="row">
@@ -12,22 +7,21 @@
             </div>
             <div class="featured__controls">
 
-                {{-- @for($i=1;$i<=4;$i++) --}}
                     <ul>
+
                         @foreach ($categories as $category)
                             <li class="active" data-filter="*">
                                 <a style="color:black" href="javascript:;" onclick="getProductByCategory({{ $category->id }})"> {{ $category->name }}</a>
-                               </li>
+                            </li>
                         @endforeach
+
                     </ul>
-                {{-- @endfor --}}
 
             </div>
         </div>
     </div> 
-    {{-- <h1>{{ count($products) }}  Sản phẩm mới</h1> --}}
      <div class="row featured__filter" id="loadProduct">
-        
+         {{-- phần để slide đổ thông tin sản phẩn ra  không dc xóa --}}
     </div>
 </div>
 @section('scripts')

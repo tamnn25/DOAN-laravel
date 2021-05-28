@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function index(){
         $products   = Product::paginate(5);
         $categories = Category::get();
-        $productLimit   = Product::orderBy('created_at', 'desc')->limit(20)->get();
+        $productLimit   = Product::orderBy('created_at', 'desc')->limit(6)->get();
         $lasterProduct  = $this->formatDataProduct($productLimit);
         return view('home.homepage')->with([
             'lasterProduct' => $lasterProduct,

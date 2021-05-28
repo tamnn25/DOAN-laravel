@@ -58,17 +58,23 @@ class AuthController extends Controller
     {
         $this->validate($request, [
             'email' => 'required|email',
+
             'password' => 'required',
         ]);
+
         if (auth()->guard('admin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]))
         {
+
             $user = auth()->guard('admin')->user();
             
             \Session::put('success','You are Login successfully!!');
+
             return redirect()->route('admin.dashboard');
             
         } else {
+
             return back()->with('error','your username and password are wrong.');
+
         }
 
     }
@@ -83,12 +89,12 @@ class AuthController extends Controller
         Auth::guard('admin')->logout();
 
         // $request->session()->invalidate();
-
         // $request->session()->regenerateToken();
-
         // auth()->guard('admin')->logout();
         // \Session::flush();
-        \Session::put('success','You are logout successfully');        
+
+        \Session::put('success','You are logout successfully');     
+           
         return redirect(route('admin.login'));
     }
 }

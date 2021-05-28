@@ -21,4 +21,13 @@ class Promotion extends Model
         'end_date',
         'status',
     ];
-}
+
+    public function product()
+    {
+        return $this->belongsTo(Promotion::class);
+    }
+    public function product_promotion()
+    {
+        return $this->hasOne(ProductPromotion::class);
+    }
+}  
