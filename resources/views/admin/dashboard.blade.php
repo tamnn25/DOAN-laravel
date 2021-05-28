@@ -46,7 +46,7 @@
                         <div class="card card-hover">
                             <div class="box bg-success text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
-                                <a href="{{route('admin.order.index')}}"><h6 class="text-white">List Order</h6></a>
+                                <a href="{{route('admin.order.index')}}"><h6 class="text-white">Order Manage</h6></a>
                             </div>
                         </div>
                     </div>
