@@ -24,7 +24,7 @@ class ProductController extends Controller
         ->with('product_images')
         ->with('product_detail')
         ->first();
-        
+     
         $data['product'] = $product;
         $data['categories'] = $categories;
 
@@ -34,6 +34,7 @@ class ProductController extends Controller
         return view('products.detail', $data);
     }
 
+   
     public function searchProduct(Request $request)
     {
         $key = $request->key;
@@ -42,7 +43,9 @@ class ProductController extends Controller
         // dd(22);
         $productLimit   = Product::orderBy('created_at', 'desc')->limit(9)
         ->get();
-        $products = Product::where('name', 'like', '%'. $key . '%')->paginate(10);
+        $products = Product::where('name', 'like', '%'. $key . '%')
+                    ->orWhere('price', 'like', '%' .$key. '%')
+                    ->paginate(10);
 
         $lasterProduct  = $this->formatDataProduct($productLimit);
         // dd($lasterProduct);

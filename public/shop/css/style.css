@@ -108,6 +108,87 @@ ol {
 	margin: 0;
 }
 
+
+
+.clearfix:after {
+    display:block;
+    clear:both;          
+}
+.wrapper {
+    width:100%;
+    box-shadow:0px 1px 3px rgba(0,0,0,0.2); 
+    background:#3e3436;
+}
+ 
+/*----- Phần menu -----*/
+.menu {
+    margin:0px auto;
+    background:#bf5c71;
+    height: 50px;
+    margin-top: 150px;
+}
+.menu li {
+    margin:0px;
+    list-style:none;
+    font-family:'Ek Mukta';
+}
+.menu a {
+    transition:all linear 0.15s;
+    color:#919191;
+    text-decoration:none;
+}
+.menu li:hover > a, .menu .current-item > a {
+    text-decoration:none;
+    color:#be5b70;
+} 
+.menu .arrow {
+    font-size:11px;
+    line-height:0%;
+} 
+/*----- css cho phần menu cha -----*/
+.menu > ul > li {
+    float:left;
+    display:inline-block;
+    position:relative;
+    font-size:19px;
+}
+.menu > ul > li > a {
+    padding:10px 40px;
+    display:inline-block;
+    color:white;
+}
+.menu > ul > li:hover > a, .menu > ul > .current-item > a {
+    background:#2e2728;
+}
+/*----css cho menu con----*/
+.menu li:hover .sub-menu {
+    z-index:1;
+    opacity:1;
+}
+.sub-menu {
+    width:160%;
+    padding:5px 0px;
+    position:absolute;
+    top:100%;
+    left:0px;
+    z-index:-1;
+    opacity:0;
+    transition:opacity linear 0.15s;
+    box-shadow:0px 2px 3px rgba(0,0,0,0.2);
+    background:#2e2728;
+}
+.sub-menu li {
+    display:block;
+    font-size:16px;
+}
+.sub-menu li a {
+    padding:10px 30px;
+    display:block;
+}
+.sub-menu li a:hover, .sub-menu .current-item a {
+    background:#3e3436;
+}
+
 /*---------------------
   Helper CSS
 -----------------------*/
@@ -523,7 +604,7 @@ ol {
 
 .header__cart ul li a span {
 	height: 13px;
-	width: 13px;
+	width: 25px;
 	background: #7fad39;
 	font-size: 10px;
 	color: #ffffff;
@@ -592,6 +673,7 @@ ol {
 	padding: 10px 25px 10px 40px;
 	cursor: pointer;
 }
+
 
 
 .hero__categories__all i {
@@ -2492,6 +2574,7 @@ ol {
 	text-align: center;
 }
 
+
 .blog__details__hero__text h2 {
 	font-size: 46px;
 	color: #ffffff;
@@ -3483,5 +3566,5 @@ ol {
 	.modal-content {
 		background-color: #124d3a8c;
 	}
-
+	
 }

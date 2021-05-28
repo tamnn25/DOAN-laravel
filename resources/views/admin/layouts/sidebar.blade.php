@@ -56,7 +56,7 @@
                                     <li class="sidebar-item">
                                        <a href="{{ route('admin.product.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.category.create' ? 'active' : '' }}">
                                       <i class="far fa-circle nav-icon"></i>
-                                      <p>Create product</p>
+                                      <p>Create Product</p>
                                     </a>
                                     </li>
                                 </ul>
