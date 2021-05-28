@@ -3,20 +3,14 @@
 {{-- set page title --}}
 @section('title', 'Update Order Status')
 
-{{-- set breadcrumbName --}}
-@section('breadcrumbName', 'Order Management')
-
-{{-- set breadcrumbMenu --}}
-@section('breadcrumbMenu', 'Update Order Status')
-
 {{-- import file css (private) --}}
 @push('css')
-    <link rel="stylesheet" href="/backend/css/orders/order-list.css">
+    <link rel="stylesheet" href="/css/orders/order-list.css">
 @endpush
 
 {{-- import file js (private) --}}
 @push('js')
-    <script src="/backend/js/orders/order-list.js"></script>
+    <script src="/js/orders/order-list.js"></script>
 @endpush
 
 @section('content')

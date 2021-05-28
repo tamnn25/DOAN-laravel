@@ -62,7 +62,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   $request->password = bcrypt('password');
         //
         $userInsert = [
             'name' => $request->name,
@@ -85,38 +85,17 @@ class UserController extends Controller
         }
     }
 
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show($id)
-    // {
-    //     //
-    //     $data = [];
-    //     $users = User::find($id);
+    
+    public function edit($id)
+    {
+        //
+        $data = [];
+        $users = Admin::find($id);
         
-    //     $data['users'] = $users;
-    //     return view('admin.user.show',$data);
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit($id)
-    // {
-    //     //
-    //     $data = [];
-    //     $users = User::find($id);
-        
-    //     $data['users'] = $users;
-    //     return view('admin.user.edit',$data);
+        $data['users'] = $users;
+        return view('admin.user.edit',$data);
        
-    // }
+    }
 
     // /**
     //  * Update the specified resource in storage.
@@ -125,26 +104,25 @@ class UserController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function update(Request $request, $id)
-    // {
-    //     // dd($id);
-    //     DB::beginTransaction();
+    public function update(Request $request, $id)
+    {   $request->password = bcrypt('password');
+        // dd($id);
+        DB::beginTransaction();
         
-    //     try{
-    //         $users = User::findOrFail($id);
-    //         // $users->name = $request->name;
-    //         // $users->email = $request->email;
-    //         $users->password = $request->password;
-    //         $users->phone_number = $request->phone_number;
+        try{
+            $users = Admin::findOrFail($id);
+            // $users->name = $request->name;
+            // $users->email = $request->email;
+            $users->password = $request->password;
 
-    //         $users->save();
+            $users->save();
             
-    //         DB::commit();
-    //         return redirect()->route('admin.user.index')->with('success', 'Update User successful!');
-    //     }catch(Exception $ex){
-    //         echo $ex->getMessage();
-    //     }
-    // }
+            DB::commit();
+            return redirect()->route('admin.user.index')->with('success', 'Update User successful!');
+        }catch(Exception $ex){
+            echo $ex->getMessage();
+        }
+    }
 
     /**
      * Remove the specified resource from storage.

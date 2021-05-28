@@ -2,7 +2,7 @@
 
 
 @section('content')
-    @include('admin.customer._search')
+    @include('admin.customer.search')
 
         <table id="product-list" class="table table-bordered table-hover table-striped">
             <thead>

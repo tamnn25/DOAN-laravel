@@ -26,22 +26,22 @@
 
         
         <div class="form-group mb-5">
-            <label for="">Post Name</label>
+            <label for="">Product Name</label>
             <input type="text" name="name" placeholder="post name" value="{{ old('name', $product->name) }}" class="form-control">
             @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group mb-5">
-            <label for="">Post description</label>
+            <label for="">Product description</label>
             <input type="text" name="description" placeholder="post description" value="{{ old('description', $product->description) }}" class="form-control">
             @error('description')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group mb-5">
-            <label for="">Post images</label>
-            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="img-fluid">
+            <label for="">Product images</label>
+            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 150px; height: auto;">
             <input type="file" name="image" placeholder="product image" class="form-control">
             @error('image')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -86,7 +86,7 @@
         </div>
         <div class="form-group mb-5">
             <label for="">Product Image</label>
-            <input type="file" name="new_url[]" multiple class="form-control">
+            <input type="file" name="new_url[]" multiple class="form-control" >
 
             {{-- show all image of table product_images --}}
             @if (!empty($product->product_images))
@@ -94,9 +94,10 @@
                     @foreach ($product->product_images as $url)
                         <li class="col-4">
                             <div class="product-image-group">
-                                <img src="{{ asset($url->url) }}" alt="image" class="img-fluid">
+                                <img src="{{ asset($url->url) }}" alt="image" class="img-fluid" style="width: 150px; height: auto;">
+                                <br>
                                 <input type="hidden" name="url[]" value="{{ $url->url }}">
-                                <button type="button" class="btn btn-danger form-control mt-1" onclick="$(this).closest('li').remove()">Remove Image</button>
+                                <button class="btn btn-danger" type="button" class="btn btn-danger form-control mt-1" onclick="$(this).closest('li').remove()">Remove Image</button>
                             </div>
                         </li>
                     @endforeach

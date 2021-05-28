@@ -34,7 +34,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group mb-5">
+        {{-- <div class="form-group mb-5">
             <label for="">phone_number</label>
             <input type="text" name="phone_number" value="{{old('phone_number',$users->phone_number)}}" placeholder=" Enter phone_number" class="form-control">
             <label for="">New phone_number</label>
@@ -42,7 +42,7 @@
             @error('phone_number')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-        </div>
+        </div> --}}
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 @endsection

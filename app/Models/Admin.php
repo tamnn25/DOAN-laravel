@@ -36,7 +36,6 @@ class Admin extends Authenticatable
         'email_verified_at',
         'role_id',
         'password',
-        
         'remember_token',
     ];
     public function roles()

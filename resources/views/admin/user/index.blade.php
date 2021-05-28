@@ -38,7 +38,7 @@
                         <th>{{$admin->created_at}}</th>
                         
                         {{-- <td><a class="btn btn-outline-success" href="{{ route('admin.user.show', $admin->id) }}">Detail</a></td> --}}
-                        <td><a class="btn btn-outline-secondary" href=" {{ route('admin.user.edit', $admin->id) }}">Edit</a></td>
+                        <td><a class="btn btn-outline-secondary" href=" {{ route('admin.user.edit', $admin->id) }}">Change Password</a></td>
                         <td>
                             <form action="{{ route('admin.user.destroy', $admin->id) }}" method="post">
                                 @csrf

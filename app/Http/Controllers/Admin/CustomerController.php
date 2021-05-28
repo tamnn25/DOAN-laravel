@@ -19,20 +19,20 @@ class CustomerController extends Controller
         
         $data = [];
         // get list data of table products
-        $users = User::orderBy('id', 'desc')->paginate(4);
+        $users = User::orderBy('id', 'desc')->paginate(8);
         // add new param to search
         // search post name
         if (!empty($request->name)) {
 
             $users = User::where('name', 'like', '%' . $request->name . '%')
                     ->orderBy('id', 'desc')
-                    ->paginate(4);
+                    ->paginate(8);
             // dd($users);
         }
         if (!empty($request->date)) {
             $users = User::where('created_at', 'like', '%' . $request->date . '%')
                     ->orderBy('id', 'desc')
-                    ->paginate(4);
+                    ->paginate(8);
             // dd($users);
         }
 
