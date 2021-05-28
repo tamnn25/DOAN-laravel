@@ -5,19 +5,14 @@
 
 {{-- set breadcrumbName --}}
 
-@section('breadcrumbName', 'Order Detail')
-
-{{-- set breadcrumbMenu --}}
-@section('breadcrumbMenu', 'Detail Order')
-
 {{-- import file css (private) --}}
 @push('css')
-    <link rel="stylesheet" href="/backend/css/orders/order-list.css">
+    <link rel="stylesheet" href="/css/orders/order-list.css">
 @endpush
 
 {{-- import file js (private) --}}
 @push('js')
-    <script src="/backend/js/orders/order-list.js"></script>
+    <script src="/js/orders/order-list.js"></script>
 @endpush
 
 @section('content')

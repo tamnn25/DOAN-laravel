@@ -1,36 +1,17 @@
-@extends('admin.layouts.master')
 
 
-@section('content')
-    @include('admin.customer._search')
+<div class="input-group">
+    <nav style="width:50%" class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand">Search</a>
 
-        <table id="product-list" class="table table-bordered table-hover table-striped">
-            <thead>
-                <tr>
-                    <th>search id</th>
-                    <th>name</th>
-                    <th>email</th>
-                    <th>email_verified_at</th>
-                    {{-- <th>password</th> --}}
-                    <th>phone_number</th>
-                    <th>address</th>
-                    <th>created_at</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $key=> $user)
-                    <tr>
-                        <th>{{$key+1}}</th>
-                        <th>{{$user->name}}</th>
-                        <th>{{$user->email}}</th>
-                        <th>{{$user->email_verified_at}}</th>
-                        {{-- <th>{{$user->password}}</th> --}}
-                        <th>{{$user->phone_number}}</th>
-                        <th>{{$user->address}}</th>
-                        <th>{{$user->created_at}}</th>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        {{$users->links()}}
-@endsection        
+        <form action="{{ route('admin.customer.index') }}" method="GET" class="form-inline">
+            {{-- <label class="form-label" for="form1"> searched by name</label> --}}
+            <input class="form-control mr-sm-2" name="name" placeholder=" name"  value="{{ request()->get('name') }}" aria-label="Search">
+            
+            {{-- <label class="form-label" for="form1"> searched by email</label> --}}
+            <input type="date" class="form-control mr-sm-2" name="date" placeholder="email" value="{{ request()->get('email') }}" >
+
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+</div>

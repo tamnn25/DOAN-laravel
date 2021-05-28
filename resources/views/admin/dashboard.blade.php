@@ -7,7 +7,7 @@
 @endpush
 
 @section('content')
-    
+
             <div class="page-breadcrumb">
                         <div class="row">
                             <div class="col-12 d-flex no-block align-items-center">
@@ -46,7 +46,7 @@
                         <div class="card card-hover">
                             <div class="box bg-success text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
-                                <h6 class="text-white">Charts</h6>
+                                <a href="{{route('admin.order.index')}}"><h6 class="text-white">List Order</h6></a>
                             </div>
                         </div>
                     </div>

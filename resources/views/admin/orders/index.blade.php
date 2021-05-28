@@ -32,7 +32,7 @@
 
     {{-- modal update order status  --}}
 
-    @include('admin.orders.parts.modal_update_order_status')
+    {{-- @include('admin.orders.parts.modal_update_order_status') --}}
 
 
 @endsection

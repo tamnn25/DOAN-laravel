@@ -54,9 +54,9 @@
                                       <p>List Product</p>
                                     </a>
                                     <li class="sidebar-item">
-                                       <a href="{{ route('admin.category.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.category.create' ? 'active' : '' }}">
+                                       <a href="{{ route('admin.product.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.category.create' ? 'active' : '' }}">
                                       <i class="far fa-circle nav-icon"></i>
-                                      <p>Create Category</p>
+                                      <p>Create product</p>
                                     </a>
                                     </li>
                                 </ul>
@@ -96,7 +96,7 @@
                                 <li class="sidebar-item">
                                   <a href="{{ route('admin.user.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.create' ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Create Admin</p>
+                                    <p>Create User</p>
                                   </a>
                                 </li>
                             </ul>
