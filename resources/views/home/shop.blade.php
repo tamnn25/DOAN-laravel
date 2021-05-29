@@ -57,10 +57,10 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="breadcrumb__text">
-                            <h2>Shopping Cart</h2>
+                            <h2>Shopping</h2>
                             <div class="breadcrumb__option">
                                 <a href="./index.html">Home</a>
-                                <span>Shopping Cart</span>
+                                <span>Shopping</span>
                             </div>
                         </div>
                     </div>
@@ -192,7 +192,7 @@
                     <div class="col-lg-9 col-md-7">
                         <div class="product__discount">
                             <div class="section-title product__discount__title">
-                                <h2>Sale Off</h2>
+                                <h2>promotional products</h2>
                             </div>
                             <div class="row">
                                 <div class="product__discount__slider owl-carousel">

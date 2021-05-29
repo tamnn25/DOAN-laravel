@@ -1,5 +1,5 @@
 <link rel="icon" type="/end/image/png" sizes="16x16" href="/end/assets/images/favicon.png">
-    <title>Matrix end</title>
+    <title>Matrix Admin</title>
     <!-- Custom CSS -->
     <link href="/end/assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <!-- Custom CSS -->
