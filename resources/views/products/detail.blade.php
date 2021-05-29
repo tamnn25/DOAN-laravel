@@ -39,6 +39,14 @@
                             <p class="product-comment">
                                 <span>{{ $product->description }}</span>
                             </p>
+                            <p class="product-comment">
+                                <span>Số lượng còn: </span>
+                                @if ($product->quantity <= 0)
+                                <span class="text-danger">Hết Hàng</span>
+                                @else
+                                <span>{{ $product->quantity }}</span>
+                                @endif
+                            </p>
                             <hr>
                             <p class="product-price">{{ number_format($product->price). '.000.VND' }}</p>
                             <hr>
@@ -46,7 +54,7 @@
                                 <div class="product__details__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input type="text" name="quantity" required value="1">
+                                            <input type="number" name="quantity" required value="1" max="{{ $product->quantity }}">
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +100,42 @@
                         <div class="tab-pane" id="tabs-3" role="tabpanel">
                             <div class="product__details__tab__desc">
                                 <h6>Products Infomation</h6>
-                                <p>{{ $product->product_detail->content }}</p>
+                                {{-- <p>{{ $product->product_detail->content }}</p> --}}
+                                <form action="{{ route('product.detail',$product->id) }}" method="get" enctype="multipart/form-data" >
+                                    <input type="radio" id="vehicle1" name="status" value="0">
+                                    &nbsp;<label for="vehicle1">chưa hài lòng</label>
+                                    <br>
+                                    <input type="radio" id="vehicle1" name="status" value="1">
+                                     &nbsp;<label for="vehicle1">hài lòng</label>
+                                    <br>
+                                    
+                                    <label for="comment">Comment:</label>
+                                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                                    <br>
+                                    <label for="comment">đính kèm ảnh:</label>
+                                    <input id="my-input" class="form-control" type="file" name="" >     
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Create</button>
+                                </form>
+                                <br>
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                        <th>Bài đánh giá</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>coment ádkashdkashdkashkdhaskdhaskhdjasjdhjashdkjashdjksahdjksahdjkhjk
+                                                ádasdas
+                                            </td>
+                                           
+                                        </tr>
+                                        <tr>
+                                            <td>coment ádkashdkashdkashkdhaskdhaskhdjasjdhjashdkjashdjksahdjksahdjkhjk
+                                                ádasdas
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                                 
                             </div>
                         </div>

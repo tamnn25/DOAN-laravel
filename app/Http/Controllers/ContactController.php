@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Requests\ContactMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Message;
+use Exception;
 
 class ContactController extends Controller
 {
@@ -14,7 +15,7 @@ class ContactController extends Controller
         return view('contact.address');
     }
 
-    public function postmessage(request $request){
+    public function postmessage( Request $request){
         $message = [
             'name' => $request->name,
             'email' =>$request->email,

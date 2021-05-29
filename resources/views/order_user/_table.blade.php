@@ -1,19 +1,17 @@
-<table id="product-list" class="table table-bordered table-hover table-striped">
-    <thead>
+<table id="product-list" class="   table table-bordered table-hover table-striped">
+    <thead class="table-primary">
         <tr>
 
             <th>STT</th>
-            {{-- <th>Fullname</th> --}}
             <th>Order day</th>
             <th>Status</th>
-            <th colspan="3">Action</th>
+            {{-- <th colspan="3">Action</th> --}}
         </tr>
     </thead>
     <tbody>
         @if(!empty($orders))
-            @foreach ($orders as $key => $order)
+            @foreach ($orders as  $order)
                 <tr>
-                    <td>{{ $key+1 }}</td>
                     {{-- <td>{{ $order->user->name }}</td> --}}
                     <td>{{ $order->created_at }}</td>
                     <td>
@@ -27,6 +25,12 @@
             @endforeach
         @endif
     </tbody>
-</table>
 
-{{ $orders->links() }}
+</table>
+<br>
+<a href="{{ route('order_user.list_order') }}" type="button" class="btn btn-info float-left" >Back</a>
+
+<br>
+<br>
+
+<div style="margin-left:40%">{{ $orders->links() }}</div>

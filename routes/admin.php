@@ -74,5 +74,7 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
             Route::put('/update/{id}', [UserController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
         });
+
+        
     });
 });
