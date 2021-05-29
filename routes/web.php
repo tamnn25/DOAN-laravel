@@ -7,7 +7,8 @@ use App\Http\Controllers\OrderUserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PromotionController;
-
+use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\MessageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,5 +75,13 @@ Route::group(['prefix'  =>  'promotion'    ,   'as'    =>  'promotion.']  ,funct
 Route::group(['prefix'=>'contact', 'as'=> 'contact.'],function () {
 
         Route::get('contact',[ContactController::class, 'contact'])->name('address');
-
+        Route::post('postmessage',[ContactController::class, 'postmessage'])->name('postmessage');
+        
     });
+
+Route::group(['prefix' =>'password','as'=>'password.'],function () {
+
+    Route::get('user',[PasswordController::class, 'password'])->name('password');
+});
+
+

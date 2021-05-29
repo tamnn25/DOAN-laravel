@@ -100,7 +100,13 @@
                                   </a>
                                 </li>
                             </ul>
-                    </li>
+                      </li>
+                      <li class="sidebar-item">
+                        <a href="#" class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <i class="mdi mdi-receipt"></i>
+                            <span class="hide-menu">Messages From Customer</span></a>
+                            
+                      </li>
                     </ul>
                     <form  action="{{ route('admin.logout') }}"  method="POST" style="margin-top:130px;">
                       @csrf

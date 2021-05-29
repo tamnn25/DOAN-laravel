@@ -37,7 +37,7 @@
                         <div class="card card-hover">
                             <div class="box bg-cyan text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-view-dashboard"></i></h1>
-                                <h6 class="text-white">Dashboard</h6>
+                                <a href="{{route('admin.dashboard')}}"><h6 class="text-white">Dashboard</h6></a>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                     <div class="col-md-6 col-lg-4 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-success text-center">
-                                <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
+                                <h1 class="font-light text-white"><i class="fas fa-inbox"></i></h1>
                                 <a href="{{route('admin.order.index')}}"><h6 class="text-white">Order Manage</h6></a>
                             </div>
                         </div>
@@ -54,8 +54,8 @@
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-warning text-center">
-                                <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
-                                <h6 class="text-white">Widgets</h6>
+                                <h1 class="font-light text-white"><i class="fas fa-users"></i></h1>
+                                <a href="{{ route('admin.customer.index') }}"><h6 class="text-white">Customer Manage</h6></a>
                             </div>
                         </div>
                     </div>
@@ -63,8 +63,8 @@
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-danger text-center">
-                                <h1 class="font-light text-white"><i class="mdi mdi-border-outside"></i></h1>
-                                <h6 class="text-white">Tables</h6>
+                                <h1 class="font-light text-white"><i class='fas fa-address-card'></i></h1>
+                                <a href="{{ route('admin.user.index') }}"><h6 class="text-white">User Manage</h6></a>
                             </div>
                         </div>
                     </div>
@@ -72,8 +72,8 @@
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-info text-center">
-                                <h1 class="font-light text-white"><i class="mdi mdi-arrow-all"></i></h1>
-                                <h6 class="text-white">Full Width</h6>
+                                <h1 class="font-light text-white"><i class="fa fa-superscript"></i></h1>
+                                <a href="{{ route('admin.user.create') }}"><h6 class="text-white">Create User</h6></a>
                             </div>
                         </div>
                     </div>
@@ -82,8 +82,8 @@
                     <div class="col-md-6 col-lg-4 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-danger text-center">
-                                <h1 class="font-light text-white"><i class="mdi mdi-receipt"></i></h1>
-                                <h6 class="text-white">Forms</h6>
+                                <h1 class="font-light text-white"><i class="fas fa-barcode"></i></h1>
+                                <a href="{{route('admin.product.index')}}"><h6 class="text-white">List Products</h6></a>
                             </div>
                         </div>
                     </div>
@@ -91,8 +91,8 @@
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-info text-center">
-                                <h1 class="font-light text-white"><i class="mdi mdi-relative-scale"></i></h1>
-                                <h6 class="text-white">Buttons</h6>
+                                <h1 class="font-light text-white"><i class="mdi mdi-plus-one"></i> </h1>
+                                <a href="{{route('admin.product.create')}}"><h6 class="text-white">Create a new Product</h6></a>
                             </div>
                         </div>
                     </div>
@@ -100,8 +100,8 @@
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-cyan text-center">
-                                <h1 class="font-light text-white"><i class="mdi mdi-pencil"></i></h1>
-                                <h6 class="text-white">Elements</h6>
+                                <h1 class="font-light text-white"><i class="fa fa-list-alt" aria-hidden="true"></i></h1>
+                                <a href="{{route('admin.category.index')}}"><h6 class="text-white">Categories</h6></a>
                             </div>
                         </div>
                     </div>
@@ -109,8 +109,8 @@
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-success text-center">
-                                <h1 class="font-light text-white"><i class="mdi mdi-calendar-check"></i></h1>
-                                <h6 class="text-white">Calnedar</h6>
+                                <h1 class="font-light text-white"><i class="fa fa-superscript"></i></h1>
+                                <a href="{{route('admin.category.create')}}"><h6 class="text-white">Create Category</h6></a>  
                             </div>
                         </div>
                     </div>
@@ -118,8 +118,8 @@
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-warning text-center">
-                                <h1 class="font-light text-white"><i class="mdi mdi-alert"></i></h1>
-                                <h6 class="text-white">Errors</h6>
+                                <h1 class="font-light text-white"><i class='fas fa-comment-dots'></i></h1>
+                                <a href="#"><h6 class="text-white">Messages</h6></a>
                             </div>
                         </div>
                     </div>

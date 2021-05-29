@@ -8,9 +8,9 @@
                             <a href="./index.html"><img src="shop/img/logo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello@colorlib.com</li>
+                            <li>Address: 92 Quang Trung, Thạch Thang, Hải Châu, Đà Nẵng 550000, Việt Nam</li>
+                            <li>Phone: +84 2363.888.279</li>
+                            <li>Email: aca@iviettech.com</li>
                         </ul>
                     </div>
                 </div>
@@ -43,12 +43,12 @@
                             <input type="text" placeholder="Enter your mail">
                             <button type="submit" class="site-btn">Subscribe</button>
                         </form>
-                        <div class="footer__widget__social">
+                        {{-- <div class="footer__widget__social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-instagram"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
                             <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
