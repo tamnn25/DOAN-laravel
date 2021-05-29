@@ -74,7 +74,7 @@ Route::group(['prefix'  =>  'promotion'    ,   'as'    =>  'promotion.']  ,funct
 
 Route::group(['prefix'=>'contact', 'as'=> 'contact.'],function () {
 
-        Route::get('contact',[ContactController::class, 'contact'])->name('address');
+        Route::get('/',[ContactController::class, 'contact'])->name('address');
         Route::post('postmessage',[ContactController::class, 'postmessage'])->name('postmessage');
         
     });

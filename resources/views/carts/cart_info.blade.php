@@ -33,7 +33,7 @@
                             </td>
                             <td class="shoping__cart__quantity">
                                 <div class="quantity">
-                                        {{ number_format($cart['quantity']) }}
+                                        {{ number_format($cart['quantity']--) }}
                                     </div>
                                 </td>
                                 <td>
