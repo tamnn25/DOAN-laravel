@@ -15,14 +15,9 @@ class ProductPromotion extends Model
 
     protected $fillable = [
         'product_id',
-        'product_promotion'
+        'promotion_id',
+        'discount',
     ];
 
-    public function promotion(){
-        return $this->belongsTo(Promotion::class,);
-    }
-    public function product(){
-        
-        return $this->hasOne(Product::class);
-    }
+  
 }

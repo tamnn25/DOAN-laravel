@@ -56,7 +56,7 @@ class Product extends Model
 
     public function  promotion()
     {
-        return $this->hasMany(Promotion::class);
+        return $this->belongsToMany(Promotion::class);
     }
     // public function latestPrice()
     // {
