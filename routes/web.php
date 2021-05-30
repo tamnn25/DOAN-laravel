@@ -41,6 +41,8 @@ Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
 
 Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
     Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
+    Route::post('/review', [ProductController::class, 'review'])->name('review');
+    Route::get('/delete-comment/{id}', [ProductController::class, 'deleteComment'])->name('delete-comment');
     Route::get('/search', [ProductController::class, 'searchProduct'])->name('search'); 
     Route::get('/category/{id}', [ProductController::class, 'getProductByCategory'])->name('category'); 
         
@@ -66,11 +68,7 @@ Route::group(['prefix'  =>  'order_user'    , 'middleware' => 'auth',  'as'    =
 
 });
 
-Route::group(['prefix'  =>  'promotion'    ,   'as'    =>  'promotion.']  ,function(){
-    route::get('/',[PromotionController::class,'promotion'])->name('list_promotion');
-    // route::get('/detail/{id}',[OrderUserController::class,'detailOrder'])->name('detail_order');
 
-});
 
 Route::group(['prefix'=>'contact', 'as'=> 'contact.'],function () {
 

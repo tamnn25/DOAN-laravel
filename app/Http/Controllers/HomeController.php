@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
-
-use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -20,10 +18,11 @@ class HomeController extends Controller
 
             $lasterProduct  = $this->formatDataProduct($productLimit);
 
+
             return view('home.homepage')->with([
-                'lasterProduct' => $lasterProduct,
-                'products'      => $products,
-                'categories'    => $categories,
+                'lasterProduct'  => $lasterProduct,
+                'products'       => $products,
+                'categories'     => $categories,
             ]);
     }
     public function shop($id){
@@ -56,13 +55,7 @@ class HomeController extends Controller
         return $productFormat;
     }
 
-    //  public function searchProduct(Request $request)
-    // {
-        
-    //     $key = $request->key;
-    //     $products = Product::where('name', 'like', '%'. $key . '%')->paginate(10);
-    //     return view('home.shop', compact('products'));
-    // }
+   
     /**
      * formatDataProduct
      *

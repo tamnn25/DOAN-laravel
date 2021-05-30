@@ -8,6 +8,8 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Session;
 use App\Models\ProductDetail;
 use App\Models\ProductImage;
+use App\Models\Comment;
+use Carbon\Carbon;
 
 use App\Models\Price;
 
@@ -24,20 +26,20 @@ class ProductController extends Controller
         ->with('product_images')
         ->with('product_detail')
         ->first();
-        $related = Product::get();
 
-        $data['related'] = $related;
-
-        $data['product'] = $product;
-
-        $data['categories'] = $categories;
+        $related = Product::all();
+        $now = Carbon::now(); // hiển thị thời gian comment trong  deltail sản phẩn
+        $comment = Comment::where('product_id', $product->id)->with('user')->orderBy('id', 'desc' )->get(); //show thông tin user commnet
+        $countcomment = new Comment();
+        
+        $data['countcomment'] = $countcomment;
+        $data['now']        = $now; // giá goj
+        $data['related']    = $related;
+        $data['comment']    = $comment;
+        $data['product']    = $product;
+        $data['categories']  = $categories;
 
         return view('products.detail', $data);
-        // return view('home.homepage')->with([
-        //     'products'      => $product,
-        //     'categories'    => $categories,
-        // ]);
-        
     }
 
    
@@ -46,16 +48,13 @@ class ProductController extends Controller
         $key = $request->key;
 
         $categories = Category::all();
-        // dd(22);
         $productLimit   = Product::orderBy('created_at', 'desc')->limit(9)
         ->get();
         $products = Product::where('name', 'like', '%'. $key . '%')
                     ->orWhere('price', 'like', '%' .$key. '%')
                     ->paginate(10);
-
         $lasterProduct  = $this->formatDataProduct($productLimit);
-        // dd($lasterProduct);
-        // return view('home.listproductsearch', compact('products','categories'));
+
         return view('home.listproductsearch', with([
             'products'=>$products,
             'categories' => $categories,
@@ -92,4 +91,45 @@ class ProductController extends Controller
         $view = view("home._ajax_product", compact('products'))->render();//gán lại $product với category_id đã chọn
         return response()->json(['status' => 'success','html' => $view]);
     }
+
+    public function review(Request $request)
+    {
+        try {
+            if (!auth()->user()) { 
+                // nếu thằng user này  đã dăng nhâp thì  nó sẽ dc comment ngược lại chưa đăng nhập nó sẽ trả về  thông báo hoặc fomr login
+                // return redirect()->back()->with(['message' => 'Chưa dăng nhập']);
+                return redirect()->route('login')->with('message',' vui lòng đăng nhập để được đánh giá sản phẩm');
+
+            }
+            $user = auth()->user();
+            $data = [
+                'product_id'  => $request->product_id,
+                'user_id'  => $user->id,
+                'description'  => $request->description,
+                'rate'  => $request->rate
+            ];
+            $review = Comment::create($data);
+            if ($review) {
+                return redirect()->back()->with(['message' => 'success']);
+            }
+            return redirect()->back()->with(['message' => 'Errors']);
+        } catch (\Throwable $th) {
+             info($th);
+            return redirect()->back()->with(['message' => 'Errors']);
+        }
+    }
+
+    public function delelteComment($id)
+    {
+        try {
+            $comment = Comment::find($id);
+            $comment->delete();
+            return redirect()->back();
+        } catch (\Exception $e) {
+            info($e);
+            return redirect()->back();
+        }
+    }
+
+    
 }

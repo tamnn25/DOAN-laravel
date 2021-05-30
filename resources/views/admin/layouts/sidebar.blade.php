@@ -102,6 +102,24 @@
                             </ul>
                       </li>
                       <li class="sidebar-item">
+                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <i class="mdi mdi-receipt"></i>
+                            <span class="hide-menu">Promotion</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                              <a href="{{ route('admin.promotion.list_promotion') }}" class="nav-link {{ Route::currentRouteName() == 'admin.promotion.list_promotion' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+              
+                                <p>List Promotion</p>
+                              </a>
+                                {{-- <li class="sidebar-item">
+                                  <a href="{{ route('admin.user.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.create' ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Create User</p>
+                                  </a>
+                                </li> --}}
+                            </ul>
+                      </li>
+                      <li class="sidebar-item">
                         <a href="#" class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                             <i class="mdi mdi-receipt"></i>
                             <span class="hide-menu">Messages From Customer</span></a>
