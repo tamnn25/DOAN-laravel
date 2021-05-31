@@ -8,4 +8,7 @@ use Illuminate\Http\Request;
 class PromotionController extends Controller
 {
     //
+    public function promotion(){
+        echo 'promotion';
+    }
 }
