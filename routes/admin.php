@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\MessageController;
 
 Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], function () {
 
@@ -17,6 +18,7 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
 	
 	// Admin Dashboard
 	Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/roleadmin', [DashboardController::class, 'role'])->name('roleadmin'); 
 
     // middleware check_role_sales: nếu role!= 1 && role != 2 thì không đc vào
     Route::middleware(['check_role_editer'])->group(function () { 
@@ -38,6 +40,9 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
             Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('edit');
             Route::put('/update/{id}', [ProductController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [ProductController::class, 'destroy'])->name('destroy');
+        });
+        Route::group(['prefix'=> 'message', 'as' => 'message.'], function () {
+            route::get('/message',[MessageController::class, 'message'])->name('message');
         });
     });
 

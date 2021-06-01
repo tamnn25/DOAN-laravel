@@ -16,6 +16,7 @@ class HomeController extends Controller
         $categories = Category::get();
         $productLimit   = Product::orderBy('created_at', 'desc')->limit(6)->get();
         $lasterProduct  = $this->formatDataProduct($productLimit);
+
         return view('home.homepage')->with([
             'lasterProduct' => $lasterProduct,
             'products'      => $products,
@@ -26,10 +27,12 @@ class HomeController extends Controller
     public function shop($id){
         $categories = Category::all();
 
-        $products   = ($id == 0) ? Product::paginate(9) : Product::where('category_id', $id)->paginate(9);
-        $productLimit   = Product::orderBy('created_at', 'desc')->limit(9)
-        ->get();
+        $products   = ($id == 0) ? Product::paginate(9) : Product::where('category_id', $id)
+                        ->paginate(9);
+        $productLimit  = Product::orderBy('created_at', 'desc')->limit(9)
+                        ->get();
         $lasterProduct  = $this->formatDataProduct($productLimit);
+
         return view('home.shop')->with([
             'lasterProduct' => $lasterProduct,
             'products'      => $products,
