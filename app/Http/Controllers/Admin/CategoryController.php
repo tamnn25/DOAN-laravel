@@ -83,11 +83,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        // Method: GET
-    }
-
+  
     /**
      * Show the form for editing the specified resource.
      *
@@ -97,8 +93,11 @@ class CategoryController extends Controller
     public function edit($id)
     {
         // Method: GET
+
         $data = [];
+        
         $category = Category::findOrFail($id);
+
         $data['category'] = $category;
 
         return view('admin.categories.edit', $data);
@@ -114,7 +113,6 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, $id)
     {
         // Method: PUT
-        // dd($request->all());
 
         DB::beginTransaction();
 

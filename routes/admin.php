@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CustomerController;
-use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\PromotionController;
 
 Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], function () {
 
@@ -78,6 +78,15 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
             Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
             Route::put('/update/{id}', [UserController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::group(['prefix'  =>  'promotion'    ,   'as'    =>  'promotion.']  ,function(){
+            route::get('/',[PromotionController::class,'promotion'])->name('list_promotion');
+            Route::get('/create', [PromotionController::class, 'create'])->name('create');
+            Route::post('/store', [PromotionController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [PromotionController::class, 'edit'])->name('edit');
+            // Route::put('/update/{id}', [PromotionController::class, 'update'])->name('update');
+            // Route::delete('/delete/{id}', [PromotionController::class, 'destroy'])->name('destroy');
         });
     });
 });

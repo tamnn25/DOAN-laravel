@@ -23,7 +23,7 @@
 
     @include('errors.error')
 
-    {{-- @include('order_user._search') --}}
+    @include('order_user._search')
     @include('order_user._table')
 
     {{-- modal update order status  --}}

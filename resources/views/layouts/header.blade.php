@@ -45,11 +45,7 @@
                                         <li>
                                            <hr class="dropdown-divider">
                                         </li>
-                                        {{-- <li><a class="dropdown-item" href="">Lịch sử mua hàng</a></li> --}}
-                                        <li><a class="dropdown-item" href="{{route('order_user.list_order')}}">Lịch sử mua hàng</a></li>
                                         <li>
-                                           <hr class="dropdown-divider">
-                                        </li>
                                         <li><a class="dropdown-item" href="{{route('password.password')}}">Đổi mật khẩu</a></li>
                                         <li>
                                            <hr class="dropdown-divider">

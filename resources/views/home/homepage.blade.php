@@ -52,16 +52,16 @@
                         <div class="banner__pic">
 
                        
-                            <div id="demo" class="carousel slide" data-ride="carousel">
+                            <div id="m1" class="carousel slide" data-ride="carousel">
     
                                 <!-- Indicators -->
                                 <ul class="carousel-indicators">
     
-                                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                                    <li data-target="#m1" data-slide-to="0" class="active"></li>
     
-                                    <li data-target="#demo" data-slide-to="1"></li>
+                                    <li data-target="#m1" data-slide-to="1"></li>
                                     
-                                    <li data-target="#demo" data-slide-to="2"></li>
+                                    <li data-target="#m1" data-slide-to="2"></li>
     
                                 </ul>
                               
@@ -78,13 +78,7 @@
                                     </div>
                                 </div>
                               
-                                <!-- Left and right controls -->
-                                {{-- <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                                  <span class="carousel-control-prev-icon"></span>
-                                </a>
-                                <a class="carousel-control-next" href="#demo" data-slide="next">
-                                    <span class="carousel-control-next-icon"></span>
-                                </a> --}}
+                             
                               
                             </div>
     
@@ -119,18 +113,12 @@
                                 <div class="carousel-item">
                                     <img src="shop/img/banner/5.jpg" width="100%" height="275px" alt="Chicago">
                                 </div>
-                                <div class="shop/img/banner/6.jpg">
+                                <div class="shop/img/banner/7.jpg">
                                     <img src="ny.jpg" width="100%"  height="275px" alt="New York">
                                 </div>
                             </div>
                           
-                            <!-- Left and right controls -->
-                            {{-- <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                              <span class="carousel-control-prev-icon"></span>
-                            </a>
-                            <a class="carousel-control-next" href="#demo" data-slide="next">
-                                <span class="carousel-control-next-icon"></span>
-                            </a> --}}
+                       
                           
                         </div>
 

@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="/shop/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/shop/css/style.css" type="text/css">
 
+
 {{-- /**
 * define CSS file GLOBAL
 * END

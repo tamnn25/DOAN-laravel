@@ -59,7 +59,7 @@
         </div>
         <div class="form-group mb-5">
             <label for="">Product quantity</label>
-            <input type="text" name="quantity" placeholder=" Enter Product quantity" value="{{ old('quantity') }}" class="form-control">
+            <input   type="text" name="quantity" placeholder=" Enter Product quantity" value="{{ old('quantity') }}" class="form-control">
             @error('quantity')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror

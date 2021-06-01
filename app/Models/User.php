@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\Comment;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -72,5 +73,10 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
