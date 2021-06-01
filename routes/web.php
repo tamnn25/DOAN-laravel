@@ -65,7 +65,8 @@ Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
 Route::group(['prefix'  =>  'order_user'    , 'middleware' => 'auth',  'as'    =>  'order_user.']  ,function(){
     route::get('/',[OrderUserController::class,'order_user'])->name('list_order');
     route::get('/detail/{id}',[OrderUserController::class,'detailOrder'])->name('detail_order');
-
+    Route::get('/profile',[OrderUserController::class,'profile'])->name('profile');
+    Route::get('/edit', [OrderUserController::class, 'edit'])->name('edit');
 });
 
 
@@ -75,10 +76,10 @@ Route::group(['prefix'=>'contact', 'as'=> 'contact.'],function () {
         Route::get('/',[ContactController::class, 'contact'])->name('address');
         Route::post('postmessage',[ContactController::class, 'postmessage'])->name('postmessage');
         
+        
     });
 
 Route::group(['prefix' =>'password','as'=>'password.'],function () {
-
     Route::get('user',[PasswordController::class, 'password'])->name('password');
 });
 
