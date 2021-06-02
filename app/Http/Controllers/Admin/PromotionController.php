@@ -30,14 +30,10 @@ class PromotionController extends Controller
 
         
 
-        // if (!empty($request->category_id)) {
-        //     $promotion = $promotion->where('product_id', $request->product_id);
-        // }
 
         $promotions = $promotions->orderBy('id', 'desc');
         $promotions = $promotions->paginate(4);
-        // $data['promotion'] = $promotion;
-            // dd($promotion->links());
+ 
          return view('admin.promotion.index', compact('promotions'));
     }
 

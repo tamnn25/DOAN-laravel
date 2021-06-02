@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\MessageController;
 
