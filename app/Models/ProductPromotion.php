@@ -11,7 +11,7 @@ class ProductPromotion extends Model
     use HasFactory;
     use softDeletes;
 
-    protected $table = 'product_promotion';
+    protected $table = 'product_promotions';
 
     protected $fillable = [
         'product_id',
