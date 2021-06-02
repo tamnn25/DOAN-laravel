@@ -1,4 +1,6 @@
-<h4>Thông Tin Đơn Hàng</h4>
+    
+<h4>Information line</h4>
+{{-- Thông Tin Đơn Hàng --}}
  <br>
 <div class="border p-2">
     <table class="table table-bordered table-hover table-striped ">

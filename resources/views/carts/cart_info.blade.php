@@ -33,7 +33,7 @@
                             </td>
                             <td class="shoping__cart__quantity">
                                 <div class="quantity">
-                                        {{ number_format($cart['quantity']--) }}
+                                        {{ number_format($cart['quantity']) }}
                                     </div>
                                 </td>
                                 <td>
@@ -50,11 +50,12 @@
                                     </div>
                                 </td>
                         <td>
-                            <form action="{{ route('cart.destroy',['id' => $cart['id']]) }}" method="post">
+                            <form action="{{ route('cart.destroy',['id' => $cart['id']]) }}"  method="post" >
                                 @csrf
-                                <button  value="Delete" style="    border: none;
-                                background-color: white;" ><i class="fas fa-calendar-times fa-2x" style="color:rgb(206, 17, 17);"></i></button>
-                            </form>
+                                <button  value="Delete"  style="    border: none;
+                                background-color: white;"  ><i class="fas fa-calendar-times fa-2x" style="color:rgb(206, 17, 17);" ></i></button>
+
+                        </form>
                            
                         </td>
                       

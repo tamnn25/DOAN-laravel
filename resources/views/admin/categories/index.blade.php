@@ -56,7 +56,7 @@
                         {{-- <td><a class="btn btn-outline-info" href="{{ route('admin.category.show', $category->id) }}">Detail</a></td> --}}
                         <td><a class="btn btn-outline-info" href="{{ route('admin.category.edit', $category->id) }}">Edit</a></td>
                         <td>
-                            <form action="{{ route('admin.category.destroy', $category->id) }}" method="post">
+                            <form action="{{ route('admin.category.destroy', $category->id) }}" method="post" onclick="return confirm('Are you sure DELETE PRODUCT?')>
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" name="submit" value="Delete" class="btn btn-outline-danger">

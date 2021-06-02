@@ -193,10 +193,22 @@
                         <div class="product__discount">
                             <div class="section-title product__discount__title">
                                 <h2>promotional products</h2>
+
+
                             </div>
                             <div class="row">
                                 <div class="product__discount__slider owl-carousel">
-                                    
+                                         @if (!empty($promotion))
+                                             @foreach ($promotion as $item)
+                                                 <br>
+                                                 {{ $item->discount }}
+
+                                                 <br>
+                                                 {{ $item->begin_date }}
+                                                 <br>
+                                                 {{ $item->end_date }}
+                                             @endforeach
+                                         @endif
                                 </div>
                             </div>
                         </div>

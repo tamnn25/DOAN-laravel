@@ -21,6 +21,10 @@
 @endpush
 
 @section('content')
+
+    <hr><br> <br>
+    <h4>Order details</h4>
+    <br>
     {{-- show message --}}
     @include('errors.error')
 
@@ -49,4 +53,5 @@
 
         </tbody>
     </table>
+    <hr>
 @endsection

@@ -31,11 +31,8 @@ class Promotion extends Model
         'status',
     ];
 
-    public function products()
-    {
-        return $this->belongsToMany(Product::class);
-    }
-    public function product_promotion()
+   
+    public function Product_promotion()
     {
         return $this->hasMany(ProductPromotion::class);
     }
