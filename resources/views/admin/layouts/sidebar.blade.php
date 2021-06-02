@@ -1,5 +1,4 @@
-
- <!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
         <aside class="left-sidebar" data-sidebarbg="skin5">
           <!-- Sidebar scroll-->
