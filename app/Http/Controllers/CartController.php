@@ -29,7 +29,7 @@ class CartController extends Controller
 
                 if (!empty($carts[$id])) {
 
-                    $carts[$id]['quantity'] += $request->quantity --;
+                    $carts[$id]['quantity'] += $request->quantity;
 
                     session(['carts' => $carts]);
                     
