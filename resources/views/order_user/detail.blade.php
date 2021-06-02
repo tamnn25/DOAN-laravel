@@ -46,8 +46,8 @@
                     <td>{{$key+1}}</td>
                     <td>{{$order->product->name}}</td>
                     <td>{{$order->quantity}}</td>
-                    <td>{{$order->price_id}}</td>
-                    <td>{{$order->total}}</td>
+                    <td>{{$order->price_id.'.000.VND'}}</td>
+                    <td>{{$order->total.'.000.VND'}}</td>
                 </tr>
             @endforeach
 

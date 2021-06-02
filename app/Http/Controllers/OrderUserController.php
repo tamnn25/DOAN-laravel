@@ -6,6 +6,7 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class OrderUserController extends Controller
 {
@@ -16,6 +17,7 @@ class OrderUserController extends Controller
             $orders = Order::where('user_id', $user->id)
                     ->orderBy('id', 'desc')
                     ->paginate(4);
+
             if (!empty($request->date)){
             $orders = Order::where('created_at' , 'like' , '%' . $request->date . '%')
                         ->orderBy('created_at', 'desc')
@@ -38,5 +40,31 @@ class OrderUserController extends Controller
         $data['order'] = $order;
 
         return view('order_user.detail',$data);
+    }
+    public function profile(){
+        $data = [];
+        $user = Auth::user();
+
+        if(!session::get('id')){
+            $users = User::where('id', $user->id)
+                    ->orderBy('id', 'desc')
+                    ->get();
+
+            $data['users'] = $users;
+
+            // dd($users);
+        return view('profile.index',$data);
+        }else{
+            
+            echo 'try again';
+        }
+        
+    }
+    public function edit(){
+        return view('profile.update');
+    }
+
+    public function update($id){
+        dd(123);
     }
 }

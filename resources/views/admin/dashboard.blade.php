@@ -119,7 +119,7 @@
                         <div class="card card-hover">
                             <div class="box bg-warning text-center">
                                 <h1 class="font-light text-white"><i class='fas fa-comment-dots'></i></h1>
-                                <a href="#"><h6 class="text-white">Messages</h6></a>
+                                <a href="{{route('admin.message.message')}}"><h6 class="text-white">Messages</h6></a>
                             </div>
                         </div>
                     </div>

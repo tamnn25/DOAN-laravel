@@ -133,6 +133,7 @@ class CartController extends Controller
 
                             'quantity' => $quantity ,
 
+
                             'total' => $price*$quantity,
                         ];
                         // save data into table order_details

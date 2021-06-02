@@ -41,14 +41,11 @@
                                         <span class="fa fa-user"></span><span class="text"> </span><span>{{ Auth::user()->name }}</span>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="background-color: #ceecdf;">
-                                        <li><a class="dropdown-item " href="#">Thông tin tài khoản</a></li>
+                                        <li><a class="dropdown-item " href="{{route('order_user.profile')}}">Thông tin tài khoản</a></li>
                                         <li>
                                            <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="{{route('order_user.list_order')}}">Lịch sử mua hàng</a></li>
                                         <li>
-                                           <hr class="dropdown-divider">
-                                        </li>
                                         <li><a class="dropdown-item" href="{{route('password.password')}}">Đổi mật khẩu</a></li>
                                         <li>
                                            <hr class="dropdown-divider">
@@ -64,18 +61,10 @@
                                 @endauth
                                 
                                 @guest
-                                <div class="dropdown">
-                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #25a6d700">
-                                    <span class="fa fa-user"> &nbsp; </span><span class="text">   REGISTER </span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2" style="background-color: #49c569f7;">
-                                       <li><a class="dropdown-item" href="{{ route('login') }}">Đăng nhập</a></li>
-                                       <li>
-                                          <hr class="dropdown-divider">
-                                       </li>
-                                       <li><a class="dropdown-item" href="{{ route('register') }}">Tạo tài khoản</a></li>
-                                    </ul>
-                                 </div>
+                                <div class="header__right__auth">
+                                    <a class="btn btn-outline-danger" href="{{route('login')}}">Login</a>
+                                    <a class="btn btn-outline-danger" href="{{route('register')}}">Register</a>
+                                </div>
                                 @endguest
                             </div>
                         </div>

@@ -9,10 +9,10 @@ use App\Models\ProductPromotion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 class PromotionController extends Controller
 {
     //
+
     public function promotion(Request $request)
     {   
         $promotions = Promotion::with([ 'product_promotion']);
