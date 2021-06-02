@@ -48,7 +48,6 @@
                                         <li>
                                            <hr class="dropdown-divider">
                                         </li>
-
                                         <li><a class="dropdown-item" href="{{route('password.password')}}">Đổi mật khẩu</a></li>
                                         <li>
                                            <hr class="dropdown-divider">
