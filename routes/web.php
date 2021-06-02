@@ -74,13 +74,17 @@ Route::group(['prefix'  =>  'order_user'    , 'middleware' => 'auth',  'as'    =
 Route::group(['prefix'=>'contact', 'as'=> 'contact.'],function () {
 
         Route::get('/',[ContactController::class, 'contact'])->name('address');
-        Route::post('postmessage',[ContactController::class, 'postmessage'])->name('postmessage');
+        Route::post('/postmessage',[ContactController::class, 'postmessage'])->name('postmessage');
         
         
     });
 
 Route::group(['prefix' =>'password','as'=>'password.'],function () {
-    Route::get('user',[PasswordController::class, 'password'])->name('password');
+
+    Route::get('/getpassword/{id}',[PasswordController::class, 'getpassword'])->name('getpassword');
+    
+    Route::put('/changepassword/{id}',[PasswordController::class, 'updatepassword'])->name('changepassword');
+    
 });
 
 

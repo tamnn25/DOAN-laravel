@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\PromotionController;
+use App\Http\Controllers\Admin\MessageController;
 
 Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], function () {
 

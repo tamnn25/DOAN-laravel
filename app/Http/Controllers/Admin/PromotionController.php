@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 class PromotionController extends Controller
 {
     //
-
     public function promotion(Request $request)
     {   
         $promotions = Promotion::with([ 'product_promotion']);
@@ -51,8 +50,6 @@ class PromotionController extends Controller
         $products = Product::pluck('name','id')->toArray();
         $data['products'] = $products;
 
-
-
         return view('admin.promotion.create',$data);
     }
 
@@ -78,31 +75,30 @@ class PromotionController extends Controller
                     ];
                     ProductPromotion::create($data);
                 }
-                // $promotion->products()->attach($request->products); //https://chungnguyen.xyz/posts/pivot-tables-va-moi-quan-he-nhieu-nhieu-many-to-many-relationship-trong-laravel
                 DB::commit();
                 return redirect()->route('admin.promotion.list_promotion');
-            } catch (\Exception $e){
-                info($e);
-                DB::rollback();
+            } catch (\Exception $ex){
+                echo $ex->getMessage();
+                // DB::rollback();
 
-                return redirect()->back()->with('error', $e->getMessage());
+                // return redirect()->back()->with('error', $ex->getMessage());
             }
         // $promotion = Promotion::create();
         
     }
-    public function edit($id,Request $request)
-    {
-        // dd(123);
-        $data = [];
-        $products = Product::pluck('name','id')->toArray();
-        $promotion = Promotion::findOrFail($id); // case 2
-        $products = $promotion->products()->get(); // case 2
-        // dd($promotion);
-        $data['products'] = $products;
-        $data['promotion'] = $promotion;
-        // dd($promotion);
-        return view('admin.promotion.edit',$data);
-    }
+    // public function edit($id,Request $request)
+    // {
+    //     // dd(123);
+    //     $data = [];
+    //     $products = Product::pluck('name','id')->toArray();
+    //     $promotion = Promotion::findOrFail($id); // case 2
+    //     $products = $promotion->products()->get(); // case 2
+    //     // dd($promotion);
+    //     $data['products'] = $products;
+    //     $data['promotion'] = $promotion;
+    //     // dd($promotion);
+    //     return view('admin.promotion.edit',$data);
+    // }
     // public function update($id,Request $request){
     //     DB::beginTransaction();
     //     try{
