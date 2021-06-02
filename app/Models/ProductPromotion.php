@@ -11,18 +11,20 @@ class ProductPromotion extends Model
     use HasFactory;
     use softDeletes;
 
-    protected $table = 'product_promotion';
+    protected $table = 'product_promotions';
 
     protected $fillable = [
+        'discount',
         'product_id',
-        'product_promotion'
-    ];
-
-    public function promotion(){
-        return $this->belongsTo(Promotion::class,);
-    }
-    public function product(){
+        'promotion_id',
         
-        return $this->hasOne(Product::class);
+    ];
+    public function promotion()
+    {
+        return $this->hasMany(Promotion::class);
+    }
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
     }
 }

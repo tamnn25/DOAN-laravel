@@ -257,20 +257,7 @@ class CartController extends Controller
                         }
                     
                     }
-                    // public function destroy($id){
-                    //     DB::beginTransaction();
-                        
-                    //     try{
-                    //      $cart = Cart::find($id);
-                    //      $cart->delete();
-                    //      DB::commit();
-                    //      return redirect()->route('cart.cart-info');
-                    //     }  catch (\Exception $ex) {
-                    //         DB::rollBack();
-                    //         // have error so will show error message
-                    //         return redirect()->back()->with('error', $ex->getMessage());
-                    //     }
-                    // }
+                    
                     public function destroy(Request $request)
                     {
                         $id = $request->id;

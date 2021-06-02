@@ -15,6 +15,8 @@ class CreateProductPromotionsTable extends Migration
     {
         Schema::create('product_promotions', function (Blueprint $table) {
             $table->id();
+            $table->integer('discount');
+
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->unsignedBigInteger('promotion_id');
