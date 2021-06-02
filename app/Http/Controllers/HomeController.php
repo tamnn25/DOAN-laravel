@@ -4,23 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Promotion;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
-{
+{   
     //
     public function index(){
 
-            $products   = Product::paginate(5);
+            $products       =   Product::paginate(5);
+            $promotion      =   Promotion::get();
+            $categories     =   Category::get();
 
-            $categories = Category::get();
 
-            $productLimit   = Product::orderBy('created_at', 'desc')->limit(6)->get();
+         
+
+
+            $productLimit   =   Product::orderBy('created_at', 'desc')->limit(6)->get();
+
 
             $lasterProduct  = $this->formatDataProduct($productLimit);
 
 
             return view('home.homepage')->with([
+                'promotion'      =>$promotion,
                 'lasterProduct'  => $lasterProduct,
                 'products'       => $products,
                 'categories'     => $categories,
@@ -36,10 +43,13 @@ class HomeController extends Controller
         ->get();
         $lasterProduct  = $this->formatDataProduct($productLimit);
 
+        $promotion      =   Promotion::with(['product_promotion'])->get();
+
         return view('home.shop')->with([
             'lasterProduct' => $lasterProduct,
             'products'      => $products,
             'categories'    => $categories,
+            'promotion'     => $promotion,
         ]);
     }
 

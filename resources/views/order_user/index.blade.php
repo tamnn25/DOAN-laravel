@@ -22,13 +22,17 @@
 @section('content')
 
     @include('errors.error')
-
+    <hr>
+    <br><br>
+    <h4>My Order</h4>
+    <br>
     @include('order_user._search')
+    <br>
     @include('order_user._table')
 
     {{-- modal update order status  --}}
 
     @include('order_user.parts.modal_update_order_status')
 
-
+<hr>
 @endsection

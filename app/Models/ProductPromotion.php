@@ -18,6 +18,14 @@ class ProductPromotion extends Model
         'promotion_id',
         'discount',
     ];
+    // public function products()
+    // {
+    //     return $this->belongsToMany(Product::class);
+    // }
 
+    // public function promotion()
+    // {
+    //     return $this->hasOne(Promotion::class);
+    // }
   
 }

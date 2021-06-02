@@ -9,7 +9,7 @@
 
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__pic__item">
-                    <img class="product__details__pic__item--large" src="{{ asset($product->image) }}"
+                    <img class="product__details__pic__item--large" src="{{ asset($product->image) }}" width=" 350px" height="400px"
                         alt="{{ $product->image }}">
                 </div>
                 <hr>

@@ -18,7 +18,7 @@ class CreatePromotionsTable extends Migration
             $table->double('discount');
             $table->dateTime('begin_date');
             $table->dateTime('end_date');
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(1)->comment('status: 1 - hide(), 0: show');
             $table->timestamps();
             $table->softDeletes();
         });
