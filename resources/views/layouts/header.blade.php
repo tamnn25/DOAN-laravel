@@ -45,7 +45,10 @@
                                         <li>
                                            <hr class="dropdown-divider">
                                         </li>
+                                        <li><a class="dropdown-item" href="{{route('order_user.list_order')}}">Lịch sử mua hàng</a></li>
                                         <li>
+                                           <hr class="dropdown-divider">
+                                        </li>
                                         <li><a class="dropdown-item" href="{{route('password.password')}}">Đổi mật khẩu</a></li>
                                         <li>
                                            <hr class="dropdown-divider">
@@ -53,7 +56,7 @@
                                         <li>
                                            <form action="{{ route('logout') }}" method="POST">
                                               @csrf
-                                              <button type="submit" style="  width: 100%;"  class="btn btn-primary"><i class="fas fa-sign-out-alt"></i><span class="text" >&nbsp; Logout</span></button>
+                                              <button type="submit" class="btn btn-primary"><i class="fas fa-sign-out-alt"></i><span class="text" >&nbsp; Logout</span></button>
                                            </form>
                                         </li>
                                     </ul>

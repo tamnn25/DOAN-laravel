@@ -80,7 +80,10 @@ Route::group(['prefix'=>'contact', 'as'=> 'contact.'],function () {
     });
 
 Route::group(['prefix' =>'password','as'=>'password.'],function () {
-    Route::get('user',[PasswordController::class, 'password'])->name('password');
+    Route::get('/',[PasswordController::class, 'change'])->name('password');
+    route::get('/detail/{id}',[PasswordController::class,'detailpassword'])->name('detailchange');
+    Route::put('/update/{id}', [PasswordController::class, 'update'])->name('store');
+
 });
 
 
