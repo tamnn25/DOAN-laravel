@@ -77,11 +77,12 @@ class PromotionController extends Controller
                 echo $ex->getMessage();
                 // DB::rollback();
 
-                // return redirect()->back()->with('error', $ex->getMessage());
             }
-        // $promotion = Promotion::create();
         
     }
+
+   
+
     public function edit($id,Request $request)
     {
         // dd(123);
@@ -118,4 +119,5 @@ class PromotionController extends Controller
            echo $ex->getMessage();
        }
     }
+
 }
