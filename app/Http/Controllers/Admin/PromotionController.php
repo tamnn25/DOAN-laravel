@@ -82,25 +82,40 @@ class PromotionController extends Controller
         // $promotion = Promotion::create();
         
     }
-    // public function edit($id,Request $request)
-    // {
-    //     // dd(123);
-    //     $data = [];
-    //     $products = Product::pluck('name','id')->toArray();
-    //     $promotion = Promotion::findOrFail($id); // case 2
-    //     $products = $promotion->products()->get(); // case 2
-    //     // dd($promotion);
-    //     $data['products'] = $products;
-    //     $data['promotion'] = $promotion;
-    //     // dd($promotion);
-    //     return view('admin.promotion.edit',$data);
-    // }
-    // public function update($id,Request $request){
-    //     DB::beginTransaction();
-    //     try{
-    //         $promotions = Promotion::find($id)
-    //         $discout =>$request->discount;
+    public function edit($id,Request $request)
+    {
+        // dd(123);
+        $data = [];
+        $products = Product::pluck('name','id')->toArray();
+        $promotion = Promotion::findOrFail($id); // case 2
+        $products = $promotion->products()->get(); // case 2
+        // dd($promotion);
+        $data['products'] = $products;
+        $data['promotion'] = $promotion;
+        // dd($promotion);
+        return view('admin.promotion.edit',$data);
+    }
+    
+    public function destroy($id,Request $request){
+       // Method: DELETE
+       DB::beginTransaction();
 
-    //     }
-    // }
+       try {
+           $promotions = Promotion::with('Product_promotion')
+            ->find($id);
+           
+           // delete data of table  product_promotion 
+           foreach ($promotions->Product_promotion as $productpromotion) {
+            $productpromotion->delete();
+                }
+
+           $promotions->delete();
+           
+           DB::commit();
+
+           return redirect()->back();
+       }  catch (\Exception $ex) {
+           echo $ex->getMessage();
+       }
+    }
 }

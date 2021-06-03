@@ -40,22 +40,22 @@
                                         <span class="fa fa-user"></span><span class="text"> </span><span>{{ Auth::user()->name }}</span>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="background-color: #ceecdf;">
-                                        <li><a class="dropdown-item " href="{{route('order_user.profile')}}">Thông tin tài khoản</a></li>
+                                        <li><a class="dropdown-item " href="{{route('order_user.profile')}}">Profile</a></li>
                                         <li>
                                            <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="{{route('order_user.list_order')}}">Lịch sử mua hàng</a></li>
+                                        <li><a class="dropdown-item" href="{{route('order_user.list_order')}}">history carts</a></li>
                                         <li>
                                            <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="{{route('password.password')}}">Đổi mật khẩu</a></li>
+                                        <li><a class="dropdown-item" href="{{route('password.password')}}">Update profile</a></li>
                                         <li>
                                            <hr class="dropdown-divider">
                                         </li>
                                         <li>
                                            <form action="{{ route('logout') }}" method="POST">
                                               @csrf
-                                              <button type="submit" class="btn btn-primary"><i class="fas fa-sign-out-alt"></i><span class="text" >&nbsp; Logout</span></button>
+                                              <button style="width: 95%;" type="submit" class="btn btn-info"><i class="fas fa-sign-out-alt"></i><span class="text" >&nbsp; Logout</span></button>
                                            </form>
                                         </li>
                                     </ul>

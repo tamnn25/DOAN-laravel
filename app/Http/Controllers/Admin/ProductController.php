@@ -132,6 +132,7 @@ class ProductController extends Controller
                 'content'=> $request->content,
             ]);
             $product->product_detail()->save($productDetail);
+            
             // save multiple image for table product_images
             if (!empty($listProductImages)) {
                 foreach ($listProductImages as $productImage) {
@@ -202,12 +203,10 @@ class ProductController extends Controller
         $product = Product::find($id);
         $productImage = ProductImage::find($id);
         // sao 2 bien deu la $product 
-        // em bo vo coi no bao loi gi do thay
+        
         $productDetailId = !empty($product->product_detail) ? $product->product_detail->id : null;
         $imagesOld = $product->image;
 
-        Log::info("img old");
-        Log::info($imagesOld);
         Log::info("img old");
         
 
@@ -364,13 +363,10 @@ class ProductController extends Controller
             // delete data of table product_images
             ProductImage::where('product_id', $id)
                 ->delete();
-
             // delete data of table products
             $product->delete();
 
             DB::commit();
-            
-            
             // success
             return redirect()->route('admin.product.index')->with('success', 'Delete successful!');
         } catch (\Exception $ex) {
