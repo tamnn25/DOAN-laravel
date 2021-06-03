@@ -3,7 +3,10 @@
     <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
 
         <div class="featured__item">
+
+            <div class="featured__item__pic set-bg"  data-setbg="/{{ $product->images }}" alt="" >
             <div class="featured__item__pic set-bg"  data-setbg="/{{ $product->image }}" alt="">
+
                 
                 <img src="{{ asset($product->image)}}" alt="{{ $product->name }}" style="width:270px; height:230px" class="img-fluid">
                 <ul class="featured__item__pic__hover">

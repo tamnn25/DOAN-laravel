@@ -36,21 +36,6 @@ class CustomerController extends Controller
             // dd($users);
         }
 
-
-        // search created_at
-        // if (!empty($request->created_at)) {
-        //     $users = $users->where('created_at', 'like', '%' . $request->created_at . '%');
-        // }
-        
-        // order ID desc
-        // $users = User::orderBy('id', 'desc')->get();
-        
-        // pagination
-        // $users = $users->paginate(User::PAGE_LIMIT);
-
-        // $users = User::paginate('4');
-
-
         $data['users'] = $users;
         
         return view('admin.customer.index',$data);

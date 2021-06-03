@@ -21,12 +21,9 @@
     @include('errors.error')
     {{-- request()->route('id')) }} --}}
     {{-- {{ route('admin.promotion.update')}} --}}
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.promotion.update', request()->route('id'))}}" method="post" enctype="multipart/form-data">
         @csrf
-
         @method('put')
-
-        
         <div class="form-group mb-5">
             <label for="">Discount</label>
             <input type="text" name="discount" class="form-control" value="{{ old('discount', $promotion->discount) }}" required>    

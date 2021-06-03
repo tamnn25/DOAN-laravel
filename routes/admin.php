@@ -45,6 +45,14 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
         Route::group(['prefix'=> 'message', 'as' => 'message.'], function () {
             route::get('/message',[MessageController::class, 'message'])->name('message');
         });
+        Route::group(['prefix'  =>  'promotion'    ,   'as'    =>  'promotion.']  ,function(){
+            route::get('/',[PromotionController::class,'promotion'])->name('list_promotion');
+            Route::get('/create', [PromotionController::class, 'create'])->name('create');
+            Route::post('/store', [PromotionController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [PromotionController::class, 'edit'])->name('edit');
+            Route::put('/update/{id}', [PromotionController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [PromotionController::class, 'destroy'])->name('destroy');
+        });
     });
 
     Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
@@ -68,7 +76,7 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
             // Route::get('/show/{id}', [CustomerController::class, 'show'])->name('show');
             // Route::get('/edit/{id}', [CustomerController::class, 'edit'])->name('edit');
             // Route::put('/update/{id}', [CustomerController::class, 'update'])->name('update');
-            // Route::delete('/delete/{id}', [CustomerController::class, 'destroy'])->name('destroy');
+            Route::delete('/delete/{id}', [CustomerController::class, 'destroy'])->name('destroy');
         });
 
         Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
@@ -81,13 +89,6 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
             Route::delete('/delete/{id}', [UserController::class, 'destroy'])->name('destroy');
         });
 
-        Route::group(['prefix'  =>  'promotion'    ,   'as'    =>  'promotion.']  ,function(){
-            route::get('/',[PromotionController::class,'promotion'])->name('list_promotion');
-            Route::get('/create', [PromotionController::class, 'create'])->name('create');
-            Route::post('/store', [PromotionController::class, 'store'])->name('store');
-            Route::get('/edit/{id}', [PromotionController::class, 'edit'])->name('edit');
-            // Route::put('/update/{id}', [PromotionController::class, 'update'])->name('update');
-            // Route::delete('/delete/{id}', [PromotionController::class, 'destroy'])->name('destroy');
-        });
+        
     });
 });

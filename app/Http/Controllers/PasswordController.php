@@ -61,7 +61,6 @@ class PasswordController extends Controller
             $user->phone_number = $request->phone_number;
             $user->address = $request->address;
 
-
             $user->save();
             
             DB::commit();
