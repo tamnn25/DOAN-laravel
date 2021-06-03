@@ -77,30 +77,8 @@ class PromotionController extends Controller
                 echo $ex->getMessage();
                 // DB::rollback();
 
-                // return redirect()->back()->with('error', $ex->getMessage());
             }
-        // $promotion = Promotion::create();
         
     }
-    // public function edit($id,Request $request)
-    // {
-    //     // dd(123);
-    //     $data = [];
-    //     $products = Product::pluck('name','id')->toArray();
-    //     $promotion = Promotion::findOrFail($id); // case 2
-    //     $products = $promotion->products()->get(); // case 2
-    //     // dd($promotion);
-    //     $data['products'] = $products;
-    //     $data['promotion'] = $promotion;
-    //     // dd($promotion);
-    //     return view('admin.promotion.edit',$data);
-    // }
-    // public function update($id,Request $request){
-    //     DB::beginTransaction();
-    //     try{
-    //         $promotions = Promotion::find($id)
-    //         $discout =>$request->discount;
-
-    //     }
-    // }
+   
 }

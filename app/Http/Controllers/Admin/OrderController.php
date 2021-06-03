@@ -104,7 +104,7 @@ class OrderController extends Controller
     public function destroy($id)
     {
         // dd($id);
-        \DB::beginTransaction();
+        DB::beginTransaction();
         try{
             $orders = Order::with('order_detail')
             ->find($id);
@@ -116,12 +116,12 @@ class OrderController extends Controller
             
             $orders->delete();
 
-            \DB::commit();
+            DB::commit();
             
             return redirect()->route('admin.user.index')->with('sucess', 'delete Sucessful.');
 
         }catch(Exception $ex){
-            \DB::rollback();
+            DB::rollback();
 
             echo $ex->getMessage();
         }
