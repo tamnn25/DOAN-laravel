@@ -4,11 +4,10 @@
 
         <div class="featured__item">
 
-            <div class="featured__item__pic set-bg"  data-setbg="/{{ $product->images }}" alt="" >
             <div class="featured__item__pic set-bg"  data-setbg="/{{ $product->image }}" alt="">
 
                 
-                <img src="{{ asset($product->image)}}" alt="{{ $product->name }}" style="width:270px; height:230px" class="img-fluid">
+                <img src="{{ asset($product->image)}}" alt="{{ $product->name }}" style="width:270px; height:250px" class="img-fluid">
                 <ul class="featured__item__pic__hover">
                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
                     <li><a href="#"><i class="fa fa-retweet"></i></a></li>
