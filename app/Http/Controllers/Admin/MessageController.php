@@ -10,6 +10,7 @@ class MessageController extends Controller
 {
     //
     public function message(){
+        
         $data=[];
         $message = Message::get();
 

@@ -28,7 +28,7 @@
 
 </table>
 <br>
-<a href="{{ route('order_user.list_order') }}" type="button" class="btn btn-info float-left" >Back</a>
+<a href="{{ route('index') }}" type="button" class="btn btn-info float-left" >Back</a>
 
 <br>
 <br>
