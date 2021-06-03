@@ -190,11 +190,9 @@
                     </div>
                     
                     <div class="col-lg-9 col-md-7">
-                        <div class="product__discount">
+                        {{-- <div class="product__discount">
                             <div class="section-title product__discount__title">
-                                <h2>promotional products</h2>
-
-
+                                <h2>Promotion products</h2>
                             </div>
                             <div class="row">
                                 <div class="product__discount__slider owl-carousel">
@@ -211,21 +209,21 @@
                                          @endif
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="filter__item">
                             <div class="row">
                                 
-                                <div class="col-lg-4 col-md-5">
+                                {{-- <div class="col-lg-4 col-md-5">
                                     <div class="filter__sort">
-                                        {{-- <label for="amount">Sắp sếp theo</label> --}}
+                                        <label for="amount">Sắp sếp theo</label>
                                        
-                                        {{-- <span>Sort By</span>
+                                        <span>Sort By</span>
                                         <select>
-                                            <option value="0">Default</option>
-                                            <option value="0">Default</option>
-                                        </select> --}}
+                                            <option value="0">a -> z </option>
+                                            <option value="0">z -> a</option>
+                                        </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-lg-4 col-md-4">
                                     <div class="filter__found">
                                         

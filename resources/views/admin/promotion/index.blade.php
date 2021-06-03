@@ -46,14 +46,14 @@
                             <td>{{ $promotion->end_date }}</td>
                             <td>{{ $promotion->status }}</td>
     
-                            <td><a class="btn btn-outline-info" href="{{ route('admin.promotion.edit',$promotion->id) }}">Edit</a></td>
-                         {{--   <td>
-                                <form action="{{ route('admin.category.destroy', $category->id) }}" method="post">
+                            <td><a class="btn btn-outline-info" href="{{ route('admin.promotion.edit',$promotion->id) }}">Update status</a></td>
+                           <td>
+                                <form action="{{ route('admin.promotion.destroy', $promotion->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <input type="submit" name="submit" value="Delete" class="btn btn-outline-danger">
                                 </form>
-                            </td> --}}
+                            </td>
                         </tr>
                     @endforeach
             @endif

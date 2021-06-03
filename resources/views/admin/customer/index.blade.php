@@ -25,6 +25,11 @@
                         {{-- <th>{{$user->password}}</th> --}}
                         <th>{{$user->phone_number}}</th>
                         <th>{{$user->created_at}}</th>
+                        <th>
+                            <form action="{{route('admin.customer.destroy')}}" method="post">
+                                @
+                            </form>
+                        </th>
                     </tr>
                 @endforeach
             </tbody>

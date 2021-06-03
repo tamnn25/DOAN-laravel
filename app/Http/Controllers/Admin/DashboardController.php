@@ -16,11 +16,5 @@ class DashboardController extends Controller
     {
         return view('admin.dashboard');
     }
-    public function role(){
-        $data = [];
-        $admins = Admin::get();
-
-        $data['admins'] = $admins;
-        return view('admin.layouts.sidebar',$data);
-    }
+    
 }
