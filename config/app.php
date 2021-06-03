@@ -177,9 +177,9 @@ return [
         // Barryvdh\Debugbar\ServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         // App\Providers\HelperServiceProvider::class
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Class Aliases
@@ -232,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         // 'Helper' => App\Helpers\Helper::class,
         // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];
