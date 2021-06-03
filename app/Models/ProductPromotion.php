@@ -27,5 +27,5 @@ class ProductPromotion extends Model
     // {
     //     return $this->hasOne(Promotion::class);
     // }
-  
+            
 }
