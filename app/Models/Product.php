@@ -50,14 +50,14 @@ class Product extends Model
         return $this->hasMany(OrderDetail::class);
     }
 
-    public function Product_promotion()
+    public function productPromotion()
     {
-        return $this->hasOne(ProductPromotion::class);
+        return $this->belongsTo(ProductPromotion::class);
     }
 
-    // public function  promotion()
-    // {
-    //     return $this->belongsToMany(Promotion::class);
-    // }
+    public function  promotions()
+    {
+        return $this->belongsToMany(Promotion::class);
+    }
   
 }

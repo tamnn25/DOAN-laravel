@@ -14,6 +14,8 @@
         @csrf
         @method('PUT')
         {{-- <input name="_method" type="hidden" value="PUT"> --}}
+     
+
         <div class="row">
             <div class="col-3">
                 <label class="">User Name</label>
@@ -40,7 +42,13 @@
                 @enderror
             </div>
         </div>
+
         <br>
+        {{-- <div class="col-3">
+            <label class="">Role_id</label>
+            <input type="role_id" value="{{ old('password', $users->role_id) }}" placeholder=" Enter role_id" class="form-control">
+        </div>
+        <br> --}}
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
     <hr>

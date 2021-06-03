@@ -41,4 +41,9 @@ class Promotion extends Model
         return (new Carbon($endDate))->format('Y-m-d\H:i:s');
       }
 
+    public function  products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
 }  

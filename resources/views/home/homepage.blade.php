@@ -154,7 +154,7 @@
                                                 </div>
                                                 <div class="latest-product__item__text">
                                                     <h6>{{ $item->name }}</h6>
-                                                    <span>{{ $item->price.'.000.VND' }}</span>
+                                                    <span>{{  $item->price.'.000.VND' }}</span>
                                                 </div>
                                             </a>
 

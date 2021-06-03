@@ -69,7 +69,6 @@ class UserController extends Controller
             'email'=> $request->email,
             'email_verified_at' => now(),
             'password' => $request->password,
-
             'role_id' => $request->role_id,
             'remember_token' => Str::random(10),
         ];
@@ -114,6 +113,8 @@ class UserController extends Controller
             // $users->name = $request->name;
             // $users->email = $request->email;
             $users->password = $request->password;
+            // $users->role_id = $request->role_id;
+
 
             $users->save();
             

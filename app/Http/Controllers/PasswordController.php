@@ -12,32 +12,24 @@ class PasswordController extends Controller
 {
     
     public function change(){
-    //    $users = auth()->user();
-    //     if(!Session::get('user_id')){
-    //         $users = User::where('user_id', $users->id)
-    //         ->orderBy('id', 'desc');
-    //         dd($users);
-    //         return view('password.changepass')->with([
-    //             'users'          =>  $users,
-    //         ]);    
-    //     }
-    $data = [];
-    $user = Auth::user();
+        $data = [];
 
-    if(!session::get('id')){
-        $users = User::where('id', $user->id)
+        $user = Auth::user();
+
+        if(!session::get('id')){
+            $users = User::where('id', $user->id)
                 ->orderBy('id', 'desc')
                 ->get();
 
-        $data['users'] = $users;
+            $data['users'] = $users;
 
-        // dd($users);
-    return view('password.changepass',$data);
-    }else{
-        
-        echo 'try again';
-    }
-    }
+            return view('password.changepass',$data);
+
+        }else{
+            
+            echo 'try again';
+        }
+        }
   
      public function detailpassword($id){
         $data = [];
