@@ -9,6 +9,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\MyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,5 +86,9 @@ Route::group(['prefix' =>'password','as'=>'password.'],function () {
     route::get('/detail/{id}',[PasswordController::class,'detailpassword'])->name('detailchange');
     Route::put('/update/{id}', [PasswordController::class, 'update'])->name('store');
 });
+
+Route::get('importExportView', [MyController::class, 'importExportView']);
+Route::get('export', [MyController::class, 'export'])->name('export');
+Route::post('import', [MyController::class, 'import'])->name('import');
 
 
