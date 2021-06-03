@@ -91,7 +91,7 @@
 
         <p><label for="">phone_number</label>
             <h3>{{$user->phone_number}}</h3>
-            <a href="{{route('order_user.edit')}}"><button>Update Your Profile</button></a></p>
+            <a href="{{route('password.password')}}"><button>Update Your Profile</button></a></p>
         </div>
         @endforeach
     @endif    
