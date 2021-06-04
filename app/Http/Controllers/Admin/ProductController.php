@@ -44,7 +44,7 @@ class ProductController extends Controller
         }
 
         $product = $product->orderBy('id', 'desc');
-        $product = $product->paginate(3);
+        $product = $product->paginate(6);
         // get list data of table categories
         $categories = Category::pluck('name')
            ->toArray();
