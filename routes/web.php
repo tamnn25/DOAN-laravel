@@ -20,21 +20,20 @@ use App\Http\Controllers\MessageController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
-
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
-    
+
     Route::get('/shop/{id}', [HomeController::class, 'shop'])->name('shop');
 
     });
@@ -49,34 +48,27 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
     });
 
 Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
-    Route::get('/', [CartController::class, 'getCartInfo'])->name('cart-info'); 
+    Route::get('/', [CartController::class, 'CartInfo'])->name('cart-info'); 
     Route::post('cart/{id}', [CartController::class, 'addCart'])->name('add-cart');
-    Route::get('checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('check_order_step_by_step');
-    Route::post('/delete', [CartController::class, 'destroy'])->name('destroy');
-    // Route::delete('/delete-all', [CartController::class, 'destroy'])->name('destroy');
-       // dd(123);
-    Route::post('checkout-complete', [CartController::class, 'checkoutComplete'])->name('checkout-complete');
+    Route::get('checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('check_order');
+    Route::post('checkout-complete', [CartController::class, 'Complete'])->name('checkout-complete');
     Route::post('send-verify-code', [CartController::class, 'sendVerifyCode'])->middleware(['auth'])->name('send-verify-code');
     Route::post('confirm-verify-code', [CartController::class, 'confirmVerifyCode'])->middleware(['auth'])->name('confirm-verify-code');
+    Route::post('/delete', [CartController::class, 'destroy'])->name('destroy');
+    
     });
 
-
-
-Route::group(['prefix'  =>  'order_user'    , 'middleware' => 'auth',  'as'    =>  'order_user.']  ,function(){
+Route::group(['prefix'  =>  'order_user', 'middleware' => 'auth',  'as'    =>  'order_user.']  ,function(){
     route::get('/',[OrderUserController::class,'order_user'])->name('list_order');
     route::get('/detail/{id}',[OrderUserController::class,'detailOrder'])->name('detail_order');
     Route::get('/profile',[OrderUserController::class,'profile'])->name('profile');
     Route::get('/edit', [OrderUserController::class, 'edit'])->name('edit');
-});
-
-
+    });
 
 Route::group(['prefix'=>'contact', 'as'=> 'contact.'],function () {
 
         Route::get('/',[ContactController::class, 'contact'])->name('address');
         Route::post('/postmessage',[ContactController::class, 'postmessage'])->name('postmessage');
-        
-        
     });
 
 Route::group(['prefix' =>'password','as'=>'password.'],function () {
