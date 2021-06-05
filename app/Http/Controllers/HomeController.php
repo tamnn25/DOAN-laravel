@@ -12,17 +12,15 @@ class HomeController extends Controller
 {   
     //
     public function index(){
-            $products       =   Product::leftjoin('product_promotion', 'product_promotion.product_id', '=', 'products.id')
-                            ->select('products.*', \DB::raw('product_promotion.id as product_promotion_id'), 'product_promotion.discount')    
-                            ->get();
+         
+            $products       =   Product::with('productPromotion')->get();
+
             $promotions      =   Promotion::with('products')->orderBy('id', 'desc')->get();
             $categories     =   Category::get();
             // $product = Product::find();
-            //     dd(count($product->comments));
             // -----------------------------------------
                 $comment        =  Comment::with('product')->get();
                 // $countcomment   = new Comment();
-                // dd($comment);
             // formatcommentProduct
             // -----------------    get  dữ liệu khách hàng  đánh giá ra ngoài home-----------------------
 
@@ -49,27 +47,15 @@ class HomeController extends Controller
             ]);
     }
 
-    // public function getProductByCategory($id)
-    // {
-    //     $products   = Product::where('category_id', $id)->limit(8)->get();
-    //     $view = view("home._ajax_product", compact('products'))->render();//gán lại $product với category_id đã chọn
-    //     return response()->json(['status' => 'success','html' => $view]);
-    // }
+ 
 
     public function shop($id){
         $categories = Category::all();
 
-        $select = [
-            'products.*', 
-            'product_promotion.discount',
-            \DB::raw('product_promotion.id as product_promotion_id')
-        ];
+      
         $product = Product::where('products.id', $id)
-                        ->leftjoin('product_promotion', 'product_promotion.product_id', '=', 'products.id')
-                        // leftjoin lấy all dữ liệu left product j
                         ->with('product_images')
                         ->with('product_detail')
-                        ->select($select)   
                         ->first();
 
 
