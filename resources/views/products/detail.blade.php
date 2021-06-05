@@ -253,7 +253,7 @@
 @endsection
 
 @push('css')
-    <link rel="stylesheet" href="{{ 'public/shop/css/rating.css' }}">
+    <link rel="stylesheet" href="{{ '/shop/css/rating.css' }}">
 @endpush
 
 @push('js')

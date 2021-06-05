@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="mt-2">
-            <button type="submit" class="btn btn-primary" id="btn-checkout" onclick="return confirm('Are you sure checkout your Order?')">Thanh toán</button>
+            <button type="submit" class="btn btn-primary" id="btn-checkout" onclick="return confirm('Confirmed Order')">Thanh toán</button>
         </div>
     </form>
 </div>
