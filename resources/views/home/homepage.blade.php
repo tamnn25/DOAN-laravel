@@ -236,66 +236,39 @@
 
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
+                        
                         <h4>Review Products</h4>
                         <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="shop/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>40.000.VND</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="shop/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>30.000.VND</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="shop/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>50.000.VND</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="shop/img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>60.000.VND</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="shop/img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>70.000.VND</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="shop/img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>80.000.VND</span>
-                                    </div>
-                                </a>
-                            </div>
+                            @for ($i = 1; $i <= 3; $i++)
+                                <div class=" latest-prdouct__slider__item ">
+                                    @if(isset($commentFormat[$i]))
+
+                                        @foreach ($commentFormat[$i] as $key => $item)
+
+                                            <a href="{{ route('product.detail',$item['id']) }}" class="latest-product__item">
+                                                <div class="latest-product__item__pic">
+                                                    <img src="{{ $item->product->image }}" style="width: 110px" alt="">
+                                                </div>
+                                                <div class=" latest-product__item__text  " >
+                                                    <h6>{{ $item->product->name }}</h6>
+                                                    <div class="product__details__text">
+                                                        <div class="product__details__rating">
+                                                            @for ($i = 0; $i < 5; $i++)
+                                                                <i
+                                                                    class="{{ $item->rate > $i ? 'fa fa-star' : 'fa fa-star-half-o' }}"></i> 
+                                                                    {{-- $countcomment -> startReview  chỉ đến id sản phẩm   nếu lớn  hơn $id nó sẽ show ra ngược lại ẩn --}}
+                                                            @endfor
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        @endforeach
+                                    @endif
+                                  
+                                     
+                                </div>
+                            @endfor
+                         
                         </div>
                     </div>
                 </div>
@@ -369,7 +342,64 @@
     </section>
     <!-- Blog Section End -->
 @endsection
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
 
+    .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+    }
+
+    .rate:not(:checked)>input {
+        position: absolute;
+        top: -9999px;
+    }
+
+    .rate:not(:checked)>label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+    }
+
+    .rate:not(:checked)>label:before {
+        content: '★ ';
+    }
+
+    .rate>input:checked~label {
+        color: #ffc700;
+    }
+
+    .rate:not(:checked)>label:hover,
+    .rate:not(:checked)>label:hover~label {
+        color: #deb217;
+    }
+
+    .rate>input:checked+label:hover,
+    .rate>input:checked+label:hover~label,
+    .rate>input:checked~label:hover,
+    .rate>input:checked~label:hover~label,
+    .rate>label:hover~input:checked~label {
+        color: #c59b08;
+    }
+
+    /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+
+</style>
+
+@push('css')
+    <link rel="stylesheet" href="{{ 'public/shop/css/rating.css' }}">
+@endpush
+@push('js')
+
+@endpush
    
 
 
