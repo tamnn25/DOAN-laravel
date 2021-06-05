@@ -9,6 +9,7 @@
             <label>Search by status:</label> <br>
             <input type="text" class="form-control" name="status" placeholder="product status" value="{{ request()->get('name') }}">
         </div>
+        
         <div class="mb-3">
             <label class="form-label">Search by Category</label>
             <select name="category_id">
@@ -24,4 +25,13 @@
             <button type="submit" class="btn btn-outline-primary">Search</button>
         </div>
     </form>
+    <div action="{{ route('admin.product.index') }}" method="GET" class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sort by Price
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" name="price" href="#">a to z</a>
+          <a class="dropdown-item" name="price"  href="#">a to a</a>
+        </div>
+    </div>
 </div>

@@ -15,5 +15,10 @@
 @endpush
 
 @section('content')
-    
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">List Category</a></li>
+    <li class="breadcrumb-item active" aria-current="page">detail</li>
+    </ol>
+</nav>
 @endsection

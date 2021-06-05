@@ -100,7 +100,11 @@ class ProductController extends Controller
                             ->select('products.*', \DB::raw('product_promotion.id as product_promotion_id'), 'product_promotion.discount')
                             ->limit(8)
                             ->get();
+<<<<<<< HEAD
         info($products);
+=======
+
+>>>>>>> d73b980bb553a5041df6231f383a0c885a771fe8
         $view = view("home._ajax_product", compact('products'))->render();//gán lại $product với category_id đã chọn
         return response()->json(['status' => 'success','html' => $view]);
     }

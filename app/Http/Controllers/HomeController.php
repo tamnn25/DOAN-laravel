@@ -30,6 +30,7 @@ class HomeController extends Controller
                    $productLimit   =   Product::orderBy('created_at', 'desc')->limit(12)->get();
             // sản phẩm  mới cập nhập   
 
+
             $lasterProduct  = $this->formatDataProduct($productLimit);
             // lasterProduct sản phẩm được  xếp hạng cao nhất
 

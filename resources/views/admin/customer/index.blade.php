@@ -3,7 +3,7 @@
 
 @section('content')
     @include('admin.customer.search')
-
+    <button class="btn btn-warning" ><a  href="{{route('admin.customerExcel')}}">Export File Customer</a></button>
         <table id="product-list" class="table table-bordered table-hover table-striped">
             <thead>
                 <tr>
@@ -25,11 +25,13 @@
                         {{-- <th>{{$user->password}}</th> --}}
                         <th>{{$user->phone_number}}</th>
                         <th>{{$user->created_at}}</th>
-                        <th>
-                            <form action="{{route('admin.customer.destroy')}}" method="post">
-                                @
+                        <td>
+                            <form action="{{ route('admin.customer.destroy', $user->id) }}" method="post" onclick="return confirm('Are you sure DELETE ?')>
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" name="submit" value="Delete" class="btn btn-outline-danger">
                             </form>
-                        </th>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

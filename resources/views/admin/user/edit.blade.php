@@ -44,11 +44,11 @@
         </div>
 
         <br>
-        {{-- <div class="col-3">
+        <div class="col-3">
             <label class="">Role_id</label>
-            <input type="role_id" value="{{ old('password', $users->role_id) }}" placeholder=" Enter role_id" class="form-control">
+            <input type="role_id" name="role_id" value="{{ old('password', $users->role_id) }}" placeholder=" Enter role_id" class="form-control">
         </div>
-        <br> --}}
+        <br>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
     <hr>
