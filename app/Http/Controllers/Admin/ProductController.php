@@ -206,7 +206,6 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $id)
     {
-        // dd($request->all());
         $product = Product::find($id);
         $productImage = ProductImage::find($id);
         // sao 2 bien deu la $product 

@@ -21,17 +21,16 @@ class ProductController extends Controller
         $data = [];
 
         $categories = Category::all();
-        
-        $product = Product::whereId($id)
-        ->with('product_images')
-        ->with('product_detail')
-        ->first();
-
+       
+        $product = Product::where('products.id', $id)
+                        ->with('product_images')
+                        ->with('product_detail')
+                        ->first();
         $related = Product::all();
+        // dd($product);
         $now = Carbon::now(); // hiển thị thời gian comment trong  deltail sản phẩn
         $comment = Comment::where('product_id', $product->id)->with('user')->orderBy('id', 'desc' )->get(); //show thông tin user commnet
         $countcomment = new Comment();
-        
         $data['countcomment'] = $countcomment;
         $data['now']        = $now; // giá goj
         $data['related']    = $related;
@@ -85,9 +84,13 @@ class ProductController extends Controller
         return $productFormat;
     }
 
+
     public function getProductByCategory($id)
-    {
-        $products   = Product::where('category_id', $id)->limit(8)->get();
+    {     
+        $products   = Product::where('category_id', $id)
+                            ->limit(8)
+                            ->get();
+
         $view = view("home._ajax_product", compact('products'))->render();//gán lại $product với category_id đã chọn
         return response()->json(['status' => 'success','html' => $view]);
     }

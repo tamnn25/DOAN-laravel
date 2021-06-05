@@ -18,9 +18,9 @@ class ProductPromotion extends Model
         'promotion_id',
         'discount',
     ];
-    public function products()
+    public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasOne(Product::class, 'product_id');
     }
 
     // public function promotion()
