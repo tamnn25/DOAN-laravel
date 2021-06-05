@@ -18,7 +18,10 @@ class HomeController extends Controller
             $comment        =  Comment::with('product')->get();
             $countcomment   = new Comment();
 
-            $productLimit   =   Product::orderBy('created_at', 'desc')->limit(12)->get();
+
+            $productLimit   =   Product::orderBy('created_at', 'desc')->limit(9)->get();
+
+
 
             $lasterProduct  = $this->formatDataProduct($productLimit);
 

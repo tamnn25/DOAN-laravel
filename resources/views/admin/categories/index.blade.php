@@ -15,6 +15,11 @@
 @endpush
 
 @section('content')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">List Category</li>
+    </ol>
+  </nav>
     {{-- form search --}}
 
     {{-- create category link --}}
@@ -56,7 +61,7 @@
                         {{-- <td><a class="btn btn-outline-info" href="{{ route('admin.category.show', $category->id) }}">Detail</a></td> --}}
                         <td><a class="btn btn-outline-info" href="{{ route('admin.category.edit', $category->id) }}">Edit</a></td>
                         <td>
-                            <form action="{{ route('admin.category.destroy', $category->id) }}" method="post" onclick="return confirm('Are you sure DELETE PRODUCT?')>
+                            <form action="{{ route('admin.category.destroy', $category->id) }}" method="post" onclick="return confirm('Are you sure DELETE ?')>
                                 @csrf
                                 @method('DELETE')
                                 <input type="submit" name="submit" value="Delete" class="btn btn-outline-danger">

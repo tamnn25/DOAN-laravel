@@ -113,7 +113,7 @@ class UserController extends Controller
             // $users->name = $request->name;
             // $users->email = $request->email;
             $users->password = $request->password;
-            // $users->role_id = $request->role_id;
+            $users->role_id = $request->role_id;
 
 
             $users->save();
