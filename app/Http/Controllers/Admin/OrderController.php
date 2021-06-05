@@ -115,7 +115,7 @@ class OrderController extends Controller
             }
             
             $orders->delete();
-
+       
             DB::commit();
             
             return redirect()->route('admin.user.index')->with('sucess', 'delete Sucessful.');

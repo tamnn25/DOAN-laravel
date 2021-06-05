@@ -50,7 +50,12 @@
                             @endif
                         </p>
                         <hr>
-                        <p class="product-price">{{ number_format($product->price) . '.000.VND' }}</p>
+                        @if (!empty($product->discount))
+                            <p class="product-price text-muted"><del>{{ number_format($product->price) . '.000.VND' }}</del></p>
+                            <p class="product-price">{{ number_format($product->discount) . '.000.VND' }}</p>
+                        @else
+                            <p class="product-price">{{ number_format($product->price) . '.000.VND' }}</p>
+                        @endif
                         <hr>
                         <p>
                         <div class="product__details__quantity">

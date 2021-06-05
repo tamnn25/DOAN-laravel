@@ -177,6 +177,7 @@
                                                                 
                                                                 <h6 >  {{ $item->name }}</h6>
                                                                 <span>{{ $item->price }}</span>
+
                                                             </div>
                                                         </a>
                                                 @endforeach

@@ -22,16 +22,23 @@ class ProductController extends Controller
 
         $categories = Category::all();
         
-        $product = Product::whereId($id)
-        ->with('product_images')
-        ->with('product_detail')
-        ->first();
-
+        $select = [
+            'products.*', 
+            'product_promotion.discount',
+            \DB::raw('product_promotion.id as product_promotion_id')
+        ];
+        $product = Product::where('products.id', $id)
+                        ->leftjoin('product_promotion', 'product_promotion.product_id', '=', 'products.id')
+                        // leftjoin lấy all dữ liệu left product j
+                        ->with('product_images')
+                        ->with('product_detail')
+                        ->select($select)   
+                        ->first();
         $related = Product::all();
+        // dd($product);
         $now = Carbon::now(); // hiển thị thời gian comment trong  deltail sản phẩn
         $comment = Comment::where('product_id', $product->id)->with('user')->orderBy('id', 'desc' )->get(); //show thông tin user commnet
         $countcomment = new Comment();
-        
         $data['countcomment'] = $countcomment;
         $data['now']        = $now; // giá goj
         $data['related']    = $related;
@@ -85,9 +92,15 @@ class ProductController extends Controller
         return $productFormat;
     }
 
+
     public function getProductByCategory($id)
-    {
-        $products   = Product::where('category_id', $id)->limit(6)->get();
+    {     
+        $products   = Product::leftjoin('product_promotion', 'product_promotion.product_id', '=', 'products.id')
+                            ->where('category_id', $id)
+                            ->select('products.*', \DB::raw('product_promotion.id as product_promotion_id'), 'product_promotion.discount')
+                            ->limit(8)
+                            ->get();
+        info($products);
         $view = view("home._ajax_product", compact('products'))->render();//gán lại $product với category_id đã chọn
         return response()->json(['status' => 'success','html' => $view]);
     }

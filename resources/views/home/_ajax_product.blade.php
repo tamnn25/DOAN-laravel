@@ -7,7 +7,7 @@
             <div class="featured__item__pic set-bg"  data-setbg="/{{ $product->image }}" alt="">
 
                 
-                <img src="{{ asset($product->image)}}" alt="{{ $product->name }}" style="width:270px; height:250px" class="img-fluid">
+                <img src="{{ asset($product->image)}}" alt="{{ $product->name }}" style=" height:250px" class="img-fluid">
                 <ul class="featured__item__pic__hover">
                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
                     <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -18,7 +18,7 @@
                   
                 <h6><a href="#">{{ $product->name }}</a></h6>
 
-                <h5>{{!empty($product->product_promotion) ? $product->product_promotion->discount : $product->price.'.000.VND' }}</h5>
+                <h5>{{!empty($product->discount) ? $product->discount.'.000.VND' : $product->price.'.000.VND' }}</h5>
                 <div class="product-buy">
                     <a href="{{ route('product.detail', $product['id']) }}" class="btn btn-outline-success">View More</a>
                 </div>
