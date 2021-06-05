@@ -14,10 +14,19 @@ class ProductPromotion extends Model
     protected $table = 'product_promotion';
 
     protected $fillable = [
+        'discount',
         'product_id',
         'promotion_id',
-        'discount',
+        
     ];
+    public function promotion()
+    {
+        return $this->hasMany(Promotion::class);
+    }
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
 
   
 }

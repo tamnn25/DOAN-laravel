@@ -44,59 +44,28 @@
                                   <li class="sidebar-item"><a href="{{ route('admin.order.index') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">List Order</span></a></li>
                               </ul>
                             </li>
-                      <li class="sidebar-item">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-receipt"></i>
-                            <span class="hide-menu">Customer manage</span></a>
+                      
+                          <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu">Customer manage</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                              <a href="{{ route('admin.customer.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.order.index' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>List Customer</p>
-                              </a>
+                                <li class="sidebar-item"><a href="{{ route('admin.customer.index') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">List Customer</span></a></li>
+                                {{-- <li class="sidebar-item"><a href="{{ route('admin.user.create') }}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Create User</span></a></li> --}}
                             </ul>
-                      </li>
-                      <li class="sidebar-item">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-receipt"></i>
-                            <span class="hide-menu"> User manage</span></a>
+                          </li>
+                          <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-address-card"></i><span class="hide-menu">User manage</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                              <a href="{{ route('admin.user.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.order.index' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-              
-                                <p>List User</p>
-                              </a>
-                                <li class="sidebar-item">
-                                  <a href="{{ route('admin.user.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.create' ? 'active' : '' }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Create User</p>
-                                  </a>
-                                </li>
+                                <li class="sidebar-item"><a href="{{ route('admin.user.index') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">List User</span></a></li>
+                                <li class="sidebar-item"><a href="{{ route('admin.user.create') }}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Create User</span></a></li>
                             </ul>
-                      </li>
-                      <li class="sidebar-item">
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-receipt"></i>
-                            <span class="hide-menu">Promotion</span></a>
+                          </li>
+                      
+                          <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-barcode"></i><span class="hide-menu">Promotion manage</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                              <a href="{{ route('admin.promotion.list_promotion') }}" class="nav-link {{ Route::currentRouteName() == 'admin.promotion.list_promotion' ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-              
-                                <p>List Promotion</p>
-                              </a>
-                                {{-- <li class="sidebar-item">
-                                  <a href="{{ route('admin.user.create') }}" class="nav-link {{ Route::currentRouteName() == 'admin.user.create' ? 'active' : '' }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Create User</p>
-                                  </a>
-                                </li> --}}
+                                <li class="sidebar-item"><a href="{{ route('admin.promotion.list_promotion') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">List Promotion</span></a></li>
+                                {{-- <li class="sidebar-item"><a href="{{ route('admin.user.create') }}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Create User</span></a></li> --}}
                             </ul>
-                      </li>
-                      <li class="sidebar-item">
-                        <a href="#" class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i class="mdi mdi-receipt"></i>
-                            <span class="hide-menu">Messages From Customer</span></a>
-                            
-                      </ul>
+                          </li>
+                      
+                      
                       <form  action="{{ route('admin.logout') }}"  method="POST" style="margin-top:130px;">
                         @csrf
                         <button class="btn btn-dark" type="submit" onclick="return confirm('Are you sure LOGOUT ?')">Logout</button>

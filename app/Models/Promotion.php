@@ -26,19 +26,20 @@ class Promotion extends Model
 
     protected $fillable = [
         'discount',
+        'product_id',
         'begin_date',
         'end_date',
         'status',
     ];
 
-    public function products()
-    {
-        return $this->belongsToMany(Product::class);
-    }
-    public function product_promotion()
-    {
-        return $this->hasMany(ProductPromotion::class);
-    }
+    // public function products()
+    // {
+    //     return $this->belongsToMany(Product::class);
+    // }
+    // public function product_promotion()
+    // {
+    //     return $this->belongto(ProductPromotion::class);
+    // }
 
     public function getEndDateAttribute($endDate) {
         return (new Carbon($endDate))->format('Y-m-d\H:i:s');
