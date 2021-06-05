@@ -42,9 +42,16 @@ class ProductController extends Controller
         if(!empty($request->status)) {
             $product = $product->where('status', $request->status);
         }
+        if(!empty($request->price)){
+            $product = $product->where('price', 'like', '%' . $request->price. '%')
+                                ->orderby('price','asc')
+                                ->paginate(8);
+        }
 
         $product = $product->orderBy('id', 'desc');
-        $product = $product->paginate(6);
+
+        $product = $product->paginate(8);
+
         // get list data of table categories
         $categories = Category::pluck('name')
            ->toArray();

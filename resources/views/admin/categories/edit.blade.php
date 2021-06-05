@@ -1,13 +1,6 @@
 @extends('admin.layouts.master')
 
-{{-- set page title --}}
-@section('title', 'Edit Category')
 
-{{-- set breadcrumbName --}}
-@section('breadcrumbName', 'Category Management')
-
-{{-- set breadcrumbMenu --}}
-@section('breadcrumbMenu', 'Edit Category')
 
 {{-- import file css (private) --}}
 @push('css')
@@ -15,10 +8,13 @@
 @endpush
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">List Category</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+        </ol>
+    </nav>
     <h4>Edit Category</h4>
-
-    
-
     <form action="{{ route('admin.category.update', $category->id) }}" method="post">
         @csrf
         @method('PUT')

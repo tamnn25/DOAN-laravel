@@ -15,6 +15,12 @@
 @endpush
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">List Category</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create</li>
+        </ol>
+  </nav>
     <h4>Create Category</h4>
 
     @include('errors.error')

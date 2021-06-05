@@ -30,7 +30,7 @@
                         
                 @foreach ($users as $item )
                     <div class="col-md-3 border-right">
-                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://lh3.googleusercontent.com/proxy/kF5dz7H9YoCKuOe2HZbVObsy0A7Yjim7g0D6TQpTBCWTTjPQ7WHnaie9nM_EyNT2LO4MYsUqwQ5F0G7yDrXWj1aFBVX-IILs6tFXEGdgmiCBHNxq" width="90"><span class="font-weight-bold">{{ $item->name }}</span><span class="text-black-50">{{ $item->email }}</span><span>Việt Nam</span></div>
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://www.w3schools.com/w3images/team2.jpg" width="90"><span class="font-weight-bold">{{ $item->name }}</span><span class="text-black-50">{{ $item->email }}</span><span>Việt Nam</span></div>
                     </div>
                     <div class="col-md-5 border-right">
                         <div class="p-3 py-5">
@@ -44,7 +44,7 @@
                           
                             <br>
                             <div class="row mt-3">
-                                <div class="col-md-12"><label class="labels">Password</label><input type="text" class="form-control" placeholder="education" value="{{ $item->password }}"></div>
+                                <div class="col-md-12"><label class="labels">Password</label><input type="password" class="form-control" placeholder="education" value="{{ $item->password }}"></div>
                             </div>
                             <br>
                             <div class="row mt-3">

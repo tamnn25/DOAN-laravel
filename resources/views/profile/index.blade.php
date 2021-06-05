@@ -1,30 +1,5 @@
 @extends('layouts.master')
-{{-- @section('content')
-        <table id="product-list" class="table table-bordered table-hover table-striped">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>email</th>
-                    <th>phone_number</th>
-                    <th>created_at</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if(!empty($users))
-                    @foreach ($users as $key=> $user)
-                        <tr>
-                            <th>{{$key+1}}</th>
-                            <th>{{$user->name}}</th>
-                            <th>{{$user->email}}</th>
-                            <th>{{$user->phone_number}}</th>
-                            <th>{{$user->created_at}}</th>
-                        </tr>
-                    @endforeach
-                @endif    
-            </tbody>
-        </table>
-@endsection --}}
+
 @section('content')
 <!DOCTYPE html>
 <html>
