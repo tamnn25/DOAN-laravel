@@ -16,7 +16,7 @@ class HomeController extends Controller
             $promotion      =   Promotion::get();
             $categories     =   Category::get();
 
-            $productLimit   =   Product::orderBy('created_at', 'desc')->limit(6)->get();
+            $productLimit   =   Product::orderBy('created_at', 'desc')->limit(9)->get();
 
 
             $lasterProduct  = $this->formatDataProduct($productLimit);

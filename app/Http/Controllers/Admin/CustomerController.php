@@ -41,17 +41,26 @@ class CustomerController extends Controller
         return view('admin.customer.index',$data);
     }
 
-    public function search(Request $request)
-    {
-        // dd($request->name);
-        // \DB::enableQueryLog();
+    // public function search(Request $request)
+    // {
+    //     // dd($request->name);
+    //     // \DB::enableQueryLog();
 
-        $users = User::where('name', 'like', '%' . $request->name . '%')
-                    ->paginate(4);
-                    // dd($users);
-                    // info(\DB::getQueryLog());
-        $data['users'] = $users;
-        return view('admin.customer.search',$data);
+    //     $users = User::where('name', 'like', '%' . $request->name . '%')
+    //                 ->paginate(4);
+    //                 // dd($users);
+    //                 // info(\DB::getQueryLog());
+    //     $data['users'] = $users;
+    //     return view('admin.customer.search',$data);
+    // }
+    public function destroy($id){
+        dd(123);
+        DB::beginTransaction();
+        try{
+
+        }catch(\Exception $ex){
+
+        }
     }
 
 }

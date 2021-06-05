@@ -230,7 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        // 'Helper' => App\Helpers\Helper::class,
+        'Helper' => App\Helpers\Helper::class,
         // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],

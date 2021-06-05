@@ -87,7 +87,7 @@ class ProductController extends Controller
 
     public function getProductByCategory($id)
     {
-        $products   = Product::where('category_id', $id)->limit(6)->get();
+        $products   = Product::where('category_id', $id)->limit(8)->get();
         $view = view("home._ajax_product", compact('products'))->render();//gán lại $product với category_id đã chọn
         return response()->json(['status' => 'success','html' => $view]);
     }

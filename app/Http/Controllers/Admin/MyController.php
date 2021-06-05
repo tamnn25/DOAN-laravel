@@ -1,10 +1,11 @@
 <?php
-     
-namespace App\Http\Controllers;
-    
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Exports\UsersExport;
-use App\Imports\UsersImport;
+use App\Imports\AdminImport;
+use App\Exports\AdminsExport;
 use Maatwebsite\Excel\Facades\Excel;
     
 class MyController extends Controller
@@ -14,7 +15,7 @@ class MyController extends Controller
     */
     public function importExportView()
     {
-       return view('import');
+       return view('admin.user.import');
     }
      
     /**
@@ -22,7 +23,7 @@ class MyController extends Controller
     */
     public function export() 
     {
-        return Excel::download(new UsersExport, 'users.xlsx');
+        return Excel::download(new AdminsExport, 'Admins.xlsx');
     }
      
     /**
@@ -30,7 +31,7 @@ class MyController extends Controller
     */
     public function import() 
     {
-        Excel::import(new UsersImport,request()->file('file'));
+        Excel::import(new AdminImport,request()->file('file'));
              
         return back();
     }
