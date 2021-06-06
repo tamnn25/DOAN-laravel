@@ -22,17 +22,18 @@ class CartController extends Controller
 {
         public function addCart(Request $request, $id)
         {
+            // dd(123);
                 //get data from SESSION
                 $sessionAll = Session::all();
-
+                
                 $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
-
+                // dd($carts[$id]);
                 if (!empty($carts[$id])) {
 
                     $carts[$id]['quantity'] += $request->quantity;
 
                     session(['carts' => $carts]);
-                    
+                    // function nay ko cos gia tri.
                 }else {
                     // validate ID of table product ? available TRUE | FALSE
                     // check quantity of products.quantity compare with order_detail.quantity
@@ -50,31 +51,31 @@ class CartController extends Controller
 
                         'image'     => $product->image,
                     ];
-
+                    
                     $carts[$id] = $newProduct;
-
+                    
                     // set data for SESSION
                     session(['carts' => $carts]);
                 }
+                // dd($carts[$id]);
                 return redirect()->route('cart.cart-info')
                     ->with('success', 'Add Product to Cart successful!');
         }
 
-        public function getCartInfo(Request $request)
+        public function CartInfo(Request $request)
         {
-            
+                // dd(123);
                 $data = [];
                 //get data from SESSION 
                 $sessionAll = Session::all();
 
                 $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
-
+                // dd($carts);
                 $data['carts'] = $carts;
 
                 session(['step_by_step' => 1]);
 
                 return view('carts.cart_info', $data);
-
 
         }
 
@@ -85,12 +86,13 @@ class CartController extends Controller
             //get cart info from SESSION
 
             $carts  = empty(Session::get('carts')) ? [] : Session::get('carts');
+            
             $data['carts'] = $carts;
 
             return view('carts.checkout', $data);
         }
 
-        public function checkoutComplete(Request $request)
+        public function Complete(Request $request)
         {
 
             // get cart info
@@ -110,18 +112,14 @@ class CartController extends Controller
             try {
                 // save data into table orders
                 $order      = Order::create($dataOrder);
-
                 $orderId    = $order->id;
 
                 if (!empty($carts)) {
                     foreach ($carts as $cart) {
 
                         $productId  =   $cart['id'];
-
                         $quantity   =   $cart['quantity'];
-
                         $price      =   $cart['price']; 
-
                         $price = $cart['price'];
                         
                         $orderDetail = [
@@ -132,7 +130,6 @@ class CartController extends Controller
                             'price_id' => $price,
 
                             'quantity' => $quantity ,
-
 
                             'total' => $price*$quantity,
                         ];
@@ -182,7 +179,7 @@ class CartController extends Controller
                 ->first();
 
             if (!empty($orderVerify)) { // already sent code and this code is available
-                return response()->json(['message' => 'We sent code to your email about 15 minutes ago. Please check email to get code.']);
+                return response()->json(['message' => 'Please check email to get code after 15 minutes.']);
             } else { // not send code
                 $dataSave = [
                     'user_id'        => $userId,
@@ -193,6 +190,7 @@ class CartController extends Controller
 
                     'expire_date'    => $currentDate,
                 ];
+                // dd($dataSave);
                 DB::beginTransaction();
 
                 try {
@@ -204,7 +202,7 @@ class CartController extends Controller
                     // send code to email
                     Mail::to($email)->send(new SendVerifyCode($dataSave));
 
-                    return response()->json(['message' => 'We sent code to email. Please check email.']);
+                    return response()->json(['message' => 'Please check email.']);
                 } catch (\Exception $exception) {
                     // rollback data and dont insert into table
                     echo $exception->getMessage();
@@ -238,7 +236,7 @@ class CartController extends Controller
                 // add step by step to SESSION
                 session(['step_by_step' => 2]);
 
-                return response()->json(['message' => 'Confirmed code is OK.']);
+                return response()->json(['message' => 'Confirmed']);
             } catch (\Exception $exception) {
                 DB::rollBack();
 

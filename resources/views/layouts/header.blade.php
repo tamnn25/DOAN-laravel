@@ -97,13 +97,13 @@
                         <li><a href="{{ route('home.shop', 0) }}">Shop</a></li>
                         <li><a href="#">Wine</a>
                             <ul class="header__menu__dropdown">
-                                <li><a href="./shop-details.html">Red Wine</a></li>
-                                <li><a href="./shoping-cart.html">White Wine</a></li>
-                                <li><a href="./checkout.html">Rose Wine</a></li>
-                                <li><a href="./blog-details.html">Brandy</a></li>
+                                <li><a href="#">Red Wine</a></li>
+                                <li><a href="#">White Wine</a></li>
+                                <li><a href="#">Rose Wine</a></li>
+                                <li><a href="#">Brandy</a></li>
                             </ul>
                         </li>
-                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="#">Blog</a></li>
                         <li><a href="{{route('contact.address')}}">Contact Us</a></li>
                     </ul>
                 </nav>

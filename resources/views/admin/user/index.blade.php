@@ -15,7 +15,7 @@
             @include('admin.user._search')
             <p ><a  class="btn btn-outline-success" href="{{ route('admin.user.create') }}">Create</a></p>
 
-            <button ><a href="{{route('admin.importExportView')}}"> importExportView</a></button>
+            <button class="btn btn-warning" ><a href="{{route('admin.importExportView')}}">Export File Admin</a></button>
             <table id="user-list" class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
