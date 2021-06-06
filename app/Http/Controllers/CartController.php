@@ -139,9 +139,10 @@ class CartController extends Controller
                         // save data into table order_details
                         OrderDetail::create($orderDetail);
                         $product = Product::whereId($productId)->first();
-                        
+                    //    -------------------------------- 
                         $product = Product::whereId($productId)->first();
                         $product->update(['quantity' => $product->quantity - $quantity]);
+                        // khi order thanh công sẽ trừ số lượng  product
                     }
                 }
                     DB::commit();

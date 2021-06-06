@@ -75,10 +75,17 @@
                         <div class="sidebar" >
                             
                             <div class="sidebar__item">
-                                
+                                    {{-- {{dd(request()->route()->parameters['id'])}} --}}
                                 <h4>Price</h4>
                                 <div class="price-range-wrap">
-                                    <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                                    <form action="{{ route('home.shop', request()->route()->parameters['id']) }}">
+                                        <input type="radio" name="money" id="" value="1"> <label for="">Từ 0 - 100.000</label><br>
+                                        <input type="radio" name="money" id="" value="2"> <label for="">Từ 100.000 - 500.000</label><br>
+                                        <input type="radio" name="money" id="" value="3"> <label for="">Từ 500.000 - 1.000.000</label><br>
+                                        <input type="submit" value="Search" class="btn btn-primary">
+                                    </form>
+
+                                    {{-- <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
                                         data-min="10" data-max="540">
                                         <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
                                         <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
@@ -89,10 +96,12 @@
                                             <input type="text" id="minamount">
                                             <input type="text" id="maxamount">
                                         </div>
-                                    </div>
+                                    </div> --}}
+                                 
                                 </div>
                             </div>
-                            <div class="sidebar__item sidebar__item__color--option">
+                            <hr>
+                            {{-- <div class="sidebar__item sidebar__item__color--option">
                                 <h4>Colors</h4>
                                 <div class="sidebar__item__color sidebar__item__color--white">
                                     <label for="white">
@@ -130,8 +139,8 @@
                                         <input type="radio" id="green">
                                     </label>
                                 </div>
-                            </div>
-                            <div class="sidebar__item">
+                            </div> --}}
+                            {{-- <div class="sidebar__item">
                                 <h4>Popular Size</h4>
                                 <div class="sidebar__item__size">
                                     <label for="large">
@@ -157,7 +166,7 @@
                                         <input type="radio" id="tiny">
                                     </label>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="sidebar__item">
                                 <div class="latest-product__text">
                                     <h4>Latest Products</h4>
@@ -176,7 +185,8 @@
                                                             <div class="latest-product__item__text">
                                                                 
                                                                 <h6 >  {{ $item->name }}</h6>
-                                                                <span>{{ $item->price }}</span>
+                                                    <span>{{ number_format($item->price ) . '   VND'  }}</span>
+
 
                                                             </div>
                                                         </a>
@@ -214,17 +224,17 @@
                         <div class="filter__item">
                             <div class="row">
                                 
-                                {{-- <div class="col-lg-4 col-md-5">
-                                    <div class="filter__sort">
+                                <div class="col-lg-4 col-md-5">
+                                    {{-- <div class="filter__sort">
                                         <label for="amount">Sắp sếp theo</label>
                                        
                                         <span>Sort By</span>
-                                        <select>
-                                            <option value="0">a -> z </option>
-                                            <option value="0">z -> a</option>
+                                        <select name="sortBy">
+                                            <option value="asc"><a href="{{ route('home.shop', ['sortBy' => 'asc'])  }}">a -> z</a></option>
+                                            <option value="desc"><a href="{{ route('home.shop', ['sortBy' => 'desc']) }}">z -> a</a></option>
                                         </select>
-                                    </div>
-                                </div> --}}
+                                    </div> --}}
+                                </div>
                                 <div class="col-lg-4 col-md-4">
                                     <div class="filter__found">
                                         
@@ -259,8 +269,8 @@
                                                 </ul>
                                             </div>
                                             <div class="product__item__text">
-                                                <h6><a href="{{ route('product.detail', $product['id']) }}">{{ $product->name }}</a></h6>
-                                                <h5>{{ $product->price }}.000.vnd</h5>
+                                                <h6><a href="{{ route('product.detail', $product['id']) }}"><strong>{{ $product->name }}</strong></a></h6>
+                                                <span>{{ number_format($product->price ) . '   VND'  }}</span>
                                                 <div class="product-buy">
                                                     <a href="{{ route('product.detail', $product['id']) }}" class="btn btn-outline-success">View More</a>
                                                 </div>

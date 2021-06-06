@@ -35,6 +35,7 @@
             <tr>
                 <th>STT</th>
                 <th>product Name</th>
+                <th>Image</th>
                 <th>quantity</th>
                 <th>price</th>
                 <th>Total</th>
@@ -44,6 +45,7 @@
             @foreach ($order->order_detail as $key => $order)
                 <tr>
                     <td>{{$key+1}}</td>
+                    <td><img src="/{{$order->product->image}}" width="200px" alt=""></td>
                     <td>{{$order->product->name}}</td>
                     <td>{{$order->quantity}}</td>
                     <td>{{$order->price_id.'.000.VND'}}</td>

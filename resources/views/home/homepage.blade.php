@@ -154,7 +154,7 @@
                                                 </div>
                                                 <div class="latest-product__item__text">
                                                     <h6>{{ $item->name }}</h6>
-                                                    <span>{{  $item->price.'.000.VND' }}</span>
+                                                    <span>{{ number_format($item->price).  '   VND'  }}</span>
                                                 </div>
                                             </a>
 
@@ -185,6 +185,8 @@
                                                  
                                                 <div class="latest-product__item__text">
                                                     <h6>{{ $item->product->name }}</h6>
+                                                    <span>{{ number_format($item->product->price). '   VND'  }}</span>
+
                                                    {{-- <div class="product__details__rating" >
                                                             @for ($i = 0; $i < 5; $i++)
                                                                 <i
@@ -223,10 +225,12 @@
                                                 </div>
                                                 <div class=" latest-product__item__text  " >
                                                     <h6>{{ $item->product->name }}</h6>
-                                                    <div class="product__details__text">
+                                                    <span>{{ number_format($item->product->price ) . '   VND'  }}</span>
+
+                                                    {{-- <div class="product__details__text">
                                                      <span>({{ count($item->product->comments) }} Reviews)</span>
                                                  
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </a>
                                         @endforeach

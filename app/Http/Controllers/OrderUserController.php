@@ -36,6 +36,7 @@ class OrderUserController extends Controller
         $data = [];
         $order = Order::whereId($id)
             ->with('order_detail')
+            // ->with('product')
             ->first();
         $data['order'] = $order;
 

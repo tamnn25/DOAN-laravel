@@ -50,19 +50,40 @@ class HomeController extends Controller
 
  
 
-    public function shop($id){
+    public function shop(Request $request, $id){
+
+        $money = !empty($request->money) ? $request->money : '';
         $categories = Category::all();
 
-      
-        $product = Product::where('products.id', $id)
-                        ->with('product_images')
-                        ->with('product_detail')
-                        ->first();
+        if ($id == 0) {
+            if($money) {
+                if ($money == 1) {
+                    $products = Product::whereBetween('price', [0, 100000])->paginate(9);
+                } elseif ($money == 2) {
+                    $products = Product::whereBetween('price', [100000, 500000])->paginate(9);
+                } else {
+                    $products = Product::whereBetween('price', [500000, 1000000])->paginate(9);
+                }
+            } else {
+                $products = Product::paginate(9);
+            }
+        } else {
+            if($money) {
+                if ($money == 1) {
+                    $products = Product::where('category_id', $id)->whereBetween('price', [0, 100])->paginate(9);
+                } elseif ($money == 2) {
+                    $products = Product::where('category_id', $id)->whereBetween('price', [100, 500])->paginate(9);
+                } else {
+                    $products = Product::where('category_id', $id)->whereBetween('price', [500, 1000])->paginate(9);
+                }
+            } else {
+                $products = Product::where('category_id', $id)->paginate(9);
+            }
+        }
 
-
-        $products   = ($id == 0) ? Product::paginate(9) : Product::where('category_id', $id)->paginate(9);
+        // $products   = ($id == 0) ? Product::paginate(9) : Product::where('category_id', $request->id)->paginate(9);
         //  nếu  sản phẩm   tìm kiếm  ko có sản phẩm  thì show ra ko có và ngược lại
-
+        // dd(Product::paginate(9)->orderBy('name'));
         // ------------------------------------------------
         $productLimit   = Product::orderBy('created_at', 'desc')->limit(12)
         ->get();

@@ -60,8 +60,6 @@ class ProductController extends Controller
             'lasterProduct' => $lasterProduct,
 
         ]));
-
-        // đổ dữ liêu jra thôi 
     }
   
     /**

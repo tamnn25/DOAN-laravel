@@ -35,7 +35,7 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::group(['prefix' => 'home', 'as' => 'home.'], function () {
     
-    Route::get('/shop/{id}', [HomeController::class, 'shop'])->name('shop');
+    Route::get('shop/{id}', [HomeController::class, 'shop'])->name('shop');
 
     });
 
@@ -47,7 +47,7 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
     Route::get('/category/{id}', [ProductController::class, 'getProductByCategory'])->name('category'); 
         
     });
-
+// route goij ddeens show ddaau hungf h
 Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
     Route::get('/', [CartController::class, 'getCartInfo'])->name('cart-info'); 
     Route::post('cart/{id}', [CartController::class, 'addCart'])->name('add-cart');

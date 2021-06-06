@@ -53,10 +53,17 @@
     @if(!empty($users))
         @foreach($users as $user)
         <div class="card">
-        <img src="https://www.w3schools.com/w3images/team2.jpg" alt="John" style="width:100%">
+        <img src="https://media-cdn.laodong.vn/Storage/NewsPortal/Uploaded/nguyenthanhbinh/2016_08_31/Nhac-giang-ho-2_OLSL.jpg?w=720&crop=auto&scale=both" alt="John" style="width:100%">
+        <br>
+        
         <h4>{{$user->name }}</h4>
-        <p class="title">CEO & Founder, Apple.Com</p>
-        <p>Your Email: {{$user->email}}</p>
+        <br>
+       <h4> <p class="title" style="  font-family: fantasy;">CEO & Founder, Apple.Com</p></h4>
+        <br>
+        <h6><strong>Your Email :   </strong> {{$user->email}}</h6>
+        <br>
+        <h6><strong>Phone_number :  </strong>{{$user->phone_number}}</h6>
+            
         <div style="margin: 24px 0;">
             <a href="#"><i class="fa fa-dribbble"></i></a> 
             <a href="#"><i class="fa fa-twitter"></i></a>  
@@ -64,8 +71,7 @@
             <a href="#"><i class="fa fa-facebook"></i></a> 
         </div>
 
-        <p><label for="">phone_number</label>
-            <h3>{{$user->phone_number}}</h3>
+        
             <a href="{{route('password.password')}}"><button>Update Your Profile</button></a></p>
         </div>
         @endforeach
