@@ -951,11 +951,11 @@ ol {
 }
 
 .featured__item:hover .featured__item__pic .featured__item__pic__hover {
-	bottom: 20px;
+	bottom: 70px;
 }
 
 .featured__item__pic {
-	height: 270px;
+	height: 210px;
 	position: relative;
 	overflow: hidden;
 	background-position: center center;
@@ -999,7 +999,7 @@ ol {
 	color: #1c1c1c;
 	height: 40px;
 	width: 40px;
-	line-height: 40px;
+	line-height: 50px;
 	text-align: center;
 	border: 1px solid #ebebeb;
 	background: #ffffff;
@@ -1013,6 +1013,7 @@ ol {
 }
 
 .featured__item__pic__hover li a i {
+	bottom: -11px;
 	position: relative;
 	transform: rotate(0);
 	-webkit-transition: all, 0.3s;

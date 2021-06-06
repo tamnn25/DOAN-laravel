@@ -30,7 +30,7 @@
                         
                 @foreach ($users as $item )
                     <div class="col-md-3 border-right">
-                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://www.w3schools.com/w3images/team2.jpg" width="90"><span class="font-weight-bold">{{ $item->name }}</span><span class="text-black-50">{{ $item->email }}</span><span>Việt Nam</span></div>
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://media-cdn.laodong.vn/Storage/NewsPortal/Uploaded/nguyenthanhbinh/2016_08_31/Nhac-giang-ho-2_OLSL.jpg?w=720&crop=auto&scale=both" width="90"><span class="font-weight-bold">{{ $item->name }}</span><span class="text-black-50">{{ $item->email }}</span><span>Việt Nam</span></div>
                     </div>
                     <div class="col-md-5 border-right">
                         <div class="p-3 py-5">
