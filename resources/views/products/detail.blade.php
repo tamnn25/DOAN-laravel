@@ -42,19 +42,19 @@
                             <span>{{ $product->description }}</span>
                         </p>
                         <p class="product-comment">
-                            <span>Số lượng còn: </span>
+                            <span>Quantity Remaining: </span>
                             @if ($product->quantity <= 0)
-                                <span class="text-danger">Hết Hàng</span>
+                                <span class="text-danger">Out of stock</span>
                             @else
                                 <span>{{ $product->quantity }}</span>
                             @endif
                         </p>
                         <hr>
                         @if (!empty($product->discount))
-                            <p class="product-price text-muted"><del>{{ number_format($product->price) . '.000.VND' }}</del></p>
-                            <p class="product-price">{{ number_format($product->discount) . '.000.VND' }}</p>
+                            <p class="product-price text-muted"><del>{{ number_format($product->price) . '   VND' }}</del></p>
+                            <p class="product-price">{{ number_format($product->discount) . 'VND' }}</p>
                         @else
-                            <p class="product-price">{{ number_format($product->price) . '.000.VND' }}</p>
+                            <p class="product-price">{{ number_format($product->price) . '   VND' }}</p>
                         @endif
                         <hr>
                         <p>
@@ -109,7 +109,7 @@
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                  
                                     <div class="rate">
-                                        <span>Đánh Giá : </span>
+                                        <span>Evaluate : </span>
                                         <br>
                                         <input type="radio" id="star5" name="rate" value="5" />
                                         <label for="star5" title="text">5 stars</label>
@@ -130,7 +130,7 @@
                                         <button type="submit" class="btn btn-primary">Create</button>
                                 </form>
                                 <br>
-                                <h4>Bài Đánh Giá</h4>
+                                <h4>Assessment form</h4>
                                 <table class="table table-bordered table-hover table-striped">
                                     {{-- <thead>
                                         <th></th>
