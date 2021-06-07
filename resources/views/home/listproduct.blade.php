@@ -28,7 +28,7 @@
     <script>
 
         $(document).ready(function() {
-            getProductByCategory(1); //gọi hàm getProductByCategory
+            getProductByCategory(3); //gọi hàm getProductByCategory
         });//chạy sau khi load trang xong
         function getProductByCategory(id) {
             var url = `{{ url('/product/category' ) }}`+'/'+id; //đi đén route
