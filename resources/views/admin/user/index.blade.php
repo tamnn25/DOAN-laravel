@@ -1,7 +1,11 @@
 @extends('admin.layouts.master')
 
     @section('content')
-
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">List User</li>
+            </ol>
+        </nav>
             {{-- show message --}}
             @if(Session::has('success'))
                 <p class="text-success">{{ Session::get('success') }}</p>

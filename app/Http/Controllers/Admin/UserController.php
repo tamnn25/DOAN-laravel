@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-
 use App\Models\Admin;
 use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\Admin\StoreUserRequest;
+use App\Http\Requests\Admin\UpdateCategoryRequest;
 
 class UserController extends Controller
 {
@@ -61,7 +62,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {   $request->password = bcrypt('password');
         //
         $userInsert = [
@@ -103,7 +104,7 @@ class UserController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {   $request->password = bcrypt('password');
         // dd($id);
         DB::beginTransaction();
@@ -142,7 +143,7 @@ class UserController extends Controller
             DB::commit();
 
             return redirect()->route('admin.user.index')
-                ->with('success', 'Delete Category successful!');
+                ->with('success', 'Delete User successful!');
         }  catch (\Exception $ex) {
             echo $ex->getMessage();
             DB::rollBack();

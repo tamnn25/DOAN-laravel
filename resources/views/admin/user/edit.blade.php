@@ -7,9 +7,13 @@
 @endpush
  s
 @section('content')
-    
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">List User</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit User</li>
+        </ol>
+    </nav>
     @include('errors.error')
-    {{-- url('admin/user/update/'.$users->id) --}}
     <form style="padding:100px" action="{{ route('admin.user.update', $users->id) }}" method="post">
         @csrf
         @method('PUT')
@@ -20,6 +24,7 @@
             <div class="col-3">
                 <label class="">User Name</label>
                 <h5>{{$users->name}}</h5>
+                
             </div>
             <div class="col-3">
                 <label class=""> User Email</label>
@@ -47,6 +52,10 @@
         <div class="col-3">
             <label class="">Role_id</label>
             <input type="role_id" name="role_id" value="{{ old('password', $users->role_id) }}" placeholder=" Enter role_id" class="form-control">
+           
+            @error('role_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Update</button>

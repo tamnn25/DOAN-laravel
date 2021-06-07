@@ -14,6 +14,12 @@
 @endpush
 
 @section('content')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">List Orders</li>
+        <li class="breadcrumb-item active" aria-current="page">Edit Orders</li>
+    </ol>
+</nav>
     {{-- show message --}}
     @include('errors.error')
 

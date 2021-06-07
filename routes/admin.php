@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\MyController;
 use App\Http\Controllers\Admin\UserExcelController;
+use App\Http\Controllers\Admin\ConmmentController;
 
 Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], function () {
 
@@ -54,6 +55,9 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
             Route::get('/edit/{id}', [PromotionController::class, 'edit'])->name('edit');
             Route::put('/update/{id}', [PromotionController::class, 'update'])->name('update');
             Route::delete('/delete/{id}', [PromotionController::class, 'destroy'])->name('destroy');
+        });
+        Route::group(['prefix'  =>  'comment', 'as' => 'comment.'], function (){
+            Route::get('/', [ConmmentController::class, 'index'])->name('');
         });
     });
 

@@ -23,10 +23,10 @@
                 <div class="product-detail">
                     <td><p><img src="/{{ $cart['image'] }}" alt="{{ $cart['name'] }}" width="120px" class="img-fluid"></p></td>
                     <td><p>{{ $cart['name'] }}</p></td>
-                    <td><p>{{ number_format($cart['price']).'.000 VND' }}</p></td>
+                    <td><p>{{ number_format($cart['price'])}} VND</p></td>
                     <td><p>{{ $cart['quantity']}}</p></td>
                    <td><p>   
-                    <p>{{ number_format($cart['quantity'] * $cart['price']) . '.000 VND' }}</p>
+                    <p>{{ number_format($cart['quantity'] * $cart['price'])}} VND</p>
                     </p></td>
 
                 </div>
