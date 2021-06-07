@@ -40,6 +40,11 @@ class OrderController extends Controller
                     ->orderBy('created_at', 'desc')
                     ->paginate(4);
         }    
+        if (!empty($request->status)){
+            $order = Order::where('status' , 'like' , '%' . $request->status . '%')
+                    ->orderBy('id', 'desc')
+                    ->paginate(4);
+        }
         
         // $orders = OrderDetail::all();
 
@@ -118,7 +123,7 @@ class OrderController extends Controller
        
             DB::commit();
             
-            return redirect()->route('admin.user.index')->with('sucess', 'delete Sucessful.');
+            return redirect()->route('admin.order.index')->with('sucess', 'delete Sucessful.');
 
         }catch(Exception $ex){
             DB::rollback();

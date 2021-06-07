@@ -15,11 +15,11 @@
 @endpush
 
 @section('content')
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item active" aria-current="page">List Category</li>
-    </ol>
-  </nav>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">List Category</li>
+        </ol>
+   </nav>
     {{-- form search --}}
 
     {{-- create category link --}}

@@ -16,6 +16,12 @@
 @endpush
 
 @section('content')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">List Orders</li>
+        <li class="breadcrumb-item active" aria-current="page">Detail Orders</li>
+    </ol>
+</nav>
     {{-- show message --}}
     @include('errors.error')
 
@@ -26,6 +32,7 @@
             <tr>
                 <th>STT</th>
                 <th>product Name</th>
+                <th>Image</th>
                 <th>Product_id</th>
                 <th>order_id</th>
                 <th>quantity</th>
@@ -38,6 +45,7 @@
                 <tr>
                     <td>{{$key+1}}</td>
                     <td>{{$order->product->name}}</td>
+                    <td><img src="\{{$order->product->image}}" alt="{{$order->product->name}}" style="width: 150px; height: auto;"></td>
                     <td>{{$order->product_id}}</td>
                     <td>{{$order->order_id}}</td>
                     <td>{{$order->quantity}}</td>

@@ -20,21 +20,18 @@
 @endpush
 
 @section('content')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">List Order</li>
+        
+    </ol>
+</nav>
     {{-- form search --}}
     {{-- @include('admin.orders._search') --}}
 
     {{-- show message --}}
     @include('errors.error')
-    <div class="header"> 
-        <h1 class="page-header">
-            List Orders <small>Best form elements.</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Order</a></li>
-            <li class="active">List order</li>
-        </ol> 							
-	</div>
+    
     @include('admin.orders._search')
     {{-- display list order table --}}
     @include('admin.orders._table')

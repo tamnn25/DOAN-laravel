@@ -45,7 +45,7 @@
                     <div class="col-md-6 col-lg-4 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-success text-center">
-                                <h1 class="font-light text-white"><i class="fas fa-inbox"></i></h1>
+                                <h1 class="font-light text-white">{{$CountOrder}} &nbsp;<i class="fas fa-inbox"></i></h1>
                                 <a href="{{route('admin.order.index')}}"><h6 class="text-white">Order Manage</h6></a>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-warning text-center">
-                                <h1 class="font-light text-white"><i class="fas fa-users"></i></h1>
+                                <h1 class="font-light text-white">{{$CountUser}} &nbsp;<i class="fas fa-users"></i></h1>
                                 <a href="{{ route('admin.customer.index') }}"><h6 class="text-white">Customer Manage</h6></a>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-danger text-center">
-                                <h1 class="font-light text-white"><i class='fas fa-address-card'></i></h1>
+                                <h1 class="font-light text-white">{{$CountAdmin}} &nbsp;<i class='fas fa-address-card'></i></h1>
                                 <a href="{{ route('admin.user.index') }}"><h6 class="text-white">User Manage</h6></a>
                             </div>
                         </div>
@@ -82,7 +82,8 @@
                     <div class="col-md-6 col-lg-4 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-danger text-center">
-                                <h1 class="font-light text-white"><i class="fas fa-barcode"></i></h1>
+
+                                <h1 class="font-light text-white">{{$CountProduct}} &nbsp;<i class="fas fa-barcode"></i></h1>
                                 <a href="{{route('admin.product.index')}}"><h6 class="text-white">List Products</h6></a>
                             </div>
                         </div>
@@ -92,6 +93,7 @@
                         <div class="card card-hover">
                             <div class="box bg-info text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-plus-one"></i> </h1>
+                                
                                 <a href="{{route('admin.product.create')}}"><h6 class="text-white">Create a new Product</h6></a>
                             </div>
                         </div>
@@ -100,7 +102,9 @@
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-cyan text-center">
-                                <h1 class="font-light text-white"><i class="fa fa-list-alt" aria-hidden="true"></i></h1>
+                                
+                                <h1 class="font-light text-white">{{$CountCategory}} &nbsp;<i class="fa fa-list-alt" aria-hidden="true"></i></h1>
+                                {{-- <h3 style="color:white">{{$CountCategory}}</h3> --}}
                                 <a href="{{route('admin.category.index')}}"><h6 class="text-white">Categories</h6></a>
                             </div>
                         </div>
@@ -118,7 +122,7 @@
                     <div class="col-md-6 col-lg-2 col-xlg-3">
                         <div class="card card-hover">
                             <div class="box bg-warning text-center">
-                                <h1 class="font-light text-white"><i class='fas fa-comment-dots'></i></h1>
+                                <h1 class="font-light text-white">{{$CountMessage}} &nbsp; <i class='fas fa-comment-dots'></i></h1>
                                 <a href="{{route('admin.message.message')}}"><h6 class="text-white">Messages</h6></a>
                             </div>
                         </div>
