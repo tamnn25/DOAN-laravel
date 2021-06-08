@@ -18,22 +18,22 @@
                 @csrf
                 @method('PUT')
 
-            <input type="radio" id="vehicle1" name="status" value="0">
+            <input type="radio" id="vehicle1" name="status" value="1">
             <h5><label for="vehicle1">chưa thanh toán</label></h5>
             <br>
-            <input type="radio" id="vehicle1" name="status" value="1">
+            <input type="radio" id="vehicle1" name="status" value="2">
             <h5><label for="vehicle1">Đã thanh toán online</label></h5>
             <br>
             
-            <input type="radio" id="vehicle2" name="status" value="2">
+            <input type="radio" id="vehicle2" name="status" value="3">
             <h5><label for="vehicle1"> shipper đang đi giao hàng</label></h5>
             <br>
             
-            <input type="radio" id="vehicle3" name="status" value="3">
+            <input type="radio" id="vehicle3" name="status" value="4">
             <h5><label for="vehicle2"> cancel đơn hàng</label></h5>
             <br>
             
-            <input type="radio" id="vehicle3" name="status" value="4">
+            <input type="radio" id="vehicle3" name="status" value="5">
             <h5><label for="vehicle3"> hoàn thành</label></h5>
             <br><br>
             <input type="submit" value="Submit">

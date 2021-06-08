@@ -20,18 +20,18 @@ class Order extends Model
 
     /**
      * Define variable STATUS
-     * 0: đã tạo đơn hàng và chưa thanh toán 
-     * 1: đã tạo đơn và đã thanh toán online
-     * 2: (shipping) shipper đang đi giao hàng
-     * 3: (cancel) đơn hàng bị hủy do lỗi kỹ thuật hoặc một lý do khác
-     * 4: (finished) Hoàn thành
+     * 1: đã tạo đơn hàng và chưa thanh toán 
+     * 2: đã tạo đơn và đã thanh toán online
+     * 3: (shipping) shipper đang đi giao hàng
+     * 4: (cancel) đơn hàng bị hủy do lỗi kỹ thuật hoặc một lý do khác
+     * 5: (finished) Hoàn thành
      */
     public const STATUS = [
-        0,
-        1,
-        2,
-        3,
-        4,
+        1=>1,
+        2=>2,
+        3=>3,
+        4=>4,
+        5=>5,
     ];
 
     protected $fillable = [
