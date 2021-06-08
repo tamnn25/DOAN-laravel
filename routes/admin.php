@@ -57,7 +57,7 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
             Route::delete('/delete/{id}', [PromotionController::class, 'destroy'])->name('destroy');
         });
         Route::group(['prefix'  =>  'comment', 'as' => 'comment.'], function (){
-            Route::get('/', [ConmmentController::class, 'index'])->name('');
+            Route::get('/', [ConmmentController::class, 'index'])->name('comment');
         });
         Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
             Route::delete('/delete/{id}', [OrderController::class, 'destroy'])->name('destroy');

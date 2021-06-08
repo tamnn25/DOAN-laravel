@@ -20,23 +20,22 @@
                 </div>
             </div>
             <div class="col-lg-9">
+               
                 <div class="hero__search">
                     <div class="hero__search__form">
-                
-                        <div class="hero__search__form">
                             <form action="{{ route('product.search') }}" id="formSearch" method="GET">
                                 
                                 <input type="text" name="key" placeholder="What Would You Like To Buy ?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
-                        </div>
                     </div>
                     <div class="hero__search__phone">
                         <div class="hero__search__phone__icon">
-                            <i class="fa fa-phone"></i>
+                            {{-- <i class="fa fa-phone"></i> --}}
+                            <img src="{{ asset('shop/img/call.png') }}" alt="">
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+84 263 888 279</h5>
+                            <h5>+65 11.188.888</h5>
                             <span>support 24/7 time</span>
                         </div>
                     </div>

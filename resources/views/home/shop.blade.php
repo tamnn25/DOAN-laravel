@@ -76,13 +76,13 @@
                             
                             <div class="sidebar__item">
                                     {{-- {{dd(request()->route()->parameters['id'])}} --}}
-                                <h4>Price</h4>
-                                <div class="price-range-wrap">
+                                <h4>Price</h4> <hr>
+                                <div class="price-range-wrap " >
                                     <form action="{{ route('home.shop', request()->route()->parameters['id']) }}">
-                                        <input type="radio" name="money" id="" value="1"> <label for="">Từ 0 - 100.000</label><br>
-                                        <input type="radio" name="money" id="" value="2"> <label for="">Từ 100.000 - 500.000</label><br>
-                                        <input type="radio" name="money" id="" value="3"> <label for="">Từ 500.000 - 1.000.000</label><br>
-                                        <input type="submit" value="Search" class="btn btn-outline-success">
+                                        <input  type="radio" name="money" id="" value="1"> <label for="">Từ 0 - 100.000</label><br>
+                                        <input  type="radio" name="money" id="" value="2"> <label for="">Từ 100.000 - 500.000</label><br>
+                                        <input  type="radio" name="money" id="" value="3"> <label for="">Từ 500.000 - 1.000.000</label><br>
+                                        <input  type="submit" value="Search" class="btn btn-outline-success">
                                     </form>
 
                                     {{-- <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
@@ -281,7 +281,7 @@
                                 @endif
                                 
                         </div>
-                              <div style="margin-left: 45%; ">  {{ $products->links() }} </div>
+                              <div >  {{ $products->links() }} </div>
                     </div>
                 </div>
             </div>
