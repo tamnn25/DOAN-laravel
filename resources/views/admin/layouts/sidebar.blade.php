@@ -108,7 +108,7 @@
                           
                     @endif
                     
-                    <form  action="{{ route('admin.logout') }}"  method="POST" style="margin-top:130px;">
+                    <form  action="{{ route('admin.logout') }}"  method="POST" style="margin-top:90px;">
                       @csrf
                       <button class="btn btn-dark" type="submit" onclick="return confirm('Are you sure LOGOUT ?')">Logout</button>
                     </form> 

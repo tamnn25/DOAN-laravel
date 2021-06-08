@@ -21,6 +21,7 @@ class OrderController extends Controller
     public function index(request $request)
     {
         //
+        // $status = $request-> $status;
         // $data = [];
         $orders = Product::all();
         $orders = Order::with('order_detail')
@@ -41,20 +42,22 @@ class OrderController extends Controller
                     ->paginate(4);
         }    
         if (!empty($request->status)){
-            $order = Order::where('status' , 'like' , '%' . $request->status . '%')
+            $orders = Order::where('status' , 'like' , '%' . $request->status . '%')
                     ->orderBy('id', 'desc')
                     ->paginate(4);
         }
         
-        // $orders = OrderDetail::all();
 
         $data['orders'] = $orders;
         // dd($orders);
         return view('admin.orders.index', $data);
     }
     public function show($id){
+        
         $data = [];
-        $order = Order::with('order_detail')->first();
+        $order = Order::whereId($id)
+        ->with('order_detail')
+        ->first();
         //dd($order);
         $data['order'] = $order;
 

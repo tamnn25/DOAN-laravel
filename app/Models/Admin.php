@@ -26,9 +26,9 @@ class Admin extends Authenticatable
     protected $guarded = [];
 
     public const STATUS = [
-        1,
-        2,
-        3,
+        1 =>1,
+        2 =>2,
+        3 =>3,
     ];
     protected $fillable = [
         'name',

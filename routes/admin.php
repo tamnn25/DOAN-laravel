@@ -59,16 +59,17 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
         Route::group(['prefix'  =>  'comment', 'as' => 'comment.'], function (){
             Route::get('/', [ConmmentController::class, 'index'])->name('');
         });
+        Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
+            Route::delete('/delete/{id}', [OrderController::class, 'destroy'])->name('destroy');
+        });
     });
 
     Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
         Route::get('/list', [OrderController::class, 'index'])->name('index');
-        Route::get('/create', [OrderController::class, 'create'])->name('create');
-        Route::post('/store', [OrderController::class, 'store'])->name('store');
         Route::get('/show/{id}', [OrderController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('edit');
         Route::put('/update/{id}', [OrderController::class, 'update'])->name('update');
-        Route::delete('/delete/{id}', [OrderController::class, 'destroy'])->name('destroy');
+        // Route::delete('/delete/{id}', [OrderController::class, 'destroy'])->name('destroy');
     });
     // middleware admin: nếu role khác 1 thì không đc vào
     Route::middleware(['check_role_admin'])->group(function () { 
