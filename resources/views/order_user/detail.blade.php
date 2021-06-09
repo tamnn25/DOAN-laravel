@@ -45,7 +45,7 @@
             @foreach ($order->order_detail as $key => $order)
                 <tr>
                     <td>{{$key+1}}</td>
-                    <td><img src="/{{$order->product->image}}" width="200px" alt=""></td>
+                    <td><img src="/{{$order->product->image}}" width="150px" alt=""></td>
                     <td>{{$order->product->name}}</td>
                     <td>{{$order->quantity}}</td>
                     <td>{{$order->price_id}} VND</td>
@@ -55,5 +55,9 @@
 
         </tbody>
     </table>
+    <h4 class="table-striped" style="float: right;"><b>TOTAL BILL:</b> {{ number_format($total) . ' VND' }}</h4>
     <hr>
+    <br>
+
+    <button class="btn btn-info"><a href="{{route('order_user.list_order')}}">BACK</a></button>
 @endsection

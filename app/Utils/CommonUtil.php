@@ -8,7 +8,7 @@ class CommonUtil
 {
     public static function generateUUID()
     {
-        return (string) Str::orderedUuid();
+        return (string) Str::random(9);
     }
 
     public static function dumpData($data)
