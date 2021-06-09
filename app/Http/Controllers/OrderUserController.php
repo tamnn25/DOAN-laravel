@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,7 @@ use App\Models\User;
 class OrderUserController extends Controller
 {
     //
-    public function order_user(Request $request){
+    public function order_user(Request $request){  // ngày tháng mua hàng
         $user = auth()->user();
         if(!Session::get('user_id')){
             $orders = Order::where('user_id', $user->id)
@@ -32,17 +33,33 @@ class OrderUserController extends Controller
         }
     }
     
-    public function detailOrder($id){
+    public function detailOrder($id){ // chi tiết đơn hàng vừa mua
         $data = [];
         $order = Order::whereId($id)
             ->with('order_detail')
-            // ->with('product')
             ->first();
+
+        $total = $this->calculateTotalCart($order);
+
         $data['order'] = $order;
+        $data['total'] = $total;
 
         return view('order_user.detail',$data);
     }
-    public function profile(){
+
+    public function calculateTotalCart($order)  // tổng tiền 
+    {
+        $total = 0;
+        if (!is_null($order)) {
+            foreach ($order->order_detail as $key => $order) {
+                $total += $order['quantity'] * $order['price_id'];
+            }
+        }
+        return $total;
+    }
+
+
+    public function profile(){ // thông tin khách hàng
         $data = [];
         $user = Auth::user();
 
@@ -61,11 +78,5 @@ class OrderUserController extends Controller
         }
         
     }
-    public function edit(){
-        return view('profile.update');
-    }
-
-    public function update($id){
-        dd(123);
-    }
+ 
 }
