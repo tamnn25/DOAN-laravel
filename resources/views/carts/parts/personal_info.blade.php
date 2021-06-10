@@ -1,4 +1,4 @@
-<h4>Personal information</h4>
+<h4 class="btn btn-info">Personal information</h4>
 {{-- Thông Tin Cá Nhân --}}
 <br>
 <div class="border p-2 btn btn-info table" style="    background-color: #5d9564eb;">

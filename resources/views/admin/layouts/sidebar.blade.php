@@ -42,6 +42,13 @@
                                     {{-- <li class="sidebar-item"><a href="{{ route('admin.user.create') }}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Create User</span></a></li> --}}
                                 </ul>
                               </li>
+                              {{-- comments --}}
+                              <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-barcode"></i><span class="hide-menu">Promotion manage</span></a>
+                                <ul aria-expanded="false" class="collapse  first-level">
+                                    <li class="sidebar-item"><a href="{{ route('admin.comment.comment') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Comment</span></a></li>
+                                    {{-- <li class="sidebar-item"><a href="{{ route('admin.user.create') }}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Create User</span></a></li> --}}
+                                </ul>
+                              </li>
                         @elseif (auth()->guard('admin')->user()->role_id == 3)
                            {{-- order  --}}
                            
@@ -105,10 +112,17 @@
                             </ul>
                           </li>
                           {{-- end order  --}}
+                          {{-- comments --}}
+                          <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-barcode"></i><span class="hide-menu">list Review</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="{{ route('admin.comment.comment') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu">Comment</span></a></li>
+                                {{-- <li class="sidebar-item"><a href="{{ route('admin.user.create') }}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu">Create User</span></a></li> --}}
+                            </ul>
+                          </li>
                           
                     @endif
                     
-                    <form  action="{{ route('admin.logout') }}"  method="POST" style="margin-top:90px;">
+                    <form  action="{{ route('admin.logout') }}"  method="POST" >
                       @csrf
                       <button class="btn btn-dark" type="submit" onclick="return confirm('Are you sure LOGOUT ?')">Logout</button>
                     </form> 

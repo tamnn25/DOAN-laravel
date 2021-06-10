@@ -1,4 +1,4 @@
-<h4>Billing Information</h4>
+<h4 class="btn btn-info">Billing Information</h4>
 {{-- Thông Tin Thanh Toán --}}
     <br>
 <div class="border p-2">

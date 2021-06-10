@@ -105,9 +105,9 @@ class CartController extends Controller
                 $dataOrder = [
                     'user_id'   => Auth()->id(),
 
-                    'status'    => Order::STATUS[0],
+                    'status'    => Order::STATUS[1],
                 ];
-
+                // dd($dataOrder);
                 DB::beginTransaction();
             try {
                 // save data into table orders
