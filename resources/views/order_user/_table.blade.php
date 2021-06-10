@@ -5,20 +5,23 @@
             <th>STT</th>
             <th>Order day</th>
             <th>Status</th>
+            <th>Detail</th>
             {{-- <th colspan="3">Action</th> --}}
         </tr>
     </thead>
     <tbody>
         @if(!empty($orders))
-            @foreach ($orders as  $order)
+            @foreach ($orders as $key => $order)
                 <tr>
-                    {{-- <td>{{ $order->user->name }}</td> --}}
+                    {{-- <td>{{ $order->id }}</td> --}}
+                    <td>{{ $key+1 }}</td>
+
                     <td>{{ $order->created_at }}</td>
                     <td>
                         @include('order_user.parts.alert_order_status')
                     </td>
                      <td>
-                        <a href="{{ route('order_user.detail_order', ['id' => $order->id]) }}" class="btn btn-outline-primary" >Order Detail</a>                        
+                        <a href="{{ route('order_user.detail_order', ['id' => $order->id]) }}" class="btn btn-outline-primary" > Detail</a>                        
                     </td>
                   
                 </tr>

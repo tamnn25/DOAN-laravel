@@ -5,7 +5,6 @@
 @section('title', 'Cart Page')
 @section('content')
     <section class="list-product">
-        {{-- @if ($sessionAll['carts']::count()>=1); --}}
             
             @if(!empty($carts))
                 <table class="table table-bordered table-hover" id="tbl-list-product">
@@ -58,12 +57,13 @@
                         </form>
                            
                         </td>
-                      
                             </tr>
                         </tbody>
                     @endforeach
                 </table>
-              
+                <div>
+                    <p><b>Total: </b> {{ number_format($total) . 'VND' }}</p>
+                </div>
                 <div class="mt-2" style="float:right; margin-left:10px;">
                     {{-- tiến hành thanh toán --}}
                     <button  type="button" class="btn btn-outline-success" data-bs-toggle="modal"

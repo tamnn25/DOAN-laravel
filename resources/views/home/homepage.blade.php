@@ -178,7 +178,7 @@
 
                                         @foreach ($commentFormat[$i] as $key => $item)
 
-                                            <a href="#" class="latest-product__item">
+                                            <a href="{{ route('product.detail',$item->product->id) }}" class="latest-product__item">
                                                 <div class="latest-product__item__pic">
                                                     <img src="{{ $item->product->image }}" style="width: 110px;" alt="">
                                                 </div>

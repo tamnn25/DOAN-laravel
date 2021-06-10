@@ -64,19 +64,29 @@ class CartController extends Controller
 
         public function CartInfo(Request $request)
         {
-                // dd(123);
                 $data = [];
                 //get data from SESSION 
                 $sessionAll = Session::all();
-
                 $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
-                // dd($carts);
+                $total = $this->calculateTotalCart($carts);
                 $data['carts'] = $carts;
+                $data['total'] = $total;
 
                 session(['step_by_step' => 1]);
 
                 return view('carts.cart_info', $data);
 
+        }
+
+        public function calculateTotalCart($carts)  // tổng tiền  shop c
+        {
+            $total = 0;
+            if (!is_null($carts)) {
+                foreach ($carts as $key => $cart) {
+                    $total += $cart['quantity'] * $cart['price'];
+                }
+            }
+            return $total;
         }
 
         public function checkout(Request $request)
@@ -86,8 +96,9 @@ class CartController extends Controller
             //get cart info from SESSION
 
             $carts  = empty(Session::get('carts')) ? [] : Session::get('carts');
-            
+            $total = $this->calculateTotalCart($carts);
             $data['carts'] = $carts;
+            $data['total'] = $total;
 
             return view('carts.checkout', $data);
         }
@@ -96,7 +107,6 @@ class CartController extends Controller
         {
 
             // get cart info
-                
                 $carts = Session::all();
 
                 $carts = Session::get('carts');
@@ -107,7 +117,6 @@ class CartController extends Controller
 
                     'status'    => Order::STATUS[1],
                 ];
-                // dd($dataOrder);
                 DB::beginTransaction();
             try {
                 // save data into table orders
@@ -146,7 +155,7 @@ class CartController extends Controller
                     // remove session carts, step_by_step
                     $request->session()->forget(['carts', 'step_by_step']);
 
-                    return redirect()->route('index')->with('success', 'Your Order was successful!');
+                    return redirect()->route('order_user.list_order')->with('success', 'Your Order was successful!');
             } catch (Exception $exception) {
 
                     echo $exception->getMessage(); exit;
@@ -172,12 +181,11 @@ class CartController extends Controller
             Log::info('dateSubtract15Minutes');
             
             Log::info($dateSubtract15Minutes);
-            
             $orderVerify = OrderVerify::where('user_id', $userId)
-                ->whereBetween('expire_date', [$dateSubtract15Minutes, $currentDate])
-                ->where('status', OrderVerify::STATUS[0])
-                ->first();
-
+            ->whereBetween('expire_date', [$dateSubtract15Minutes, $currentDate])
+            ->where('status', OrderVerify::STATUS[0])
+            ->first();   
+            // info($orderVerify);         
             if (!empty($orderVerify)) { // already sent code and this code is available
                 return response()->json(['message' => 'Please check email to get code after 15 minutes.']);
             } else { // not send code
@@ -189,24 +197,25 @@ class CartController extends Controller
                     'code'           => CommonUtil::generateUUID(),
 
                     'expire_date'    => $currentDate,
+
                 ];
                 // dd($dataSave);
                 DB::beginTransaction();
 
                 try {
                     OrderVerify::create($dataSave);
-
+                    $carts = Session::get('carts');
                     // commit insert data into table
                     DB::commit();
 
                     // send code to email
-                    Mail::to($email)->send(new SendVerifyCode($dataSave));
+                    Mail::to($email)->send(new SendVerifyCode($dataSave, $carts));//dùng cái này để send nè giờ   truyền dữ liệu bên  checkout qua email 
 
                     return response()->json(['message' => 'Please check email.']);
                 } catch (\Exception $exception) {
                     // rollback data and dont insert into table
-                    echo $exception->getMessage();
-
+                    // echo $exception->getMessage();
+                    info($exception);
                     DB::rollBack();
 
                     return response()->json(['message' => $exception->getMessage()]);
@@ -263,4 +272,6 @@ class CartController extends Controller
             
             return redirect()->back()->with(['message' => 'failed']);
         }
+
+      
 }
