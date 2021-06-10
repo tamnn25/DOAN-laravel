@@ -32,9 +32,9 @@
                 <th>Stt</th>
                 <th>Discription</th>
                 <th>rate</th>
-                <th>User_id</th>
-                <th>Product_id</th>
-                {{-- <th colspan="3">Action</th> --}}
+                <th>product_images</th>
+                <th>user_name</th>
+                <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -43,17 +43,19 @@
                     <tr>
                         <td>{{ $key+1 }}</td>
                         <td>{{ $comment->description }}</td>
-                        <td>{{ $comment->rate }}</td>
-                        
-                        <td>{{$comment->user_id}}</td>
-                        <td>{{$comment->product_id}}</td>
-                        {{-- <td>
-                            <form action="{{ route('admin.category.destroy', $category->id) }}" method="post" onclick="return confirm('Are you sure DELETE ?')>
+                        <td>@include('admin.comment.alert')</td>                    
+                        <td><img src="\{{$comment->product->image}}" alt="" style="width: 110px "></td>
+                        {{-- <td>{{$comment->product->name}}</td> --}}
+                        <td>{{$comment->product->name}}</td>
+                        {{-- <td><a class="btn btn-outline-info" href="#"> updates status</a></td> --}}
+                        <td>
+                            <form action="{{ route('admin.comment.destroy', $comment->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" name="submit" value="Delete" class="btn btn-outline-danger">
+
+                                <input type="submit" value="Delete" class="btn btn-outline-danger" onclick="return confirm('Are you sure DELETE PRODUCT?')" class="btn btn-danger" />
                             </form>
-                        </td> --}}
+                        </td>
                     </tr>
                 @endforeach
             @endif

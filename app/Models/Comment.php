@@ -28,6 +28,7 @@ class Comment extends Model
         2,
         3,
         4,
+        5,
     ];
 
     protected $fillable = [

@@ -39,4 +39,4 @@
     </tbody>
 </table>
 
-{{-- {{ $orders->appends(request()->input())->links() }} --}}
+{{ $orders->appends(request()->input())->links() }}

@@ -28,23 +28,23 @@ class OrderController extends Controller
                 ->with('user')
                 ->with('product')
                 ->orderBy('id', 'desc')
-                ->paginate(4);
+                ->paginate(8);
         
         if(!empty($request->name)){
             $orders = Order::where('user_id' , 'like' , '%' . $request->name . '%')
                         ->orderBy('id', 'desc')
-                        ->paginate(4);
+                        ->paginate(8);
                         //dd($orders);
             }
         if (!empty($request->date)){
             $orders = Order::where('created_at' , 'like' , '%' . $request->date . '%')
                     ->orderBy('created_at', 'desc')
-                    ->paginate(4);
+                    ->paginate(8);
         }    
         if (!empty($request->status)){
             $orders = Order::where('status' , 'like' , '%' . $request->status . '%')
                     ->orderBy('id', 'desc')
-                    ->paginate(4);
+                    ->paginate(8);
         }
         
 
