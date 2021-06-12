@@ -62,19 +62,27 @@
                                     <li data-target="#m1" data-slide-to="1"></li>
                                     
                                     <li data-target="#m1" data-slide-to="2"></li>
+
+                                    <li data-target="#m1" data-slide-to="3"></li>
+
+
     
                                 </ul>
                               
                                 <!-- The slideshow -->
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="shop/img/banner/1.jpg" alt="Los Angeles">
+                                        <img src="{{ asset('shop/img/banner/1.jpg') }}" width="100%" height="275px" alt="Los Angeles">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="shop/img/banner/2.jpg" alt="Chicago">
+                                        <img src="{{ asset('shop/img/banner/2.jpg') }}" width="100%" height="275px" alt="Chicago">
                                     </div>
-                                    <div class="shop/img/banner/3.jpg">
-                                        <img src="ny.jpg" alt="New York">
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('shop/img/banner/3.jpg') }}" width="100%" height="275px" alt="New York">
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('shop/img/banner/8.jpg') }}" width="100%" height="275px" alt="New York">
                                     </div>
                                 </div>
                               
@@ -103,18 +111,26 @@
                                 
                                 <li data-target="#demo" data-slide-to="2"></li>
 
+                                <li data-target="#demo" data-slide-to="3"></li>
+
+
+
+
                             </ul>
                           
                             <!-- The slideshow -->
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="shop/img/banner/4.jpg" width="100%" height="275px" alt="Los Angeles">
+                                    <img src="{{ asset('shop/img/banner/4.jpg') }}" width="100%" height="275px" alt="Los Angeles">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="shop/img/banner/5.jpg" width="100%" height="275px" alt="Chicago">
+                                    <img src="{{ asset('shop/img/banner/5.jpg') }}" width="100%" height="275px" alt="Chicago">
                                 </div>
-                                <div class="shop/img/banner/7.jpg">
-                                    <img src="ny.jpg" width="100%"  height="275px" alt="New York">
+                                <div class="carousel-item">
+                                    <img src="{{ asset('shop/img/banner/7.jpg') }}" width="100%"  height="275px" alt="New York">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{{ asset('shop/img/banner/6.jpg') }}" width="100%"  height="275px" alt="New York">
                                 </div>
                             </div>
                           

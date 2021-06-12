@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
@@ -46,8 +47,8 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
     Route::get('/category/{id}', [ProductController::class, 'getProductByCategory'])->name('category'); 
         
     });
-// route goij ddeens show ddaau hungf h
-Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
+
+    Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
     Route::get('/', [CartController::class, 'CartInfo'])->name('cart-info'); 
     Route::post('cart/{id}', [CartController::class, 'addCart'])->name('add-cart');
     Route::get('checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('check_order');
@@ -79,5 +80,10 @@ Route::group(['prefix' =>'password','as'=>'password.'],function () {
 });
 
 
+Route::group(['prefix'  =>  'blog', 'as '   => 'blog.'],function () {
+        Route::get('/',[BlogController::class,'index'])->name('blog');    
+        Route::get('detail',[BlogController::class,'detailblog'])->name('detail');    
+
+});
 
 
