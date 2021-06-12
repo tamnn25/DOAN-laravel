@@ -6,7 +6,7 @@
 @section('content')
     <section class="checkout">
         <div class="row">
-    <div class="col-8 ">
+            <div class="col-8 ">
                 {{-- thong tin don hang --}}
 
                 @include('carts.parts.cart_info')

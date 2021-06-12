@@ -131,6 +131,7 @@
                                 </form>
                                 <br>
                                 <h4>Assessment form</h4>
+                                <br>
                                 <table class="table table-bordered table-hover table-striped">
                                     {{-- <thead>
                                         <th></th>
@@ -154,7 +155,7 @@
                                                 </td>
                                                 <td>{{ $item->created_at->diffForHumans($now) }}</td>
                                                 <td>
-                                                    <a href="{{ route('product.delete-comment', $item->id) }}">Delete</a> 
+                                                    {{-- <a href="{{ route('product.delete-comment', $item->id) }}">Delete</a>  --}}
                                                     {{--  viêt  function bên productcontroller  --}}
                                                 </td>
                                             </tr>
