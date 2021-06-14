@@ -1,4 +1,4 @@
-<div class="mb-5 mt-5 border p-3">
+<div class="mb-2 mt-2 border p-2">
     <form  action="{{ route('admin.product.index') }}" method="GET">
         <div class="row">
             <div class="col-6">

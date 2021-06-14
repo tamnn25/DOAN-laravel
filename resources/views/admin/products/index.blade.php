@@ -1,14 +1,5 @@
 @extends('admin.layouts.master')
 
-{{-- set page title --}}
-@section('title', 'List Product')
-
-{{-- set breadcrumbName --}}
-@section('breadcrumbName', 'Post Management')
-
-{{-- set breadcrumbMenu --}}
-@section('breadcrumbMenu', 'List Post')
-
 {{-- import file css (private) --}}
 @push('css')
     <link rel="stylesheet" href="/admin/css/product/product-list.css">
@@ -31,9 +22,6 @@
     {{-- create post link --}}
     {{-- case 1 --}}
     <p ><a  class="btn btn-outline-success" href="{{ route('admin.product.create') }}">Create</a></p>
-    
-    {{-- case 2 --}}
-    {{-- <p><a href="/post/create">Create</a></p> --}}
 
     {{-- show message --}}
     {{-- @if(Session::has('success'))
@@ -69,7 +57,7 @@
                         <td>
                             {{-- <img src="{{ asset($product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 40px; height: auto;"> --}}
                             {{-- <img src="{{asset('storage/products/'.$product->images) }}" alt="{{ $product->name }}" class="img-fluid" style="width: 240px; height: auto;"> --}}
-                            <img src="/{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid" style="width: 40px; height: auto;" >
+                            <img src="/{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid" style="width: 80px; height: auto;" >
 
                         </td>
                         <td>{{ $product->price }}</td>

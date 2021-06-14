@@ -39,14 +39,14 @@ class ProductController extends Controller
         }
 
         //search price
-        if(!empty($request->status)) {
-            $product = $product->where('status', $request->status);
-        }
-        if(!empty($request->price)){
-            $product = $product->where('price', 'like', '%' . $request->price. '%')
-                                ->orderby('price','asc')
-                                ->paginate(8);
-        }
+        // if(!empty($request->status)) {
+        //     $product = $product->where('status', $request->status);
+        // }
+        // if(!empty($request->price)){
+        //     $product = $product->where('price', 'like', '%' . $request->price. '%')
+        //                         ->orderby('price','asc')
+        //                         ->paginate(8);
+        // }
 
         $product = $product->orderBy('id', 'desc');
 
@@ -60,7 +60,7 @@ class ProductController extends Controller
         // dd($posts);
         $data['products'] = $product;
 
-            return view('admin.products.index',$data);
+        return view('admin.products.index',$data);
 
     }
 
@@ -376,7 +376,7 @@ class ProductController extends Controller
             // success
             return redirect()->route('admin.product.index')->with('success', 'Delete successful!');
         } catch (\Exception $ex) {
-            echo $ex->getMessage();exit;
+            // echo $ex->getMessage();exit;
             DB::rollback();
 
             return redirect()->back()->with('error', $ex->getMessage());

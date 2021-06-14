@@ -5,7 +5,7 @@
             <th>STT</th>
             <th>Fullname</th>
             <th>Order day</th>
-            <th>Status</th>
+            {{-- <th>Status</th> --}}
             <th>order pending</th>
             <th colspan="3">Action</th>
         </tr>
@@ -18,7 +18,7 @@
                     <td>{{ $order->user->name }}</td>
                     
                     <td>{{ $order->created_at }}</td>
-                    <td>{{$order->status}}</td>
+                    {{-- <td>{{$order->status}}</td> --}}
                     <td>
                         @include('admin.orders.parts.alert_order_status')
                     </td>

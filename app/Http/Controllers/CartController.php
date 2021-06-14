@@ -27,7 +27,7 @@ class CartController extends Controller
                 $sessionAll = Session::all();
                 
                 $carts = empty($sessionAll['carts']) ? [] : $sessionAll['carts'];
-                // dd($carts[$id]);
+                // dd($sessionAll);
                 if (!empty($carts[$id])) {
 
                     $carts[$id]['quantity'] += $request->quantity;
@@ -53,9 +53,10 @@ class CartController extends Controller
                     ];
                     
                     $carts[$id] = $newProduct;
-                    
+                    // dd($carts[$id]);
                     // set data for SESSION
                     session(['carts' => $carts]);
+                    
                 }
                 // dd($carts[$id]);
                 return redirect()->route('cart.cart-info')
