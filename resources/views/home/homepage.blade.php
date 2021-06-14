@@ -184,7 +184,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                {{-- <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
                         <h4>Top Rated Products</h4>
                         <div class="latest-product__slider owl-carousel">
@@ -194,7 +194,7 @@
 
                                         @foreach ($commentFormat[$i] as $key => $item)
 
-                                            <a href="{{ route('product.detail',$item->product->id) }}" class="latest-product__item">
+                                            <a href="{{ route('product.detail', $item->product->id) }}" class="latest-product__item">
                                                 <div class="latest-product__item__pic">
                                                     <img src="{{ $item->product->image }}" style="width: 110px;" alt="">
                                                 </div>
@@ -203,15 +203,6 @@
                                                     <h6>{{ $item->product->name }}</h6>
                                                     <span>{{ number_format($item->product->price). '   VND'  }}</span>
 
-                                                   {{-- <div class="product__details__rating" >
-                                                            @for ($i = 0; $i < 5; $i++)
-                                                                <i
-                                                                    class="{{ $item->rate > $i ? 'fa fa-star' : 'fa fa-star-half-o' }}">
-                                                                </i>  --}}
-                                                                     {{-- $countcomment -> startReview  chỉ đến id sản phẩm   nếu lớn  hơn $id nó sẽ show ra ngược lại ẩn --}}
-                                                            {{-- @endfor
-                                                    </div> --}}
-                                                    {{-- <span>{{ $item->product->price.'.000.VND' }}</span> --}}
                                                 </div>
                                                    
                                             </a>
@@ -222,9 +213,9 @@
                             @endfor
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="col-lg-4 col-md-6">
+                {{-- <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
                         
                         <h4>Review Products</h4>
@@ -243,10 +234,7 @@
                                                     <h6>{{ $item->product->name }}</h6>
                                                     <span>{{ number_format($item->product->price ) . '   VND'  }}</span>
 
-                                                    {{-- <div class="product__details__text">
-                                                     <span>({{ count($item->product->comments) }} Reviews)</span>
-                                                 
-                                                    </div> --}}
+                                                
                                                 </div>
                                             </a>
                                         @endforeach
@@ -258,7 +246,7 @@
                          
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>

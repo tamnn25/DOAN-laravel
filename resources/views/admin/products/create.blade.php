@@ -6,9 +6,6 @@
 {{-- set breadcrumbName --}}
 @section('breadcrumbName', 'Product Management')
 
-{{-- set breadcrumbMenu --}}
-@section('breadcrumbMenu', 'Create Product')
-
 {{-- import file css (private) --}}
 @push('css')
     <link rel="stylesheet" href="/admin/css/product/product-create.css">

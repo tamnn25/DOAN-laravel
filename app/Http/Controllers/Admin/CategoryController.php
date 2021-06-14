@@ -142,23 +142,50 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        // Method: DELETE
-        DB::beginTransaction();
+    // public function destroy($id)
+    // {
+    //     // Method: DELETE
+    //     DB::beginTransaction();
 
-        try {
-            $category = Category::find($id);
-            $category->delete();
+    //     try {
+            
+    //         $category = Category::find($id);
 
-            DB::commit();
+    //         if(!empty($category->products)){
+    //             echo "You are can't delete this category.";
+                
+    //             // foreach ($category->products as $value){
+    //             //     $value->delete();
+    //             //     $category = Category::find($id);
+    //                 // $category->delete();
+    //             // }
+    //         }else{
+    //              $category->delete();
+    //         }
+    //         // dd($category->products);
+
+    //         DB::commit();
+
+    //         return redirect()->route('admin.category.index')
+    //             ->with('success', 'Delete Category successful!');
+    //     }  catch (\Exception $ex) {
+    //         DB::rollBack();
+    //         // have error so will show error message
+    //         return redirect()->back()->with('error', $ex->getMessage());
+    //     }
+    // }
+    public function destroy($id){
+        $category = Category::find($id);
+        // dd($category);
+        if(isset($category->products)){
+            dd($category->products);
 
             return redirect()->route('admin.category.index')
-                ->with('success', 'Delete Category successful!');
-        }  catch (\Exception $ex) {
-            DB::rollBack();
-            // have error so will show error message
-            return redirect()->back()->with('error', $ex->getMessage());
+              ->with('error', 'Delete Category error!');
+        }else{
+            $category->delete();
+            return redirect()->route('admin.category.index')
+              ->with('success', 'Delete Category successful!');
         }
     }
 }
