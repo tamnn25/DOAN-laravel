@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
@@ -108,4 +109,15 @@ Route::group(['middleware' => ['check_login_admin'] , 'as' => 'admin.'], functio
             Route::get('ExportCustomer', [UserExcelController::class, 'ExportCustomer'])->name('ExportCustomer');
             Route::post('ImportCustomer', [UserExcelController::class, 'ImportCustomer'])->name('ImportCustomer');    
     });
+
+    Route::group(['prefix'  =>  'blog', 'as '   => 'blogs.'],function () {
+        Route::get('/',[BlogController::class,'index'])->name('blog');    
+        Route::get('/create',[BlogController::class,'create'])->name('create');    
+        Route::post('/store',[BlogController::class,'add'])->name('store');    
+        Route::get('/detail{id}',[BlogController::class,'detail'])->name('show');    
+        // Route::get('/edit{id}',[BlogController::class,'edit'])->name('edit');    
+        // Route::put('/update{id}',[BlogController::class,'update'])->name('update');    
+
+    });
+
 });

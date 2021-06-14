@@ -23,19 +23,19 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
-                        <div class="hero__search__form">
                     
                             <div class="hero__search__form">
                                 <div class="hero__search__categories">
-
-                                    <form action="http://127.0.0.1:8000/product/search" id="formSearch" method="GET">
-                                        
+                                    <form action="{{ route('product.search') }}" id="formSearch" method="GET">
+                                        <div class="hero__search__categories">
+                                            All Categories
+                                            <span class="arrow_carrot-down"></span>
+                                        </div>
                                         <input type="text" name="key" placeholder="What Would You Like To Buy ?">
                                         <button type="submit" class="site-btn">SEARCH</button>
                                     </form>
                                 </div>    
                             </div>
-                        </div>
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
                                 <i class="fa fa-phone"></i>
@@ -59,7 +59,7 @@
                     <div class="breadcrumb__text">
                         <h2>Shopping</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
+                            <a href="{{ route('home.shop', 0) }}">Home</a>
                             <span>Shopping</span>
                         </div>
                     </div>

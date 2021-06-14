@@ -23,8 +23,12 @@
                
                 <div class="hero__search">
                     <div class="hero__search__form">
+                       
                             <form action="{{ route('product.search') }}" id="formSearch" method="GET">
-                                
+                                <div class="hero__search__categories">
+                                    All Categories
+                                    <span class="arrow_carrot-down"></span>
+                                </div>
                                 <input type="text" name="key" placeholder="What Would You Like To Buy ?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
