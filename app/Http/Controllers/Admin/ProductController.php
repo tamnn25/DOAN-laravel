@@ -38,15 +38,7 @@ class ProductController extends Controller
             $product = $product->where('category_id', $request->category_id);
         }
 
-        //search price
-        // if(!empty($request->status)) {
-        //     $product = $product->where('status', $request->status);
-        // }
-        // if(!empty($request->price)){
-        //     $product = $product->where('price', 'like', '%' . $request->price. '%')
-        //                         ->orderby('price','asc')
-        //                         ->paginate(8);
-        // }
+        
 
         $product = $product->orderBy('id', 'desc');
 
